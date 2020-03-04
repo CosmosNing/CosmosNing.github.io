@@ -15,5 +15,5 @@ deploy:
   keep-history: true
   target_branch: master
   on:
-    branch: master
+    branch: source
   local-dir: public
