@@ -91,13 +91,13 @@ git commit -m '<提交信息>'
 
 * `git log`：查看提交记录
 
-  * ```shell
-    git log               # 默认命令（仅显示当前分支）
-    git log --oneline     # 仅显示历史提交信息
-    git log -n<数字>       # 显示最近几次提交历史（次数由数字决定）
-    git log --all         # 查看所有分支log
-    git log --graph       # 图形化方式显示（log前会有线，分析多分支版本关系常用）
-    ```
+```shell
+git log               # 默认命令（仅显示当前分支）
+git log --oneline     # 仅显示历史提交信息
+git log -n<数字>       # 显示最近几次提交历史（次数由数字决定）
+git log --all         # 查看所有分支log
+git log --graph       # 图形化方式显示（log前会有线，分析多分支版本关系常用）
+```
 
 * `gitk`：图形化查看提交记录
 
@@ -105,48 +105,47 @@ git commit -m '<提交信息>'
 
 * `git cat-file`
 
-  * ```shell
-    git cat-file -t <哈希值>   # 查看对应 哈希值 对应的类型
-    ```
+```shell
+git cat-file -t <哈希值>   # 查看对应 哈希值 对应的类型
+```
 
-  * ```shell
-    git cat-file -p <哈希值>   # 查看对应 哈希值 对应的内容
-    ```
+```shell
+git cat-file -p <哈希值>   # 查看对应 哈希值 对应的内容
+```
 
 * `git chekout`
 
-  * ```shell
-    git checkout <与当前分支不同的已存在的分支名> # 切换分支
-    git checkout -b <新分支名> <commitid>     # 检出对应版本，并创建新分支管理
-    ```
+```shell
+git checkout <与当前分支不同的已存在的分支名> # 切换分支
+git checkout -b <新分支名> <commitid>     # 检出对应版本，并创建新分支管理
+```
 
 * `git branch`
 
-  * ```shell
-    #####显示命令#####
-    # 默认命令，显示所有分支，并注明当前处于哪个分支
-    git branch
-    # 除了默认显示信息，加入了最近一次提交信息
-    git branch -v
-    
-    #####创建命令#####
-    # 基于当前最新版本，创建新分支
-    git branch <新分支名>
-    # 基于commitid 或 tag，创建新分支
-    git branch <新分支名> < commitid | tag >
-    
-    #####删除命令#####
-    # 删除对应分支
-    git branch -d <已存在的分支名>
-    ```
+```shell
+#####显示命令#####
+# 默认命令，显示所有分支，并注明当前处于哪个分支
+git branch
+# 除了默认显示信息，加入了最近一次提交信息
+git branch -v
+
+#####创建命令#####
+# 基于当前最新版本，创建新分支
+git branch <新分支名>
+# 基于commitid 或 tag，创建新分支
+git branch <新分支名> < commitid | tag >
+
+#####删除命令#####
+# 删除对应分支
+git branch -d <已存在的分支名>
+```
 
 * `git diff`
 
-  * ```shell
-    git diff <commitid1> <commitid2> # 显示两个提交之间的差异
-    ```
+```shell
+git diff <commitid1> <commitid2> # 显示两个提交之间的差异
+```
 
-* 
 
 ## 应用
 
@@ -215,23 +214,23 @@ ls
 
 * 输入如下命令
 
-	* ```shell
-    git checkout <哈希值>    # 分离头指针（这个分支没有被 git 管理）
-    ```
+```shell
+git checkout <哈希值>    # 分离头指针（这个分支没有被 git 管理）
+```
 
 * 如果在这个基础上 `commit` ，之后切换分支时，这些 `commit` 会丢失。
 
 * 补救措施
 
-  * ```shell
-    git branch <新分支名> <commitid>
-    ```
+```shell
+git branch <新分支名> <commitid>
+```
 
 * 建议：检出某个版本时，推荐用新的分支管理
 
-  * ```shell
-     git checkout -b <新分支名> <commitid>
-    ```
+```shell
+git checkout -b <新分支名> <commitid>
+```
 
 * 
 
