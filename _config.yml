@@ -261,6 +261,14 @@ theme_config:
     WeChat: /images/qrcode.jpg || wechat
     RSS: /atom.xml || rss
 
+  tagcloud:
+    # All values below are same as default, change them by yourself.
+    min: 10 # Minimun font size in px
+    max: 20 # Maxium font size in px
+    start: "#1C1C1C" # Start color (hex, rgba, hsla or color keywords)
+    end: "#4F4F4F" # End color (hex, rgba, hsla or color keywords)
+    amount: 200 # Amount of tags, change it if you have more than 200 tags
+  
   codeblock:
     # Code Highlight theme
     # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
