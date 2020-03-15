@@ -13,6 +13,12 @@ categories:
 - 指南
 ---
 
+>前段时间，看到 Hexo 官方文档更新了使用 TravisCI 自动化部署部分。趁着这个机会，我将我的博客重新构建了一遍。这里记下简略过程，供读者参考。通过本篇文章，你将获得：
+>
+>1. 使用 Hexo 构建静态博客
+>2. 简单配置 NexT 主题
+>3. 使用 TravisCI + GitHubPages 完成自动化部署
+
 # 前置需求
 
 在安装 Hexo 之前，你必须保证你的机器上安装了**Node.js**及**Git**。如果你未安装，你需要到如下网址，下载安装。
@@ -362,6 +368,8 @@ hexo clean; hexo g; hexo s
 打开浏览器，访问 http://localhost:4000/
 
 按下 `F12` 打开`Chrome` 浏览器开发者工具。并点选左上角红框所示的按钮。这样，你就可以使用鼠标快速找到网页中某块元素的样式。然后修改右半部分（如蓝框所示） `Styles` 的样式，并观察网页效果。如果合适，将对应的样式类，复制到上述创建的 `styles.styl` 文件中，并保存。下次预览生成，你就会得到定制化的主题样式。
+
+![ChromeDevTools](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/ChromeDevTools.PNG)
 
 >点[这里](https://github.com/CosmosNing/CosmosNing.github.io/blob/source/source/_data/styles.styl)，查看我的样式配置。
 
