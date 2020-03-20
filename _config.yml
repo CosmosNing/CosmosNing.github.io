@@ -112,10 +112,10 @@ theme_config:
     style: source/_data/styles.styl
 
   favicon:
-    small: /images/avatar-16.ico
-    medium: /images/avatar-32.ico
-    apple_touch_icon: /images/avatar-180.png
-    safari_pinned_tab: /images/avatar.svg
+    small: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico # /images/avatar-16.ico
+    medium: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
+    apple_touch_icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png
+    safari_pinned_tab:  https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg # /images/avatar.svg
     #android_manifest: /images/manifest.json
     #ms_browserconfig: /images/browserconfig.xml
 
@@ -212,7 +212,7 @@ theme_config:
   # Sidebar Avatar
   avatar:
     # Replace the default image and set the url here.
-    url: /images/avatar.png #/images/avatar.gif
+    url: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png # /images/avatar.png #/images/avatar.gif
     # If true, the avatar will be dispalyed in circle.
     rounded: true
     # If true, the avatar will be rotated with the cursor.
@@ -258,7 +258,7 @@ theme_config:
   follow_me:
     #Twitter: https://twitter.com/username || twitter
     #Telegram: https://t.me/channel_name || telegram
-    WeChat: /images/qrcode.jpg || wechat
+    WeChat: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg || wechat
     RSS: /atom.xml || rss
 
   tagcloud:
@@ -366,6 +366,27 @@ theme_config:
     unescape: false
     # Preload the search data when the page loads.
     preload: true
+  
+  vendors:
+    # Internal path prefix.
+    _internal: lib
+
+    # Internal version: 3.1.0
+    # anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
+    anime: https://cdn.bootcss.com/animejs/3.1.0/anime.min.js
+
+    # Internal version: 4.7.0
+    # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
+    # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+    fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+    
+    # Internal version: 1.2.1
+    # velocity: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js
+    # velocity: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js
+    # velocity_ui: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js
+    # velocity_ui: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js
+    velocity: https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js
+    velocity_ui: https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -383,7 +404,7 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
-  icon: /images/avatar-32.ico
+  icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
 
 # hexo-permalink-pinyin config
 # https://github.com/viko16/hexo-permalink-pinyin
