@@ -103,7 +103,10 @@ hexo g && hexo s
 
 ![Hexo最小化配置效果](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/basic-result.PNG)
 
->提示：你可以在命令行中，按下 `Ctrl + C` 终止上述预览命令
+{% note info %}
+## 提示-终止预览
+你可以在命令行中，按下 `Ctrl + C` 终止上述预览命令
+{% endnote %}
 
 # 设置 NexT 主题
 
@@ -325,9 +328,15 @@ sitemap:
 
 至此，插件部分已配置完成。
 
->提示：更多 NexT 主题的配置，可以查看 `themes/next/_config.yml`，将你需要改动的配置拷贝到根目录下 `_config.yml` 中的 `theme_config` 结点下。（[参考](https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md#选择-1hexo-方式)）
->
->如果你懒得自定义，可以参考我的[主题配置](https://github.com/CosmosNing/CosmosNing.github.io/blob/source/_config.yml)
+{% note info %}
+
+## 提示-更多配置
+
+更多 NexT 主题的配置，可以查看 `themes/next/_config.yml`，将你需要改动的配置拷贝到根目录下 `_config.yml` 中的 `theme_config` 结点下。（[参考](https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/DATA-FILES.md#选择-1hexo-方式)）
+
+如果你懒得自定义，可以参考我的[主题配置](https://github.com/CosmosNing/CosmosNing.github.io/blob/source/_config.yml)
+
+{% endnote %}
 
 我们来看看效果如何。
 
@@ -345,7 +354,11 @@ hexo clean; hexo g; hexo s
 
 NexT 主题非常灵活，用户可以高度自定义，包括颜色，布局等。本节将浅显的介绍如何自定义主题的颜色及样式。
 
->推荐你使用 `Chrome` 浏览器作为调试工具
+{% note default %}
+
+推荐你使用 `Chrome` 浏览器作为调试工具
+
+{% endnote %}
 
 首先，在根目录的 `source` 文件夹下创建 `_data` 文件夹。在 `_data` 文件夹下，创建 `styles.styl` 文件。
 
@@ -371,7 +384,11 @@ hexo clean; hexo g; hexo s
 
 ![ChromeDevTools](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/ChromeDevTools.PNG)
 
->点[这里](https://github.com/CosmosNing/CosmosNing.github.io/blob/source/source/_data/styles.styl)，查看我的样式配置。
+{% note default %}
+
+点[这里](https://github.com/CosmosNing/CosmosNing.github.io/blob/source/source/_data/styles.styl)，查看我的样式配置。
+
+{% endnote %}
 
 至此，我们的主题配置已经完成。下面，将改动提交至仓库
 
