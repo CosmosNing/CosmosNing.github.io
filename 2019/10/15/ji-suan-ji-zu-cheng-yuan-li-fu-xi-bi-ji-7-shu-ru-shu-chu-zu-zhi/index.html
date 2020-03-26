@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="整理一下计算机组成原理中输入输出组织的知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理复习笔记7-输入输出组织">
+<meta property="og:url" content="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下计算机组成原理中输入输出组织的知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/Prog-Query.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/DMA-Controller.png?raw=true">
+<meta property="article:published_time" content="2019-10-15T04:17:34.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>计算机组成原理复习笔记7-输入输出组织 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          计算机组成原理复习笔记7-输入输出组织
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-15 12:17:34" itemprop="dateCreated datePublished" datetime="2019-10-15T12:17:34+08:00">2019-10-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description">整理一下计算机组成原理中输入输出组织的知识</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="7．输入输出组织"><a href="#7．输入输出组织" class="headerlink" title="7．输入输出组织"></a>7．输入输出组织</h1><h2 id="（×）I-O系统基本概念"><a href="#（×）I-O系统基本概念" class="headerlink" title="（×）I/O系统基本概念"></a>（×）I/O系统基本概念</h2><p>（详见教材） </p>
+<h2 id="（★）常见外部设备"><a href="#（★）常见外部设备" class="headerlink" title="（★）常见外部设备"></a>（★）常见外部设备</h2><h3 id="常见外部设备及其工作原理"><a href="#常见外部设备及其工作原理" class="headerlink" title="常见外部设备及其工作原理"></a>常见外部设备及其工作原理</h3><p>（详见教材）</p>
+<h3 id="部分外部设备的性能指标"><a href="#部分外部设备的性能指标" class="headerlink" title="部分外部设备的性能指标"></a>部分外部设备的性能指标</h3><h4 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h4><ul>
+<li>$VRAM\ 容量 = 分辨率\times 灰度级位数$</li>
+<li>$VRAM\ 带宽 =分辨率\times 灰度级位数\times 帧频$</li>
+</ul>
+<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><ul>
+<li><p>外存容量：$面数\times 磁道数\times 道容量$</p>
+<ul>
+<li>其中，<ul>
+<li>$面数=2n-2$ ，n 为磁盘片数</li>
+<li>$磁道数=\frac{道密度\times (D外-D内)}{2}$ ，D 为直径</li>
+<li>$道容量=\pi D\times 位密度$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>（★★★★★★）存取速度（数据传输率）：$v=道容量\times 转速$</p>
+</li>
+<li><p>（★★★★★★）存取时间</p>
+<ul>
+<li>$T存取时间=T找道+T找扇区+T数据传输​$<br>$$<br>T_{找道}=\frac{T_{max}-T_{min}}{2}\ T_{max}为最长找道时间，T_{min}为最短找道时间<br>$$</li>
+</ul>
+</li>
+</ul>
+<p>$$<br>T_{找扇区}=\frac{0+\frac{1}{n}}{2}\ n为转速<br>$$</p>
+<p>$$<br>T_{数据传输时间}=L\times \frac{1}{v}\ L为数据量大小，v为数据传输率<br>$$</p>
+<h2 id="（★）I-O-接口"><a href="#（★）I-O-接口" class="headerlink" title="（★）I/O 接口"></a>（★）I/O 接口</h2><h3 id="功能及基本结构"><a href="#功能及基本结构" class="headerlink" title="功能及基本结构"></a>功能及基本结构</h3><ul>
+<li><p>功能</p>
+<ul>
+<li>实现<strong>主机和外设的通信</strong>联络控制</li>
+<li>进行<strong>地址译码</strong>和<strong>设备选择</strong></li>
+<li><strong>数据缓冲</strong></li>
+<li><strong>信号格式转换</strong>（如串并转换）</li>
+<li><strong>传送控制命令和状态信息</strong></li>
+</ul>
+</li>
+<li><p>基本结构</p>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
+</li>
+</ul>
+<h3 id="I-O-端口及其编址"><a href="#I-O-端口及其编址" class="headerlink" title="I/O 端口及其编址"></a>I/O 端口及其编址</h3><ul>
+<li><strong>I/O 端口</strong>是指接口电路中可被 CPU 直接访问的<strong>寄存器</strong>，主要有<strong>数据端口</strong>、<strong>状态端口</strong>和<strong>控制端口</strong></li>
+<li><strong>I/O 端口</strong>和<strong>I/O 接口</strong>的关系：$I/O\ 端口 + 相应控制逻辑电路\overset{组成}{=} I/O\ 接口$</li>
+<li>I/O 端口编址方式<ul>
+<li>统一编址</li>
+<li>独立编址</li>
+</ul>
+</li>
+</ul>
+<h2 id="（★★★）I-O的三种控制方式"><a href="#（★★★）I-O的三种控制方式" class="headerlink" title="（★★★）I/O的三种控制方式"></a>（★★★）I/O的三种控制方式</h2><p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
+<h3 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h3><h4 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h4><p>（详见教材）</p>
+<h4 id="中断工作流程"><a href="#中断工作流程" class="headerlink" title="中断工作流程"></a>中断工作流程</h4><h5 id="中断响应（中断隐指令，硬件完成）"><a href="#中断响应（中断隐指令，硬件完成）" class="headerlink" title="中断响应（中断隐指令，硬件完成）"></a>中断响应（中断隐指令，硬件完成）</h5><ul>
+<li>响应中断的 3 个条件<ol>
+<li>CPU 处于 “开中断” 状态</li>
+<li>至少要有一个未被屏蔽的中断请求</li>
+<li>当前指令执行完</li>
+</ol>
+</li>
+<li>中断响应周期中完成以下几个操作<ol>
+<li><strong>关中断</strong>（将中断允许标志为“禁止”）</li>
+<li><strong>保存断点</strong></li>
+<li><strong>识别中断源并转中断服务程序</strong></li>
+</ol>
+</li>
+</ul>
+<h5 id="中断执行（中断程序完成）"><a href="#中断执行（中断程序完成）" class="headerlink" title="中断执行（中断程序完成）"></a>中断执行（中断程序完成）</h5><ul>
+<li>接着中断响应周期的操作<ol>
+<li><strong>保存现场和屏蔽字</strong></li>
+<li><strong>开中断</strong></li>
+<li><strong>执行中断服务程序</strong></li>
+<li><strong>关中断</strong></li>
+<li><strong>恢复现场和屏蔽字</strong></li>
+<li><strong>开中断、中断返回</strong></li>
+</ol>
+</li>
+</ul>
+<h4 id="多重中断和中断屏蔽"><a href="#多重中断和中断屏蔽" class="headerlink" title="多重中断和中断屏蔽"></a>多重中断和中断屏蔽</h4><ul>
+<li>多重中断：中断内可以嵌套中断</li>
+<li>中断屏蔽（见后解题技巧及重要结论中的总结）</li>
+</ul>
+<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
+<h4 id="DMA-的传送过程"><a href="#DMA-的传送过程" class="headerlink" title="DMA 的传送过程"></a>DMA 的传送过程</h4><p>DMA 传送过程主要分为三步</p>
+<ol>
+<li>预处理<ul>
+<li>准备内存区</li>
+<li>设置传送参数</li>
+<li>发送“启动 DMA ”命令，然后调度 CPU 执行其他进程</li>
+</ul>
+</li>
+<li>数据传送<ul>
+<li>整个数据传送过程由 DMA 单独完成</li>
+</ul>
+</li>
+<li>后处理<ul>
+<li>数据传输完成后，DMA 发出“ DMA 结束”给 CPU，转入中断服务程序，做一些数据校验等后处理工作</li>
+</ul>
+</li>
+</ol>
+<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
+<li><p>显示器中的相关计算公式补充</p>
+<ul>
+<li>$n=log_2(m)$ ，其中，m 为颜色数，n 为刷新存储器中存储单元的字长</li>
+</ul>
+</li>
+<li><p>磁盘相关计算公式补充</p>
+<ul>
+<li>$数据传输率=转速(单位：*/s)\times 每个磁道的扇区数\times每个扇区上的数据量$</li>
+</ul>
+</li>
+<li><p>中断优先级和屏蔽字的相互确定</p>
+<ul>
+<li>依据优先级确定屏蔽字：依据优先级，某一级中断只能<strong>屏蔽自己及比自己低优先级</strong>的中断，故中断屏蔽字对应位数取 1 ，其他位取 0 。</li>
+<li>依据屏蔽字确定优先级：<strong>比</strong>屏蔽字的<strong>二进制数据大小</strong>，大的优先级高</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>计算机组成与系统结构.袁春风等</li>
+<li>2020年计算机组成原理考研复习指导.王道论坛</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/" title="计算机组成原理复习笔记7-输入输出组织">https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 计算机组成原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/13/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-6-xi-tong-zong-xian/" rel="prev" title="计算机组成原理复习笔记6-系统总线">
+      <i class="fa fa-chevron-left"></i> 计算机组成原理复习笔记6-系统总线
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/12/mips-zhi-ling-xi-tong-jian-yi-ru-men/" rel="next" title="MIPS指令系统简易入门">
+      MIPS指令系统简易入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7．输入输出组织"><span class="nav-number">1.</span> <span class="nav-text">7．输入输出组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）I-O系统基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">（×）I&#x2F;O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）常见外部设备"><span class="nav-number">1.2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">1.2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）I-O-接口"><span class="nav-number">1.3.</span> <span class="nav-text">（★）I&#x2F;O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-端口及其编址"><span class="nav-number">1.3.2.</span> <span class="nav-text">I&#x2F;O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）I-O的三种控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">（★★★）I&#x2F;O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应（中断隐指令，硬件完成）"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行（中断程序完成）"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA-方式"><span class="nav-number">1.4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-控制器的组成"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-的传送过程"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

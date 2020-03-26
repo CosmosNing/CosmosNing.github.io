@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一起来分析一下打牌时排序牌的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法趣解之基础排序算法（下）">
+<meta property="og:url" content="https://cosmosning.github.io/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="一起来分析一下打牌时排序牌的方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/20/cover.jpg?raw=true">
+<meta property="article:published_time" content="2018-08-20T05:56:34.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Grokking Algorithms">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/20/cover.jpg?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>算法趣解之基础排序算法（下） | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          算法趣解之基础排序算法（下）
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-20 13:56:34" itemprop="dateCreated datePublished" datetime="2018-08-20T13:56:34+08:00">2018-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E8%B5%B7%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+            <div class="post-description">一起来分析一下打牌时排序牌的方法</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/20/cover.jpg?raw=true" alt="cover"></p>
+<p>打牌是很多人喜欢的与亲朋好友一起娱乐的一种方式。在牌局开始，打牌的各位都要依此摸牌。与此同时，为了方便后续出牌，很多人对摸到的牌从大到小排序。这种排序手法，在算法中，被称作“插入排序”。</p>
+<p>为了理解“插入排序”的主要流程，我们先来简单地回顾一下对牌排序的流程。</p>
+<p>每摸一张牌，我们都会将这张牌和手上的牌依次进行对比，找到合适的位置插入，保证手上的牌是有序的。下次摸牌时，也是类似的流程。最终，手上会是一个有序的牌组。</p>
+<p>将上述流程抽象概括一下，就是：每次将一个待排序的数据，在前面已排好序的子序列中从后向前扫描， 按其值大小找到适当的位置并插入其中，直到序列中的全部数据都插入完毕为止。</p>
+<p>这个算法的流程在排序牌的例子中已经有了非常直观的解释，这里我们直接进入代码实现环节。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序</span></span><br><span class="line"><span class="string">     将无序的数字列表变成从小到大的数字列表返回</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     按从小到大排列的列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">        k = i<span class="comment">#保存插入的位置</span></span><br><span class="line">        tmp = lst[i]<span class="comment">#暂时保存当前待插入元素的值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> lst[i] &lt; lst[j]:</span><br><span class="line">                k = j<span class="comment">#找到插入位置，保存到k中</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, k, <span class="number">-1</span>):</span><br><span class="line">            lst[j] = lst[j<span class="number">-1</span>]<span class="comment">#将列表中相关数据移位，方便元素插入</span></span><br><span class="line"></span><br><span class="line">        lst[k] = tmp<span class="comment">#插入元素</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序结果:"</span>.format(i+<span class="number">1</span>),lst)<span class="comment">#print(lst)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例程</span></span><br><span class="line">lst = [<span class="number">89</span>, <span class="number">43</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"最终结果"</span>,insert_sort(lst))</span><br><span class="line">        </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">第1次排序结果: [89, 43, 88, 87, 61]</span></span><br><span class="line"><span class="string">第2次排序结果: [43, 89, 88, 87, 61]</span></span><br><span class="line"><span class="string">第3次排序结果: [43, 88, 89, 87, 61]</span></span><br><span class="line"><span class="string">第4次排序结果: [43, 87, 88, 89, 61]</span></span><br><span class="line"><span class="string">第5次排序结果: [43, 61, 87, 88, 89]</span></span><br><span class="line"><span class="string">最终结果 [43, 61, 87, 88, 89]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>假设待排序的数据量为 $N$ ，依据上述插入排序算法，外层循环将执行 $N$ 次，内层循环依据外层循环次数 $i$ 将执行 $i$ 次（将两个内层循环次数相加即可）。所以该算法至多执行<br>$$<br>\begin{aligned}<br>&amp;\ \ \ \ \ 1+2+3+ ··· +N-1\<br>&amp;= (N-1)(1 + N – 1)/2\<br>&amp;= N(N-1)/2<br>\end{aligned}<br>$$<br>次。所以插入排序的时间复杂度为 $O(N^{2})$ 。</p>
+<p>插入排序算法在时间性能上来说，表现得并不理想。能不能对他进行优化呢？希尔（Donald Shell）提出了他对该算法的改进。这个算法描述如下：</p>
+<blockquote>
+<p>取一个小于 $n$ 的整数 $d_{1}$ 作为第一个增量， 把序列中的全部数据分成 $d_{1}$ 个组。 所有距离为 $d_{1}$ 的倍数的数据放在同一个组中；</p>
+<p>$n$ 在各组内进行直接插入排序；</p>
+<p>$n$  取第二个增量 $d_{2} &lt; d_{1}$ ， 重复上述的分组和排序， 直至所取的增量 $d_{t}=1(d_{t}&lt; …&lt;d_{2}&lt;d_{1})$ ， 即所有数据都放在同一组中进行直接插入排序为止。</p>
+</blockquote>
+<p>所以这个算法本质是一种分组插入排序。除了插入排序的思想，更关键的是算法中增量序列d的确定。</p>
+<p>有一种增量叫做Hibbard增量，其表达式如下：</p>
+<p>$$<br>h_{i} = 2^{i} - 1<br>$$</p>
+<p>它可以使希尔排序的时间复杂度降低到 $O(N^{\frac{3}{2}})$ 。</p>
+<p>我们以这种增量序列生成方式来实现一下希尔排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参考：https://baike.baidu.com/item/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/3229428?fr=aladdin#7_8</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_insert</span><span class="params">(lst,dk)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    shell_insert:</span></span><br><span class="line"><span class="string">     按照增量dk，对lst中的元素进行分组插入排序</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：存储待排序的数据列表</span></span><br><span class="line"><span class="string">     dk:增量</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     分组排序后的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dk,len(lst)):</span><br><span class="line">        tmp = lst[i]</span><br><span class="line">        m = i - dk</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i-dk, -dk<span class="number">-1</span>,-dk):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span>(j &gt;= i%dk <span class="keyword">and</span> lst[j] &gt; tmp):</span><br><span class="line">                m = j</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            lst[j+dk] = lst[j]</span><br><span class="line">        <span class="keyword">if</span> m != i - dk:</span><br><span class="line">            lst[m+dk] = tmp</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dkHibbard</span><span class="params">(t, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    dkHibbard:</span></span><br><span class="line"><span class="string">     按照Hibbard增量生成方式生成增量</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     t：排序的总趟数</span></span><br><span class="line"><span class="string">     k：当前排序的趟数</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     当前趟数的Hibbard增量</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> (int)(math.pow(<span class="number">2</span>,t-k+<span class="number">1</span>)<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(lst, t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    希尔排序：</span></span><br><span class="line"><span class="string">     对无序的数据列表排序，使之从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">     t：排序当前数据列表的总趟数</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, t+<span class="number">1</span>):</span><br><span class="line">        </span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序前序列:"</span>.format(i),lst)</span><br><span class="line">        lst = shell_insert(lst, dkHibbard(t, i))</span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序使用的增量&#123;&#125;"</span>.format(i,dkHibbard(t, i)))</span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序结果:"</span>.format(i),lst)</span><br><span class="line">        print()</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        dk = (int)(math.pow(2,t-i+1)-1)</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序前序列:".format(i),lst)</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序使用的增量&#123;&#125;".format(i,dk))</span></span><br><span class="line"><span class="string">        for j in range(dk,len(lst)):</span></span><br><span class="line"><span class="string">            tmp = lst[j]</span></span><br><span class="line"><span class="string">            m = j - dk</span></span><br><span class="line"><span class="string">            for k in range(j-dk, -dk-1,-dk):</span></span><br><span class="line"><span class="string">                if not(k &gt;= j%dk and lst[k] &gt; tmp):</span></span><br><span class="line"><span class="string">                    m = k</span></span><br><span class="line"><span class="string">                    break</span></span><br><span class="line"><span class="string">                lst[k+dk] = lst[k]</span></span><br><span class="line"><span class="string">            if m != j - dk:</span></span><br><span class="line"><span class="string">                lst[m+dk] = tmp</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序结果:".format(i),lst)</span></span><br><span class="line"><span class="string">        print()</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序趟数等于log2(待排序的数据量大小 + 1)取整</span></span><br><span class="line">print(shell_sort([<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">99</span>],(int)(math.log2(<span class="number">10</span>+<span class="number">1</span>))))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">第1次排序前序列: [84, 83, 88, 87, 61, 50, 70, 60, 80, 99]</span></span><br><span class="line"><span class="string">第1次排序使用的增量7</span></span><br><span class="line"><span class="string">第1次排序结果: [60, 80, 88, 87, 61, 50, 70, 84, 83, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第2次排序前序列: [60, 80, 88, 87, 61, 50, 70, 84, 83, 99]</span></span><br><span class="line"><span class="string">第2次排序使用的增量3</span></span><br><span class="line"><span class="string">第2次排序结果: [60, 61, 50, 70, 80, 83, 87, 84, 88, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第3次排序前序列: [60, 61, 50, 70, 80, 83, 87, 84, 88, 99]</span></span><br><span class="line"><span class="string">第3次排序使用的增量1</span></span><br><span class="line"><span class="string">第3次排序结果: [50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>大家可以对照上述程序的执行过程来体会希尔排序的排序流程。在实现希尔排序的过程中，默认采用了函数嵌套的写法。同时，我也写了不用函数嵌套的写法。（将50<del>54注释，将56</del>72行取消注释，即是不用函数嵌套的写法）。</p>
+<p>在文章的最后，照例进行总结：</p>
+<ol>
+<li><strong>插入排序的主要流程：每次将一个待排序的数据，在前面已排好序的子序列中从后向前扫描，按其值大小找到适当的位置并插入其中，直到序列中的全部数据都插入完毕为止。</strong></li>
+<li><strong>插入排序的时间复杂度为 $O(N^{2})$ 。</strong></li>
+<li><strong>一种插入排序的改进算法，希尔排序，本质是一种分组排序方法。</strong></li>
+<li><strong>利用Hibbard增量生成希尔排序中需要的增量序列，可以使得其时间复杂度变为 $O(N^{\frac{3}{2}})$ 。</strong></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/" title="算法趣解之基础排序算法（下）">https://cosmosning.github.io/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/Grokking-Algorithms/" rel="tag"><i class="fa fa-tag"></i> Grokking Algorithms</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/14/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-zhong/" rel="prev" title="算法趣解之基础排序算法（中）">
+      <i class="fa fa-chevron-left"></i> 算法趣解之基础排序算法（中）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/25/suan-fa-qu-jie-zhi-di-gui-si-xiang/" rel="next" title="算法趣解之递归思想">
+      算法趣解之递归思想 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="整理一下数据结构基本概念和线性表的知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习笔记1-绪论及线性表">
+<meta property="og:url" content="https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下数据结构基本概念和线性表的知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-11T15:29:16.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据结构复习笔记1-绪论及线性表 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          数据结构复习笔记1-绪论及线性表
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-11 23:29:16" itemprop="dateCreated datePublished" datetime="2019-07-11T23:29:16+08:00">2019-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+            <div class="post-description">整理一下数据结构基本概念和线性表的知识</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-数据结构基本概念及简单的算法分析"><a href="#1-数据结构基本概念及简单的算法分析" class="headerlink" title="1. 数据结构基本概念及简单的算法分析"></a>1. 数据结构基本概念及简单的算法分析</h1><h2 id="数据结构的基本概念"><a href="#数据结构的基本概念" class="headerlink" title="数据结构的基本概念"></a>数据结构的基本概念</h2><ol>
+<li><strong>数据</strong>：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。</li>
+<li><strong>数据元素</strong>：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 <em>数据项</em> 组成，数据项是构成数据元素的不可分割的最小单位。</li>
+<li><strong>数据对象</strong>：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。</li>
+<li><strong>数据类型</strong>：数据类型是一个值的集合和定义在此集合上的一组操作的总称。<ol>
+<li><strong>原子类型</strong>。其值不可再分的数据类型。</li>
+<li><strong>结构类型</strong>：其值可以再分解为若干成分（分量）的数据类型</li>
+<li><strong>抽象数据类型</strong>：抽象数据组织及与之相关的操作。</li>
+</ol>
+</li>
+<li><strong>抽象数据类型</strong>：抽象数据类型（ <strong>ADT</strong> ）是指一个数学模型及定义在该模型上的一组操作。抽象数据类型的定义仅取决于它的一组逻辑特性，而与其其在计算机内部如何表示和实现无关，即不论其内部结构如何变化，只要它的数学特性不变，都不影响其外部使用。通常用 <strong>（数据对象，数据关系，基本操作集）</strong> 这样的三元组来表示抽象数据类型。</li>
+<li>数据结构：在任何问题中，数据元素都不是孤立存在的，它们之间存在某种关系，这种数据元素相互之间的关系称为 <strong>结构</strong> 。<strong>数据结构</strong> 是相互之间存在一种或多种特定关系的数据元素的集合。数据结构包括以下三方面的内容：<ol>
+<li><strong>逻辑结构</strong><ul>
+<li>是指数据元素之间的逻辑关系，即从逻辑关系描述数据。</li>
+<li>与数据的存储无关，是独立于计算机的。</li>
+<li>分为<strong>线性结构</strong>和<strong>非线性结构</strong></li>
+<li>4 种基本结构<ol>
+<li>集合</li>
+<li>线性结构</li>
+<li>树形结构</li>
+<li>图状结构或网状结构</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>存储结构</strong><ul>
+<li>是指数据结构在计算机中的表示（又称<strong>映像</strong>），也称<strong>物理结构</strong>。</li>
+<li>包括<strong>数据的表示</strong>和<strong>关系的表示</strong>。</li>
+<li>依赖于计算机语言</li>
+<li>4 种存储结构<ol>
+<li>顺序存储</li>
+<li>链式存储</li>
+<li>索引存储</li>
+<li>散列存储</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>数据运算</strong><ul>
+<li>包括<strong>定义</strong>和<strong>实现</strong></li>
+<li><strong>定义</strong>：针对<strong>逻辑结构</strong>，指出运算的功能</li>
+<li><strong>实现</strong>：针对<strong>存储结构</strong>，指出运算的具体操作步骤。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="算法的定义、特性"><a href="#算法的定义、特性" class="headerlink" title="算法的定义、特性"></a>算法的定义、特性</h2><ol>
+<li>算法的定义<ul>
+<li>算法是对特定问题求解步骤的一种描述，它是指令的有限序列，其中每条指令表示一个或多个操作。</li>
+</ul>
+</li>
+<li>算法的特性<ol>
+<li><strong>有穷性</strong></li>
+<li><strong>确定性</strong></li>
+<li><strong>可行性</strong></li>
+<li><strong>输入</strong></li>
+<li><strong>输出</strong></li>
+</ol>
+</li>
+</ol>
+<h2 id="简单的算法分析：时间复杂度、空间复杂度"><a href="#简单的算法分析：时间复杂度、空间复杂度" class="headerlink" title="简单的算法分析：时间复杂度、空间复杂度"></a>简单的算法分析：时间复杂度、空间复杂度</h2><ol>
+<li>时间复杂度分析技巧<ul>
+<li>非递归：分析循环次数和问题规模 n 的关系，根据循环条件列出两者的不等式，取解中增长最快的一项作为时间复杂度。</li>
+<li>递归：根据代码中的递推公式，求出通项公式，取增长最快的一项作为时间复杂度。</li>
+</ul>
+</li>
+<li>空间复杂度<ul>
+<li>算法<strong>原地工作</strong>是指所需的辅助空间为<strong>常量</strong>（而非不需要），即 O(1) 。</li>
+</ul>
+</li>
+</ol>
+<h1 id="2-线性表"><a href="#2-线性表" class="headerlink" title="2. 线性表"></a>2. 线性表</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.1</span></span><br><span class="line"><span class="comment">// 将所有在线性表 Lb 中但不在 La 中的数据元素插入到 La 中</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 分别求线性表的长度</span></span><br><span class="line"><span class="comment">2. 遍历 Lb ，取出元素，在 La 中寻找匹配。如果没找到，先将La长度加一,然后插入到 La 末尾</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Union</span><span class="params">(List &amp;La, List Lb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    La_Len = ListLength(La);</span><br><span class="line">    Lb_Len = ListLength(Lb);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; Lb_Len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(Lb, i, e);</span><br><span class="line">        <span class="keyword">if</span>(! LocateElem(La, e equal) )</span><br><span class="line">            ListInsert(La,++La_Len, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.2</span></span><br><span class="line"><span class="comment">// 已知线性表 La 和 Lb 中的数据元素按值非递减排列</span></span><br><span class="line"><span class="comment">// 归并 La 和 Lb 得到新的线性表 Lc ，Lc 的数据元素也按值非递减排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 初始化 Lc</span></span><br><span class="line"><span class="comment">2. 获取 La 和 Lb 的长度</span></span><br><span class="line"><span class="comment">3. 设置循环变量 i（La）、j（Lb）、k（Lc）</span></span><br><span class="line"><span class="comment">4. 循环（while）比较 La 和 Lb 数据元素的大小，选择小的插入Lc，循环变量对应增加</span></span><br><span class="line"><span class="comment">5. 遍历 La 的剩余元素，插入到 Lc 中</span></span><br><span class="line"><span class="comment">6. 遍历 Lb 的剩余元素，插入到 Lc 中</span></span><br><span class="line"><span class="comment">P.S. 5、6 只可能执行其中一个。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeList</span><span class="params">(List La, List Lb, List &amp; Lc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitList(Lc);</span><br><span class="line">    La_Len = ListLength(La);</span><br><span class="line">    Lb_Len = ListLength(Lb);</span><br><span class="line">    </span><br><span class="line">    i = <span class="number">1</span>;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= La_Len &amp;&amp; j &lt;= Lb_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(La, i, a);</span><br><span class="line">        GetElem(Lb, j, b);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(a &lt; b)</span><br><span class="line">        &#123;</span><br><span class="line">            ListInsert(Lc, ++k, a);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            ListInsert(Lc, ++k, b);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= La_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(La, i, a);</span><br><span class="line">        ListInsert(Lc, ++k, a);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= Lb_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(Lb, i, b);</span><br><span class="line">        ListInsert(Lc, ++k, b);</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="顺序表和链表的存储与基本操作；"><a href="#顺序表和链表的存储与基本操作；" class="headerlink" title="顺序表和链表的存储与基本操作；"></a>顺序表和链表的存储与基本操作；</h2><h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性表的 动态分配 存储结构定义</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_INIT_SIZE 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_INCREMENT 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType * elem;</span><br><span class="line">    <span class="keyword">int</span> length;     <span class="comment">// 若没有，则为静态</span></span><br><span class="line">    <span class="keyword">int</span> listsize;</span><br><span class="line">&#125;SqList;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.3</span></span><br><span class="line"><span class="comment">// 构造一个空的线性表 L</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 申请初始大小的空间</span></span><br><span class="line"><span class="comment">2. 判断是否申请成功。如果不成功，报错退出；否则，length和listsize分别赋予合理的初值。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">InitList_Sq</span><span class="params">(SqList &amp; L)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    L.elem = (ElemType *) <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ElemType) * LIST_INIT_SIZE);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(! L.elem )</span><br><span class="line">        <span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">    </span><br><span class="line">    L.listsize = LIST_INIT_SIZE;</span><br><span class="line">    L.length = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.4</span></span><br><span class="line"><span class="comment">// 在顺序表线性表 L 中第 i 个 位置之前插入新的元素 e</span></span><br><span class="line"><span class="comment">// i 的合法值为 1 &lt;= i &lt;= ListLength(L) + 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. i 的非法性检查</span></span><br><span class="line"><span class="comment">2. 存储空间已满检查</span></span><br><span class="line"><span class="comment">3. 循环移动元素，在目标位置插入元素</span></span><br><span class="line"><span class="comment">4. 表长加一</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">ListInsert_Sq</span><span class="params">(SqList &amp; L, <span class="keyword">int</span> i, ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L.length + <span class="number">1</span>) <span class="comment">// i 的非法检查</span></span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    <span class="keyword">if</span>(L.length + <span class="number">1</span> &gt; L.listsize)<span class="comment">// 存储空间已满检查</span></span><br><span class="line">    &#123;</span><br><span class="line">        newbase = (ElemType *)<span class="built_in">realloc</span>(L.elem, <span class="keyword">sizeof</span>(ElemType) * (L.listsize + LIST_INCREMENT));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(! newbase )</span><br><span class="line">            <span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">        </span><br><span class="line">        L.elem = newbase;</span><br><span class="line">        L.listsize = L.listsize + LIST_INCREMENT;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    q = L.elem + i - <span class="number">1</span>;<span class="comment">// 第i个位置前插入</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(p = L.elem + L.length - <span class="number">1</span>; p &gt;= q; p--)</span><br><span class="line">        *(p+<span class="number">1</span>) = *p;</span><br><span class="line">    </span><br><span class="line">    *q = e;</span><br><span class="line">    ++ L.length;<span class="comment">//勿忘！</span></span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.5</span></span><br><span class="line"><span class="comment">// 在顺序线性表 L 中删除第 i 个元素，并用 e 返回其值</span></span><br><span class="line"><span class="comment">// i 的合法值为 1 &lt;= i &lt;= ListLength(L)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. i 的合法性检查</span></span><br><span class="line"><span class="comment">2. 取出第 i 个位置的元素</span></span><br><span class="line"><span class="comment">3. 移动元素</span></span><br><span class="line"><span class="comment">4. 表长减一</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">Status <span class="title">ListDelete_Sq</span><span class="params">(SqList &amp; L, <span class="keyword">int</span> i, ElemType &amp; e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; <span class="number">1</span> || i &gt; L.length)</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    q = L.elem + i - <span class="number">1</span>;</span><br><span class="line">    e = *q;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(p = q; p &lt; p + L.length - <span class="number">1</span>; p++)</span><br><span class="line">        *p = *(p+<span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">    L.length--;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.6</span></span><br><span class="line"><span class="comment">// 在顺序线性表 L 中查找第 1 个值与 e 满足 compare() 的元素的位序</span></span><br><span class="line"><span class="comment">// 若找到，则返回其在 L 中的位序，否则返回 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">遍历L 比较每个元素与e的大小关系，如果满足，则记录下位置，终止循环，返回答案。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocateElem_Sq</span><span class="params">(SqList L, ElemType e, Status(* compare)(ElemType, ElemType))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    place = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; L.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(compare(e,L.elem[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            place = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> place;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.7</span></span><br><span class="line"><span class="comment">// 已知顺序线性表 La 和 Lb 的元素按值非递减排列</span></span><br><span class="line"><span class="comment">// 归并 La 和 Lb 得到新的顺序线性表 Lc ，Lc的元素也按值非递减排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 初始化 Lc， 包括申请空间，初始化 listsize 和 length 的值</span></span><br><span class="line"><span class="comment">2. 设置循环变量（指针） pa，pb，pc</span></span><br><span class="line"><span class="comment">3. while 循环比较，插入 Lc</span></span><br><span class="line"><span class="comment">4. 将 La 或者 Lb 的剩余部分插入 Lc</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeList_Sq</span><span class="params">(SqList La, SqList Lb, SqList &amp; Lc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Lc.length = La.length + Lb.length;</span><br><span class="line">    Lc.listsize = Lc.length;</span><br><span class="line">    Lc.elem = (ElemType *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ElemType) * Lc.listsize);</span><br><span class="line">    <span class="keyword">if</span>(! Lc.elem )</span><br><span class="line">        <span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">    </span><br><span class="line">    pa = La.elem;</span><br><span class="line">    pb = Lb.elem;</span><br><span class="line">    pc = Lc.elem;</span><br><span class="line">    pa_last = La.elem + La.length - <span class="number">1</span>;</span><br><span class="line">    pb_last = Lb.elem + Lb.length - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(pa &lt;= pa_last &amp;&amp; pb &lt;= pb_last)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(*pa &lt; *pb)</span><br><span class="line">            *pc++ = *pa++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            *pc++ = *pb++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(pa &lt;= pa_last)</span><br><span class="line">        *pc++ = *pa++;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(pb &lt;= pb_last)</span><br><span class="line">        *pc++ = *pb++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性表的单链表存储结构</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> * <span class="title">next</span>;</span></span><br><span class="line">&#125;LNode, *LinkList;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.8</span></span><br><span class="line"><span class="comment">// L 为带头节点的单链表的头指针。</span></span><br><span class="line"><span class="comment">// 当第 i 个元素存在时，其值赋给 e 并返回 OK， 否则返回 ERROR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 设置用于记录循环状态的变量 j 和 指针 p</span></span><br><span class="line"><span class="comment">2. 循环，找第 i 个元素的位置</span></span><br><span class="line"><span class="comment">3. 出错检查 </span></span><br><span class="line"><span class="comment">4. 取出值，返回成功</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">GetElem_L</span><span class="params">(LinkList L, <span class="keyword">int</span> i, ElemType &amp; e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    p = L-&gt;next;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i)</span><br><span class="line">    &#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">        ++j;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!p || j &gt; i)<span class="comment">//注意错误条件</span></span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    e = p-&gt;data;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    if(i &lt;= 0)</span></span><br><span class="line"><span class="comment">        return ERROR;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    p = L;</span></span><br><span class="line"><span class="comment">    count = 0;</span></span><br><span class="line"><span class="comment">    while(p-&gt;next != NuLL)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        if(count == i)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            e = p-&gt;data;</span></span><br><span class="line"><span class="comment">            return OK;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        count++;</span></span><br><span class="line"><span class="comment">        p = p-&gt;next;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    return ERROR;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.9</span></span><br><span class="line"><span class="comment">// 在头节点的单链线性表 L 中第 i 个位置之前插入元素 e</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 设置 j（循环变量）、p（指针）</span></span><br><span class="line"><span class="comment">2. 循环，找第 i-1 个元素的位置</span></span><br><span class="line"><span class="comment">3. 出错检查 </span></span><br><span class="line"><span class="comment">4. 插入操作，返回成功</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">ListInsert_L</span><span class="params">(LinkList &amp; L, <span class="keyword">int</span> i, ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    p = L;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i - <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        j++;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!p || j &gt; i - <span class="number">1</span>)<span class="comment">//注意错误条件</span></span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    s = (LNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    s-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = s;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.10</span></span><br><span class="line"><span class="comment">// 在带头结点的单链线性表 L 中， 删除第 i 个元素，并由 e 返回其值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 设置 j（循环变量）、p（指针）</span></span><br><span class="line"><span class="comment">2. 循环，找第 i-1 个元素的位置</span></span><br><span class="line"><span class="comment">3. 出错检查 </span></span><br><span class="line"><span class="comment">4. 删除操作，返回成功</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">ListDelete_L</span><span class="params">(LinkList &amp; L, <span class="keyword">int</span> i, ElemType &amp; e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    p = L;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; j &lt; i<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ++j;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(!p &amp;&amp; j &gt; i<span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    s = p-&gt;next;</span><br><span class="line">    e = s-&gt;data;</span><br><span class="line">    p-&gt;next = s-&gt;next;</span><br><span class="line">    <span class="built_in">free</span>(s);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.11</span></span><br><span class="line"><span class="comment">// 逆位序输入 n 个元素的值，建立带表头结点的单链线性表 L</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 申请头节点 L，并初始化 L-&gt;next 为 NULL</span></span><br><span class="line"><span class="comment">2. 循环：申请新节点，赋值，插入到 L 的头部</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateList_L</span><span class="params">(LinkeList &amp; L, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    L = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">    L-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n--)</span><br><span class="line">    &#123;</span><br><span class="line">        s = (LinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(LNode));</span><br><span class="line">        <span class="built_in">scanf</span>(&amp; s-&gt;data);</span><br><span class="line">        </span><br><span class="line">        s-&gt;next = L-&gt;next;</span><br><span class="line">        L-&gt;next = s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.12</span></span><br><span class="line"><span class="comment">// 已知单链线性表 La 和 Lb 的元素按值非递减排列</span></span><br><span class="line"><span class="comment">// 归并 La 和 Lb 得到新的单链线性表 Lc ，Lc 的元素也按值非递减排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">（类似 算法 2.7）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeList_L</span><span class="params">(LinkeList &amp; La, LinkList &amp; Lb, LinkList &amp; Lc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pa = La-&gt;next;</span><br><span class="line">    pb = Lb-&gt;next;</span><br><span class="line">    Lc = pc = La;<span class="comment">// 用 La 做 Lc 的头节点</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(pa &amp;&amp; pb)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(pa-&gt;data &lt; pb-&gt;data)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 不需要申请额外空间</span></span><br><span class="line">            pc-&gt;next = pa;<span class="comment">// 之间将结点连接到 Lc 对应的位置</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//改变位置指针</span></span><br><span class="line">            pc = pa</span><br><span class="line">            pa = pa-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            pc-&gt;next = pb;</span><br><span class="line">            </span><br><span class="line">            pc = pb;</span><br><span class="line">            pb = pb-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(pa)</span><br><span class="line">        pc-&gt;next = pa;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        pc-&gt;next = pb;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">free</span>(Lb);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性表的静态单链表存储结构</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 1000</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="keyword">int</span> cur;</span><br><span class="line">    </span><br><span class="line">&#125;component, SLinkList[MAXSIZE];</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.13</span></span><br><span class="line"><span class="comment">// 在静态单链线性表 L 中查找到第 1 个值为 e 的元素</span></span><br><span class="line"><span class="comment">// 若找到，则返回它在 L 中的位序，否则返回 0 。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. i 初始化为 S[0].cur // 第 1 个 元素的位置</span></span><br><span class="line"><span class="comment">2. 循环比较，若 i 不为 0 并且 i 位置的元素不等于 e，那么 i 指向下一个元素位置（ 即 i = S[i].cur ）；否则跳出循环。</span></span><br><span class="line"><span class="comment">3. 返回结果</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">LocateElem_SL</span><span class="params">(SLinkList S, ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i = S[<span class="number">0</span>].cur;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &amp;&amp; S[i].data != e)<span class="comment">// 注意：当 i 为 0 时，为链表末尾</span></span><br><span class="line">        i = S[i].cur;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.14</span></span><br><span class="line"><span class="comment">// 将一维数组 space 中各分量链成一个备用链表，space[0].cur为头指针</span></span><br><span class="line"><span class="comment">// “0” 表示空指针</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitSpace_SL</span><span class="params">(SLinkList &amp;space)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; MAXSIZE - <span class="number">1</span>; ++i)</span><br><span class="line">        space[i].cur = i + <span class="number">1</span>; <span class="comment">// 初始化时，默认指向存储空间上的下一个位置</span></span><br><span class="line">    </span><br><span class="line">    space[MAXSIZE - <span class="number">1</span>].cur = <span class="number">0</span>; <span class="comment">// 最后一个元素指向空指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.15</span></span><br><span class="line"><span class="comment">// 若备用空间链表为非空，则返回分配的结点下标，否则返回 0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Malloc_SL</span><span class="params">(SLinkList &amp; space)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i = space[<span class="number">0</span>].cur; <span class="comment">// 取备用链表的第一个元素的下标</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(space[<span class="number">0</span>].cur) <span class="comment">// 备用链表非空</span></span><br><span class="line">        space[<span class="number">0</span>].cur = space[i].cur;<span class="comment">// 删除第一个节点，并使头指针指向下一个元素</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.16</span></span><br><span class="line"><span class="comment">// 将下标为 k 的空闲结点回收到备用链表</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Free_SL</span><span class="params">(SLinkList &amp;space, <span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    space[k].cur = space[<span class="number">0</span>].cur; <span class="comment">// k 结点的 下一个位置指向 0 结点指向的下一个位置</span></span><br><span class="line">    </span><br><span class="line">    space[<span class="number">0</span>].cur = k; <span class="comment">// 0 结点的下一个位置指向 k</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.17</span></span><br><span class="line"><span class="comment">// 依此输入集合 A 和集合 B 的元素， 在一维数组 space 中建立表示集合 </span></span><br><span class="line"><span class="comment">// (A-B)∪(B-A) 的静态链表， S 为其头指针。假设备用空间足够大，</span></span><br><span class="line"><span class="comment">// space[0].cur 为其头指针</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">difference</span><span class="params">(SLinkList &amp;space, <span class="keyword">int</span> &amp;S)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitSpace_SL(space);         <span class="comment">// 初始化备用空间</span></span><br><span class="line">    S = Malloc_SL(space);        <span class="comment">// 生成 S 的头节点</span></span><br><span class="line">    r = S;                       <span class="comment">// r 指向 S 的当前最后节点</span></span><br><span class="line">    <span class="built_in">scanf</span>(m, n);                 <span class="comment">// 输入 A 和 B 的元素个数</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= m; ++j)      <span class="comment">// 建立集合 A 的链表</span></span><br><span class="line">    &#123;</span><br><span class="line">        i = Malloc_SL(space);    <span class="comment">// 分配节点</span></span><br><span class="line">        <span class="built_in">scanf</span>(space[i].data);    <span class="comment">// 输入 A 的元素值</span></span><br><span class="line">        space[r].cur = i; r = i; <span class="comment">// 插入到表尾</span></span><br><span class="line">    &#125;</span><br><span class="line">    space[r].cur = <span class="number">0</span>;            <span class="comment">// 尾节点的指针为空</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">1</span>; j &lt;= n; j++)      <span class="comment">// 依次输入 B 的元素，若不在</span></span><br><span class="line">    &#123;                            <span class="comment">// 当前表中，则插入，否则删除</span></span><br><span class="line">        <span class="built_in">scanf</span>(b); p = S; k = space[S].cur; <span class="comment">// k 指向集合 A 中的第一个结点</span></span><br><span class="line">        <span class="keyword">while</span>(k != space[r].cur &amp;&amp; space[k].data != b)</span><br><span class="line">        &#123;<span class="comment">// 在当前表中查找</span></span><br><span class="line">            p = k; <span class="comment">// p 指向当前 </span></span><br><span class="line">            k = space[k].cur; <span class="comment">// k 指向下一个</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(k == space[r].cur)    <span class="comment">// 当前表中不存在该元素，</span></span><br><span class="line">        &#123;                        <span class="comment">// 插入在 r 所指结点之后，</span></span><br><span class="line">                                 <span class="comment">// 且 r 的位置不变</span></span><br><span class="line">            i = Malloc_SL(space);</span><br><span class="line">            space[i].data = b;</span><br><span class="line">            space[i].cur = space[r].cur;</span><br><span class="line">            space[r].cur = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>                     <span class="comment">// 该元素已在表中， 删除之</span></span><br><span class="line">        &#123;</span><br><span class="line">            space[p].cur = space[k].cur;</span><br><span class="line">            Free_SL(space, k);</span><br><span class="line">            <span class="keyword">if</span>(r == k) r = p;    <span class="comment">// 若删除的是 r 所指结点，则需修改尾指针。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间复杂度 O(m × n)，第二个循环，外层最多 n 次，内层最多 m 次。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="顺序表和链表的应用；"><a href="#顺序表和链表的应用；" class="headerlink" title="顺序表和链表的应用；"></a>顺序表和链表的应用；</h2><h3 id="一元多项式的表示及相加"><a href="#一元多项式的表示及相加" class="headerlink" title="一元多项式的表示及相加"></a>一元多项式的表示及相加</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项的结构</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>  <span class="comment">// 项的表示，多项式的项作为 LinkList 的数据元素</span></span><br><span class="line">    <span class="keyword">float</span> coef;  <span class="comment">// 系数 </span></span><br><span class="line">    <span class="keyword">float</span> expn;  <span class="comment">// 指数</span></span><br><span class="line">&#125;term, ElemType; <span class="comment">// term 用于本 ADT ，ElemType 为 LinkList 的数据对象名</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> LinkList polynomial; <span class="comment">//用带表头结点的有序链表表示多项式</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.22</span></span><br><span class="line"><span class="comment">// 输入 m 项的系数和指数，建立表示一元多项式的有序链表 P</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 初始化线性表</span></span><br><span class="line"><span class="comment">2. 设置头节点数据</span></span><br><span class="line"><span class="comment">3. 读入数据， 判断插入</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreatPolyn</span><span class="params">(polynomail &amp;P, <span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitList(P);	h = GetHead(P);</span><br><span class="line">    <span class="comment">// 设置头节点的数据元素</span></span><br><span class="line">    e.coef = <span class="number">0.0</span>;	e.expn = <span class="number">-1</span>;	SetCurElem(h, e);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(e.coef, e.expn);</span><br><span class="line">        <span class="keyword">if</span>(! LocateElem(P, e, q, (*cmp)()))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(MakeNode(s,e))</span><br><span class="line">                InsFirst(q, s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.23</span></span><br><span class="line"><span class="comment">// 多项式加法</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddPolyn</span><span class="params">(polynomial &amp;Pa. polynomial &amp;Pb)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ha = GetHead(Pa);	hb = GetHead(Pb);</span><br><span class="line">    qa = NextPos(Pa, ha);	qb = NextPos(Pb, hb);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(qa &amp;&amp; qb)</span><br><span class="line">    &#123;</span><br><span class="line">        a = GetCurElem(qa);	b = GetCurElem(qb);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 三种情况</span></span><br><span class="line">        <span class="comment">// 1. qa-&gt;elem &lt; qb-&gt;elem: 取 qa 结点插入到结果中</span></span><br><span class="line">        <span class="comment">// 2. qa-&gt;elem &gt; qb-&gt;elem: 取 qb 结点插入到结果中</span></span><br><span class="line">        <span class="comment">// 3. qa-&gt;elem = qb-&gt;elem: sum = qa-&gt;elem + b-&gt;elem</span></span><br><span class="line">        <span class="comment">// 若 sum == 0，则删除该节点；</span></span><br><span class="line">        <span class="comment">// 若 sum != 0，则更新结果中该位置的 elem 域的值。</span></span><br><span class="line">        <span class="keyword">switch</span>((*cmp(a, b)))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">-1</span>:</span><br><span class="line">                ha = qa;	qa = NextPos(Pa, qa);	<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                sum = a.coef + b.coef;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(sum != <span class="number">0.0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    SetCurElem(qa, sum);</span><br><span class="line">                    ha = qa;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    DelFirst(ha, qa);</span><br><span class="line">                    FreeNode(qa);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                DelFirst(hb, qb);</span><br><span class="line">                FreeNode(qb);</span><br><span class="line">                qb = NextPos(Pb, hb);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                DelFirst(hb, qb);</span><br><span class="line">                InsFirst(ha, qb);</span><br><span class="line">                qb = NextPos(Pb, hb);</span><br><span class="line">                ha = NextPos(Pa, ha);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(!ListEmpty(Pb))	Append(Pa, qb); <span class="comment">// A 遍历完了， </span></span><br><span class="line">                                            <span class="comment">// B 还有，应把剩</span></span><br><span class="line">                                            <span class="comment">// 下的元素一起加</span></span><br><span class="line">                                            <span class="comment">// 入结果中</span></span><br><span class="line">        FreeNode(hb);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="循环链表；双向链表；"><a href="#循环链表；双向链表；" class="headerlink" title="循环链表；双向链表；"></a>循环链表；双向链表；</h2><h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><ul>
+<li>最后一个结点的指针域指向头节点。</li>
+<li>遍历循环结束条件是<strong>p == 头指针</strong>或者<strong>p-&gt;next == 头指针</strong></li>
+<li>基本操作与线性链表类似</li>
+</ul>
+<h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性表的双向链表存储结构</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">DuLNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DuLNode</span> *<span class="title">prior</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">DuLNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;DuLNode *DuLinkList;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.18</span></span><br><span class="line"><span class="comment">// 在带头结点的双链循环线性表 L 中第 i 个位置之前插入元素 e</span></span><br><span class="line"><span class="comment">// i 的合法值为 1 ≤ i ≤ 表长 + 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 从头结点开始遍历，找到插入位置</span></span><br><span class="line"><span class="comment">（如果为空，则插入位置不合理，返回错误）</span></span><br><span class="line"><span class="comment">2. 申请新的结点空间（如果申请失败，返回错误）</span></span><br><span class="line"><span class="comment">3. 把新结点的 elem 域设置成指定值，插入到双链循环线性表中</span></span><br><span class="line"><span class="comment">（4处指针修改！！！）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">ListInsert_DuL</span><span class="params">(DuLinkList &amp;L, ElemType e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!(p = GetElemP_DuL(L, i)))</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    <span class="keyword">if</span>(!(s = (DuLinkList)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(DuLNode))))</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    s-&gt;data = e;</span><br><span class="line">    <span class="comment">// 4 处指针修改</span></span><br><span class="line">    s-&gt;prior = p-&gt;prior;    <span class="comment">// s 的 prior</span></span><br><span class="line">    p-&gt;prior-&gt;next = s;     <span class="comment">// p 的 prior 的 next</span></span><br><span class="line">    s-&gt;next = p;            <span class="comment">// s 的 next</span></span><br><span class="line">    p-&gt;prior = s;           <span class="comment">// p 的 prior</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.19</span></span><br><span class="line"><span class="comment">// 删除带头结点的双链循环线性表 L 的 第 i 个元素</span></span><br><span class="line"><span class="comment">// i 的合法值为 1 ≤ i ≤ 表长</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 从头结点开始遍历，找到删除位置</span></span><br><span class="line"><span class="comment">（如果为空，则插入位置不合理，返回错误）</span></span><br><span class="line"><span class="comment">2. 将删除结点的 elem 域的值赋给制定输出参数，再从链表中删除该结点</span></span><br><span class="line"><span class="comment">并释放相应存储空间。</span></span><br><span class="line"><span class="comment">（2 处指针修改）</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">ListDelete_DuL</span><span class="params">(DuLinkList &amp;L, <span class="keyword">int</span> i, ElemType &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!(p = GetElemP_DuL(L, i)))</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    </span><br><span class="line">    e = p-&gt;data;</span><br><span class="line">    </span><br><span class="line">    p-&gt;prior-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next-&gt;prior = p-&gt;prior;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>数据结构（C语言版）.严蔚敏</li>
+<li>2020年数据结构考研复习指导.王道论坛</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/" title="数据结构复习笔记1-绪论及线性表">https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/" rel="prev" title="机器真的有智能吗">
+      <i class="fa fa-chevron-left"></i> 机器真的有智能吗
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/14/shu-ju-jie-gou-fu-xi-bi-ji-2-zhan-he-dui-lie/" rel="next" title="数据结构复习笔记2-栈和队列">
+      数据结构复习笔记2-栈和队列 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数据结构基本概念及简单的算法分析"><span class="nav-number">1.</span> <span class="nav-text">1. 数据结构基本概念及简单的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的定义、特性"><span class="nav-number">1.2.</span> <span class="nav-text">算法的定义、特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的算法分析：时间复杂度、空间复杂度"><span class="nav-number">1.3.</span> <span class="nav-text">简单的算法分析：时间复杂度、空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线性表"><span class="nav-number">2.</span> <span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的存储与基本操作；"><span class="nav-number">2.1.</span> <span class="nav-text">顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表"><span class="nav-number">2.1.1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的应用；"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表和链表的应用；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一元多项式的表示及相加"><span class="nav-number">2.2.1.</span> <span class="nav-text">一元多项式的表示及相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表；双向链表；"><span class="nav-number">2.3.</span> <span class="nav-text">循环链表；双向链表；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">2.3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">2.3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

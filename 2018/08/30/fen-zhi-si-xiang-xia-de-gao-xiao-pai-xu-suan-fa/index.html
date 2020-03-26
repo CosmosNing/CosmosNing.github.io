@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分治思想下的高效排序算法">
+<meta property="og:url" content="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true">
+<meta property="article:published_time" content="2018-08-30T03:35:35.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.788Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Grokking Algorithms">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>分治思想下的高效排序算法 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          分治思想下的高效排序算法
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-30 11:35:35" itemprop="dateCreated datePublished" datetime="2018-08-30T11:35:35+08:00">2018-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E8%B5%B7%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+            <div class="post-description">什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true" alt="cover"></p>
+<p>什么是分治？这是一种解决问题的方法。别看它名字高大上，其实我们在日常生活学习中经常用到它。我相信，你看完下面的例子后就可以明白分治的内涵了。</p>
+<p>还记得你小学是如何计算多个数连续相加吗？我想，一般的解决办法应该是这样的：</p>
+<p>从左到右，让第一个数和第二个数相加，所得的结果和后续的式子相加构成新的式子。此时，新得到的式子比原式更简单，更容易解决（因为要相加的数的个数变少了）。接着，让新的式子中的第一个数和第二个数相加，所得结果和后续剩下的式子构成另一个新的式子···如此进行下去，原式会不断的被化简，最终只剩下一个数，而这个数，正是原式的结果。</p>
+<p>这里用来化简多个数相加的方法其实就是“分治”的实际应用。仔细观察上述过程，我们可以总结概括利用分治解决问题的两大步骤：</p>
+<p>第一，   化简原问题。我们要找到能够将原问题化简为相似的、更小的、更易解决的子问题的方法。在上述连续的加法计算中，不断地将式子中第一个数字和第二个数字相加，所得结果和剩下的式子构成新式子，供下一步化简使用。这个过程便是不断化简问题的过程。</p>
+<p>第二，   找到答案显而易见的基础案例。我们要找到一个非常简单的一个案例和该案例发生时的条件（这个案例要尽可能地简单，从而通过常识即可给出案例对应的答案）。这也指明了化简的终点。对应上面加法的例子，它的基础案例便是当化简到一个数时，化简终止。</p>
+<p>上述对于分治方法的描述是不是有些熟悉？对了！它解决问题的过程和递归十分相似。基于这一点特质，我们可以利用递归程序来实现分治。</p>
+<p>分治思想在算法中有很多应用，要说其中最基础的、最实用的，我想应该是以下要介绍的两种高效排序算法：一是归并排序，二是快速排序。</p>
+<p>下面，我们来看一看这两个高效的排序算法是如何工作的。</p>
+<p>首先是归并排序。它的算法流程描述如下：</p>
+<p>假设待排序的数据序列中有n个数据， 可以先将序列看成是由n个长度为1 的有序子序列组成</p>
+<p>n 然后再两两子序列合并， 得到一个n/2个长度为2或1 （当序列中数据为奇数时会有一个子序列长度为1 ） 的有序子序列，</p>
+<p>n 再两两子序列合并， 如此重复， 直到得到一个长度为n的有序序列为止</p>
+<p>为了更清晰地理解归并排序的流程，我们来看一个例子。</p>
+<p>我们来看看利用归并排序算法排序83，84，87，88，61，50，70，60，80，99这10个数的流程：（注：以下分号分割每一组数据，逗号分割组内数据）</p>
+<p>首先，进行2个数合并排序，得到：83，84 ；87，88；50，61；60，70；80，99；</p>
+<p>其次，进行4个数合并排序，得到：83，84，87，88；50，60，61，70；80，99；</p>
+<p>接着，进行8个数合并排序，得到：50，60，61，70，83，84，87，88；80，99；</p>
+<p>最后，将剩下的2个子序列合并排序，得到：50, 60, 61, 70, 80, 83, 84, 87, 88, 99。</p>
+<p>那么，这样的排序流程如何用代码来实现呢？</p>
+<p>这个过程与递归相似，但不完全一致，所以需要通过一定的转化，才能利用递归实现归并排序算法。</p>
+<p>递归程序，无非要找两个东西。一是初始条件，二是能够将原问题化为更小子问题的递推公式。在归并排序中，这两个东西对应着什么呢？</p>
+<p>仔细观察上述归并排序的过程，我们发现这个过程是一个不断合并的过程，所以我们可以先写一个函数，来实现合并两个内部已经有序的数据序列。有了这个函数的支持，我们下一步就需要将原问题化为更小的子问题。这里，一种解决方案是将原数据序列不断划分为左一半和右一半，然后再利用合并函数将它们合并即可。那么什么时候到达划分的终点呢？根据排序这个问题，我们很容易发现，当数据序列中的元素只有一个时，便达到划分的终点。</p>
+<p>根据上述讨论，简单总结一下便是：对原序列划分成左半部和右半部后再合并，是归并排序的原问题化简的方法；数据序列中只剩下一个元素时，划分到达终点，这也是该递归程序的初始条件。</p>
+<p>了解了这些，代码也就很容易写了。</p>
+<p>它的代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(lst1,lst2)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge:</span></span><br><span class="line"><span class="string">     对于内部已经从小到大排序的两个列表，把它们合并成一个从小到大排序的列表</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst1：内部已经从小到大排序的数据列表1</span></span><br><span class="line"><span class="string">     lst2：内部已经从小到大排序的数据列表2</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     两个列表的合并结果（结果从小到大排序）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lst = lst1<span class="comment">#合并后的lst</span></span><br><span class="line">    <span class="keyword">while</span> len(lst2) != <span class="number">0</span>:</span><br><span class="line">        a = lst2.pop(<span class="number">0</span>)<span class="comment">#取出lst2中第一个元素，并且将它从lst2中删除</span></span><br><span class="line">        place = len(lst)<span class="comment">#记录元素a插入结果lst的位置</span></span><br><span class="line">        lst.append(a)<span class="comment">#将a插入到lst末尾</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):<span class="comment">#寻找大小顺序合适的位置插入元素a，保证lst从小到大排列</span></span><br><span class="line">            <span class="keyword">if</span> a &lt; lst[i]:</span><br><span class="line">                lst[i+<span class="number">1</span>] = lst[i]</span><br><span class="line">                place = i</span><br><span class="line">        lst[place] = a</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge_sort:</span></span><br><span class="line"><span class="string">     利用归并排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span>:<span class="comment">#当数据列表中只有一个元素时，这个列表已经有序，直接返回该列表</span></span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment">#分解子问题，对原lst排序，相当于对当前lst的左一半和右一半做排序</span></span><br><span class="line">        lst1 = merge_sort(lst[:len(lst)//<span class="number">2</span>])<span class="comment">#左一半的有序数据列表</span></span><br><span class="line">        lst2 = merge_sort(lst[len(lst)//<span class="number">2</span>:])<span class="comment">#右一半的有序数据列表</span></span><br><span class="line">        <span class="keyword">return</span> merge(lst1,lst2)<span class="comment">#将两个有序列表合并</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(merge_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>接着，我们来看一看快速排序。</p>
+<p>快速排序的中的分治思想也是将原数据序列做划分，但是它在排序过程中又与归并排序有些不同。归并排序首先让每一个子序列内部有序，但外部整体无序；然后再通过合并子序列，使得整体有序。快速排序则是首先让数据外部整体有序，但内部无序；之后利用同样的方法使得子序列内部有序，再将它们按照外部整体有序时的顺序合并即可。</p>
+<p>那么快速排序算法是怎样实现外部整体有序的呢？快速排序每次选择一个枢轴（ $pivot$ ）元素，将当前数据序列中剩下的所有比枢轴元素小的组成一个新的数据序列（假设名字为 $l$ ）、所有比枢轴元素大的组成一个新的数据序列（假设名字为 $g$ ），那么 $l$ ， $pivot$ ， $g$ 三个子序列在外部便已经有序。如何解决 $l$ 、 $g$ 两个子序列内部无序的的问题呢？对子序列利用快速排序的思想即可。比如在 $l$ 中选择枢轴元素，将 $l$ 划分成 $ll$ （比 $ppivot$ 小的）、 $ppivot$ （枢轴元素）、 $gg$ （比 $ppivot$ 大的）三部分···经过不断的划分，最终我们会使得序列中的元素个数小于2个，这也就是我们划分的终点。</p>
+<p>有了上述的讨论，我想下面的代码也会很容易理解吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    quick_sort:</span></span><br><span class="line"><span class="string">     利用快速排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#如果列表元素只有1个或者没有，</span></span><br><span class="line">    <span class="comment">#那么其本身已经有序，不需要任何额外操作，</span></span><br><span class="line">    <span class="comment">#直接返回即可</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span> <span class="keyword">or</span> len(lst) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pivot = lst[<span class="number">0</span>]<span class="comment">#选定当前lst的第一个元素为枢轴元素（基准）</span></span><br><span class="line">        lst_l = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &lt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素小的元素构成列表lst_l</span></span><br><span class="line">        lst_g = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &gt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素大的元素构成列表lst_g</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#lst_l、pivot、lst_g已经相对有序，但是lst_l、lst_g内部无序，</span></span><br><span class="line">        <span class="comment">#所以需要分别对lst_l、lst_g执行快速排序，使其有序</span></span><br><span class="line">        <span class="comment">#最后将结果合并即可</span></span><br><span class="line">        <span class="keyword">return</span> quick_sort(lst_l) + [pivot] + quick_sort(lst_g)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(quick_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>归并排序和快速排序在排序算法中是比较高效的算法。它们究竟有多快呢？我们来一起分析一下他们呢的时间复杂度。</p>
+<p>首先假设问题规模为 $N$ ，所需要的执行步骤为 $T ( N )$ 。在归并排序中，程序第36行和37行将问题分解为左右一半，第38行的合并相当于将两个子序列都遍历了一遍（每个子列的规模为 $\frac{N}{2}$ ），所以有如下递推公式：</p>
+<p>$$<br>\begin{aligned}<br>T(N) &amp;= 2T(N/2) + N / 2 + N / 2\<br>         &amp;=2T(N/2) + N<br>\end{aligned}<br>$$</p>
+<p>进一步递推可得， $T(N) = N\cdot T(1) + k\cdot N$ ，其中 $k = log_{2}(N)$ 。当数据规模为1时，解决问题的步骤显然只需一步，所以 $T(N) = N + N\cdot log_{2}(N)$，所以归并排序的时间复杂度为 $O( N\cdot log( N ) )$ 。</p>
+<p>快速排序中，子序列的划分并不像归并排序那么确定（因为枢轴元素的选取会影响快速排序中子列的划分），同时快速排序的时间复杂度也有多种情况。最好的情况，枢轴元素恰巧是该序列的中数（也就是排序后，该数的位置在序列的中间），第一层快速排序会使得枢轴元素两端的子序列的个数相差不大。这种情况就相当于把原序列对半划分，和归并排序十分类似。分析一下，这种情况下快速排序的时间复杂度和归并排序一样，为 $O( N\cdot log( N ) )$ ；最坏的情况，枢轴元素是原序列中最小的元素或者是最大的元素，他将原序列划分为两个十分不平衡的子序列，一边没有元素，而另一边含有所有剩下的元素。对于这种情况，我们有如下递推公式：</p>
+<p>$$<br>T(N) = T(N-1) + N\<br>其中,T(N-1)为解决子问题的时间，N为合并时间<br>$$</p>
+<p>递推下去，可得 $T(N) = T(1) + N\times N = N^{2} + 1$ ，所以时间复杂度为 $O( N^{2} )$ 。平均情况下，枢轴元素的选取不会总是最坏情况，大多数情况下都是 $O( N\cdot log( N ) )$ 。</p>
+<p>文章的最后，我们简单总结一下本文的内容：</p>
+<ol>
+<li><strong>分治是一种解决问题的方法，他通过不断将原问题分解成相似的、更小的、更以解决的子问题，并通过可以直接看出结果的子问题的答案，逐层回代解决原问题。</strong></li>
+<li><strong>分治解决问题的一般步骤：找到显而易见的子问题的解；分解原问题到子问题，通过子问题的解解决原问题。</strong></li>
+<li><strong>分治的方法可以利用递归程序实现。</strong></li>
+<li><strong>分治思想下有两种十分高效的排序算法：一是归并排序，二是快速排序。</strong></li>
+<li><strong>归并排序的流程：将原序列不断对半划分，直至其中元素只剩1个返回，然后逐层将左右子序列合并即可。</strong></li>
+<li><strong>快速排序的流程：将原序列利用枢轴元素划分，比枢轴元素小的为一个子序列，比枢轴元素大的为另一个子序列，直至其中元素只剩1个返回，然后将这些子序列逐层合并即可。</strong></li>
+<li><strong>归并排序的时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
+<li><strong>快速排序的最好时间复杂度为 $O( N\cdot log( N ) )$ ，最坏时间复杂度为 $O( N^{2} )$ ，平均时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/" title="分治思想下的高效排序算法">https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/Grokking-Algorithms/" rel="tag"><i class="fa fa-tag"></i> Grokking Algorithms</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/25/suan-fa-qu-jie-zhi-di-gui-si-xiang/" rel="prev" title="算法趣解之递归思想">
+      <i class="fa fa-chevron-left"></i> 算法趣解之递归思想
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/09/07/gao-xiao-de-shu-ju-jie-gou-ha-xi-biao/" rel="next" title="高效的数据结构——哈希表">
+      高效的数据结构——哈希表 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

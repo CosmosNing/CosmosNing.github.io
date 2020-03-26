@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="那些让你刷得停不下来的内容平台是怎样做个性化推荐的？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内容平台的个性化推荐是怎么做的">
+<meta property="og:url" content="https://cosmosning.github.io/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="那些让你刷得停不下来的内容平台是怎样做个性化推荐的？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/03/cover.jpg?raw=true">
+<meta property="article:published_time" content="2018-11-03T06:25:21.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.788Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Grokking Algorithms">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/03/cover.jpg?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>内容平台的个性化推荐是怎么做的 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          内容平台的个性化推荐是怎么做的
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-03 14:25:21" itemprop="dateCreated datePublished" datetime="2018-11-03T14:25:21+08:00">2018-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E8%B5%B7%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">那些让你刷得停不下来的内容平台是怎样做个性化推荐的？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/03/cover.jpg?raw=true" alt="cover"></p>
+<p>每天，互联网上都会产生大量的内容信息，如何做好这些信息内容的分类、整理与分发是每一个内容平台需要不断思考的问题。内容平台除了鼓励内容创作者产出更优质的内容，更需要通过某种方式持续不断地抓住内容消费者的注意力，从而让内容创作者、内容消费者和平台形成一个有机的生态结构。那么，该怎样持续不断地吸引内容消费者的眼球呢？这几年来各种内容平台最佳内容分发实践，便是做好用户的个性化推荐。</p>
+<p>那么，这些个性化推荐到底是怎么做的呢？我们先来看一个具体的交互实例。</p>
+<h2 id="一个交互实例"><a href="#一个交互实例" class="headerlink" title="一个交互实例"></a>一个交互实例</h2><p>如果你在一个相关内容平台刚刚注册为新用户后，平台可能会让你选择一些感兴趣的领域，并自动为你关注相关领域的优质创作者。这些内容成为平台对你个性的第一次试探。</p>
+<p>在此之后，平台会继续基于你的浏览、点赞及评论等记录，逐渐修正对你个性的认识。随着你与平台互动的次数越来越多，平台就可以做到非常精准的推荐，并且这些内容持续不断，让你“刷得停不下来”。</p>
+<p>源源不断的内容资讯流，加上个性化推荐，极大地提高了用户对各个内容平台的粘性，并间接地为内容平台创造了商业价值。那么，这里的个性化推荐到底该怎么做，才能达到这种效果呢？</p>
+<p>我觉得，一个较好的个性推荐系统要做好以下两点：</p>
+<ol>
+<li>内容创作者、内容、内容消费者三者的<strong>特征提取</strong>。</li>
+<li>基于上述特征的<strong>相似推荐</strong>。</li>
+</ol>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><p>特征提取，简单来说，就是从某一事物中找到一组能够较为完整的描述其特征的属性组。这些特征，简单一点，可以由你与平台之间的互动数据来量化。这些数据包括但不限于你对某一方面的内容的浏览量、点赞次数、评论次数。</p>
+<p>此外，还需要给这些属性组贴上符合其特质的标签。除了平台手动或者自动地给其中的内容和用户贴上标签，平台也鼓励用户自己给自己贴上标签。上面的例子中，平台在让你选择感兴趣的方面时，其实就是初步地给你打上略带个性但又普适的标签。</p>
+<h2 id="相似推荐"><a href="#相似推荐" class="headerlink" title="相似推荐"></a>相似推荐</h2><p>那么，有了这些属性组和其对应的标签后，怎么去利用它们呢？可以定义属性组之间的相似度，给一组新的完全未知的属性组贴上可能的标签，再依据标签做推荐。</p>
+<p>那么，依据打上的标签，如何做推荐呢？</p>
+<p>如果一个<strong>内容</strong>和某一<strong>内容消费者</strong>的标签相似度十分高，那么就可以把该内容推荐给他；如果一个<strong>内容创作者</strong>和<strong>内容消费者</strong>的标签相似度十分高，那么就可以把这个内容创作者推荐给该内容消费者关注；如果一个<strong>内容消费者</strong>（假设为 <em>小明</em> ）和另一个<strong>内容消费者</strong>（假设为 <em>小刚</em> ）的标签相似度十分高，那么 <em>小明</em> 点赞过、喜欢过的内容、内容创作者可以推荐给 <em>小刚</em> ，同样的，基于 <em>小刚</em> 和平台、内容、内容作者的互动数据也可以给 <em>小明</em> 做推荐。</p>
+<p>上面提到，对于特征提取，我们可以利用一些较为简单的方法得到大量的属性组和对应的标签数据。这块内容我暂时不做过深的讨论。</p>
+<p>而相似推荐则需要一些算法支撑。仔细思考相似推荐这个流程，其实这个过程就是基于属性组之间的相似度，将一些事物分到不同的类别当中，再根据类别做推荐。这里的<strong>分类</strong>，是<strong>机器学习</strong>中一个典型的任务。分类任务中有很多算法，其中一种较为简单的算法便是下面要介绍的 <strong>K 近邻算法</strong> 。</p>
+<h2 id="K近邻（K-nearest-neighbors，KNN）算法"><a href="#K近邻（K-nearest-neighbors，KNN）算法" class="headerlink" title="K近邻（K-nearest neighbors，KNN）算法"></a>K近邻（<em>K-nearest neighbors</em>，<em>KNN</em>）算法</h2><h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>K 近邻的算法思想很简单。对于一个含有若干属性组的未知的事物，通过计算它和其他所有已贴上标签的属性组之间的相似度，然后找到相似度最大的 <em>k</em> 个，从中找到次数出现最多的标签，作为未知的事物的类别。</p>
+<p>对应的，K 近邻的算法伪码描述如下<a href="https://www.researchgate.net/figure/260397165_Pseudocode-for-KNN-classification" target="_blank" rel="noopener">^1</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;P.S.我修改了其中一部分</span><br><span class="line"></span><br><span class="line">kNearest Neighbor</span><br><span class="line">Classify ( X, Y, x ) &#x2F;&#x2F; X: training data, Y: class labels of X, x unknown sample</span><br><span class="line"></span><br><span class="line">    for 𝑖 &#x3D; 1 to m do</span><br><span class="line">        Compute similarity s( Xi, x )</span><br><span class="line">    end for</span><br><span class="line"></span><br><span class="line">    Compute set I containing indices for the k largest similarities s( Xi, x ).</span><br><span class="line"></span><br><span class="line">    return majority label for &#123; Yi where i ∈ I &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="相似度定义"><a href="#相似度定义" class="headerlink" title="相似度定义"></a>相似度定义</h3><p>由上面的伪码描述可知，这个算法的关键便是对两个属性组之间的相似度的定义。</p>
+<p>两个属性组可以被量化为两个向量。对于向量之间的相似度，可以用他们之间的距离来表示。</p>
+<p>较为常见的计算向量之间的距离公式有以下两种：</p>
+<ol>
+<li>欧氏距离</li>
+<li>余弦距离</li>
+</ol>
+<p>欧氏距离利用类似勾股定理公式计算两个向量之间的距离。例如，有两个向量$\vec{a}=(x_1,x_2,\cdots,x_n) ,\vec{b}=(y_1,y_2,\cdots,y_n)$，他们之间的欧氏距离定义为</p>
+<p>$$<br>distance_{Euclidean} = \sqrt{\overset{n}{\underset{i=1}{\sum}}{(x_{i} - y_{i})^{2}}}<br>$$</p>
+<p>两个向量之间的欧氏距离越大，两个向量之间的相似度越低；反之越高。</p>
+<p>余弦距离就是计算两个向量之间夹角的余弦值，套用上述用于计算欧氏距离的两个向量，可以定义他们之间的余弦距离如下：</p>
+<p>$$<br>distance_{Cosine} = \frac{\overset{n}{\underset{i=1}{\sum}}x_{i}y_{i}}{\sqrt{\overset{n}{\underset{i=1}{\sum}}{x_{i}^{2}}}\cdot\sqrt{\overset{n}{\underset{i=1}{\sum}}{y_{i}^{2}}}}<br>$$<br>我们知道，当余弦值等于 1 时，两个向量之间的夹角为 0 °，这表示它们之间的相似度最高；当余弦值等于 0 时，两个向量之间的夹角为 90 °，这表示它们之间没什么相关性；如果余弦值等于 -1 ，此时两个向量的方向完全相反，这表示他们的相似度最低。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><p>基于上面的伪码和相似度定义公式，可以很容易给出如下的 <em>Python</em> 实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance_euclidean</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个向量之间的欧氏距离</span></span><br><span class="line"><span class="string">    :param a: 向量1</span></span><br><span class="line"><span class="string">    :param b: 向量2</span></span><br><span class="line"><span class="string">    :return:  两个向量之间的欧氏距离</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">assert</span> len(a) == len(b)</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(sum([math.pow((x - y), <span class="number">2</span>) <span class="keyword">for</span> [x, y] <span class="keyword">in</span> list(zip(a, b))]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance_cosine</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个向量之间的余弦距离</span></span><br><span class="line"><span class="string">    :param a: 向量1</span></span><br><span class="line"><span class="string">    :param b: 向量2</span></span><br><span class="line"><span class="string">    :return: 两个向量之间的余弦距离</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">assert</span> len(a) == len(a)</span><br><span class="line">    <span class="keyword">return</span> (sum([x * y <span class="keyword">for</span> [x, y] <span class="keyword">in</span> list(zip(a, b))])) / (</span><br><span class="line">        (math.sqrt(sum([x * x <span class="keyword">for</span> x <span class="keyword">in</span> a]))) * (math.sqrt(sum([y * y <span class="keyword">for</span> y <span class="keyword">in</span> b]))))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knn_classifier</span><span class="params">(X, Y, x, k, distance)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    利用K近邻算法给未知类别的属性组x分类</span></span><br><span class="line"><span class="string">    :param X: 已知类别属性组</span></span><br><span class="line"><span class="string">    :param Y: X所对应的标签</span></span><br><span class="line"><span class="string">    :param x: 未知类别属性组</span></span><br><span class="line"><span class="string">    :param k: 超参数k</span></span><br><span class="line"><span class="string">    :param distance: 距离定义函数</span></span><br><span class="line"><span class="string">    :return: x 可能所处的类别</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s = &#123;&#125;   <span class="comment"># 存储相似度（或者距离）</span></span><br><span class="line">    m = len(X)  <span class="comment"># 已知数据组数</span></span><br><span class="line">    reverse = <span class="literal">False</span> <span class="comment"># 存储决定距离集合是升序还是降序。默认为False（升序）</span></span><br><span class="line">    <span class="keyword">if</span> distance <span class="keyword">is</span> distance_cosine: <span class="comment"># 如果距离计算函数是余弦距离，那么要降序排列，置 reverse 为 True</span></span><br><span class="line">        reverse = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># 计算距离</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">        s[i] = distance(X[i], x)</span><br><span class="line">    <span class="comment"># 排序（升序还是降序由距离函数所决定）</span></span><br><span class="line">    res_lst = sorted(s.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=reverse)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在 k 个相似度最大的邻居中给各个标签出现的次数计数</span></span><br><span class="line">    k_neighbors = &#123;&#125;</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, _ <span class="keyword">in</span> res_lst:</span><br><span class="line">        <span class="keyword">if</span> Y[i] <span class="keyword">in</span> k_neighbors.keys():</span><br><span class="line">            k_neighbors[Y[i]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            k_neighbors[Y[i]] = <span class="number">1</span></span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count == k:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 给上述计数的标签排序（降序）</span></span><br><span class="line">    label_count_lst = sorted(k_neighbors.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回结果</span></span><br><span class="line">    <span class="keyword">return</span> label_count_lst[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    group = [[<span class="number">0.1</span>, <span class="number">0</span>], [<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">1.1</span>, <span class="number">1.9</span>], [<span class="number">0.3</span>, <span class="number">0.1</span>]]</span><br><span class="line">    labels = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>, <span class="string">'A'</span>]</span><br><span class="line">    unknown = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">    print(knn_classifier(group, labels, unknown, <span class="number">5</span>, distance_euclidean))</span><br><span class="line">    <span class="comment"># print(knn_classifier(group,labels,x,5,distance_cosine))</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我和你一起了解到个性化推荐的一般套路，并由此引出<strong>机器学习</strong>中的<strong>分类</strong>任务里一个非常简单的算法——<strong>K近邻算法</strong>。最后，我将本文的要点总结如下：</p>
+<ol>
+<li><strong>一个较好的个性推荐系统应该处理好两个关键问题：一是特征提取、二是相似推荐</strong></li>
+<li><strong>做特征提取，一方面深入挖掘用户的行为数据，获取用户特征；另一方面鼓励用户给自己贴上标签，获取与特征对应的标签信息。这样就获得大量的（特征属性组，标签）数据积累，为下一步更精准的推荐打下基础</strong></li>
+<li><strong>在积累了大量的用户行为数据后和一些符合用户个性的标签后，可以利用K近邻算法给新的用户分类别，做类别的相似推荐</strong></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/" title="内容平台的个性化推荐是怎么做的">https://cosmosning.github.io/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/Grokking-Algorithms/" rel="tag"><i class="fa fa-tag"></i> Grokking Algorithms</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/" rel="prev" title="电子词典中查词的模糊推荐是怎么做的">
+      <i class="fa fa-chevron-left"></i> 电子词典中查词的模糊推荐是怎么做的
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/" rel="next" title="机器真的有智能吗">
+      机器真的有智能吗 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个交互实例"><span class="nav-number">2.</span> <span class="nav-text">一个交互实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征提取"><span class="nav-number">3.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似推荐"><span class="nav-number">4.</span> <span class="nav-text">相似推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K近邻（K-nearest-neighbors，KNN）算法"><span class="nav-number">5.</span> <span class="nav-text">K近邻（K-nearest neighbors，KNN）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">5.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似度定义"><span class="nav-number">5.2.</span> <span class="nav-text">相似度定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">5.3.</span> <span class="nav-text">算法实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

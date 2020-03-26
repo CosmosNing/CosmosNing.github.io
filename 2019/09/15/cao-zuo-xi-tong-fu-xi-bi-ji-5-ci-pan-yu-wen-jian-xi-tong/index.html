@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="整理一下操作系统中设备管理的知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统复习笔记5-磁盘与文件系统">
+<meta property="og:url" content="https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="整理一下操作系统中设备管理的知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Count-Of-File-Sharing.png?raw=true">
+<meta property="article:published_time" content="2019-09-15T15:17:15.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>操作系统复习笔记5-磁盘与文件系统 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          操作系统复习笔记5-磁盘与文件系统
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-15 23:17:15" itemprop="dateCreated datePublished" datetime="2019-09-15T23:17:15+08:00">2019-09-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+            <div class="post-description">整理一下操作系统中设备管理的知识</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="6．磁盘与文件系统"><a href="#6．磁盘与文件系统" class="headerlink" title="6．磁盘与文件系统"></a>6．磁盘与文件系统</h1><h2 id="磁盘的结构和基本概念"><a href="#磁盘的结构和基本概念" class="headerlink" title="磁盘的结构和基本概念"></a>磁盘的结构和基本概念</h2><ul>
+<li><strong>磁道</strong>：磁盘上的同心圆</li>
+<li><strong>盘面</strong>：磁盘的某一面</li>
+<li><strong>扇区</strong>（盘块）：磁道划分为<strong>扇区</strong>，每个扇区固定大小</li>
+<li><strong>柱面</strong>：所有盘面上相对位置相同的磁道组成<strong>柱面</strong></li>
+<li>磁头</li>
+<li>磁头臂</li>
+<li>磁盘地址组成：<strong>柱面号·盘面号·扇区号</strong></li>
+</ul>
+<p>（其他基本概念详见教材）</p>
+<h2 id="磁盘的调度（★★★★★）"><a href="#磁盘的调度（★★★★★）" class="headerlink" title="磁盘的调度（★★★★★）"></a>磁盘的调度（★★★★★）</h2><h3 id="存取时间的计算"><a href="#存取时间的计算" class="headerlink" title="存取时间的计算"></a>存取时间的计算</h3><ul>
+<li>寻找时间 $T_s$ ：磁头移动到指定磁道的时间（下式中，<em>m</em> 是和磁盘驱动器速度相关的常数，移动跨越 <em>n</em> 条磁道，<em>s</em> 为磁臂启动时间）</li>
+</ul>
+<p>$$<br>T_s=m\times n + s<br>$$</p>
+<ul>
+<li>延迟时间 $T_r$ ：磁头定位到某一磁道的扇区所需要的时间（下式中 <em>r</em> 为磁盘转速）</li>
+</ul>
+<p>$$<br>T_r=\frac{1}{2r}<br>$$</p>
+<ul>
+<li>传输时间 $T_t$ ：磁盘读出或写入数据经历的时间（下式中 <em>b</em> 为每次读/写的字节数， <em>N</em> 为一个磁道上的字节数）</li>
+</ul>
+<p>$$<br>T_{t}=\frac{b}{rN}<br>$$</p>
+<ul>
+<li>总平均存取时间为</li>
+</ul>
+<p>$$<br>T_a=T_s+\frac{1}{2r}+\frac{b}{rN}<br>$$</p>
+<h3 id="调度算法（★★★★★）"><a href="#调度算法（★★★★★）" class="headerlink" title="调度算法（★★★★★）"></a>调度算法（★★★★★）</h3><table>
+<thead>
+<tr>
+<th align="center">算法名称</th>
+<th align="center">调度标准</th>
+<th align="center">优点</th>
+<th align="center">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">先来先服务（FCFS）</td>
+<td align="center">先来先服务</td>
+<td align="center">公平、简单</td>
+<td align="center">平均寻道距离大</td>
+</tr>
+<tr>
+<td align="center">最短寻找时间优先（SSTF）</td>
+<td align="center">选择<strong>距离当前磁头位置最短</strong>的请求</td>
+<td align="center">性能比FCFS好</td>
+<td align="center">不能保证平均寻道时间最短，可能出现<strong>“饥饿”</strong></td>
+</tr>
+<tr>
+<td align="center">扫描算法（SCAN，电梯调度）</td>
+<td align="center">选择<strong>当前磁头运动方向上</strong>且<strong>距离当前磁头位置最短</strong>的请求</td>
+<td align="center">寻道性能好，可避免“饥饿”</td>
+<td align="center">不利于远离磁头一端的请求</td>
+</tr>
+<tr>
+<td align="center">循环扫描算法（C-SCAN）</td>
+<td align="center">类似 SCAN 算法，但是当一个方向上处理完成后回返时，直接移动到起始端，不响应途中的任何请求。到达起始端后，才继续响应</td>
+<td align="center">消除了对两端磁道请求的不公平性</td>
+<td align="center">——–</td>
+</tr>
+</tbody></table>
+<h2 id="磁盘的性能改善和容错"><a href="#磁盘的性能改善和容错" class="headerlink" title="磁盘的性能改善和容错"></a>磁盘的性能改善和容错</h2><p>（见教材 8.4 8.5节）</p>
+<h2 id="外存分配方法与物理文件组织"><a href="#外存分配方法与物理文件组织" class="headerlink" title="外存分配方法与物理文件组织"></a>外存分配方法与物理文件组织</h2><h3 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h3><ul>
+<li>每个文件在磁盘上占有一组<strong>连续</strong>的块</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true" alt="连续分配"></p>
+<h3 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h3><ul>
+<li>每个文件散落在磁盘的各个碎片区域，每一块都存有指向下一块的指针</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true" alt="链接分配"></p>
+<h3 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h3><ul>
+<li>单独使用一块来存储文件各块存储位置，构成索引块</li>
+</ul>
+<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true" alt="索引分配"></p>
+<h2 id="文件存储空间的管理"><a href="#文件存储空间的管理" class="headerlink" title="文件存储空间的管理"></a>文件存储空间的管理</h2><h3 id="空闲表法"><a href="#空闲表法" class="headerlink" title="空闲表法"></a>空闲表法</h3><ul>
+<li>类似内存中的动态分配（回看内存管理）</li>
+</ul>
+<h3 id="空闲链表法"><a href="#空闲链表法" class="headerlink" title="空闲链表法"></a>空闲链表法</h3><ul>
+<li>空闲盘块链</li>
+<li>空闲盘区链</li>
+</ul>
+<h3 id="位示图法（★）"><a href="#位示图法（★）" class="headerlink" title="位示图法（★）"></a>位示图法（★）</h3><ul>
+<li>用二进制的一位来表示某一盘块的使用情况： <em>1</em> 表示已分配， <em>0</em> 表示未分配（空闲）</li>
+<li>盘块的分配算法（行列号从 <em>1</em> 开始）<ol>
+<li>找到合适的 “0” 的二进制位</li>
+<li>计算盘块号 <em>b</em> ：$b = (i-1)n+j$ （其中 <em>i</em> 代表行数，<em>j</em> 代表列数，<em>n</em> 代表每行位数）</li>
+<li>修改位示图矩阵：$map[i,j] = 1$</li>
+</ol>
+</li>
+<li>盘块的回收算法<ol>
+<li>块号 <em>b</em> 转换为行 <em>i</em> 列 <em>j</em> 号$i = (b-1)\ DIV\ n + 1,j=(b-1)\ MOD\ n + 1$</li>
+<li>修改位示图矩阵：$map[i,j] = 0$</li>
+</ol>
+</li>
+</ul>
+<h3 id="成组链接法"><a href="#成组链接法" class="headerlink" title="成组链接法"></a>成组链接法</h3><p>（详见教材）</p>
+<h2 id="逻辑文件组织"><a href="#逻辑文件组织" class="headerlink" title="逻辑文件组织"></a>逻辑文件组织</h2><h3 id="无结构文件（流式文件）"><a href="#无结构文件（流式文件）" class="headerlink" title="无结构文件（流式文件）"></a>无结构文件（流式文件）</h3><ul>
+<li>以<strong>字节</strong>为单位，如源代码文件等</li>
+</ul>
+<h3 id="有结构文件（记录式文件）"><a href="#有结构文件（记录式文件）" class="headerlink" title="有结构文件（记录式文件）"></a>有结构文件（记录式文件）</h3><ul>
+<li>由一条条<strong>记录</strong>组成，每条记录中包含若干数据项。</li>
+</ul>
+<h4 id="顺序文件"><a href="#顺序文件" class="headerlink" title="顺序文件"></a>顺序文件</h4><ul>
+<li>按某种顺序排列形成的文件</li>
+<li>排列方式分为<strong>串结构</strong>和<strong>顺序结构</strong><ul>
+<li>串结构：通常按<strong>存入时间先后顺序</strong>排序</li>
+<li>顺序结构：用户指定<strong>关键字</strong>，按<strong>关键字</strong>排序</li>
+</ul>
+</li>
+</ul>
+<h4 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h4><ul>
+<li>建立索引表，为每个记录设置一个表项，从而加快检索记录的速度</li>
+<li>可<strong>按关键字建立索引</strong>，一个索引文件可能被<strong>多个索引表</strong>索引（如图书信息可按图书编号、图书名、作者等进行索引查找）</li>
+</ul>
+<h4 id="索引顺序文件"><a href="#索引顺序文件" class="headerlink" title="索引顺序文件"></a>索引顺序文件</h4><ul>
+<li>为每个文件建立索引表，将记录分组，只为<strong>每组的第一条记录建立索引表项</strong></li>
+<li>可以有<strong>一级、二级、多级</strong>索引顺序文件</li>
+<li>查找效率比较（假设文件所含有的记录数为 <em>N</em> ，为检索到指定含有关键字的记录）<ul>
+<li>顺序文件：<strong>平均需要查找 $\frac{N}{2}$</strong></li>
+<li>索引顺序文件：*<em>平均需要查找 $\sqrt{N}$ *</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="直接文件（散列文件）"><a href="#直接文件（散列文件）" class="headerlink" title="直接文件（散列文件）"></a>直接文件（散列文件）</h4><ul>
+<li>通过哈希函数，完成从<strong>关键字</strong>到<strong>物理地址</strong>的直接转换。</li>
+</ul>
+<h2 id="文件的基本操作"><a href="#文件的基本操作" class="headerlink" title="文件的基本操作"></a>文件的基本操作</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+<li>创建</li>
+<li>删除</li>
+<li>读</li>
+<li>写</li>
+<li>设置读/写位置</li>
+</ul>
+<h3 id="“打开”和“”关闭“”（★★★★）"><a href="#“打开”和“”关闭“”（★★★★）" class="headerlink" title="“打开”和“”关闭“”（★★★★）"></a>“打开”和“”关闭“”（★★★★）</h3><ul>
+<li><strong>打开</strong>：系统将指名文件的<strong>属性</strong>（包括该文件在外存上的物理位置），从外存<strong>拷贝到内存打开文件表的一个表目中</strong>，并将<strong>该表目的编号（或称为索引号）返回给用户</strong>，即建立了用户和指定文件之间的连接。</li>
+<li><strong>关闭</strong>：断开上述连接</li>
+<li>“打开”并非真正打开，而是读取文件相关属性；“关闭”并非真正关闭，而是断开连接。</li>
+</ul>
+<h2 id="文件目录及其管理"><a href="#文件目录及其管理" class="headerlink" title="文件目录及其管理"></a>文件目录及其管理</h2><ul>
+<li>目录管理的要求<ul>
+<li><strong>实现“按名存取”</strong></li>
+<li><strong>提高目录检索速度</strong></li>
+<li><strong>文件共享</strong></li>
+<li><strong>允许文件重名</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="文件控制块（FCB）"><a href="#文件控制块（FCB）" class="headerlink" title="文件控制块（FCB）"></a>文件控制块（FCB）</h3><ul>
+<li>作用类似进程管理中的 PCB ，用来存放控制文件需要的各种信息，包括：<ul>
+<li>基本信息：文件名、物理位置、逻辑结构、物理结构等</li>
+<li>存取控制信息：存取权限</li>
+<li>使用信息：创建时间、修改时间</li>
+</ul>
+</li>
+<li>从而实现了<strong>“按名存取”</strong></li>
+<li>FCB 的有序集合成为<strong>文件目录</strong>，一个 FCB 就是一个<strong>文件目录表项</strong></li>
+<li>创建新文件时，也会创建一个对应的 FCB</li>
+</ul>
+<h3 id="索引结点"><a href="#索引结点" class="headerlink" title="索引结点"></a>索引结点</h3><ul>
+<li>为加快按文件名检索目录文件而引入。（无索引时，需依次检索 FCB，但是 FCB 中很多信息对于检索目录是多余的，因此把需要的信息抽出，形成索引【通常包括 <strong>文件名</strong> 、<strong>索引结点编号</strong> 】，从而可以加快检索速度）</li>
+<li>根据索引结点所处位置不同，分为<ul>
+<li>磁盘索引结点</li>
+<li>内存索引结点</li>
+</ul>
+</li>
+</ul>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><h4 id="单级目录结构"><a href="#单级目录结构" class="headerlink" title="单级目录结构"></a>单级目录结构</h4><ul>
+<li>目录表类似一维数组，存储目录表项</li>
+<li>评价<ul>
+<li>简单，实现了“按名存取”</li>
+<li>查找速度慢</li>
+<li>不允许重名</li>
+<li>不便于共享</li>
+<li>只适用于<strong>单用户</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="两级目录结构"><a href="#两级目录结构" class="headerlink" title="两级目录结构"></a>两级目录结构</h4><ul>
+<li>顶级目录表类似二维数组，第一维为用户名、第二维存储指向用户目录表的指针</li>
+<li>二级目录表存储对应用户的目录表项</li>
+<li>评价<ul>
+<li>能满足目录管理的四个要求</li>
+</ul>
+</li>
+</ul>
+<h4 id="树形（多级）目录结构（★★★）"><a href="#树形（多级）目录结构（★★★）" class="headerlink" title="树形（多级）目录结构（★★★）"></a>树形（多级）目录结构（★★★）</h4><ul>
+<li>对二级的推广，现代 OS 常用</li>
+<li>包括以下<strong>目录操作</strong><ul>
+<li>创建目录</li>
+<li>删除目录</li>
+<li>改变目录</li>
+<li>移动目录</li>
+<li>链接操作</li>
+<li>查找</li>
+</ul>
+</li>
+</ul>
+<h4 id="目录查询技术"><a href="#目录查询技术" class="headerlink" title="目录查询技术"></a>目录查询技术</h4><h5 id="线性检索法（★★★）"><a href="#线性检索法（★★★）" class="headerlink" title="线性检索法（★★★）"></a>线性检索法（★★★）</h5><ul>
+<li>单级目录情况<ul>
+<li>类似顺序查找算法流程</li>
+</ul>
+</li>
+<li>树形目录情况<ul>
+<li>读入第一个文件分量（文件分量即文件路径中被 “/” 分隔的字符串），在第一级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
+<li>读入下一个文件分量，在对应级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
+<li>以此类推，直至目录中所有文件分量都已处理完毕或者是未找到退出</li>
+</ul>
+</li>
+</ul>
+<h5 id="Hash-方法"><a href="#Hash-方法" class="headerlink" title="Hash 方法"></a>Hash 方法</h5><ul>
+<li>利用 Hash 函数完成从<strong>文件名</strong>到<strong>索引值</strong>的映射，之后再用得到的索引值找到目录</li>
+</ul>
+<h2 id="文件共享和保护"><a href="#文件共享和保护" class="headerlink" title="文件共享和保护"></a>文件共享和保护</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><h4 id="基于有向无循环图"><a href="#基于有向无循环图" class="headerlink" title="基于有向无循环图"></a>基于有向无循环图</h4><p>（详见教材）</p>
+<h4 id="利用索引结点（硬链接）（★★★）"><a href="#利用索引结点（硬链接）（★★★）" class="headerlink" title="利用索引结点（硬链接）（★★★）"></a>利用索引结点（硬链接）（★★★）</h4><ul>
+<li>在用户目录表中，其表项只包括<strong>文件名</strong>和<strong>指向索引结点的指针</strong>，其他的相关信息放在索引结点中</li>
+</ul>
+<h4 id="不同用户对共享文件创建、删除操作中的链接计数"><a href="#不同用户对共享文件创建、删除操作中的链接计数" class="headerlink" title="不同用户对共享文件创建、删除操作中的链接计数"></a>不同用户对共享文件创建、删除操作中的链接计数</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Count-Of-File-Sharing.png?raw=true" alt="索引分配"></p>
+<h4 id="利用符号链接（软链接）（★★★）"><a href="#利用符号链接（软链接）（★★★）" class="headerlink" title="利用符号链接（软链接）（★★★）"></a>利用符号链接（软链接）（★★★）</h4><ul>
+<li>共享时，会新建一个 LINK 文件，这个 LINK 文件中<strong>只含有被链接文件的路径</strong></li>
+</ul>
+<p><strong>硬链接查找较快</strong></p>
+<h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><ul>
+<li>有<strong>口令保护</strong>、<strong>加密保护</strong>、<strong>访问控制</strong>等方法</li>
+<li>访问控制<ul>
+<li>类型<ul>
+<li>读</li>
+<li>写</li>
+<li>执行</li>
+<li>添加</li>
+<li>删除</li>
+<li>列表清单</li>
+</ul>
+</li>
+<li>根据用户身份进行控制，为文件和目录添加一个<strong>访问控制表</strong>，<strong>规定每个用户名及其所允许访问的类型</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
+<li><p>软链接、硬链接中的引用计数问题</p>
+<ul>
+<li>建立<ul>
+<li>软链接（符号链接）：引用计数<strong>直接复制</strong></li>
+<li>硬链接：引用计数<strong>加一</strong></li>
+</ul>
+</li>
+<li>删除<ul>
+<li>软链接：<strong>删除</strong>操作，对软链接<strong>不可见</strong>（注意软链接只保存了<strong>文件的路径</strong>）。当之后依据软链接访问文件，发现不存在时，此时可以删除符号链接</li>
+<li>硬链接：删除文件，<strong>引用计数减一</strong>；若引用计数不为零，则不能删除所共享的文件</li>
+</ul>
+</li>
+<li>例题（2009·408统考）<ul>
+<li>F1 引用计数为 1 ，建立符号链接（软链接）F2 ，再建立硬链接 F3 ，删除 F1 ，则此时 F2 、F3 引用计数为</li>
+<li>解答：建立 F2 ，由于是软链接，引用计数直接复制，为 1 ；再建立 F3 ，F1 和 F3 的引用计数都加一，为 2；删除 F1，不影响 F2 但影响 F3 ，故 F2 仍为 1 ，F3 要减掉一为 1 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>混合索引中的计算</p>
+<ul>
+<li>相关概念<ul>
+<li><strong>文件索引结点</strong>：存储索引地址。<strong>索引地址类型</strong>又分为<ul>
+<li><strong>直接地址</strong>：此地址<strong>直接指向磁盘数据块</strong>。<ul>
+<li>所以$磁盘数据块的块数 = 文件索引结点中含有直接地址项的项数$</li>
+</ul>
+</li>
+<li><strong>一级间接地址索引</strong>：顶级索引节点（在这里便是<strong>文件索引结点</strong>）存放索引，通过这个索引找第二张表，才能找到指向磁盘数据块的地址<ul>
+<li>因此$磁盘数据块的块数 = 磁盘索引块地址项的项数=\frac{磁盘索引块大小}{地址项大小}$</li>
+</ul>
+</li>
+<li><strong>二级间接地址索引</strong>：顶级索引节点存放一级索引，通过这个索引找第二张表；找到二级索引，通过这个索引查第三张表才能找到指向磁盘数据块的地址<ul>
+<li>故$磁盘数据块的块数 = 磁盘索引块地址项的项数^2=(\frac{磁盘索引块大小}{地址项大小})^2$</li>
+</ul>
+</li>
+<li><strong>n 级间接地址索引</strong>，以此类推有$磁盘数据块的块数 = 磁盘索引块地址项的项数^n=(\frac{磁盘索引块大小}{地址项大小})^n$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>典型例题<ul>
+<li>（2010·408）文件索引结点 7 个地址项，其中 4 个直接地址、2个一级间接地址索引、 1 个 2 级间接地址索引，每个地址项大小为 4 B，磁盘索引块和磁盘数据块大小均为 256 B，则可表示的单个文件最大长度是<ul>
+<li>分析：<ul>
+<li>4 个 直接地址：4 × 256 B</li>
+<li>2 个一级间接：2 × (256/4) × 256 B</li>
+<li>1 个二级间接：1 × (256/4) × (256/4) × 256 B</li>
+<li>总计：上述三项之和</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件系统二级索引分配，磁盘块大小 1KB，每个盘块号占 4B，单个文件最大长度为<ul>
+<li>分析：<ul>
+<li>依题意知，共有 1KB / 4B = 256 个 索引项</li>
+<li>由于是二级索引，故最大文件长度为 256 × 256 × 1KB = 64 MB</li>
+</ul>
+</li>
+<li>总结<ul>
+<li>（公式补充）<ul>
+<li>$索引项个数 =\frac{磁盘块大小}{盘块号大小}$</li>
+<li>$文件长度= 索引项个数^{索引级数}\times 磁盘块大小$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>文件系统中， FCB 占 64 B，一个盘块大小为 1 KB，一级目录，设文件目录中有 3200 个目录项，则查找一个文件平均需要访问几次磁盘<ul>
+<li>分析<ul>
+<li>依题意知，共有 3200 × 64 B / 1 KB = 200 个盘块</li>
+<li>一级目录，平均访问磁盘为 200 / 2 = 100 次</li>
+</ul>
+</li>
+<li>总结：<ul>
+<li>（公式补充）<ul>
+<li>$目录项盘块数 = \frac{目录项项数\times FCB大小}​$</li>
+<li>一级目录：$平均访问磁盘次数=\frac{目录项盘块数}{2}$（类似文件的顺序查找）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>（2015·408）文件索引结点中，10 个 直接、1个一级、1个二级，磁盘块大小 1 KB，索引指针大小 4 B 。若文件索引结点已经读入内存，则把该文件偏移量（按字节编址）为 1234 和 307400 处所在的磁盘块读入内存，需访问的盘块数分别是<ul>
+<li>分析<ul>
+<li>10 个 直接地址：10 × 1 KB = 10 KB</li>
+<li>1 个一级间接：1 × ( 1 KB / 4 B ) × 1 KB = 256 KB</li>
+<li>1 个二级间接：1 × ( 1 KB / 4 B ) × ( 1 KB / 4 B ) × 1 KB = 64 KB</li>
+<li>1234 B &lt; 10 KB，地址可以直接得到，只需再访问 1 次磁盘，获取该地址的数据即可</li>
+<li>10 KB + 256 KB &lt; 1234 B &lt; 64 MB，可知该文件内容在二级索引指针所指向的某个磁盘块中。访问 2 次磁盘，获得地址；再依此地址访问 1 次磁盘，获得数据。共需要 3 次</li>
+</ul>
+</li>
+<li>总结<ul>
+<li><strong>磁盘访问次数 = 索引级数</strong>（为了找到地址。P.S.直接地址当作 0  级）<strong>+ 1</strong>（为了找到数据：依地址，取数据）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设有一记录文件，采用链接分配方式，逻辑记录的固定长度为 100 B，在磁盘上存储时采用记录成组分解技术，盘块长度 为 512 B。若该文件的目录项已经读入内存，则对 22 个 逻辑记录完成修改后，共启动磁盘多少次<ul>
+<li>分析<ul>
+<li>第 22 条记录 的地址为 22 × 100 B = 2200 B</li>
+<li>2200 B / 512 B = 4 还有剩余，故在第 5 个盘快上。</li>
+<li>链接分配，要找到第五个盘块的地址，需要从第一个开始，依次寻找，需要 5 次此盘启动，才能拿到 第 22 个 逻辑记录的物理地址。之后依据这个物理地址，访存修改，还需要启动 1 次磁盘。所以共需 6 次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>位示图相关</p>
+<ul>
+<li>（2015·408）文件系统中用位示图，位图位于 32 ~ 127 号块中，每个盘块占 1024 B，盘块和块内字节均从 0 号开始编号。假设要释放 盘块号为 409612 ，则位图中要修改的位所在的盘块号和块内字节序号分别是<ul>
+<li>分析：<ul>
+<li>$盘块号=起始块号+\lfloor\frac{盘块号}{盘块大小\times 8}\rfloor​$</li>
+<li>$块内字节号 =\lfloor 盘块号\ mod\ (盘块大小\times 8)/8\rfloor $</li>
+<li>数据带入公式，即可</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li>计算机操作系统.汤小丹等</li>
+<li>2020年操作系统考研复习指导.王道论坛</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/" title="操作系统复习笔记5-磁盘与文件系统">https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/09/14/cao-zuo-xi-tong-fu-xi-bi-ji-4-she-bei-guan-li/" rel="prev" title="操作系统复习笔记4-设备管理">
+      <i class="fa fa-chevron-left"></i> 操作系统复习笔记4-设备管理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/24/cao-zuo-xi-tong-fu-xi-bi-ji-6-cao-zuo-xi-tong-jie-kou/" rel="next" title="操作系统复习笔记6-操作系统接口">
+      操作系统复习笔记6-操作系统接口 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6．磁盘与文件系统"><span class="nav-number">1.</span> <span class="nav-text">6．磁盘与文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的结构和基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">磁盘的结构和基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的调度（★★★★★）"><span class="nav-number">1.2.</span> <span class="nav-text">磁盘的调度（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存取时间的计算"><span class="nav-number">1.2.1.</span> <span class="nav-text">存取时间的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度算法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">调度算法（★★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘的性能改善和容错"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘的性能改善和容错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外存分配方法与物理文件组织"><span class="nav-number">1.4.</span> <span class="nav-text">外存分配方法与物理文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续分配"><span class="nav-number">1.4.1.</span> <span class="nav-text">连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接分配"><span class="nav-number">1.4.2.</span> <span class="nav-text">链接分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引分配"><span class="nav-number">1.4.3.</span> <span class="nav-text">索引分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储空间的管理"><span class="nav-number">1.5.</span> <span class="nav-text">文件存储空间的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲表法"><span class="nav-number">1.5.1.</span> <span class="nav-text">空闲表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空闲链表法"><span class="nav-number">1.5.2.</span> <span class="nav-text">空闲链表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位示图法（★）"><span class="nav-number">1.5.3.</span> <span class="nav-text">位示图法（★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成组链接法"><span class="nav-number">1.5.4.</span> <span class="nav-text">成组链接法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑文件组织"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑文件组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无结构文件（流式文件）"><span class="nav-number">1.6.1.</span> <span class="nav-text">无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有结构文件（记录式文件）"><span class="nav-number">1.6.2.</span> <span class="nav-text">有结构文件（记录式文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#顺序文件"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引文件"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">索引文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引顺序文件"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">索引顺序文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接文件（散列文件）"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">直接文件（散列文件）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的基本操作"><span class="nav-number">1.7.</span> <span class="nav-text">文件的基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">1.7.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“打开”和“”关闭“”（★★★★）"><span class="nav-number">1.7.2.</span> <span class="nav-text">“打开”和“”关闭“”（★★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件目录及其管理"><span class="nav-number">1.8.</span> <span class="nav-text">文件目录及其管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件控制块（FCB）"><span class="nav-number">1.8.1.</span> <span class="nav-text">文件控制块（FCB）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引结点"><span class="nav-number">1.8.2.</span> <span class="nav-text">索引结点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">1.8.3.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单级目录结构"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">单级目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两级目录结构"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">两级目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树形（多级）目录结构（★★★）"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">树形（多级）目录结构（★★★）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录查询技术"><span class="nav-number">1.8.3.4.</span> <span class="nav-text">目录查询技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性检索法（★★★）"><span class="nav-number">1.8.3.4.1.</span> <span class="nav-text">线性检索法（★★★）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hash-方法"><span class="nav-number">1.8.3.4.2.</span> <span class="nav-text">Hash 方法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享和保护"><span class="nav-number">1.9.</span> <span class="nav-text">文件共享和保护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件共享"><span class="nav-number">1.9.1.</span> <span class="nav-text">文件共享</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于有向无循环图"><span class="nav-number">1.9.1.1.</span> <span class="nav-text">基于有向无循环图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用索引结点（硬链接）（★★★）"><span class="nav-number">1.9.1.2.</span> <span class="nav-text">利用索引结点（硬链接）（★★★）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同用户对共享文件创建、删除操作中的链接计数"><span class="nav-number">1.9.1.3.</span> <span class="nav-text">不同用户对共享文件创建、删除操作中的链接计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用符号链接（软链接）（★★★）"><span class="nav-number">1.9.1.4.</span> <span class="nav-text">利用符号链接（软链接）（★★★）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件保护"><span class="nav-number">1.9.2.</span> <span class="nav-text">文件保护</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

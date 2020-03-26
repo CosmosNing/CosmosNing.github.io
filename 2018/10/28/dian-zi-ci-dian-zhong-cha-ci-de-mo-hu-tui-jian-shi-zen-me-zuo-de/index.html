@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="电子词典是依据什么标准为你提供查词时的模糊推荐呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电子词典中查词的模糊推荐是怎么做的">
+<meta property="og:url" content="https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="电子词典是依据什么标准为你提供查词时的模糊推荐呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/28/cover.jpg?raw=true">
+<meta property="article:published_time" content="2018-10-28T02:24:30.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="Grokking Algorithms">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/28/cover.jpg?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>电子词典中查词的模糊推荐是怎么做的 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          电子词典中查词的模糊推荐是怎么做的
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-28 10:24:30" itemprop="dateCreated datePublished" datetime="2018-10-28T10:24:30+08:00">2018-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E8%B5%B7%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+            <div class="post-description">电子词典是依据什么标准为你提供查词时的模糊推荐呢？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/28/cover.jpg?raw=true" alt="cover"></p>
+<p>大家在学习英语的时候经常会用到电子词典，当你在查询一个英语单词的时候，搜索框下方通常会依据你的输入给出词条的模糊推荐。即使你不小心输错了，电子词典也会给你一个看似模糊实则精准的推荐。这个功能大大提升了用户了单词查阅的效率，带给用户非常好的体验。那么，问题来了，这种模糊推荐到底是怎么做的呢？今天，我们就来一起探讨一下其中的算法。</p>
+<h2 id="单词相似度"><a href="#单词相似度" class="headerlink" title="单词相似度"></a>单词相似度</h2><p>做模糊推荐，一种很直观的想法就是找到它们之间的相似度，如果相似度高，就将它可以排在模糊推荐集合中较前的位置。</p>
+<p>那么，怎样去定义单词之间的相似度呢？根据单词相似度定义的方式不同，主要分为以下两种算法：</p>
+<ol>
+<li>最长公共子串（<em>Longest common substring</em>）</li>
+<li>最长公共子列（<em>Longest common subsequence</em>）</li>
+</ol>
+<h2 id="最长公共子串（Longest-common-substring）"><a href="#最长公共子串（Longest-common-substring）" class="headerlink" title="最长公共子串（Longest common substring）"></a>最长公共子串（<em>Longest common substring</em>）</h2><h3 id="单词相似度的定义"><a href="#单词相似度的定义" class="headerlink" title="单词相似度的定义"></a>单词相似度的定义</h3><p>正如名称所述，该算法将单词的相似度定义为两个单词中共同含有的最长子串（这个子串在原字符串中是<strong>连续</strong>的）的长度大小。</p>
+<h3 id="算法简述"><a href="#算法简述" class="headerlink" title="算法简述"></a>算法简述</h3><p>为了找到两个单词（一个设为 <em>S</em> ，另一个设为 <em>T</em> ）之间的最长公共子串，我们可以这样处理。</p>
+<p>首先定义一个二维表 <em>L</em> （大小为 <em>r</em> × <em>n</em>，其中 <em>r</em> 为 <em>S</em> 的长度， <em>n</em> 为 <em>T</em> 的长度），用于存储算法处理的中间结果。</p>
+<p>然后，循环比较每一组从两个单词中取出的字母。比较结果无非两种情况，一种不同，一种相同。不同的情况下，给二维表 L 对应的位置赋值为 0 ，表示在该位置最长公共子串的长度为0；相同的情况下，找到当前位置的前一个位置上存储的长度，将它加一，保存在当前位置即可。可以用公式描述如下：</p>
+<p>$$<br>L(i, j) =<br>\left {<br>\begin{aligned}<br> &amp;  L(i-1, j-1)+1, &amp; if\ S[i] = T[j]\<br> &amp; 0,                     &amp; otherwise\<br>\end{aligned}<br>\right.<br>$$</p>
+<p>那么，寻找最长子串的长度就可以定义为</p>
+<p>$$<br>\underset{ i\in [ 0, r ), j\in [ 0, n ) }{ max } L( i, j )<br>$$</p>
+<p>因而，为了求出两个字符串的最长公共子串，维基百科给出了如下的伪码描述<a href="https://en.wikipedia.org/wiki/Longest_common_substring_problem#Pseudocode" target="_blank" rel="noopener">^1</a>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function LCSubstr(S[1..r], T[1..n])</span><br><span class="line">    L :&#x3D; array(1..r, 1..n)</span><br><span class="line">    z :&#x3D; 0</span><br><span class="line">    ret :&#x3D; &#123;&#125;</span><br><span class="line">    for i :&#x3D; 1..r</span><br><span class="line">        for j :&#x3D; 1..n</span><br><span class="line">            if S[i] &#x3D;&#x3D; T[j]</span><br><span class="line">                if i &#x3D;&#x3D; 1 or j &#x3D;&#x3D; 1</span><br><span class="line">                    L[i,j] :&#x3D; 1</span><br><span class="line">                else</span><br><span class="line">                    L[i,j] :&#x3D; L[i-1,j-1] + 1</span><br><span class="line">                if L[i,j] &gt; z</span><br><span class="line">                    z :&#x3D; L[i,j]</span><br><span class="line">                    ret :&#x3D; &#123;S[i-z+1..i]&#125;</span><br><span class="line">                else</span><br><span class="line">                if L[i,j] &#x3D;&#x3D; z</span><br><span class="line">                    ret :&#x3D; ret ∪ &#123;S[i-z+1..i]&#125;</span><br><span class="line">            else</span><br><span class="line">                L[i,j] :&#x3D; 0</span><br><span class="line">    return ret</span><br></pre></td></tr></table></figure>
+
+
+
+<p>为了方便阐释，我们可以举一个例子帮助理解。假设要找到 <em>process</em> 和 <em>progress</em> 两个单词的最长公共子串。那么二维表 L 的最终状态如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong>p</strong></th>
+<th align="center"><strong>r</strong></th>
+<th align="center"><strong>o</strong></th>
+<th align="center"><strong>c</strong></th>
+<th align="center"><strong>e</strong></th>
+<th align="center"><strong>s</strong></th>
+<th align="center"><strong>s</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>p</strong></td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>r</strong></td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>o</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>g</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>r</strong></td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>e</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center"><strong>s</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center"><strong>s</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<p>由上图可知， <em>process</em> 和 <em>progress</em> 两个单词的最长公共子串为 <em>pro</em> 和 <em>ess</em> ，最长长度为 3 。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCSubstr</span><span class="params">(S, T)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    寻找两个字符串S、T的最长相同子串</span></span><br><span class="line"><span class="string">    :param S: ( str ) 字符串1</span></span><br><span class="line"><span class="string">    :param T: ( str ) 字符串2</span></span><br><span class="line"><span class="string">    :return: ( list ) 符合条件的子串集合</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    r = len(S)</span><br><span class="line">    n = len(T)</span><br><span class="line">    L = np.zeros((r + <span class="number">1</span>, n + <span class="number">1</span>))  <span class="comment"># 初始化大小为 ( r + 1 ) × ( n + 1 ) 并且值全为 0 的数组。将 r 和 n 都加 1 是为了方便后续的计算</span></span><br><span class="line">    z = <span class="number">0</span>  <span class="comment"># 保存当前找到的最长相同子串的长度</span></span><br><span class="line">    ret = []  <span class="comment"># 保存符合条件的子串集合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, r + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> S[i - <span class="number">1</span>] == T[j - <span class="number">1</span>]:  <span class="comment"># 如果字母相同，那么L[i][j] = L[i - 1][j - 1] + 1</span></span><br><span class="line">                L[i][j] = L[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> L[i][j] &gt; z:  <span class="comment"># 如果找到更大的，更新 z 和 ret 集合</span></span><br><span class="line">                    z = int(L[i][j])</span><br><span class="line">                    ret.clear()</span><br><span class="line">                    ret.append(S[i - z:i])</span><br><span class="line">                <span class="keyword">elif</span> L[i][j] == z:  <span class="comment"># 如果找到与当前最长的长度一样，将该子串加入 ret 集合</span></span><br><span class="line">                    ret.append(S[i - z:i])</span><br><span class="line">    <span class="keyword">return</span> ret  <span class="comment"># 返回结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print(LCSubstr(<span class="string">"progress"</span>, <span class="string">"process"</span>))</span><br><span class="line">    print(LCSubstr(<span class="string">"BABA"</span>, <span class="string">"ABAB"</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">['pro', 'ess']</span></span><br><span class="line"><span class="string">['BAB', 'ABA']</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="最长公共子列（Longest-common-subsequence）"><a href="#最长公共子列（Longest-common-subsequence）" class="headerlink" title="最长公共子列（Longest common subsequence）"></a>最长公共子列（<em>Longest common subsequence</em>）</h2><h3 id="单词相似度的定义-1"><a href="#单词相似度的定义-1" class="headerlink" title="单词相似度的定义"></a>单词相似度的定义</h3><p>上面的子串要求其在原字符串中是连续的，那不连续的又会怎样？这就诞生了 <strong>最长公共子列</strong> 。最长公共子列将单词相似度定义为两个单词的最长公共子列（这个子列不要求在原字符串中是连续的，但要求<strong>保持原序</strong>）的长度大小。</p>
+<h3 id="算法简述-1"><a href="#算法简述-1" class="headerlink" title="算法简述"></a>算法简述</h3><p>受求最长公共子串的启发，对于两个单词 <em>X</em> 和 <em>Y</em>，同样的，我们可以定义一个二维表 <em>C</em> ，用于存储算法处理的中间结果。</p>
+<p>那么对应的循环过程中，怎样去改变 <em>C</em> ，从而满足题目的需要呢？</p>
+<p>在字母相同的情况下，我们依旧可以用和求最长公共子串相同的方法，即当前位置的前一个位置的存储的长度加一；而字母不同的情况下，连续子串到此结束，因而不能简单的使用上一个位置存储的长度。那么决定当前位置的值，还剩下以下两种情况。</p>
+<ol>
+<li>（ <em>X</em> 当前位置， <em>Y</em> 上一个位置）</li>
+<li>（ <em>X</em> 上一个位置，<em>Y</em> 当前位置）</li>
+</ol>
+<p>而当前位置的最长公共子列长度由于当前位置上的两个字母不同，所以该位置不会对上一个位置上的数据产生影响。因而，当前位置上的最长公共子列长度只需取上述两种情况的最大值即可。具体可以用公式描述如下：</p>
+<p>$$<br>C(i, j) =<br>\left {<br>\begin{aligned}<br> &amp;  C(i-1, j-1)+1, &amp; if\ X[i] = Y[j]\<br> &amp; max(C(i, j-1), C(i-1, j)),                     &amp; otherwise\<br>\end{aligned}<br>\right.<br>$$</p>
+<p>而其中的最大长度，会在二维表 <em>C</em> 的末尾出现（如果两个单词的长度分别为 <em>m</em> 和 <em>n</em> , 那么 C[m][n] 即为最长公共子列）</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>对于求最长公共子列的长度，维基百科中给出如下的伪码描述<a href="https://en.wikipedia.org/wiki/Longest_common_subsequence_problem#Computing_the_length_of_the_LCS" target="_blank" rel="noopener">^2</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function LCSLength(X[1..m], Y[1..n])</span><br><span class="line">    C &#x3D; array(0..m, 0..n)</span><br><span class="line">    for i :&#x3D; 0..m</span><br><span class="line">       C[i,0] &#x3D; 0</span><br><span class="line">    for j :&#x3D; 0..n</span><br><span class="line">       C[0,j] &#x3D; 0</span><br><span class="line">    for i :&#x3D; 1..m</span><br><span class="line">        for j :&#x3D; 1..n</span><br><span class="line">            if X[i] &#x3D; Y[j]</span><br><span class="line">                C[i,j] :&#x3D; C[i-1,j-1] + 1</span><br><span class="line">            else</span><br><span class="line">                C[i,j] :&#x3D; max(C[i,j-1], C[i-1,j])</span><br><span class="line">    return C[m,n]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基于此，我给出 <em>Python</em> 实现如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCSLength</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个字符串最长公共子列的长度</span></span><br><span class="line"><span class="string">    :param X: （str）字符串1</span></span><br><span class="line"><span class="string">    :param Y: （str）字符串2</span></span><br><span class="line"><span class="string">    :return: （int）两个字符串最长公共子列的长度</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    m = len(X)</span><br><span class="line">    n = len(Y)</span><br><span class="line">    C = np.zeros((m+<span class="number">1</span>, n+<span class="number">1</span>), np.int)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> X[i<span class="number">-1</span>] == Y[j<span class="number">-1</span>]:</span><br><span class="line">                C[i, j] = C[i<span class="number">-1</span>, j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                C[i, j] = max(C[i, j<span class="number">-1</span>], C[i<span class="number">-1</span>, j])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> C[m, n]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print(LCSLength(<span class="string">"progress"</span>, <span class="string">"process"</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">P.S.也就是proess的长度</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态规划（Dynamic-programming）"><a href="#动态规划（Dynamic-programming）" class="headerlink" title="动态规划（Dynamic programming）"></a>动态规划（<em>Dynamic programming</em>）</h2><h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>仔细观察上面两种算法，其共同之处都是将原问题分解为较小的子问题，并将子问题的解进行保存，依据子问题由递推公式得到原问题的解，这种方法通常叫做 <strong>”动态规划“</strong> 。</p>
+<p>那么，什么样的问题适合用动态规划来解决呢？</p>
+<p>有人在博客中给出了如下的解释<a href="http://hxrs.iteye.com/blog/1055478" target="_blank" rel="noopener">^3</a></p>
+<blockquote>
+<p>适合采用动态规划方法的最优化问题中的两个要素：最优子结构和重叠子问题。 </p>
+<p>最优子结构：如果问题的一个最优解中包含了子问题的最优解，则该问题具有最优子结构。</p>
+<p>重叠子问题：适用于动态规划求解的最优化问题必须具有的第二个要素是子问题的空间要很小，也就是用来求解原问题的递归算法课反复地解同样的子问题，而不是总在产生新的子问题。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则它们是重叠的。</p>
+</blockquote>
+<p>说到这里，你应该会想到之前的文章中提到的贪心算法和分治算法，它们的思想和动态规划很类似，那么他们之间的区别又在那里呢？</p>
+<h3 id="动态规划-VS-贪心算法-VS-分治算法-VS-遍历搜索"><a href="#动态规划-VS-贪心算法-VS-分治算法-VS-遍历搜索" class="headerlink" title="动态规划 VS 贪心算法 VS 分治算法 VS 遍历搜索"></a>动态规划 VS 贪心算法 VS 分治算法 VS 遍历搜索</h3><p>在维基百科中，有人对比了贪心算法，动态规划和遍历搜索。其原文如下<a href="https://en.wikipedia.org/wiki/Optimal_substructure" target="_blank" rel="noopener">^4</a>：</p>
+<blockquote>
+<p>Typically, a greedy algorithm is used to solve a problem with optimal substructure if it can be proven by induction that this is optimal at each step. Otherwise, provided the problem exhibits overlapping subproblems as well, dynamic programming is used. If there are no appropriate greedy algorithms and the problem fails to exhibit overlapping subproblems, often a lengthy but straightforward search of the solution space is the best alternative.</p>
+</blockquote>
+<p>也就是说，如果一个问题具有最优子结构并且可以证明其每一步选择都是最优的，那么选用贪心算法。如果该问题除了含有最优子结构，其子问题又是相互重叠的，那么选用动态规划。如果这两种方法都不成功，那么就进行简单的暴力搜索，遍历所有情况。</p>
+<p>那么分治呢？分治也是将问题分解为子问题，但是这些子问题是互相独立的，同时它们之间的计算结果不共享。如果将分治法用于子问题相互重叠的问题，那么分治法会做很多重复的计算。这时候，动态规划的优势就显现出来，因为它将子问题的解存储起来，避免了重复计算。</p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>现在，让我们回到最初的问题。电子词典中查词的模糊推荐以单词之间的相似度为标准，还有其他的方法吗？</p>
+<p>当然有。比如基于用户的历史查询记录，分析查词词频，依据词频来做推荐。限于篇幅，这里不做讨论，有兴趣请自行查阅资料。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天，我和你一起了解到两种计算不同字符串相似度的算法，一个是 <strong>最长公共子串</strong> ，另一个是 <strong>最长公共子列</strong> ，并由此引出 <strong>动态规划</strong> 这种算法思想。最后我将本文要点总结如下：</p>
+<ol>
+<li><strong>最长公共子串要求子串在原字符串中是连续的</strong></li>
+<li><strong>最长公共子列不要求子列在原字符串中是连续的，但要求保持原序</strong></li>
+<li><strong>求最长公共子串和最长公共子列的时间复杂度为 $O(M\cdot N)$ ，其中 <em>M</em> 和 <em>N</em> 为两个字符串的长度。（这个我在原文中没有写，很容易分析得到）</strong></li>
+<li>*<em>适合采用动态规划方法的最优化问题中的两个要素：最优子结构和重叠子问题。 *</em></li>
+<li><strong>如果一个问题具有最优子结构并且可以证明其每一步选择都是最优的，那么选用贪心算法。如果该问题除了含有最优子结构，其子问题又是相互重叠的，那么选用动态规划。如果这两种方法都不成功，那么就进行简单的暴力搜索，遍历所有情况。</strong></li>
+<li><strong>动态规划利用存储子问题的解，避免了子问题中的重复计算，有时候会比分治算法快很多。</strong></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/" title="电子词典中查词的模糊推荐是怎么做的">https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 算法</a>
+              <a href="/tags/Grokking-Algorithms/" rel="tag"><i class="fa fa-tag"></i> Grokking Algorithms</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/14/zen-yang-qiu-jie-nan-jie-jue-wen-ti/" rel="prev" title="怎样求解难解决问题?">
+      <i class="fa fa-chevron-left"></i> 怎样求解难解决问题?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/" rel="next" title="内容平台的个性化推荐是怎么做的">
+      内容平台的个性化推荐是怎么做的 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单词相似度"><span class="nav-number">2.</span> <span class="nav-text">单词相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子串（Longest-common-substring）"><span class="nav-number">3.</span> <span class="nav-text">最长公共子串（Longest common substring）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义"><span class="nav-number">3.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述"><span class="nav-number">3.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子列（Longest-common-subsequence）"><span class="nav-number">4.</span> <span class="nav-text">最长公共子列（Longest common subsequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义-1"><span class="nav-number">4.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述-1"><span class="nav-number">4.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">4.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划（Dynamic-programming）"><span class="nav-number">5.</span> <span class="nav-text">动态规划（Dynamic programming）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述"><span class="nav-number">5.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-VS-贪心算法-VS-分治算法-VS-遍历搜索"><span class="nav-number">5.2.</span> <span class="nav-text">动态规划 VS 贪心算法 VS 分治算法 VS 遍历搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-number">6.</span> <span class="nav-text">其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最近几年，人工智能被炒得火热，其在很多领域的应用表现已经与人类相持平。面对机器人的“入侵”，很多普通人产生了恐慌：机器有了类似人类的智能，将来岂不是要代替人类？那么，机器真的有智能吗？还是说这只是媒体大肆渲染的夸大之词？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器真的有智能吗">
+<meta property="og:url" content="https://cosmosning.github.io/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="最近几年，人工智能被炒得火热，其在很多领域的应用表现已经与人类相持平。面对机器人的“入侵”，很多普通人产生了恐慌：机器有了类似人类的智能，将来岂不是要代替人类？那么，机器真的有智能吗？还是说这只是媒体大肆渲染的夸大之词？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/16/cover.jpg?raw=true">
+<meta property="article:published_time" content="2018-11-16T03:37:42.000Z">
+<meta property="article:modified_time" content="2020-03-26T10:23:50.792Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="统计学习方法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/16/cover.jpg?raw=true">
+
+<link rel="canonical" href="https://cosmosning.github.io/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>机器真的有智能吗 | CosmosNing的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">40</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">6</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          机器真的有智能吗
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-11-16 11:37:42" itemprop="dateCreated datePublished" datetime="2018-11-16T11:37:42+08:00">2018-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 18:23:50" itemprop="dateModified" datetime="2020-03-26T18:23:50+08:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%80%E8%B5%B7%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">一起读</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+            <div class="post-description">最近几年，人工智能被炒得火热，其在很多领域的应用表现已经与人类相持平。面对机器人的“入侵”，很多普通人产生了恐慌：机器有了类似人类的智能，将来岂不是要代替人类？那么，机器真的有智能吗？还是说这只是媒体大肆渲染的夸大之词？</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/16/cover.jpg?raw=true" alt="cover"></p>
+<p>最近几年，人工智能被炒得火热。机器打败人类围棋高手，玩部分电子游戏达到人类水平；机器同声传译、分类物体、识别人脸的准确率都达到十分高的水平；一些智能机器产品（智能音箱、智能服务机器人等），开始进入个人家庭或者企业。机器人的“入侵”，引起了很多普通人的恐慌：机器有了类似人类的智能，将来岂不是要代替人类？我想，这个恐慌的来源，便是人们对机器智能的未知的恐惧。那么，机器真的有智能吗？还是说这只是媒体大肆渲染的夸大之词？</p>
+<p>要想正确回答这个问题，首先要从智能的定义入手，其次分析达到智能的手段，最后给出答案。本文便是照着这个逻辑和你分享一下我的认识。</p>
+<h2 id="智能的定义"><a href="#智能的定义" class="headerlink" title="智能的定义"></a>智能的定义</h2><p>对于人工智能，其定义很多，没有统一的定义。Stuart J. Russell 和 Peter Norvig 将一些常见的定义分为以下四类[^1]</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Thinking Humanly</strong></th>
+<th align="center"><strong>Thinking Rationally</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“The exciting new effort to make computers think . . . <em>machines with minds</em>, in the full and literal sense.” (Haugeland, 1985)</td>
+<td align="center">“The study of mental faculties through the use of computational models.” (Charniak and McDermott, 1985)</td>
+</tr>
+<tr>
+<td align="center">“[The automation of] activities that we associate with human thinking, activities such as decision-making, problem solving, learning . . .” (Bellman, 1978)</td>
+<td align="center">“The study of the computations that make it possible to perceive, reason, and act.” (Winston, 1992)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>Acting Humanly</strong></th>
+<th align="center"><strong>Acting Rationally</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">“The art of creating machines that perform functions that require intelligence when performed by people.” (Kurzweil, 1990)</td>
+<td align="center">“Computational Intelligence is the study of the design of intelligent agents.” (Poole <em>et al.</em>, 1998)</td>
+</tr>
+<tr>
+<td align="center">“The study of how to make computers do things at which, at the moment, people are better.” (Rich and Knight, 1991)</td>
+<td align="center">“AI . . . is concerned with intelligent behavior in artifacts.” (Nilsson, 1998)</td>
+</tr>
+</tbody></table>
+<p>表格上方更关注于机器的<strong>思考</strong>（可以认为是理解和推理，即知道某些知识信息的含义，并利用这些已知的信息能够得到未知的结论），与之相对，表格下方更注重于机器的<strong>行为</strong>（即机器如何执行动作，与外在环境进行交互）；表格左边的利用<strong>人类标准</strong>来评价，而右边的利用一种叫做<strong>“理性”</strong>（Rationality）的理想标准来评价。这里将人类标准和理性标准相对，并不意味着人类不理性，而是认为人的思考或者行为并不能每一次都能达到完美的结果；于此，提出理性标准来描述一种理想情况，在已知某些知识的情况下，做出正确的思考或者是行为。</p>
+<p>综合以上的观点，可以给出对人工智能的较为全面的描述。<strong>人工智能是一个研究机器如何像人一样理性思考与行动的一个学科领域。</strong>研究这个领域的科学家渴望赋予机器像人一样的智能，那么他们怎么去做的呢？</p>
+<h2 id="达到智能的手段"><a href="#达到智能的手段" class="headerlink" title="达到智能的手段"></a>达到智能的手段</h2><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>最简单的，可以利用<strong>搜索</strong>的方式来达到智能。比如，实现一个简单的问答机器人，可以事先给机器人准备一个包含大量问题以及对应回答的语料库。当用户询问机器人问题时，机器人简单的从语料库中搜索与用户问题一致的问题，将对应的回答反馈给用户。</p>
+<h3 id="知识表示与推理"><a href="#知识表示与推理" class="headerlink" title="知识表示与推理"></a>知识表示与推理</h3><p>上一种搜索的方式是基于人为赋予的语料库，存在一定的局限性。该局限性在于机器只知道人告诉它的，如果超出语料库的范围，它将无法回答或者给出违反常理的回答。那么怎么解决这个问题呢？</p>
+<p>一方面，我们可以不断地给机器人为增加语料库的内容以适应更多的提问；另一方面，我们也希望机器能够从已知去探索未知。语料库终究是有限的，而且越来越庞大的语料库会给导致搜索算法效率的降低，因而第二种可能是一种较好的方案。这种方案通常叫做<strong>知识表示与推理</strong>。</p>
+<p>在知识表示与推理中，最关键的两个问题是<strong>如何将表述这些知识</strong>、<strong>如何建立规则做推理</strong>。科学家们反思自己的思考流程，发现<strong>命题逻辑</strong>是一个非常适合知识表达和推理的工具。其中，<strong>命题可以无歧义的表示某一个知识，逻辑推演中的各种规则可以拿来做推理</strong>。基于逻辑的知识表示与推理在一段时间内十分流行，并催生出一系列的专家系统。</p>
+<p>经过一段时间，人们发现并不是所有的知识都能够用命题来表示。命题要求每一个知识都是<strong>确定</strong>的，是真就是真，是假就是假，但是日常生活中我们会遇到很多<strong>不确定</strong>的知识。怎样去表达这些不确定的信息呢？提到不确定，我想你一定会想到概率。对了！<strong>利用概率模型去表达知识，利用统计规律做推理</strong>。</p>
+<h3 id="感知、规划与执行"><a href="#感知、规划与执行" class="headerlink" title="感知、规划与执行"></a>感知、规划与执行</h3><p>上面两个方法，都是有关<strong>如何赋予机器思考的能力</strong>。此外，也有一些科学家关注于<strong>如何构建一个和外在环境交互的机器</strong>。</p>
+<p>他们给机器装上了各种传感器，试图模拟人类对外界的各种<strong>感知</strong>；他们通过一些物理知识，以传感器收集到的可测量的数据为基础，计算出一些必要的但是无法直接测量的数据，并且以这些数据作为后续动作<strong>规划</strong>的参考，试图模拟人类对原始感知的处理与动作决策；他们给机器装上各种控制机械装置，试图模拟人类在外界环境中<strong>执行</strong>动作。</p>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h3><p>随着互联网覆盖率越来越大，每天产生的数据也越来越多。这些数据中，有很多数据不像传感器数据有着十分明确的用途，也无法利用已知的知识去描述数据中的规律。</p>
+<p>反思过去，在传统的软件系统中，计算机或其他设备借助于人对于问题的处理逻辑展现出某种“智能”。这是一种“人为赋予的智能”，处理过程十分清晰明确。然而，这种方法并不能产生真正的智能，而只是将人类自身知识、智慧等以一种系统化的模式组织起来，从而为特定的问题提供自动化的解决方案。</p>
+<p>展望未来，有没有一种可能教会机器自己从数据中寻找规律的能力？</p>
+<p><strong>机器学习</strong>就是一种可行的方法。</p>
+<p>机器学习（ <em>Machine Learning</em> ）为我们提供了一个全新的思路，展现出一种创造 <em>Strong AI</em> 甚至 <em>Super AI</em> 的可能性。机器学习，正如 <em>Arthur Samuel</em> 所描述，是<strong>“一门研究‘给予计算机自我学习的能力，而不需明确程序控制’的学科”</strong>[^2]。从传统的“授计算机以鱼”到机器学习中的“授计算机以渔”，这种从“被动”接受人类智慧，到“主动”学习解决问题，是一种伟大的转变。</p>
+<p>有关“什么是机器学习”，还有另一个观点。<em>Tom Mitchell</em> 给学习问题下了一个形式化的定义。一个优雅的学习问题应该由三元组 <em>(  E, T, P )</em> 所确定。其中 <em>E</em> 代表<strong>经验 （ <em>Experience</em> ）</strong>， <em>T</em> 代表<strong>任务 （ <em>Task</em> ）</strong>， <em>P</em> 代表<strong>性能量度 （ <em>Performance measure</em> ）</strong>。机器学习就是去学习获得经验 <em>E</em> ，依据经验 <em>E</em> 去处理任务 <em>T</em> ，依据性能量度 <em>P</em> 改善经验E，从而最终获得比较优秀的处理结果。[^3]</p>
+<p>那么究竟怎么赋予机器学习发现规律的能力呢？第一点，定义一个针对某一任务的通用模型，作为机器经验的载体；第二点，定义性能度量指标，用于评价某一经验下模型的表现；第三点，定义如何得到最优模型的学习算法（通常是不断迭代）。有了<strong>模型</strong>、<strong>度量指标</strong>和<strong>学习算法</strong>这三点，再喂给它足够多的针对某一特定任务的<strong>数据</strong>，它就可以从数据中发现潜在的规律，并且在未知数据集上同样可以获得很好的表现。</p>
+<h2 id="不必过度恐慌"><a href="#不必过度恐慌" class="headerlink" title="不必过度恐慌"></a>不必过度恐慌</h2><p>经过上面的介绍，我想你对人工智能应该有了一定的认识。人工智能，不过是一个渴望模拟人思考和行动的数学模型或者是系统。到目前为止，像科幻片里一样拥有自主思考能力的机器并不存在。因此，大家不必过度恐慌。</p>
+<p>不过，机器人的“入侵”确实应该给我们敲响一个警钟。你对于你目前的职业是否不可替代？你有没有制定你的 <em>Plan B</em> 来躲过 <em>Plan A</em> 失败？</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天，我和你分享了我对人工智能的认识，并由此得出对待机器人的“入侵”<strong>不必过度恐慌</strong>。最后，我将本文的要点总结如下：</p>
+<ol>
+<li><strong>人工智能是一个研究机器如何像人一样理性思考与行动的一个学科领域。</strong></li>
+<li><strong>达到智能的手段有搜索，知识表示与推理，感知、规划与执行，机器学习等</strong></li>
+<li><strong>面对机器人“入侵”不必过度恐慌，但要给自己敲响警钟，找个时间反思自己</strong></li>
+</ol>
+<hr>
+<p>最后，说句题外话。预计之后的几篇文章，我会关注机器学习中<strong>统计学习</strong>的部分，并以<strong>李航博士</strong>的著作——<strong>《统计学习方法》</strong>来分享有关知识。如果你有兴趣，请持续关注。</p>
+<p>[^1]: Stuart J. Russell and Peter Norvig. Artificial Intelligence——A Modern Approach [M] . 3rd ed. Prentice Hall, 2010. p2 Figure 1.1<br>[^2]: Machine Learning: Field of study that gives computers the ability to learn without being explicitly programmed.——Arthur Samuel (1959).<br>[^3]: Well-posed Learning Problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.   ——Tom Mitchell (1998)</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/" title="机器真的有智能吗">https://cosmosning.github.io/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag"><i class="fa fa-tag"></i> 人工智能</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+              <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 统计学习方法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/" rel="prev" title="内容平台的个性化推荐是怎么做的">
+      <i class="fa fa-chevron-left"></i> 内容平台的个性化推荐是怎么做的
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/" rel="next" title="数据结构复习笔记1-绪论及线性表">
+      数据结构复习笔记1-绪论及线性表 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能的定义"><span class="nav-number">2.</span> <span class="nav-text">智能的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#达到智能的手段"><span class="nav-number">3.</span> <span class="nav-text">达到智能的手段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索"><span class="nav-number">3.1.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识表示与推理"><span class="nav-number">3.2.</span> <span class="nav-text">知识表示与推理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感知、规划与执行"><span class="nav-number">3.3.</span> <span class="nav-text">感知、规划与执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习"><span class="nav-number">3.4.</span> <span class="nav-text">机器学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不必过度恐慌"><span class="nav-number">4.</span> <span class="nav-text">不必过度恐慌</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">231k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:24</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
