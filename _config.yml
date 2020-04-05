@@ -412,8 +412,8 @@ feed:
   path: atom.xml
   limit: 10
   hub:
-  content:
-  content_limit: 140
+  content: true
+  content_limit: 
   content_limit_delim: ' '
   order_by: -date
   icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
