@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #00ab8a;
+  background: #ff2533;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3158,4 +3158,5 @@ span.selector-class {
 }
 .at4-share-title {
   color: #fff;
+  background: #000;
 }
