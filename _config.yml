@@ -97,6 +97,9 @@ theme: next
 
 # next theme config
 theme_config:
+  # Remove unnecessary files after hexo generate.
+  minify: false
+  
   # Define custom file paths.
   # Create your custom files in site directory `source/_data` and uncomment needed files below.
   custom_file_path:
@@ -352,6 +355,13 @@ theme_config:
   # LiveRe comments system
   # You can get your uid from https://livere.com/insight/myCode (General web site)
   livere_uid: MTAyMC8zOTkzMi8xNjQ1OQ== # <your_uid>
+  
+  # Baidu Analytics
+  baidu_analytics: e9fd1f40248f9db466678920736a9fa3
+  
+  # AddThis Share. See: https://www.addthis.com
+  # Go to https://www.addthis.com/dashboard to customize your tools.
+  add_this_id: ra-5e8a99b79a6be052
 
   # Local Search
   # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
