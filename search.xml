@@ -253,9 +253,8 @@
 
 <p>下面是我们目前完成的成果：</p>
 <iframe name="cp_embed_1" src="https://codepen.io/alichur/embed/xxbKdKZ?height=367&amp;theme-id=1&amp;default-tab=result&amp;user=alichur&amp;slug-hash=xxbKdKZ&amp;pen-title=grid%20resume%20%20lines&amp;name=cp_embed_1" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  lines" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_xxbKdKZ"></iframe>
-# 调整布局
 
-<p>属性<code>grid-template-areas</code> 使你能够轻松改变你的布局。比如，如果你认为，和教育（<code>education</code>）相比，雇主对你的技能（<code>skills</code>）更感兴趣，你仅仅只需要在 <code>grid-template-areas</code> 中调换它们的位置即可（也就意味着，它们在显示时，也会调换位置），而不需要做其他任何改动。</p>
+<h1 id="调整布局"><a href="#调整布局" class="headerlink" title="调整布局"></a>调整布局</h1><p>属性<code>grid-template-areas</code> 使你能够轻松改变你的布局。比如，如果你认为，和教育（<code>education</code>）相比，雇主对你的技能（<code>skills</code>）更感兴趣，你仅仅只需要在 <code>grid-template-areas</code> 中调换它们的位置即可（也就意味着，它们在显示时，也会调换位置），而不需要做其他任何改动。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"name photo"</span></span><br><span class="line">    <span class="string">"work about"</span></span><br><span class="line">    <span class="string">"work skills"</span></span><br><span class="line">    <span class="string">"community education"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-02.jpg" alt="调整布局示例"></p>
@@ -266,16 +265,14 @@
 
 <p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-03-1.jpg" alt="窄列靠左示例"></p>
 <iframe name="cp_embed_3" src="https://codepen.io/alichur/embed/XWJrRjb?height=367&amp;theme-id=default&amp;default-tab=result&amp;user=alichur&amp;slug-hash=XWJrRjb&amp;pen-title=grid%20resume%20%20left%20design&amp;name=cp_embed_3" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  left design" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_XWJrRjb"></iframe>
-# 划分更多列
 
-<p>也许你想在简历中添加个人参考。我们可以向网格模板中增添第三列，并把它放在最底部一行。要注意的是，我们也需要等比例的改变列的大小，然后更新模板区域。这样会使得某些元素占据了两列，但是这保持整体布局的正确。</p>
+<h1 id="划分更多列"><a href="#划分更多列" class="headerlink" title="划分更多列"></a>划分更多列</h1><p>也许你想在简历中添加个人参考。我们可以向网格模板中增添第三列，并把它放在最底部一行。要注意的是，我们也需要等比例的改变列的大小，然后更新模板区域。这样会使得某些元素占据了两列，但是这保持整体布局的正确。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"name name photo"</span></span><br><span class="line">    <span class="string">"work work about"</span></span><br><span class="line">    <span class="string">"work work education"</span></span><br><span class="line">    <span class="string">"community references skills"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-04-1.jpg" alt="划分列示例"></p>
 <iframe name="cp_embed_4" src="https://codepen.io/alichur/embed/gObYWvd?height=367&amp;theme-id=default&amp;default-tab=result&amp;user=alichur&amp;slug-hash=gObYWvd&amp;pen-title=grid%20resume%20%20split%20columns&amp;name=cp_embed_4" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  split columns" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_gObYWvd"></iframe>
-# 响应式布局
 
-<p>对于小屏幕，比如移动设备，我们可以在单列展示简历。</p>
+<h1 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h1><p>对于小屏幕，比如移动设备，我们可以在单列展示简历。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span>&#123;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr;</span><br><span class="line">    <span class="attribute">grid-template-areas</span>:</span><br><span class="line">      <span class="string">"photo"</span></span><br><span class="line">      <span class="string">"name"</span></span><br><span class="line">      <span class="string">"about"</span></span><br><span class="line">      <span class="string">"work"</span></span><br><span class="line">      <span class="string">"education"</span></span><br><span class="line">      <span class="string">"skills"</span></span><br><span class="line">      <span class="string">"community"</span></span><br><span class="line">      <span class="string">"references"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后，我们可以采用媒介查询（media query），当遇到更宽的屏幕时，改变布局。</p>
