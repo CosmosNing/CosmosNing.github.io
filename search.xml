@@ -24,25 +24,25 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
 
 <p>等待片刻，<strong>Hexo</strong> 会帮我们做初始化网站的工作。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/hexo-init-blog.PNG" alt="Hexo初始化"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-init-blog.PNG" alt="Hexo初始化"></p>
 <p>为方便后面部署，我们在 <code>blog</code> 中初始化一个 git 仓库，并配置好 git 相关信息。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入 blog 文件夹</span></span><br><span class="line">cd blog</span><br><span class="line"><span class="comment"># 初始化 Git 仓库</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># 查看 Git 状态</span></span><br><span class="line">git status</span><br><span class="line"><span class="comment"># 配置个人信息（与你注册 GitHub 的用户名、邮箱一致）</span></span><br><span class="line">git config -<span class="literal">-local</span> user.name &lt;你的用户名&gt;</span><br><span class="line">git config -<span class="literal">-local</span> user.email &lt;你的邮箱名&gt;</span><br><span class="line"><span class="comment"># 查看配置，user.name、user.email 是否配置成功</span></span><br><span class="line">git config -<span class="literal">-local</span> -<span class="literal">-list</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-init-and-config.PNG" alt="初始化Git仓库"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-init-and-config.PNG" alt="初始化Git仓库"></p>
 <p>接着，将仓库里的已有改动添加、提交。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"init with hexo-cli"</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-add-and-commit.PNG" alt="Git提交改动"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-add-and-commit.PNG" alt="Git提交改动"></p>
 <p>在 blog 根目录，使用任意文本编辑器打开 <code>_config.yml</code> 文件，并在 <code>#Site</code> 部分输入你网站的信息。一个示例如下</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">CosmosNing的个人博客</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">探索·好奇</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">编程·学习·生活</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">个人博客;编程;学习;生活</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">CosmosNing</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Shanghai</span></span><br></pre></td></tr></table></figure>
 
 <p>到现在， Hexo 最小配置已经完成。我们来看看效果如何。继续在命令行下输入如下命令</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果使用 PowerShell，则选择输入下一条命令（下同）</span></span><br><span class="line">hexo g; hexo s</span><br><span class="line"><span class="comment"># 如果使用 Git Bash 或者 Linux 终端，则选择输入下一条命令（下同）</span></span><br><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/hexo-g-and-hexo-s.PNG" alt="Hexo本地预览命令"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-g-and-hexo-s.PNG" alt="Hexo本地预览命令"></p>
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>你应该能得到类似这个画面</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/basic-result.PNG" alt="Hexo最小化配置效果"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/basic-result.PNG" alt="Hexo最小化配置效果"></p>
 <div class="note info">
             <h2 id="提示-终止预览"><a href="#提示-终止预览" class="headerlink" title="提示-终止预览"></a>提示-终止预览</h2><p>你可以在命令行中，按下 <code>Ctrl + C</code> 终止上述预览命令</p>
           </div>
@@ -57,14 +57,14 @@
 <p>至此，<strong>NexT</strong> 最小配置已经完成。我们来看看效果吧</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/next-hexo-g.PNG" alt="Hexo本地预览"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-hexo-g.PNG" alt="Hexo本地预览"></p>
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>你应该能得到类似这个画面</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/next-basic-result.PNG" alt="next最小配置效果"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-basic-result.PNG" alt="next最小配置效果"></p>
 <p>使用 <code>Ctrl + C</code> 终止上述命令。接下来，我们将这一阶段的改动提交到 Git 仓库。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将 NexT 主题作为子模块加入仓库</span></span><br><span class="line">git submodule add https://github.com/theme<span class="literal">-next</span>/hexo<span class="literal">-theme</span><span class="literal">-next</span> themes/next</span><br><span class="line"><span class="comment"># 添加改动至暂存区</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 提交</span></span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"add common site config with theme next(default config)"</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-commit-next-default.PNG" alt="NexT最小化配置提交"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-commit-next-default.PNG" alt="NexT最小化配置提交"></p>
 <h2 id="配置功能页面及资源文件"><a href="#配置功能页面及资源文件" class="headerlink" title="配置功能页面及资源文件"></a>配置功能页面及资源文件</h2><p>一个完整的博客应该包括 <code>主页</code> 、<code>分类</code>、<code>标签</code>、 <code>归档</code> 等功能页面。而在 <strong>Hexo</strong> 帮我们初始化时，只是完成了博文页的设置。其他功能页需要手动设置。具体步骤如下</p>
 <ul>
 <li>创建 <code>关于</code> 页</li>
@@ -149,7 +149,7 @@
 
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>我得到了以下画面</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/my-result.PNG" alt="效果预览"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/my-result.PNG" alt="效果预览"></p>
 <h2 id="定制主题颜色及简单样式"><a href="#定制主题颜色及简单样式" class="headerlink" title="定制主题颜色及简单样式"></a>定制主题颜色及简单样式</h2><p>NexT 主题非常灵活，用户可以高度自定义，包括颜色，布局等。本节将浅显的介绍如何自定义主题的颜色及样式。</p>
 <div class="note default">
             <p>推荐你使用 <code>Chrome</code> 浏览器作为调试工具</p>
@@ -164,7 +164,7 @@
 
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>按下 <code>F12</code> 打开<code>Chrome</code> 浏览器开发者工具。并点选左上角红框所示的按钮。这样，你就可以使用鼠标快速找到网页中某块元素的样式。然后修改右半部分（如蓝框所示） <code>Styles</code> 的样式，并观察网页效果。如果合适，将对应的样式类，复制到上述创建的 <code>styles.styl</code> 文件中，并保存。下次预览生成，你就会得到定制化的主题样式。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/ChromeDevTools.PNG" alt="ChromeDevTools"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/ChromeDevTools.PNG" alt="ChromeDevTools"></p>
 <div class="note default">
             <p>点<a href="https://github.com/CosmosNing/CosmosNing.github.io/blob/source/source/_data/styles.styl" target="_blank" rel="noopener">这里</a>，查看我的样式配置。</p>
           </div>
@@ -176,31 +176,31 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基于最新提交，创建名为 source 的分支</span></span><br><span class="line">git branch source</span><br><span class="line"><span class="comment"># 切换到 source 分支</span></span><br><span class="line">git checkout source</span><br><span class="line"><span class="comment"># 删除 master ，供静态页面的部署</span></span><br><span class="line">git branch <span class="literal">-d</span> master</span><br></pre></td></tr></table></figure>
 
 <h2 id="创建-GithubPages-仓库"><a href="#创建-GithubPages-仓库" class="headerlink" title="创建 GithubPages 仓库"></a>创建 GithubPages 仓库</h2><p>登录你的 GitHub 账号，在主页的左侧，点击 <code>New</code> ，新建一个 GithubPages 仓库。你应该将其命名为 <code>&lt;你的 GitHub 用户名&gt;.github.io</code>，并点击 <code>Create repository</code> 完成创建。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/new-repo.png" alt="创建仓库"></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/new-repo-info.PNG" alt="填写仓库信息"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo.png" alt="创建仓库"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo-info.PNG" alt="填写仓库信息"></p>
 <p>接下来，需要将本地的博客仓库，推送到 GitHub。</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:&lt;你的用户名&gt;/&lt;你的用户名&gt;.github.io.git</span><br><span class="line">git push <span class="literal">-u</span> origin source</span><br></pre></td></tr></table></figure>
 
 <h2 id="创建-Personal-Access-Token"><a href="#创建-Personal-Access-Token" class="headerlink" title="创建 Personal Access Token"></a>创建 Personal Access Token</h2><p>在浏览器新建一个标签页，前往 GitHub <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">新建 Personal Access Token</a>，只勾选 <code>repo</code> 的权限并生成一个新的 Token。Token 生成后请<strong>复制并保存好</strong>（因为只会出现一次，刷新页面就再也看不见了）。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/token.PNG" alt="token"></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/token-info.PNG" alt="token-info"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token.PNG" alt="token"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token-info.PNG" alt="token-info"></p>
 <h2 id="安装及配置-TravisCI"><a href="#安装及配置-TravisCI" class="headerlink" title="安装及配置 TravisCI"></a>安装及配置 TravisCI</h2><p>在你的 GitHub 主页，点击上方菜单栏中的 <code>Marketplace</code>。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis01.png" alt="Travis-01"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis01.png" alt="Travis-01"></p>
 <p>在搜索框中，搜索 <code>travis</code></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis02.PNG" alt="Travis-02"></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis03.PNG" alt="Travis-03"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis02.PNG" alt="Travis-02"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis03.PNG" alt="Travis-03"></p>
 <p>点选第一个 <code>Travis CI</code> ，并滑动到最后，选择 <code>Open Source</code>，再点击 <code>Install it for free</code>。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis04.PNG" alt="Travis-04"></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis05.PNG" alt="Travis-05"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis04.PNG" alt="Travis-04"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis05.PNG" alt="Travis-05"></p>
 <p>继续点 <code>绿色</code> 按钮。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis06.PNG" alt="Travis-06"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis06.PNG" alt="Travis-06"></p>
 <p><code>Install</code> !</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis07.PNG" alt="Travis-07"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis07.PNG" alt="Travis-07"></p>
 <p>现在我们可以在 <code>Travis CI</code> 官网上，登录并设置它了。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis08.PNG" alt="Travis-08"></p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis09.PNG" alt="Travis-09"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis08.PNG" alt="Travis-08"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis09.PNG" alt="Travis-09"></p>
 <p>点击你的博客仓库，新建一个环境变量。<strong>Name</strong> 为 <code>GH_TOKEN</code>，<strong>Value</strong> 为刚才你在 GitHub 生成的 Token。确保 <strong>DISPLAY VALUE IN BUILD LOG</strong> 保持 <strong>不被勾选</strong> 避免你的 Token 泄漏。点击 <strong>Add</strong> 保存</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis10.PNG" alt="Travis-10"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG" alt="Travis-10"></p>
 <p>在你的 Hexo 站点文件夹中新建一个 <code>.travis.yml</code> 文件：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">sudo:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">10</span> <span class="comment"># use nodejs v10 LTS</span></span><br><span class="line"><span class="attr">cache:</span> <span class="string">npm</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">source</span> <span class="comment"># build source branch only</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="comment"># generate static files</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line">  <span class="attr">skip-cleanup:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">github-token:</span> <span class="string">$GH_TOKEN</span></span><br><span class="line">  <span class="attr">keep-history:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">target_branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">on:</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">source</span></span><br><span class="line">  <span class="attr">local-dir:</span> <span class="string">public</span></span><br></pre></td></tr></table></figure>
 
@@ -208,7 +208,7 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"你的提交信息"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
 <p>你的工作至此完成，可以泡杯咖啡，等待 <code>Travis CI</code> 运行结果（在你的 GitHub 博客仓库主页可以查看，如下图。如果是绿色的 ✅，那么成功；❎ 则代表失败）。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/build-status.PNG" alt="build-status"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG" alt="build-status"></p>
 <h1 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h1><p>接下来你就可以自由的写博客啦。这里为你总结一些常用命令</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建博文</span></span><br><span class="line">hexo new &lt;标题名&gt;</span><br><span class="line"><span class="comment"># 本地预览</span></span><br><span class="line">hexo clean; hexo g; hexo s</span><br><span class="line"><span class="comment"># Git 推送</span></span><br><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"你的提交信息"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
@@ -236,7 +236,7 @@
 <p>原文链接：<a href="https://css-tricks.com/new-year-new-job-lets-make-a-grid-powered-resume/" target="_blank" rel="noopener">https://css-tricks.com/new-year-new-job-lets-make-a-grid-powered-resume/</a></p>
 </blockquote>
 <h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>许多受欢迎的简历都利用网格形状组织自己的简历的不同部分，以充分利用有限的页面空间。下面，请与我一起，使用 CSS 中的网格（Grid），创建一个无论是在打印情况下、还是在不同屏幕尺寸下浏览都看上去很棒的布局吧！这样，我们可以在线和离线使用简历，还可能在新的一年中派上用场！</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume_preview.png" alt="简历效果预览"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/resume_preview.png" alt="简历效果预览"></p>
 <p>首先，我们创建一个简历的容器和简历子部分。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"resume"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"photo"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"about"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"work"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"community"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"skills"</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -244,7 +244,7 @@
 <p>与此同时，我们使用 CSS 网格中规定网格大小的单位 <code>fr</code> 来明确各个网格的比例大小关系。我们将每行等分（也就是每一行的大小都是 <code>1fr</code>），并设置第一列是第二列的两倍 （ <code>2fr</code> ）。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">2</span>fr <span class="number">1</span>fr;</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-01-1.jpg" alt="简历容器布局示意图"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/resume-01-1.jpg" alt="简历容器布局示意图"></p>
 <p>接下来，我们将使用 <code>grid-template-areas</code> 属性来描述元素在网格中摆放的位置。首先，我们需要为每一个简历子部分的 <code>grid-area</code> 指定一个名字。你可以使用任何名字，但是在这里，我们采用与简历子部分相同的名字：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.name</span>&#123;</span><br><span class="line">    <span class="attribute">grid-area</span>: name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.photo</span>&#123;</span><br><span class="line">    <span class="attribute">grid-area</span>: photo;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
@@ -257,19 +257,19 @@
 <h1 id="调整布局"><a href="#调整布局" class="headerlink" title="调整布局"></a>调整布局</h1><p>属性<code>grid-template-areas</code> 使你能够轻松改变你的布局。比如，如果你认为，和教育（<code>education</code>）相比，雇主对你的技能（<code>skills</code>）更感兴趣，你仅仅只需要在 <code>grid-template-areas</code> 中调换它们的位置即可（也就意味着，它们在显示时，也会调换位置），而不需要做其他任何改动。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"name photo"</span></span><br><span class="line">    <span class="string">"work about"</span></span><br><span class="line">    <span class="string">"work skills"</span></span><br><span class="line">    <span class="string">"community education"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-02.jpg" alt="调整布局示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/resume-02.jpg" alt="调整布局示例"></p>
 <iframe name="cp_embed_2" src="https://codepen.io/alichur/embed/bGNGGNP?height=367&amp;theme-id=1&amp;default-tab=result&amp;user=alichur&amp;slug-hash=bGNGGNP&amp;pen-title=grid%20resume%20%20swapping%20sections&amp;name=cp_embed_2" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  swapping sections" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_bGNGGNP"></iframe>
 只需很小的 CSS 代码改动，我们就可以获得较窄一列靠左的简历布局。那就是网格布局的优势之一，即我们可以通过重新排列已经命名的 `grid-area` 来移动子块，而保证其他源代码保持其原有位置。
 
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">2</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"photo education"</span></span><br><span class="line">    <span class="string">"name work"</span></span><br><span class="line">    <span class="string">"about work"</span></span><br><span class="line">    <span class="string">"skills community"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-03-1.jpg" alt="窄列靠左示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/resume-03-1.jpg" alt="窄列靠左示例"></p>
 <iframe name="cp_embed_3" src="https://codepen.io/alichur/embed/XWJrRjb?height=367&amp;theme-id=default&amp;default-tab=result&amp;user=alichur&amp;slug-hash=XWJrRjb&amp;pen-title=grid%20resume%20%20left%20design&amp;name=cp_embed_3" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  left design" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_XWJrRjb"></iframe>
 
 <h1 id="划分更多列"><a href="#划分更多列" class="headerlink" title="划分更多列"></a>划分更多列</h1><p>也许你想在简历中添加个人参考。我们可以向网格模板中增添第三列，并把它放在最底部一行。要注意的是，我们也需要等比例的改变列的大小，然后更新模板区域。这样会使得某些元素占据了两列，但是这保持整体布局的正确。</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.resume</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">"name name photo"</span></span><br><span class="line">    <span class="string">"work work about"</span></span><br><span class="line">    <span class="string">"work work education"</span></span><br><span class="line">    <span class="string">"community references skills"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/resume-04-1.jpg" alt="划分列示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/resume-04-1.jpg" alt="划分列示例"></p>
 <iframe name="cp_embed_4" src="https://codepen.io/alichur/embed/gObYWvd?height=367&amp;theme-id=default&amp;default-tab=result&amp;user=alichur&amp;slug-hash=gObYWvd&amp;pen-title=grid%20resume%20%20split%20columns&amp;name=cp_embed_4" scrolling="no" frameborder="0" height="367" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" title="grid resume  split columns" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block;" id="cp_embed_gObYWvd"></iframe>
 
 <h1 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h1><p>对于小屏幕，比如移动设备，我们可以在单列展示简历。</p>
@@ -1053,7 +1053,8 @@
   <entry>
     <title>Git基础入门</title>
     <url>/2019/12/30/git-ji-chu-ru-men/</url>
-    <content><![CDATA[<h1 id="Git-基础入门"><a href="#Git-基础入门" class="headerlink" title="Git 基础入门"></a>Git 基础入门</h1><h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
+    <content><![CDATA[<h1 id="Git-基础入门"><a href="#Git-基础入门" class="headerlink" title="Git 基础入门"></a>Git 基础入门</h1><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/yancy-min-842ofHC6MaI-unsplash.jpg" alt="题图"></p>
+<h2 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h2><p><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a></p>
 <h2 id="最小配置"><a href="#最小配置" class="headerlink" title="最小配置"></a>最小配置</h2><h3 id="配置-user-name-和-user-email"><a href="#配置-user-name-和-user-email" class="headerlink" title="配置 user.name 和 user.email"></a>配置 <code>user.name</code> 和 <code>user.email</code></h3><ul>
 <li><code>git config</code> 命令</li>
 </ul>
@@ -1943,7 +1944,7 @@
 </ul>
 </li>
 <li><p>基本结构</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
 </li>
 </ul>
 <h3 id="I-O-端口及其编址"><a href="#I-O-端口及其编址" class="headerlink" title="I/O 端口及其编址"></a>I/O 端口及其编址</h3><ul>
@@ -1956,7 +1957,7 @@
 </li>
 </ul>
 <h2 id="（★★★）I-O的三种控制方式"><a href="#（★★★）I-O的三种控制方式" class="headerlink" title="（★★★）I/O的三种控制方式"></a>（★★★）I/O的三种控制方式</h2><p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
-<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
 <h3 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h3><h4 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h4><p>（详见教材）</p>
 <h4 id="中断工作流程"><a href="#中断工作流程" class="headerlink" title="中断工作流程"></a>中断工作流程</h4><h5 id="中断响应（中断隐指令，硬件完成）"><a href="#中断响应（中断隐指令，硬件完成）" class="headerlink" title="中断响应（中断隐指令，硬件完成）"></a>中断响应（中断隐指令，硬件完成）</h5><ul>
 <li>响应中断的 3 个条件<ol>
@@ -1987,7 +1988,7 @@
 <li>多重中断：中断内可以嵌套中断</li>
 <li>中断屏蔽（见后解题技巧及重要结论中的总结）</li>
 </ul>
-<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
+<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
 <h4 id="DMA-的传送过程"><a href="#DMA-的传送过程" class="headerlink" title="DMA 的传送过程"></a>DMA 的传送过程</h4><p>DMA 传送过程主要分为三步</p>
 <ol>
 <li>预处理<ul>
@@ -2086,7 +2087,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/13/Bus-Timing.png?raw=true" alt="异步请求回答信号的互锁"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/13/Bus-Timing.png?raw=true" alt="异步请求回答信号的互锁"></p>
 <h2 id="（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；"><a href="#（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；" class="headerlink" title="（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；"></a>（×）总线标准，常用标准所规定的机械结构、功能结构和电气规范；</h2><p>（详见教材）</p>
 <h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
 <li>有关总线性能的一些概念<ul>
@@ -2741,7 +2742,7 @@
 <li>位扩展<ul>
 <li>用多个芯片对字长进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 8K × 8 位）</li>
 <li>连接方式<ul>
-<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit.png?raw=true" alt="位扩展"></li>
+<li><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" alt="位扩展"></li>
 </ul>
 </li>
 </ul>
@@ -2749,7 +2750,7 @@
 <li>字扩展<ul>
 <li>用多个芯片对字的数量进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 64K × 1 位）</li>
 <li>连接方式<ul>
-<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Word.png?raw=true" alt="字扩展"></li>
+<li><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" alt="字扩展"></li>
 </ul>
 </li>
 </ul>
@@ -2757,7 +2758,7 @@
 <li>字位同时扩展<ul>
 <li>同时扩充字和位，组合上述两种扩展</li>
 <li>连接方式<ul>
-<li><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></li>
+<li><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></li>
 </ul>
 </li>
 </ul>
@@ -2767,7 +2768,7 @@
 </ul>
 <h3 id="多模块存储器的交叉存储"><a href="#多模块存储器的交叉存储" class="headerlink" title="多模块存储器的交叉存储"></a>多模块存储器的交叉存储</h3><ul>
 <li><strong>低位</strong>地址为<strong>体号</strong>，<strong>高位</strong>地址为<strong>体内地址</strong>，所以又称为低位交叉编址</li>
-<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></li>
+<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></li>
 <li>一些公式（★★）<ul>
 <li>设模块字长等于数据总线宽度，模块存取一个字的周期为 <em>T</em>，总线传送周期为 <em>r</em>， 为实现流水线方式存取，存储器交叉模块数应<strong>大于等于</strong><ul>
 <li>$m=\frac{T}{r}$ （<em>m</em> 称为<strong>交叉存取度</strong>）</li>
@@ -2780,7 +2781,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></p>
+<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></p>
 <h3 id="Cache和主存之间的映射方式（★★★★★★★★）"><a href="#Cache和主存之间的映射方式（★★★★★★★★）" class="headerlink" title="Cache和主存之间的映射方式（★★★★★★★★）"></a>Cache和主存之间的映射方式（★★★★★★★★）</h3><h4 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h4><ul>
 <li>映射关系<ul>
 <li>$cache\ 行号 = 主存块号\ Mod\ cache\ 行数$</li>
@@ -2802,7 +2803,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Direct.png?raw=true" alt="直接映射"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" alt="直接映射"></p>
 <h4 id="全相联映射"><a href="#全相联映射" class="headerlink" title="全相联映射"></a>全相联映射</h4><ul>
 <li>映射关系<ul>
 <li>主存块可装入 cache 中任意一行</li>
@@ -2822,7 +2823,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Full.png?raw=true" alt="全相联映射"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" alt="全相联映射"></p>
 <h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
 <li>映射关系<ul>
 <li>$cache\ 组号 = 主存块号\ Mod\ cache\ 组数$</li>
@@ -2844,7 +2845,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/10/04/Group.png?raw=true" alt="组相联映射"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" alt="组相联映射"></p>
 <h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><p>（详见教材）</p>
 <h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h4 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h4><p>类似操作系统中内存管理页面置换</p>
 <ul>
@@ -3016,12 +3017,12 @@
 <li>奇校验： <strong>1 的个数</strong>为奇数</li>
 <li>偶校验： <strong>1 的个数</strong>为偶数</li>
 </ul>
-<h4 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Hamming-1.png?raw=true" alt="海明校验1"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Hamming-2.png?raw=true" alt="海明校验2"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Hamming-3.png?raw=true" alt="海明校验3"></p>
-<h4 id="循环冗余（CRC）校验"><a href="#循环冗余（CRC）校验" class="headerlink" title="循环冗余（CRC）校验"></a>循环冗余（CRC）校验</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/CRC-1.png?raw=true" alt="循环冗余校验1"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/CRC-2.png?raw=true" alt="循环冗余校验2"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/CRC-3.png?raw=true" alt="循环冗余校验3"></p>
+<h4 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-1.png?raw=true" alt="海明校验1"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-2.png?raw=true" alt="海明校验2"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-3.png?raw=true" alt="海明校验3"></p>
+<h4 id="循环冗余（CRC）校验"><a href="#循环冗余（CRC）校验" class="headerlink" title="循环冗余（CRC）校验"></a>循环冗余（CRC）校验</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-1.png?raw=true" alt="循环冗余校验1"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-2.png?raw=true" alt="循环冗余校验2"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-3.png?raw=true" alt="循环冗余校验3"></p>
 <h2 id="（★★★）定点数的表示、运算与运算部件"><a href="#（★★★）定点数的表示、运算与运算部件" class="headerlink" title="（★★★）定点数的表示、运算与运算部件"></a>（★★★）定点数的表示、运算与运算部件</h2><h3 id="无符号数与有符号整数的表示"><a href="#无符号数与有符号整数的表示" class="headerlink" title="无符号数与有符号整数的表示"></a>无符号数与有符号整数的表示</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
 <li>无符号数：所有位为数值位</li>
 <li>有符号数：第一位为符号位（ 0 为 正，1 为负），剩余位为数值位</li>
@@ -3067,7 +3068,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Mul.png?raw=true" alt="原码一位乘"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Mul.png?raw=true" alt="原码一位乘"></p>
 <p>注：最后结果要加上符号位：符号位 <strong>1 异或 0 = 1</strong> ，最终得 x 乘 y = -0.10001111</p>
 <h4 id="补码一位乘"><a href="#补码一位乘" class="headerlink" title="补码一位乘"></a>补码一位乘</h4><ul>
 <li><p>步骤：</p>
@@ -3112,7 +3113,7 @@
 <td align="center">部分积右移一位</td>
 </tr>
 </tbody></table>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true" alt="补码一位乘"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true" alt="补码一位乘"></p>
 <h4 id="原码除法（不恢复余数法）"><a href="#原码除法（不恢复余数法）" class="headerlink" title="原码除法（不恢复余数法）"></a>原码除法（不恢复余数法）</h4><ul>
 <li>步骤：<ol>
 <li>符号位不参与运算，结果符号位为操作数符号位两者的异或</li>
@@ -3125,7 +3126,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/True-Code-Div.png?raw=true" alt="原码不恢复余数法"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Div.png?raw=true" alt="原码不恢复余数法"></p>
 <h4 id="补码除法（加减交替法）"><a href="#补码除法（加减交替法）" class="headerlink" title="补码除法（加减交替法）"></a>补码除法（加减交替法）</h4><ul>
 <li>步骤：<ol>
 <li>符号位参与运算，运算的数均以补码表示</li>
@@ -3135,7 +3136,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Two-s-Complement-Code-Div.png?raw=true" alt="补码加减交替法"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Div.png?raw=true" alt="补码加减交替法"></p>
 <h3 id="溢出概念和判别方法"><a href="#溢出概念和判别方法" class="headerlink" title="溢出概念和判别方法"></a>溢出概念和判别方法</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
 <li>运算结果超出了表示范围</li>
 </ul>
@@ -3191,7 +3192,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/28/Cyclic-Shift.png?raw=true" alt="循环移位"></p>
+<h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Cyclic-Shift.png?raw=true" alt="循环移位"></p>
 <h2 id="（★★）浮点数的表示与运算"><a href="#（★★）浮点数的表示与运算" class="headerlink" title="（★★）浮点数的表示与运算"></a>（★★）浮点数的表示与运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><ul>
 <li>$N=r^E\times M$</li>
 <li>其中，<em>r</em> 为阶码的底（隐含，在计算机中 <em>r</em> = 2），<em>E</em> 为阶码，<em>M</em> 为尾数</li>
@@ -3497,15 +3498,15 @@
 <h2 id="外存分配方法与物理文件组织"><a href="#外存分配方法与物理文件组织" class="headerlink" title="外存分配方法与物理文件组织"></a>外存分配方法与物理文件组织</h2><h3 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h3><ul>
 <li>每个文件在磁盘上占有一组<strong>连续</strong>的块</li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Continuous.png?raw=true" alt="连续分配"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Continuous.png?raw=true" alt="连续分配"></p>
 <h3 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h3><ul>
 <li>每个文件散落在磁盘的各个碎片区域，每一块都存有指向下一块的指针</li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Linked.png?raw=true" alt="链接分配"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Linked.png?raw=true" alt="链接分配"></p>
 <h3 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h3><ul>
 <li>单独使用一块来存储文件各块存储位置，构成索引块</li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Index.png?raw=true" alt="索引分配"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Index.png?raw=true" alt="索引分配"></p>
 <h2 id="文件存储空间的管理"><a href="#文件存储空间的管理" class="headerlink" title="文件存储空间的管理"></a>文件存储空间的管理</h2><h3 id="空闲表法"><a href="#空闲表法" class="headerlink" title="空闲表法"></a>空闲表法</h3><ul>
 <li>类似内存中的动态分配（回看内存管理）</li>
 </ul>
@@ -3648,7 +3649,7 @@
 <h4 id="利用索引结点（硬链接）（★★★）"><a href="#利用索引结点（硬链接）（★★★）" class="headerlink" title="利用索引结点（硬链接）（★★★）"></a>利用索引结点（硬链接）（★★★）</h4><ul>
 <li>在用户目录表中，其表项只包括<strong>文件名</strong>和<strong>指向索引结点的指针</strong>，其他的相关信息放在索引结点中</li>
 </ul>
-<h4 id="不同用户对共享文件创建、删除操作中的链接计数"><a href="#不同用户对共享文件创建、删除操作中的链接计数" class="headerlink" title="不同用户对共享文件创建、删除操作中的链接计数"></a>不同用户对共享文件创建、删除操作中的链接计数</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/15/Count-Of-File-Sharing.png?raw=true" alt="索引分配"></p>
+<h4 id="不同用户对共享文件创建、删除操作中的链接计数"><a href="#不同用户对共享文件创建、删除操作中的链接计数" class="headerlink" title="不同用户对共享文件创建、删除操作中的链接计数"></a>不同用户对共享文件创建、删除操作中的链接计数</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Count-Of-File-Sharing.png?raw=true" alt="索引分配"></p>
 <h4 id="利用符号链接（软链接）（★★★）"><a href="#利用符号链接（软链接）（★★★）" class="headerlink" title="利用符号链接（软链接）（★★★）"></a>利用符号链接（软链接）（★★★）</h4><ul>
 <li>共享时，会新建一个 LINK 文件，这个 LINK 文件中<strong>只含有被链接文件的路径</strong></li>
 </ul>
@@ -3818,7 +3819,7 @@
 <li><strong>中断处理程序</strong></li>
 <li><strong>硬件</strong>：执行 I/O 操作</li>
 </ul>
-<h2 id="I-O控制方法"><a href="#I-O控制方法" class="headerlink" title="I/O控制方法"></a>I/O控制方法</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/14/IO-Control.png?raw=true" alt="IO控制流程对比"></p>
+<h2 id="I-O控制方法"><a href="#I-O控制方法" class="headerlink" title="I/O控制方法"></a>I/O控制方法</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true" alt="IO控制流程对比"></p>
 <ul>
 <li>采用<strong>轮询</strong>的可编程 I/O 方式<ul>
 <li>易于实现，但 CPU 和 I/O 设备只能串行工作，<strong>CPU效率较低</strong></li>
@@ -3838,8 +3839,8 @@
 </li>
 </ul>
 <p>总结：整个 I/O 控制方法的发展，总的来说就是四个字——“简政放权”：减轻 CPU 对所有操作控制的压力，让合适的“人”（如其他专门硬件）去处理合适的“事”（如这里的 I/O 操作）。</p>
-<h2 id="I-O分配中的数据结构和分配方法"><a href="#I-O分配中的数据结构和分配方法" class="headerlink" title="I/O分配中的数据结构和分配方法"></a>I/O分配中的数据结构和分配方法</h2><h3 id="设备分配中的数据结构"><a href="#设备分配中的数据结构" class="headerlink" title="设备分配中的数据结构"></a>设备分配中的数据结构</h3><h4 id="设备控制表-（DCT）"><a href="#设备控制表-（DCT）" class="headerlink" title="设备控制表 （DCT）"></a>设备控制表 （DCT）</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/14/DCT.png?raw=true" alt="DCT"></p>
-<h4 id="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"><a href="#控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）" class="headerlink" title="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"></a>控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/14/COCT-CHCT-SDT.png?raw=true" alt="COCT-CHCT-SDT"></p>
+<h2 id="I-O分配中的数据结构和分配方法"><a href="#I-O分配中的数据结构和分配方法" class="headerlink" title="I/O分配中的数据结构和分配方法"></a>I/O分配中的数据结构和分配方法</h2><h3 id="设备分配中的数据结构"><a href="#设备分配中的数据结构" class="headerlink" title="设备分配中的数据结构"></a>设备分配中的数据结构</h3><h4 id="设备控制表-（DCT）"><a href="#设备控制表-（DCT）" class="headerlink" title="设备控制表 （DCT）"></a>设备控制表 （DCT）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true" alt="DCT"></p>
+<h4 id="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"><a href="#控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）" class="headerlink" title="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"></a>控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true" alt="COCT-CHCT-SDT"></p>
 <h4 id="上述几种数据结构之间的关系"><a href="#上述几种数据结构之间的关系" class="headerlink" title="上述几种数据结构之间的关系"></a>上述几种数据结构之间的关系</h4><ul>
 <li>DCT 与 COCT <strong>一一对应</strong></li>
 <li>CHCT 与 COCT <strong>一对多</strong>（一个通道可谓多个设备控制器服务）</li>
@@ -3946,7 +3947,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="离散（非连续）内存分配方法（★★★★★）"><a href="#离散（非连续）内存分配方法（★★★★★）" class="headerlink" title="离散（非连续）内存分配方法（★★★★★）"></a>离散（非连续）内存分配方法（★★★★★）</h3><h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><h5 id="逻辑地址到物理地址的转换"><a href="#逻辑地址到物理地址的转换" class="headerlink" title="逻辑地址到物理地址的转换"></a>逻辑地址到物理地址的转换</h5><h6 id="不含快表（两次访存）"><a href="#不含快表（两次访存）" class="headerlink" title="不含快表（两次访存）"></a>不含快表（两次访存）</h6><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/10/Page.png?raw=true" alt="不含快表分页地址变换机构"></p>
+<h3 id="离散（非连续）内存分配方法（★★★★★）"><a href="#离散（非连续）内存分配方法（★★★★★）" class="headerlink" title="离散（非连续）内存分配方法（★★★★★）"></a>离散（非连续）内存分配方法（★★★★★）</h3><h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><h5 id="逻辑地址到物理地址的转换"><a href="#逻辑地址到物理地址的转换" class="headerlink" title="逻辑地址到物理地址的转换"></a>逻辑地址到物理地址的转换</h5><h6 id="不含快表（两次访存）"><a href="#不含快表（两次访存）" class="headerlink" title="不含快表（两次访存）"></a>不含快表（两次访存）</h6><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page.png?raw=true" alt="不含快表分页地址变换机构"></p>
 <ul>
 <li>设页面大小为 <em>L</em> ，逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li><strong>分析出页号和页面偏移量（根据题设地址结构或者计算得出）</strong>：计算页号 <em>P</em> （ <em>P</em> = <em>A</em> / <em>L</em> ）和页面偏移量 <em>W</em> （<em>W</em> = <em>A</em> % <em>L</em>  ）</li>
@@ -3956,7 +3957,7 @@
 </ol>
 </li>
 </ul>
-<h6 id="含快表"><a href="#含快表" class="headerlink" title="含快表"></a>含快表</h6><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/10/Page-TLB.png?raw=true" alt="含快表分页地址变换机构"></p>
+<h6 id="含快表"><a href="#含快表" class="headerlink" title="含快表"></a>含快表</h6><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page-TLB.png?raw=true" alt="含快表分页地址变换机构"></p>
 <ul>
 <li>含快表的地址变换流程<ol>
 <li>CPU 给出逻辑地址后，由硬件进行地址转换，将页号<strong>送入高速缓存寄存器</strong>，并<strong>将此页号与快表中的所有页号进行比较</strong></li>
@@ -4001,7 +4002,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<h4 id="分段（两次访存）"><a href="#分段（两次访存）" class="headerlink" title="分段（两次访存）"></a>分段（两次访存）</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/10/Segment.png?raw=true" alt="分段地址变换机构"></p>
+<h4 id="分段（两次访存）"><a href="#分段（两次访存）" class="headerlink" title="分段（两次访存）"></a>分段（两次访存）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment.png?raw=true" alt="分段地址变换机构"></p>
 <ul>
 <li>逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li><strong>提取段号和页内偏移量</strong>：逻辑地址 <em>A</em> 的结构：前几位是<strong>段号</strong>  <em>S</em> ，后几位是<strong>段内偏移</strong> <em>W</em> </li>
@@ -4011,7 +4012,7 @@
 </ol>
 </li>
 </ul>
-<h4 id="段页（三次访存）"><a href="#段页（三次访存）" class="headerlink" title="段页（三次访存）"></a>段页（三次访存）</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/10/Segment-Page.png?raw=true" alt="段页地址变换机构"></p>
+<h4 id="段页（三次访存）"><a href="#段页（三次访存）" class="headerlink" title="段页（三次访存）"></a>段页（三次访存）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment-Page.png?raw=true" alt="段页地址变换机构"></p>
 <ul>
 <li>逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li>依据<strong>段号</strong>查段表，找到<strong>页表始址</strong></li>
@@ -4023,7 +4024,7 @@
 <h2 id="虚拟内存分配方法"><a href="#虚拟内存分配方法" class="headerlink" title="虚拟内存分配方法"></a>虚拟内存分配方法</h2><h3 id="虚拟内存的概念"><a href="#虚拟内存的概念" class="headerlink" title="虚拟内存的概念"></a>虚拟内存的概念</h3><p>（详见教材）</p>
 <h3 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h3><p>（详见教材）</p>
 <h3 id="实现虚拟内存所需的硬件和软件支持"><a href="#实现虚拟内存所需的硬件和软件支持" class="headerlink" title="实现虚拟内存所需的硬件和软件支持"></a>实现虚拟内存所需的硬件和软件支持</h3><p>（详见教材）</p>
-<h3 id="请求分页（段）管理"><a href="#请求分页（段）管理" class="headerlink" title="请求分页（段）管理"></a>请求分页（段）管理</h3><h4 id="地址变换过程"><a href="#地址变换过程" class="headerlink" title="地址变换过程"></a>地址变换过程</h4><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/10/Process.png?raw=true" alt="虚拟内存请求分页管理"></p>
+<h3 id="请求分页（段）管理"><a href="#请求分页（段）管理" class="headerlink" title="请求分页（段）管理"></a>请求分页（段）管理</h3><h4 id="地址变换过程"><a href="#地址变换过程" class="headerlink" title="地址变换过程"></a>地址变换过程</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Process.png?raw=true" alt="虚拟内存请求分页管理"></p>
 <h3 id="页面置换算法（★★★★★）"><a href="#页面置换算法（★★★★★）" class="headerlink" title="页面置换算法（★★★★★）"></a>页面置换算法（★★★★★）</h3><h4 id="最佳（OPT）置换算法"><a href="#最佳（OPT）置换算法" class="headerlink" title="最佳（OPT）置换算法"></a>最佳（OPT）置换算法</h4><ul>
 <li>置换标准：淘汰<strong>最长时间内不再被访问</strong>的页面</li>
 <li>无法实现</li>
@@ -4107,7 +4108,7 @@
 <p>（★）重要结论：程序在<strong>并发执行</strong>时，<strong>其计算结果和并发执行速度有关</strong></p>
 <h2 id="进程的基本概念和思想"><a href="#进程的基本概念和思想" class="headerlink" title="进程的基本概念和思想"></a>进程的基本概念和思想</h2><p>（详见教材）</p>
 <h2 id="进程的状态与转换"><a href="#进程的状态与转换" class="headerlink" title="进程的状态与转换"></a>进程的状态与转换</h2><p>（详见教材）</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/04/Five-State-of-Process.png?raw=true" alt="五种进程状态转换图"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/04/Five-State-of-Process.png?raw=true" alt="五种进程状态转换图"></p>
 <h2 id="进程控制块及其作用"><a href="#进程控制块及其作用" class="headerlink" title="进程控制块及其作用"></a>进程控制块及其作用</h2><p>（详见教材）</p>
 <h2 id="进程组织"><a href="#进程组织" class="headerlink" title="进程组织"></a>进程组织</h2><ul>
 <li>进程控制块（PCB）</li>
@@ -4226,7 +4227,7 @@
 <li>对比前两者，可谓<strong>集两者之所长，补两者之所短</strong></li>
 </ul>
 <h1 id="3．调度与死锁"><a href="#3．调度与死锁" class="headerlink" title="3．调度与死锁"></a>3．调度与死锁</h1><h2 id="调度的概念"><a href="#调度的概念" class="headerlink" title="调度的概念"></a>调度的概念</h2><p>（详见教材）</p>
-<h2 id="调度队列模型"><a href="#调度队列模型" class="headerlink" title="调度队列模型"></a>调度队列模型</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/09/04/Three-Levels-of-Scheduling.png?raw=true" alt="处理机的三级调度"></p>
+<h2 id="调度队列模型"><a href="#调度队列模型" class="headerlink" title="调度队列模型"></a>调度队列模型</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/04/Three-Levels-of-Scheduling.png?raw=true" alt="处理机的三级调度"></p>
 <h2 id="调度的基本准则与方式"><a href="#调度的基本准则与方式" class="headerlink" title="调度的基本准则与方式"></a>调度的基本准则与方式</h2><h3 id="基本准则"><a href="#基本准则" class="headerlink" title="基本准则"></a>基本准则</h3><ul>
 <li>CPU 利用率</li>
 <li>系统吞吐量</li>
@@ -4813,9 +4814,9 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DeleteBST</span><span class="params">(BiTree *T,KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 若二叉排序树T中存在关键字等于key的数据元素时，则删除该数据元素结点， */</span></span><br><span class="line">    <span class="comment">/* 并返回TRUE；否则返回FALSE。算法9.7 */</span></span><br><span class="line">    <span class="keyword">if</span>(!*T) <span class="comment">/* 不存在关键字等于key的数据元素 */</span></span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> EQ(key,(*T)-&gt;data.key) <span class="comment">/* 找到关键字等于key的数据元素 */</span></span><br><span class="line">            Delete(T);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> LT(key,(*T)-&gt;data.key)</span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;lchild,key);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;rchild,key);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RightEmpty.jpg?raw=true" alt="右子树空"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LeftEmpty.jpg?raw=true" alt="左子树空"></p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/NotNULL.jpg?raw=true" alt="左右均不空"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RightEmpty.jpg?raw=true" alt="右子树空"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LeftEmpty.jpg?raw=true" alt="左子树空"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/NotNULL.jpg?raw=true" alt="左右均不空"></p>
 <h3 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
 <li>任意节点的左、右子树高度差的绝对值不超过 1 的排序二叉树。</li>
 </ul>
@@ -4823,16 +4824,16 @@
 <li><p>插入流程类似排序二叉树，但插入过程中需要保证其平衡，所以可能需要对树进行旋转。下面列举了各种旋转的情况：</p>
 <ol>
 <li><p>LL 平衡旋转</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LL.jpg?raw=true" alt="LL平衡旋转"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LL.jpg?raw=true" alt="LL平衡旋转"></p>
 </li>
 <li><p>RR 平衡旋转</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RR.jpg?raw=true" alt="RR平衡旋转"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RR.jpg?raw=true" alt="RR平衡旋转"></p>
 </li>
 <li><p>LR 平衡旋转</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/LR.jpg?raw=true" alt="LR平衡旋转"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LR.jpg?raw=true" alt="LR平衡旋转"></p>
 </li>
 <li><p>RL 平衡旋转</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/RL.jpg?raw=true" alt="RL平衡旋转"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RL.jpg?raw=true" alt="RL平衡旋转"></p>
 </li>
 </ol>
 </li>
@@ -4912,7 +4913,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Divide.jpg?raw=true" alt="分裂"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Divide.jpg?raw=true" alt="分裂"></p>
 <h4 id="（★★★★★）删除"><a href="#（★★★★★）删除" class="headerlink" title="（★★★★★）删除"></a>（★★★★★）删除</h4><ul>
 <li>当所删除的关键字 <em>k</em> 不在终端结点（这里的终端结点指最底层非叶子结点，下同）<ol>
 <li>若<strong>小于</strong> <em>k</em> 的子树中关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1​$ ，则找出（中序）<strong>前驱值</strong> <em>k’</em> ，并用 <em>k’</em> 取代 <em>k</em> ，再递归地删除 <em>k’</em> 即可</li>
@@ -4921,7 +4922,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/Merge.jpg?raw=true" alt="非终端合并"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Merge.jpg?raw=true" alt="非终端合并"></p>
 <ul>
 <li>当所删除的关键字 <em>k</em> 在终端结点<ol>
 <li>若被删除关键字所在结点的关键字个数 &gt; $\lceil \frac{m}{2}\rceil -1$ ，则直接删除</li>
@@ -4930,7 +4931,7 @@
 </ol>
 </li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/21/EndPoint.jpg?raw=true" alt="终端兄弟借"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/EndPoint.jpg?raw=true" alt="终端兄弟借"></p>
 <h2 id="哈希表的构造和冲突处理方法"><a href="#哈希表的构造和冲突处理方法" class="headerlink" title="哈希表的构造和冲突处理方法"></a>哈希表的构造和冲突处理方法</h2><h3 id="哈希表的构造"><a href="#哈希表的构造" class="headerlink" title="哈希表的构造"></a>哈希表的构造</h3><ul>
 <li>这里的构造通常指哈希函数的构造。下面是几种构造方法<ol>
 <li><strong>直接定址法</strong>：取关键字或关键字的某个线性函数值为哈希地址</li>
@@ -5199,7 +5200,7 @@
 <h3 id="最短路径-1"><a href="#最短路径-1" class="headerlink" title="最短路径"></a>最短路径</h3><h4 id="Dijkstra-算法"><a href="#Dijkstra-算法" class="headerlink" title="Dijkstra 算法"></a>Dijkstra 算法</h4><ul>
 <li>利用表格法求解</li>
 </ul>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2019/08/06/2016.png?raw=true" alt="2016统考真题"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/06/2016.png?raw=true" alt="2016统考真题"></p>
 <ul>
 <li>画下面的表格<ul>
 <li>起点直接能到达的结点在表格中的位置处填入，路径和对应长度。</li>
@@ -6340,7 +6341,7 @@
   <entry>
     <title>机器真的有智能吗</title>
     <url>/2018/11/16/ji-qi-zhen-de-you-zhi-neng-ma/</url>
-    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/16/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/11/16/cover.jpg?raw=true" alt="cover"></p>
 <p>最近几年，人工智能被炒得火热。机器打败人类围棋高手，玩部分电子游戏达到人类水平；机器同声传译、分类物体、识别人脸的准确率都达到十分高的水平；一些智能机器产品（智能音箱、智能服务机器人等），开始进入个人家庭或者企业。机器人的“入侵”，引起了很多普通人的恐慌：机器有了类似人类的智能，将来岂不是要代替人类？我想，这个恐慌的来源，便是人们对机器智能的未知的恐惧。那么，机器真的有智能吗？还是说这只是媒体大肆渲染的夸大之词？</p>
 <p>要想正确回答这个问题，首先要从智能的定义入手，其次分析达到智能的手段，最后给出答案。本文便是照着这个逻辑和你分享一下我的认识。</p>
 <h2 id="智能的定义"><a href="#智能的定义" class="headerlink" title="智能的定义"></a>智能的定义</h2><p>对于人工智能，其定义很多，没有统一的定义。Stuart J. Russell 和 Peter Norvig 将一些常见的定义分为以下四类[^1]</p>
@@ -6416,7 +6417,7 @@
   <entry>
     <title>内容平台的个性化推荐是怎么做的</title>
     <url>/2018/11/03/nei-rong-ping-tai-de-ge-xing-hua-tui-jian-shi-zen-me-zuo-de/</url>
-    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/11/03/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/11/03/cover.jpg?raw=true" alt="cover"></p>
 <p>每天，互联网上都会产生大量的内容信息，如何做好这些信息内容的分类、整理与分发是每一个内容平台需要不断思考的问题。内容平台除了鼓励内容创作者产出更优质的内容，更需要通过某种方式持续不断地抓住内容消费者的注意力，从而让内容创作者、内容消费者和平台形成一个有机的生态结构。那么，该怎样持续不断地吸引内容消费者的眼球呢？这几年来各种内容平台最佳内容分发实践，便是做好用户的个性化推荐。</p>
 <p>那么，这些个性化推荐到底是怎么做的呢？我们先来看一个具体的交互实例。</p>
 <h2 id="一个交互实例"><a href="#一个交互实例" class="headerlink" title="一个交互实例"></a>一个交互实例</h2><p>如果你在一个相关内容平台刚刚注册为新用户后，平台可能会让你选择一些感兴趣的领域，并自动为你关注相关领域的优质创作者。这些内容成为平台对你个性的第一次试探。</p>
@@ -6477,7 +6478,7 @@
   <entry>
     <title>电子词典中查词的模糊推荐是怎么做的</title>
     <url>/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/</url>
-    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/28/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/28/cover.jpg?raw=true" alt="cover"></p>
 <p>大家在学习英语的时候经常会用到电子词典，当你在查询一个英语单词的时候，搜索框下方通常会依据你的输入给出词条的模糊推荐。即使你不小心输错了，电子词典也会给你一个看似模糊实则精准的推荐。这个功能大大提升了用户了单词查阅的效率，带给用户非常好的体验。那么，问题来了，这种模糊推荐到底是怎么做的呢？今天，我们就来一起探讨一下其中的算法。</p>
 <h2 id="单词相似度"><a href="#单词相似度" class="headerlink" title="单词相似度"></a>单词相似度</h2><p>做模糊推荐，一种很直观的想法就是找到它们之间的相似度，如果相似度高，就将它可以排在模糊推荐集合中较前的位置。</p>
 <p>那么，怎样去定义单词之间的相似度呢？根据单词相似度定义的方式不同，主要分为以下两种算法：</p>
@@ -6656,7 +6657,7 @@
   <entry>
     <title>怎样求解难解决问题?</title>
     <url>/2018/10/14/zen-yang-qiu-jie-nan-jie-jue-wen-ti/</url>
-    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/14/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/14/cover.jpg?raw=true" alt="cover"></p>
 <p>在之前的文章中，我们遇到的问题，其对应的算法都在我们所能容忍的时间给出结果（这些问题被称作<strong>“可解决问题”</strong>）。但是，对于有些问题，通过传统的解决办法，我们甚至在有生之年也得不到结果（这些问题被称作<strong>“难解决问题”</strong>）。在这些问题中，一个比较著名的便是今天我们要一起探讨的旅行商问题（<em>Travelling salesman problem</em> ，简写为 <em>TSP</em> ）。</p>
 <h2 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h2><p>维基百科中，给出了旅行商问题的描述。具体如下：</p>
 <blockquote>
@@ -6741,7 +6742,7 @@
   <entry>
     <title>去目的地的最短路径怎么算（下）</title>
     <url>/2018/10/08/qu-mu-de-di-de-zui-duan-lu-jing-zen-me-suan-xia/</url>
-    <content><![CDATA[<h2 id="Dijkstra-算法的局限性"><a href="#Dijkstra-算法的局限性" class="headerlink" title="Dijkstra 算法的局限性"></a><em>Dijkstra</em> 算法的局限性</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/08/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="Dijkstra-算法的局限性"><a href="#Dijkstra-算法的局限性" class="headerlink" title="Dijkstra 算法的局限性"></a><em>Dijkstra</em> 算法的局限性</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/08/cover.jpg?raw=true" alt="cover"></p>
 <p>上一篇文章中，我给你留下一个思考题：</p>
 <blockquote>
 <p><em>Dijkstra</em> 算法可以处理所有情况下的最短路径问题吗？</p>
@@ -6754,7 +6755,7 @@
 <p><em>A</em> 非常激动，跑去找 <em>C</em> 。结果也是被拒。直接交换不成功，那么就间接交换吧， <em>A</em> 如是提议着。<em>C</em> 想了想，自己也有想要拥有其他人的一些东西，便提出了自己的要求：如果你能换到 <em>E</em> 的东西，我能返你 6 快钱；如果你能换到 <em>B</em> 的东西，那么还要在加上 1 块钱。</p>
 <p><em>A</em> 又去找 <em>B</em> 、<em>E</em> 商量，他们也提出了自己的要求。</p>
 <p>最终 <em>A</em> 把这些信息化成一张图，构成如下所示的交换贸易网：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/08/graph.png?raw=true" alt="graph"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/08/graph.png?raw=true" alt="graph"></p>
 <p>那么，现在问题来了， <em>A</em> 如何能画最少的钱，用自己的东西换到 <em>F</em> 的东西呢？</p>
 <p>仔细分析题目中抽象出的交换网以及问题，这不就是在求有权图（或者是网）中，从某一点到另一点的最短路径方案嘛，直接用 <em>Dijkstra</em> 算法就能解决！</p>
 <p>我们把这里的网输入交给 <em>Dijkstra</em> 算法计算一下，它的输出又是什么呢？</p>
@@ -6829,7 +6830,7 @@
   <entry>
     <title>去目的地的最短路径怎么算（上）</title>
     <url>/2018/10/02/qu-mu-de-di-de-zui-duan-lu-jing-zen-me-suan-shang/</url>
-    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/02/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/cover.jpg?raw=true" alt="cover"></p>
 <p>上两篇文章中，我们具体讨论了“去目的地的最少中转方案”这个问题，并给出算法过程以及它的实现。在实际生活中，我们对于出行方案的需求除了“最少中转”，还有“最短路径”。今天，我们一起来思考一下如何计算出去目的地的最短路径。</p>
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>在地图中，从某一位置到达另一个位置通常有很多条路径。其中，总路径长度最短的，叫做“最短路径”。</p>
 <p>“最短路径”是这个问题的输出，也是这个问题的目标。为了达到这个目标，第一步就需要我们搞清楚它的输入是什么（或者我们能提供什么样的原始信息【通常是可测量的】），在这个基础之上我们才能运用或者设计合适的算法，给出符合期望的结果。</p>
@@ -6846,7 +6847,7 @@
 </blockquote>
 <p>上面的算法描述太过抽象，我们看一个例子来体会一下这个算法的过程。</p>
 <p>假设，一个简单的交通网如下所示：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/10/02/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E9%80%9A%E7%BD%91%E7%A4%BA%E4%BE%8B.png?raw=true" alt="简单的交通网示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E9%80%9A%E7%BD%91%E7%A4%BA%E4%BE%8B.png?raw=true" alt="简单的交通网示例"></p>
 <p>比如，用户想要从 <em>A</em> 到 <em>D</em> 的最短路径。 </p>
 <p>在利用 <em>Dijkstra</em> 算法之前，首先要对相关数据初始化。初始时，我们有如下表格：</p>
 <table>
@@ -7023,11 +7024,11 @@
   <entry>
     <title>去目的地最少中转方案怎么实现?</title>
     <url>/2018/09/22/qu-mu-de-di-zui-shao-zhong-zhuan-fang-an-zen-me-shi-xian/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/22/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/22/cover.jpg?raw=true" alt="cover"></p>
 <p>在之前的一篇文章中，我们具体讨论了计算去目的地的最少中转方案的算法，但是限于篇幅，没有介绍实现。今天，我们就来看看这个算法如何实现。</p>
 <p>在那篇文章中我们提到，为了更快速地获取某一顶点的邻居顶点，采用图的邻接表存储信息比较合适。那么邻接表如何用Python来表达呢？</p>
 <p>邻接表兼具数组和链表的特点。我们可以利用哈希表将表头元素和其后续的链表联系起来。在Python中，可以直接使用其内置的字典和列表数据结构来描述这里的邻接表。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构举例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构举例"></p>
 <p>比如，上图的邻接表可表达为： </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = [<span class="string">'C'</span>]</span><br><span class="line">graph[<span class="string">'B'</span>] = [<span class="string">'C'</span>, <span class="string">'D'</span>]</span><br><span class="line">graph[<span class="string">'C'</span>] = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'E'</span>]</span><br><span class="line">graph[<span class="string">'D'</span>] = [<span class="string">'B'</span>, <span class="string">'E'</span>]</span><br><span class="line">graph[<span class="string">'E'</span>] = [<span class="string">'C'</span>, <span class="string">'D'</span>]</span><br></pre></td></tr></table></figure>
 
@@ -7083,11 +7084,11 @@
   <entry>
     <title>去目的地最少中转方案怎么算?</title>
     <url>/2018/09/17/qu-mu-de-di-zui-shao-zhong-zhuan-fang-an-zen-me-suan/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/cover.jpg?raw=true" alt="cover"></p>
 <p>当今时代，随着交通越来越发达，我们更加愿意选择公共交通出行。然而在去往目的地的时，公共交通有时并不能直达，需要中转。中转有时候会非常浪费时间，因而我们希望在去往目的地的过程中，中转的次数越少越好。以往，我们需要自己记忆繁杂的交通网络人为判断；而现在，我们可以很方便地从手机中的地图app中获取最少中转的方案。你有没有想过，这些最少中转方案是怎么生成的呢？</p>
 <p>面对这个问题感觉无从下手？那我们一起来看看地图导航app中是如何简化这个问题的。</p>
 <p>地图上，我们自己的位置和目的地的位置被简化为两个不同的点，各个公共交通站台也被简化成一个个点；一条条线连接着不同的点，这意味着这两点可以通过一种公共交通直达。这种由点和线连接起来的结构，在数据结构中叫做“图”。其中的点叫做“顶点”（ $Vertex$ ），线则叫做“边”（ $Edge$ ）。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
 <p>有了“图”这种结构，我们就可以构建出一个简易的交通网络。以此为基础，让我们回到文章开始提出的问题：如何利用这样的信息来寻找最少中转方案呢？</p>
 <p>在了解这个算法之前，我们先来了解一下图这个数据结构中的“邻居”的概念。</p>
 <p>比如上图中，假设你在 $C$ 点，那么 $A$ 、 $B$ 、 $E$  是与你直接相连的，这些顶点也叫做 $C$  的“邻居”（ $Neighbour$ ）。</p>
@@ -7100,7 +7101,7 @@
 <p>图在计算机中的存储结构通常有三个，分别是数组表示法(有时候也叫邻接矩阵表示法)、邻接表表示法、十字链表表示法。限于篇幅。我这里只讨论前两种，第三种大家自己找相关书籍阅读吧。 :)</p>
 <p>从“数组表示法”的命名，我们很自然地想到利用数组来存储顶点信息；从“邻接矩阵表示法”的命名，我们也可以很自然的想到这种方式是利用矩阵来存储顶点与顶点之间的关联。</p>
 <p>假设图中有 $N$ 个顶点，那么建立一个大小为 $N$ 的数组存储顶点信息；接下来再创建一个大小为 $N × N$ 的矩阵存储顶点之间的联系。假设存储在顶点数组下标为 $i$ 和 $j$ 的两个顶点直接相连，如果这种相连关系是单向的（比如从 $i$ 到 $j$ ），那么矩阵 $( i, j )$ 位置存储 1 （表示它们是相邻的，而 0 自然是表示它们不相邻）；如果这种相连关系是双向的，那么矩阵 $( j, i )$ 位置上的值也得是 1 。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
 <p>把我们上面用于举例的图的结构拿过来，我们发现顶点之间的联系是双向的。换句话说，方向在这种图中，是没有意义的。这样顶点双向联系的图叫做“无向图”。依据这点分析，顶点单向联系的图便叫做“有向图”。</p>
 <p>面对这个无向图，我们可以很容易得到它的顶点数组和其邻接矩阵。具体如下：</p>
 <p>顶点数组：${A，B，C，D，E}$</p>
@@ -7160,9 +7161,9 @@
 <p>仔细观察，我们发现，无向图的邻接矩阵是以主对角线对称的。根据这点特性，对于无向图，我们可以只存储一个上三角区域（或者是下三角区域）来节省存储空间。</p>
 <p>上述图的存储方式十分简单，但是如果图中的边非常少，那么邻接矩阵中大部分存储的都是零，造成了极大的空间浪费。怎么解决这个问题呢？</p>
 <p>邻接表的存储方式就是来解决这一问题的。邻接表的存储结构有点像我们之前介绍过的数组链表的混合结构。每个链表的表头存储顶点信息，这些链表构成一个链表数组。每个链表表头后续的链表元素存储与表头所存顶点直接相连顶点在链表数组中的下标。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/%E5%9B%BE%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B.png?raw=true" alt="图的结构距离"></p>
 <p>那么上图就可以利用邻接表表示为 </p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/17/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E4%B8%BE%E4%BE%8B.png?raw=true" alt="邻接表存储举例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/17/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E4%B8%BE%E4%BE%8B.png?raw=true" alt="邻接表存储举例"></p>
 <p>我们对比两者图的存储结构，可以发现，邻接表可以很快获取一个顶点的“邻居”顶点。因而，对于求最短路径算法，我们选择邻接表存储图的信息。</p>
 <p>为了图中的顶点能够按照宽度优先搜索时的顺序遍历，我们这里还要利用另一个叫做“队列”数据结构。“队列”，和生活中的排队十分相似，数据在队列中“先进先出”【 $FIFO$ 】（与之相反，数据在栈中“先进后出”【 $FILO$ 】）。队列只支持两种操作，一种为 $EnQueue$ （入队，将元素加入队尾），另一种为 $DeQueue$ （出队，从队首移除元素，并返回该元素的值）。</p>
 <p>从起点开始，依次将其“邻居”顶点加入队列；在遍历“邻居”顶点时，先将该顶点出队，再将“邻居”顶点的“邻居”顶点依次入队···直到找到目的地顶点。如果这个过程结束后，队列为空，那么已知的图上不存在相关路径。</p>
@@ -7188,7 +7189,7 @@
   <entry>
     <title>高效的数据结构——哈希表</title>
     <url>/2018/09/07/gao-xiao-de-shu-ju-jie-gou-ha-xi-biao/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/09/07/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/07/cover.jpg?raw=true" alt="cover"></p>
 <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>在编程过程中，我们经常会遇到多组一一对应的数据（比如，通讯录中的姓名和电话号码），如何存储这些数据，同时能获得较高的数据操作效率呢？</p>
 <p>下面，我们以通讯录中的存储为例进行简单的讨论。</p>
 <p>首先，我们会想到利用数组来存储这些数据，一个数组用于存储姓名，另一个数组用于存储电话号码。单单两个数组并不能完成数据中一一对应的要求，因而需要我们自己书写其中的对应关系。</p>
@@ -7238,7 +7239,7 @@
   <entry>
     <title>分治思想下的高效排序算法</title>
     <url>/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/30/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true" alt="cover"></p>
 <p>什么是分治？这是一种解决问题的方法。别看它名字高大上，其实我们在日常生活学习中经常用到它。我相信，你看完下面的例子后就可以明白分治的内涵了。</p>
 <p>还记得你小学是如何计算多个数连续相加吗？我想，一般的解决办法应该是这样的：</p>
 <p>从左到右，让第一个数和第二个数相加，所得的结果和后续的式子相加构成新的式子。此时，新得到的式子比原式更简单，更容易解决（因为要相加的数的个数变少了）。接着，让新的式子中的第一个数和第二个数相加，所得结果和后续剩下的式子构成另一个新的式子···如此进行下去，原式会不断的被化简，最终只剩下一个数，而这个数，正是原式的结果。</p>
@@ -7307,7 +7308,7 @@
   <entry>
     <title>算法趣解之递归思想</title>
     <url>/2018/08/25/suan-fa-qu-jie-zhi-di-gui-si-xiang/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/25/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true" alt="cover"></p>
 <p>数学上有一种运算叫做阶乘，它的计算定义如下：</p>
 <p>$$<br>n ! = 1 × 2 × ··· × n ( n ≥ 1)<br>$$</p>
 <p>如果，让你依据上述公式，为阶乘运算写一个函数，你会怎么实现？</p>
@@ -7333,7 +7334,7 @@
 <p>要计算 $factorial(3)$ , 根据递推公式可以得到 $factorial(3) = 3 × factorial(2)$ 。为了计算 $factorial(2)$ ，我们先将当前的函数状态 $factorial(3)$ 压入栈中保存；</p>
 <p>···</p>
 <p>以此类推，我们会到达递归的出口，也就是直接给出的factorial(1)的值。然后我们从栈中取出最近一个函数状态 $factorial(2)$ ，得到 $factorial(2)$ 等于2；再进一步得到 $factorial(3)$ 等于6， $factorial(4)$ 等于24。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态"></p>
 <p>计算一个简单的4的阶乘，背后有这么多的栈的操作，看上去非常繁琐。同时，随着数据待求数字的增大，其递归层次也变得更深，而栈的空间是有限的，深层次的递归调用可能会使得栈存储不下，导致栈溢出，程序异常终止。</p>
 <p>在可读性方面，递归程序的简洁十分利于理解，但在效率方面，并不如循环递推高效。那递归为什么会存在于算法思想里呢？我想除了易于理解以外，还有一点便是有些问题只能通过递归来实现（比如说“汉诺塔问题”。由于篇幅有限，这里不做讨论，大家可以自己看看）。</p>
 <p>递归函数在执行过程比较特殊，对应的其时间复杂度的计算也比较特殊。以上述递归求阶乘为例，介绍一下递归函数时间复杂度的分析。</p>
@@ -7362,7 +7363,7 @@
   <entry>
     <title>算法趣解之基础排序算法（下）</title>
     <url>/2018/08/20/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-xia/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/20/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/20/cover.jpg?raw=true" alt="cover"></p>
 <p>打牌是很多人喜欢的与亲朋好友一起娱乐的一种方式。在牌局开始，打牌的各位都要依此摸牌。与此同时，为了方便后续出牌，很多人对摸到的牌从大到小排序。这种排序手法，在算法中，被称作“插入排序”。</p>
 <p>为了理解“插入排序”的主要流程，我们先来简单地回顾一下对牌排序的流程。</p>
 <p>每摸一张牌，我们都会将这张牌和手上的牌依次进行对比，找到合适的位置插入，保证手上的牌是有序的。下次摸牌时，也是类似的流程。最终，手上会是一个有序的牌组。</p>
@@ -7408,7 +7409,7 @@
   <entry>
     <title>算法趣解之基础排序算法（中）</title>
     <url>/2018/08/14/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-zhong/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/14/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/14/cover.jpg?raw=true" alt="cover"></p>
 <p>说起音乐，很多人都喜欢。大多数人的手机中几乎都至少有一款音乐app，这些app除了给你提供音乐播放的功能，也在悄悄记录着你的一些个性化信息。比如：某首歌你听了多少次、听歌在什么时候等等。这些数据杂乱无章，似乎没有任何价值，但是其中却深藏着你的喜好厌恶。在当今手机用户增长缓慢（甚至增长停滞）的阶段，各大同类型的app面临着非常激烈的竞争。不抓住这些用户数据，可能就会在这场残酷的竞争中败下阵来。</p>
 <p>如何利用这些数据来留住留住用户，提升用户在产品上的粘性呢？很多app给出了如下的答卷：</p>
 <p>这种方案便是基于用户的行为数据构建用户的标签，依据各种标签的综合，提供个性化的服务。</p>
@@ -7457,7 +7458,7 @@
   <entry>
     <title>算法趣解之基础排序算法（上）</title>
     <url>/2018/08/09/suan-fa-qu-jie-zhi-ji-chu-pai-xu-suan-fa-shang/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/cover.jpg?raw=true" alt="cover"></p>
 <p><a href="https://cosmosning.github.io/2018/08/02/%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">之前的文章</a>中提到的二分查找算法中要求数据序列是有序的。然而，生活中的很多数据却是无序的。将无序转换为有序，这就需要排序算法。今天，我们就来一起探索一下几种常见的基础排序算法。</p>
 <p>很多基础的排序算法都来源于实际生活中对于某些特定的问题情境的抽象、提炼和总结。你不信？我们一起来分析一下几个例子。</p>
 <p>还记得很小的时候，上体育课时，体育老师是如何把你们从高到矮排队吗？老师先目测大家的身高，排出一个基本有序的队伍。然后，依据相邻同学的身高对比，再进行微调。调整的标准如下：</p>
@@ -7467,34 +7468,34 @@
 <p>那么这种方法如何交由计算机来实现呢？在从实际方法到计算机实现的过程中，我们经常会遇到一个困难，即，在具体情境下的处理流程不能直接拿来就用。这就需要我们做一定的转化。比如本例，老师可以先目测，排出基本有序的队伍，而计算机不会目测。如何解决这个问题呢？利用计算机可以机械地、重复地处理一些基本运算的特性，我们将每一种相邻的情况枚举出来，再判断处理，就可以实现这个排序方法。</p>
 <p>有关这种排序方法的处理流程，我们通过一个具体的数字排序例子来感受一下。</p>
 <p>比如有一个无序数字序列如下：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/1.jpg?raw=true" alt="无序序列"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/1.jpg?raw=true" alt="无序序列"></p>
 <p>我们要使用上述的排序方法，使之从小到大排列。</p>
 <p>我们从头开始对数据进行对比处理。</p>
 <p>①对比第1个和第2个数据，第2个数据较小，因而需要交换。交换后的序列如下</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/2.jpg?raw=true" alt="交换1"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/2.jpg?raw=true" alt="交换1"></p>
 <p>②对比第2个和第3个数据，两个数据排列符合排序要求，因而不需要交换。此次处理后的序列如下：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/3.jpg?raw=true" alt="交换2"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/3.jpg?raw=true" alt="交换2"></p>
 <p>③同样的方式处理，可以得到以下序列 </p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/4.jpg?raw=true" alt="交换3"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/4.jpg?raw=true" alt="交换3"></p>
 <p>（P.S.87和88比较，顺序符合要求，不交换）</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/5.jpg?raw=true" alt="交换4"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/5.jpg?raw=true" alt="交换4"></p>
 <p>（P.S.88和61比较，不符合顺序要求，交换）</p>
 <p>经过这一轮的排序，我们发现序列中的最大值已经达到目标位置，但是整个序列还不是有序的。如何解决呢？可以仿照这一轮的排序对之前无序的序列做同样的操作。</p>
 <p>第二轮的排序每次的序列如下所示：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/6.jpg?raw=true" alt="交换5"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/6.jpg?raw=true" alt="交换5"></p>
 <p>（P.S.83和84比较，顺序符合要求，不交换） </p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/7.jpg?raw=true" alt="交换6"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/7.jpg?raw=true" alt="交换6"></p>
 <p>（P.S.84和87比较，顺序符合要求，不交换）</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/8.jpg?raw=true" alt="交换7"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/8.jpg?raw=true" alt="交换7"></p>
 <p>（P.S.87和61比较，不符合顺序要求，交换）</p>
 <p>经过这一轮的排序，次大值也到了目标位置。</p>
 <p>第三轮：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/9.jpg?raw=true" alt="交换8"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/9.jpg?raw=true" alt="交换8"></p>
 <p>（P.S.83和84比较，顺序符合要求，不交换）</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/10.jpg?raw=true" alt="交换9"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/10.jpg?raw=true" alt="交换9"></p>
 <p>（P.S.84和61比较，不符合顺序要求，交换）</p>
 <p>第四轮</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/09/11.jpg?raw=true" alt="交换10"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/11.jpg?raw=true" alt="交换10"></p>
 <p>（P.S.83和61比较，不符合顺序要求，交换）</p>
 <p>通过上面这个实际的例子，我们发现，每一轮排序都会在前面无序的序列中通过交换相邻数字的方式找到其中的最大值，和后面的数字形成一个有序的部分。这个过程就像水中的一个气泡，从底端慢慢的飘升到水面的过程，所以我们将这种排序算法成为“冒泡排序”。</p>
 <p>到了实现环节，就需要选择合适的存储结构，并利用三种基本的程序结构来描述这个算法的流程。</p>
@@ -7525,10 +7526,10 @@
   <entry>
     <title>还只会用数组？你快被Out啦</title>
     <url>/2018/08/04/huan-zhi-hui-yong-shu-zu-ni-kuai-bei-out-la/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/cover.jpg?raw=true" alt="cover"></p>
 <p>上一篇文章中，我们一起探索了二分查找算法。（什么？你没看到？快戳<a href="https://cosmosning.github.io/2018/08/02/%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/#more">本链接</a>去看一看）在算法的实现过程中，我们选择了数组作为存储算法中相关数据的载体。那样的选择合适吗？能否将它换为其他的存储结构实现？如果换作其他的存储结构，算法的效率又会如何？今天，我们就来一起探索一下。</p>
 <p>熟悉数组的人都知道，数组在计算机内存中是连续存储的。具体如下图所示：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="数组在内存中的存储示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="数组在内存中的存储示例"></p>
 <p>实际运用中，数组由于是连续存储，我们可以很方便的通过数组下标来访问数组中的任意一个元素（这样的访问方式，给它一个高级一点的名字就叫做“随机访问”【Random access】）。举个例子，假设数组起始地址为 $a$ ，待访问的数据下标为 $i$ 【注意，下标从 0 开始】，存储每一个数据所需的空间大小为 $m$ ，那么该数据在内存中的地址可以由下式给出：</p>
 <p>$$<br>a ＋ i × m<br>$$</p>
 <p>观察这个式子，进一步，我们可以发现：该式中并不含表示数组容量大小的因子。换句话说，访问数组中的任意元素与数组的容量大小无关。无论数组的容量有多大，只需知道数据在数组中的下标，我们就可以很容易的通过上式在常数时间内获取数组中的对应的数据。用“大O”来描述在数组中访问任意一个数据的时间复杂度，就是  $O(1)$  。（这里的“1”的含义不是指常数时间等于 1 ，而是用 1 来代表常数时间）。</p>
@@ -7538,7 +7539,7 @@
 <p>首先，我们来看看增添的情况。</p>
 <p>下图中，数组b中有10个元素。如果增添一个元素，新元素会被放在其当前末尾元素的后一个空闲空间内，此时增添成功（但是我不建议这么做）。</p>
 <p>我们再来看看数组a。数组a有4个元素，要增加一个元素的话，需要在其末尾的后一个空间内存储新数据。但是这个空间暂时被其他程序占用了，无法增加新数据。怎么办？</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="数组在内存中的存储示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="数组在内存中的存储示例"></p>
 <p>方法1，将新数据放在之后的任意一个空闲空间内。如果这样做，就会导致数组的随机访问特性遭到破环。也就是说，你将无法通过数组下标来获取新增数据的值。</p>
 <p>方法2，重新申请一片包含连续5个空闲空间的内存区域，将原来的数组和新增数据复制过来，完成后再释放原空间。这看似是一个比较好的解决方案，但是考虑一个极端情况，如果内存中不存在这样的连续的5个存储空间，那么就无法向数组中增添新的元素。</p>
 <p>那究竟怎么解决呢？通常的编程惯例，我们会申请足够大的数组空间来处理。比如我们大约需要50个存储空间，我们可以定义的时候申请60个、70个甚至更多，从而留下向数组增添数据的的空间。不过，这样的方法自然免不了对空间的浪费。</p>
@@ -7546,19 +7547,19 @@
 <p>最后，一起来看看数组中的删除。为了保证数组可“随机访问”的特性，将数据从数组中删除这个操作也需要移动元素。这里移动元素虽说不可能出现“数组已满，需重新申请空间”的情况，但移动元素总会花费时间。</p>
 <p>综合以上几点，数组并不是完美无缺的，它也存在缺点，比如在数组空间已满时，增添元素可能会操作失败；插入和删除都需要移动元素，且所花费的时间会随着数组的大小线性增长（用“大O”来描述其时间复杂度便是 $O(N)$  ）。</p>
 <p>针对的这些问题，有人便设计出链表这个新的存储结构。与数组不同，链表是分散存储的，从而可以充分利用内存中“碎片化”的存储区域。链表中的数据分散在内存中不同的地方，如何将他们联系起来呢？设计者给出如下的方案：</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E9%93%BE%E8%A1%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表示例"></p>
 <p>每一个链表的元素单元除了存储的数据本身，再开辟一个空间用于存储下一个元素单元的地址，从而将他们连成一个整体。这也是“链表”名字的由来。</p>
 <p>接下来，我们和对数组的分析一样，对链表的读取、增添、插入、删除做一个简单的分析。</p>
 <p>首先，是对链表任意元素的访问。链表是分散存储的，每一个元素单元的地址由它上一个元素单元决定。因而，链表对元素的访问只能从第一个开始，逐一访问。这就给访问链表中的任意元素造成了极大的困难。随着链表规模的增大，其访问时间也在线性增长，所以链表访问任意一个元素的时间复杂度为 $O ( N )$ 。</p>
 <p>其次，我们来看一看链表的增添操作。增添操作对于链表来说，十分简单。只需申请一个元素单元节点，将此节点的地址与链表末尾节点连接起来即可，无论链表规模有多大，该操作都在常数时间内完成，因而链表增添操作的时间复杂度为 $O(1)$ 。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E9%93%BE%E8%A1%A8%E5%A2%9E%E6%B7%BB%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表增添示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%A2%9E%E6%B7%BB%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表增添示例"></p>
 <p>接着，我们来分析一下链表的插入操作。相较于数组，链表的插入不需要移动元素，只需申请一个新节点，将它和待插入位置的前后节点连接起来即可。其操作时间也是常数时间，时间复杂度也就是 $O(1)$ 。 </p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表插入示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表插入示例"></p>
 <p>最后，便是对链表的删除的分析。想要删除一个元素，只需将它前一个节点和待删除节点连接起来，再将该元素节点空间释放即可。其时间复杂度为 $O(1)$ 。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表删除示例"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E7%A4%BA%E4%BE%8B.jpg?raw=true" alt="链表删除示例"></p>
 <p>通过以上的探索，我们发现数组和链表各有优劣。那么，究竟如何选取合适的存储结构呢？我认为，要关注问题中对数据存储的要求，选择能发挥存储结构最大优势的那一个。比如，你的程序需要大量的随机访问一个集合中的元素，那么选择数组就OK；如果你的程序存在大量的插入、删除，那么链表会很有效率。</p>
 <p>然而，现实中的问题都不是那么理想化。对数据的存储结构，既要求它能够提供随机访问的功能，又要在插入、删除方面具有极高的效率。有人为了解决这个问题，给出如下的数组和链表的混合结构。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/04/%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E6%B7%B7%E5%90%88%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.jpg?raw=true" alt="数组链表混合结构"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E6%B7%B7%E5%90%88%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.jpg?raw=true" alt="数组链表混合结构"></p>
 <p>尝试自己分析一下这种存储结构在插入、删除、随机访问等方面的效率，看看它是否比数组和链表更加优异。</p>
 <p>在文章的最后，我们按照惯例，将本文的要点总结一下：</p>
 <ol>
@@ -7605,7 +7606,7 @@
   <entry>
     <title>算法趣解之二分查找</title>
     <url>/2018/08/02/suan-fa-qu-jie-zhi-er-fen-cha-zhao/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/02/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/cover.jpg?raw=true" alt="cover"></p>
 <p>在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：</p>
 <blockquote>
 <p>游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。</p>
@@ -7625,13 +7626,13 @@
 <p>第三种，如果正确答案是给定范围的中间的数，那么很幸运，只需一次便可；如果正确答案是第一个或是最后一个数，那可能就会就会需要很多次。这里的很多次究竟是几次呢？这里我们一起研究一个具体的例子，来找找规律。</p>
 <p>比如有一组数为从 1 开始，一直到 10 的 10 个整数，假定猜数的正确答案是 1 ，我们利用折半猜数的策略来分析一下：</p>
 <p>第一次猜数，猜 5 ，</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/02/1.jpg?raw=true" alt="第一次猜数"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/1.jpg?raw=true" alt="第一次猜数"></p>
 <p>答案大了，数据范围切掉一半，剩下 1 ~ 4 ；</p>
 <p>第二次猜数，猜 2，</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/02/2.jpg?raw=true" alt="第二次猜数"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/2.jpg?raw=true" alt="第二次猜数"></p>
 <p>答案大了，数据切掉一半，只剩下 1 ；</p>
 <p>第三次猜数，猜 1 ，</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/08/02/3.jpg?raw=true" alt="第三次猜数"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/3.jpg?raw=true" alt="第三次猜数"></p>
 <p>答案正确，游戏结束。</p>
 <p>如果将正确答案换作 10 ，上述过程又会怎样？推荐大家自己动手尝试一下，这里我不再讨论。在这种情况下，猜数次数为 4 次。</p>
 <p>上述分析，我们很容易看到，10 个数据中猜一个数最多需要 3 ~ 4 次。这 3 和 4 究竟和 10 有什么关系呢？如果对数字敏感的同学一定会发现：log2(10) 约为 3.32 ，而这个数在 3 和 4 之间！</p>
@@ -7669,14 +7670,14 @@
   <entry>
     <title>你真的会编程吗</title>
     <url>/2018/07/30/ni-zhen-de-hui-bian-cheng-ma/</url>
-    <content><![CDATA[<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/cover.jpg?raw=true" alt="cover"></p>
+    <content><![CDATA[<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/cover.jpg?raw=true" alt="cover"></p>
 <p>当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。</p>
 <p>如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。</p>
 <p>但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不从心了。</p>
 <p>当下，大多数人对编程的理解便是这样：将编程的学习简化为语言的学习，将掌握语言与掌握编程对等。这种拘泥于语言形式的编程学习，在短时间内确实可以提高个人的编程水平，但从长期来看，容易遇到个人思维的瓶颈。</p>
 <p>在我看来，编程并不应该只局限于某一种或是某几种语言的具体形式，而更应该关注逻辑思维的培养。逻辑思维，说得简单一点，其实就是一种思考问题和解决问题的一些套路。如果你掌握了这些套路，并能够将他们组合应用，那么我恭喜你，你已经比大多数人强了。这些套路，在编程中，我们给了它一个比较高端的名字，便是“算法”。</p>
 <p>说到这里，一定有很多同学对算法产生了兴趣。这很棒！接下来的一段时间里，我会以《Grokking Algorithms －An illustrated guide for programmers and other curious people》这本书为参考，给大家分享一些常见的算法原理，以及它对应的实现。</p>
-<p><img src="https://github.com/CosmosNing/CosmosNing.github.io/blob/master/2018/07/30/book.jpg?raw=true" alt="book"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/book.jpg?raw=true" alt="book"></p>
 <p>看到这儿，你肯定会有个疑问：为什么选择这本书呢？</p>
 <p>当今市面上有很多算法书，但是它们的侧重点不尽相同。</p>
 <p>比如，《算法导论》这本书比较侧重严谨性和全面性，说白了就是会劝退一些新手和小白。</p>
