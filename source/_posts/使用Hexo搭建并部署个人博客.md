@@ -44,7 +44,7 @@ hexo init blog
 
 等待片刻，**Hexo** 会帮我们做初始化网站的工作。
 
-![Hexo初始化](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/hexo-init-blog.PNG)
+![Hexo初始化](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-init-blog.PNG)
 
 为方便后面部署，我们在 `blog` 中初始化一个 git 仓库，并配置好 git 相关信息。
 
@@ -62,7 +62,7 @@ git config --local user.email <你的邮箱名>
 git config --local --list
 ```
 
-![初始化Git仓库](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-init-and-config.PNG)
+![初始化Git仓库](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-init-and-config.PNG)
 
 接着，将仓库里的已有改动添加、提交。
 
@@ -71,7 +71,7 @@ git add .
 git commit -m "init with hexo-cli"
 ```
 
-![Git提交改动](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-add-and-commit.PNG)
+![Git提交改动](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-add-and-commit.PNG)
 
 在 blog 根目录，使用任意文本编辑器打开 `_config.yml` 文件，并在 `#Site` 部分输入你网站的信息。一个示例如下
 
@@ -95,13 +95,13 @@ hexo g; hexo s
 hexo g && hexo s
 ```
 
-![Hexo本地预览命令](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/hexo-g-and-hexo-s.PNG)
+![Hexo本地预览命令](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-g-and-hexo-s.PNG)
 
 打开浏览器，访问 http://localhost:4000/
 
 你应该能得到类似这个画面
 
-![Hexo最小化配置效果](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/basic-result.PNG)
+![Hexo最小化配置效果](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/basic-result.PNG)
 
 {% note info %}
 ## 提示-终止预览
@@ -132,13 +132,13 @@ theme: next
 hexo clean; hexo g; hexo s
 ```
 
-![Hexo本地预览](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/next-hexo-g.PNG)
+![Hexo本地预览](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-hexo-g.PNG)
 
 打开浏览器，访问 http://localhost:4000/
 
 你应该能得到类似这个画面
 
-![next最小配置效果](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/next-basic-result.PNG)
+![next最小配置效果](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-basic-result.PNG)
 
 使用 `Ctrl + C` 终止上述命令。接下来，我们将这一阶段的改动提交到 Git 仓库。
 
@@ -151,7 +151,7 @@ git add .
 git commit -m "add common site config with theme next(default config)"
 ```
 
-![NexT最小化配置提交](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/git-commit-next-default.PNG)
+![NexT最小化配置提交](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-commit-next-default.PNG)
 
 ## 配置功能页面及资源文件
 
@@ -348,7 +348,7 @@ hexo clean; hexo g; hexo s
 
 我得到了以下画面
 
-![效果预览](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/my-result.PNG)
+![效果预览](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/my-result.PNG)
 
 ## 定制主题颜色及简单样式
 
@@ -382,7 +382,7 @@ hexo clean; hexo g; hexo s
 
 按下 `F12` 打开`Chrome` 浏览器开发者工具。并点选左上角红框所示的按钮。这样，你就可以使用鼠标快速找到网页中某块元素的样式。然后修改右半部分（如蓝框所示） `Styles` 的样式，并观察网页效果。如果合适，将对应的样式类，复制到上述创建的 `styles.styl` 文件中，并保存。下次预览生成，你就会得到定制化的主题样式。
 
-![ChromeDevTools](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/ChromeDevTools.PNG)
+![ChromeDevTools](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/ChromeDevTools.PNG)
 
 {% note default %}
 
@@ -416,9 +416,9 @@ git branch -d master
 
 登录你的 GitHub 账号，在主页的左侧，点击 `New` ，新建一个 GithubPages 仓库。你应该将其命名为 `<你的 GitHub 用户名>.github.io`，并点击 `Create repository` 完成创建。
 
-![创建仓库](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/new-repo.png)
+![创建仓库](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo.png)
 
-![填写仓库信息](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/new-repo-info.PNG)
+![填写仓库信息](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo-info.PNG)
 
 接下来，需要将本地的博客仓库，推送到 GitHub。
 
@@ -431,45 +431,45 @@ git push -u origin source
 
 在浏览器新建一个标签页，前往 GitHub [新建 Personal Access Token](https://github.com/settings/tokens)，只勾选 `repo` 的权限并生成一个新的 Token。Token 生成后请**复制并保存好**（因为只会出现一次，刷新页面就再也看不见了）。
 
-![token](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/token.PNG)
+![token](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token.PNG)
 
-![token-info](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/token-info.PNG)
+![token-info](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token-info.PNG)
 
 ## 安装及配置 TravisCI
 
 在你的 GitHub 主页，点击上方菜单栏中的 `Marketplace`。
 
-![Travis-01](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis01.png)
+![Travis-01](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis01.png)
 
 在搜索框中，搜索 `travis`
 
-![Travis-02](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis02.PNG)
+![Travis-02](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis02.PNG)
 
-![Travis-03](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis03.PNG)
+![Travis-03](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis03.PNG)
 
 点选第一个 `Travis CI` ，并滑动到最后，选择 `Open Source`，再点击 `Install it for free`。
 
-![Travis-04](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis04.PNG)
+![Travis-04](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis04.PNG)
 
-![Travis-05](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis05.PNG)
+![Travis-05](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis05.PNG)
 
 继续点 `绿色` 按钮。
 
-![Travis-06](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis06.PNG)
+![Travis-06](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis06.PNG)
 
 `Install` !
 
-![Travis-07](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis07.PNG)
+![Travis-07](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis07.PNG)
 
 现在我们可以在 `Travis CI` 官网上，登录并设置它了。
 
-![Travis-08](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis08.PNG)
+![Travis-08](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis08.PNG)
 
-![Travis-09](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis09.PNG)
+![Travis-09](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis09.PNG)
 
 点击你的博客仓库，新建一个环境变量。**Name** 为 `GH_TOKEN`，**Value** 为刚才你在 GitHub 生成的 Token。确保 **DISPLAY VALUE IN BUILD LOG** 保持 **不被勾选** 避免你的 Token 泄漏。点击 **Add** 保存
 
-![Travis-10](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/travis10.PNG)
+![Travis-10](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG)
 
 在你的 Hexo 站点文件夹中新建一个 `.travis.yml` 文件：
 
@@ -505,7 +505,7 @@ git push
 
 你的工作至此完成，可以泡杯咖啡，等待 `Travis CI` 运行结果（在你的 GitHub 博客仓库主页可以查看，如下图。如果是绿色的 ✅，那么成功；❎ 则代表失败）。
 
-![build-status](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/build-status.PNG)
+![build-status](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG)
 
 # 写作
 
