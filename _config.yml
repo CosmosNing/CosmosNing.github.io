@@ -427,6 +427,7 @@ feed:
   content_limit_delim: ' '
   order_by: -date
   icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
+  template: ./source/_data/custom_atom_feed.xml
 
 # hexo-permalink-pinyin config
 # https://github.com/viko16/hexo-permalink-pinyin
