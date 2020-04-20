@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffe27f;
+  background: #b8ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2854,14 +2854,35 @@ mjx-container + br {
     margin: 8px 0 0;
   }
 }
+:root {
+  --body-bg-color: #121212;
+  --content-bg-color: #1d1d1d;
+  --card-bg-color: #282828;
+  --text-color: #e1e1e1;
+  --link-color: #e1e1e1;
+  --link-hover-color: #fff;
+  --brand-color: #fff;
+  --brand-hover-color: #fff;
+  --table-row-odd-bg-color: #282828;
+  --table-row-hover-bg-color: #363636;
+  --menu-item-bg-color: #333;
+}
+img {
+  opacity: 0.75;
+}
+img:hover {
+  opacity: 1;
+}
 body {
-  background: url("https://gitee.com/CosmosNing/MyPicGo/raw/master/images/bg.gif");
+  background: #57606f;
 /*background-repeat: no-repeat;*/
-  background-attachment: fixed;
 /*background-size: 100% 100%*/
 }
 span.site-title {
   font-size: 1.075em;
+}
+.footer {
+  color: var(--text-color);
 }
 .footer a {
   color: #fff;
@@ -2904,17 +2925,19 @@ span.site-title {
 }
 blockquote {
   border-left: 4px solid #e84393;
-  background: #f9f9f9;
+  background: #2f3542;
+  color: var(--text-color);
+  border-radius: 10px;
 }
 .posts-expand .post-body img {
   box-shadow: 0 5px 25px 0 rgba(0,0,0,0.2), 0 10px 30px -11px rgba(0,0,0,0.6);
+  border-radius: 10px;
 }
 .category-list-item a {
   margin: 10px 10px;
   padding: 0 14px;
   display: inline-block;
   height: 38px;
-  min-width: 80px;
   line-height: 39px;
   font-size: 1rem;
   font-weight: 500;
@@ -2933,10 +2956,7 @@ blockquote {
   padding: 0 14px;
   display: inline-block;
   height: 38px;
-  min-width: 80px;
   line-height: 39px;
-  font-size: 1rem;
-  font-weight: 500;
   border-radius: 5px;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -2966,6 +2986,29 @@ blockquote {
 }
 .tag-cloud a:nth-child(7n+6) {
   background: #ff4757;
+}
+.back-to-top {
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.header-inner {
+  border-radius: 20px;
+}
+.sidebar {
+  border-radius: 20px;
+}
+.sidebar-inner {
+  border-radius: 20px;
+  color: var(--text-color);
+}
+.post-block {
+  border-radius: 20px !important;
+}
+.pagination {
+  border-radius: 20px !important;
+}
+.comments {
+  border-radius: 20px !important;
 }
 pre,
 .highlight {
