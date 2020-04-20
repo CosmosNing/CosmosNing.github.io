@@ -1,13 +1,44 @@
 // Custom styles.
+// copy from themes/next/source/css/_colors.styl
+:root {
+      --body-bg-color: $body-bg-color-dark;
+      --content-bg-color: $content-bg-color-dark;
+      --card-bg-color: $card-bg-color-dark;
+      --text-color: $text-color-dark;
+      --link-color: $link-color-dark;
+      --link-hover-color: $link-hover-color-dark;
+      --brand-color: $brand-color-dark;
+      --brand-hover-color: $brand-hover-color-dark;
+      --table-row-odd-bg-color: $table-row-odd-bg-color-dark;
+      --table-row-hover-bg-color: $table-row-hover-bg-color-dark;
+      --menu-item-bg-color: $menu-item-bg-color-dark;
+    }
+
+    img {
+      opacity: .75;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+// $darkmode-background = #57606f
+// $darkmode-color      = #dfe4ea
+
 body{
-    background:url(https://gitee.com/CosmosNing/MyPicGo/raw/master/images/bg.gif);
+  background: #57606f;
+    // background:url(https://gitee.com/CosmosNing/MyPicGo/raw/master/images/bg.gif);
     /*background-repeat: no-repeat;*/
-    background-attachment: fixed;
+    // background-attachment: fixed;
     /*background-size: 100% 100%*/
 }
 
 span.site-title {
     font-size: 1.075em;
+}
+
+.footer{
+  color: var(--text-color);
 }
 
 .footer a{
@@ -58,18 +89,20 @@ span.site-title {
 
 blockquote {
     border-left: 4px solid #e84393;
-    background: #f9f9f9;
+    background:#2f3542;
+    color: var(--text-color);;
+    border-radius: 10px;
 }
 
 .posts-expand .post-body img{
   box-shadow: 0 5px 25px 0 rgba(0,0,0,.2), 0 10px 30px -11px rgba(0,0,0,.6);
+  border-radius: 10px;
 }
 .category-list-item a{
   margin: 10px 10px;
   padding: 0 14px;
   display: inline-block;
   height: 38px;
-  min-width: 80px;
   line-height: 39px;
   font-size: 1rem;
   font-weight: 500;
@@ -89,10 +122,7 @@ blockquote {
   padding: 0 14px;
   display: inline-block;
   height: 38px;
-  min-width: 80px;
   line-height: 39px;
-  font-size: 1rem;
-  font-weight: 500;
   border-radius: 5px;
   word-wrap: break-word;
   cursor: pointer;
@@ -129,6 +159,40 @@ blockquote {
 
 .tag-cloud a:nth-child(7n+6){
   background: #ff4757;
+}
+
+.back-to-top{
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  // background: $darkmode-background;
+  // color: $darkmode-color;
+}
+
+.header-inner {
+  border-radius: 20px;
+}
+
+.sidebar {
+  border-radius: 20px;
+}
+
+.sidebar-inner {
+  border-radius: 20px;
+  color: var(--text-color);
+}
+
+.post-block{
+  border-radius: 20px !important;
+  // background: $darkmode-background;
+  // color: $darkmode-color;
+}
+
+.pagination {
+  border-radius: 20px !important;
+}
+
+.comments {
+  border-radius: 20px !important;
 }
 
 // personlize code highlight theme
