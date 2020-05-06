@@ -363,6 +363,15 @@ theme_config:
   # Go to https://www.addthis.com/dashboard to customize your tools.
   add_this_id: ra-5e8a99b79a6be052
 
+  busuanzi_count:
+    enable: true
+    total_visitors: true
+    total_visitors_icon: user
+    total_views: true
+    total_views_icon: eye
+    post_views: true
+    post_views_icon: eye
+
   # Local Search
   # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
   local_search:
