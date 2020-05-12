@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b33d0b;
+  background: #1a4bb9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3202,4 +3202,100 @@ span.selector-class {
 .at4-share-title {
   color: #fff;
   background: #000;
+}
+i.fa.fa-calendar-o {
+  color: #70a1ff;
+}
+i.fa.fa-calendar-check-o {
+  color: #ff6b81;
+}
+i.fa.fa-folder-o {
+  color: #2ed573;
+}
+i.fa.fa-eye {
+  color: #ffa502;
+}
+i.fa.fa-file-word-o {
+  color: #ff7f50;
+}
+i.fa.fa-clock-o {
+  color: #fff;
+}
+.post-body h1 {
+  border-bottom-right-radius: 30px;
+  border-right-style: groove;
+  background: #3742fa;
+  max-width: fit-content;
+  padding: 10px;
+}
+.post-body h2 {
+  border-bottom-right-radius: 25px;
+  border-right-style: groove;
+  background: #ff4757;
+  max-width: fit-content;
+  padding: 8px;
+}
+.post-body h3 {
+  border-bottom-right-radius: 20px;
+  border-right-style: groove;
+  background: #e84393;
+  max-width: fit-content;
+  padding: 6px;
+}
+.post-body h4 {
+  border-bottom-right-radius: 15px;
+  border-right-style: groove;
+  background: #2ed573;
+  max-width: fit-content;
+  padding: 4px;
+}
+.post-body h5 {
+  border-bottom-right-radius: 10px;
+  border-right-style: groove;
+  background: #ff6348;
+  max-width: fit-content;
+  padding: 2px;
+}
+.post-body h6 {
+  border-bottom-right-radius: 5px;
+  border-right-style: groove;
+  background: #1e90ff;
+  max-width: fit-content;
+  padding: 2px;
+}
+i.fa.fa-fw.fa-home {
+  color: #ffa502;
+}
+i.fa.fa-fw.fa-archive {
+  color: #2ed573;
+}
+i.fa.fa-fw.fa-user {
+  color: #ff6348;
+}
+i.fa.fa-fw.fa-tags {
+  color: #1e90ff;
+}
+i.fa.fa-fw.fa-th {
+  color: #e84393;
+}
+i.fa.fa-search.fa-fw {
+  color: #3742fa;
+}
+i.fa.fa-user {
+  color: #ff6348;
+}
+i.fa.fa-fw.fa-github {
+  color: #e84393;
+}
+i.fa.fa-fw.fa-linkedin {
+  color: #70a1ff;
+}
+i.fa.fa-fw.fa-envelope {
+  color: #ff4757;
+}
+i.fa.fa-fw.fa-rss {
+  color: #ffa502;
+}
+i.fa.fa-fw.fa-steam {
+  color: #2ed573;
 }
