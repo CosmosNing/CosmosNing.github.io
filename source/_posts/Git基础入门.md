@@ -7,7 +7,7 @@ description: Git 从安装到使用
 tags:
 - 工具
 - 版本控制
-- git
+- Git
 categories:
 - 笔记
 ---

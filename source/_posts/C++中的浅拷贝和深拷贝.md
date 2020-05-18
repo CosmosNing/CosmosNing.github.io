@@ -14,6 +14,10 @@ categories:
 
 > （导读）短文一篇。主要介绍浅拷贝和深拷贝的含义以及在 C++ 中的实现
 
+![封面图片](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/05/cristian-lozan-lb5yppoIEWk-unsplash.jpg)
+
+Photo by [Cristian Lozan](https://unsplash.com/@chrisslozan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/t/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
 # 问题引入
 
 先来看一个例子
@@ -160,7 +164,7 @@ b.refType[6] 666
 
 # 什么是深拷贝？
 
-有时候，我们并不希望拷贝对象时，其引用成员变量指向同一个应用数据类型的数据对象，而希望它们指向不同的位置，但是这些位置存储的值是相同的。这就需要用到深拷贝。
+有时候，我们并不希望拷贝对象时，其引用成员变量指向同一个引用数据类型的数据对象，而希望它们指向不同的位置，但是这些位置存储的值是相同的。这就需要用到深拷贝。
 
 在维基百科中，深拷贝是这样定义的：
 
@@ -178,7 +182,7 @@ b.refType[6] 666
 
 ## 实现深拷贝
 
-对于深拷贝，在 C++ 中可以自定义复制构造函数、重载赋值运算符，实现深拷贝。对于本文开头提出的问题，可以做如下改进。
+在 C++ 中可以自定义复制构造函数、重载赋值运算符，实现深拷贝。对于本文开头提出的问题，可以做如下改进。
 
 ```C++
 // 自定义复制构造函数
@@ -210,6 +214,14 @@ DeepCopyObject &operator=(const DeepCopyObject &obj)
     return *this;
 }
 ```
+
+
+
+# 总结
+
+* 浅拷贝会**共享**引用数据类型成员变量（指针指向**同一个地址**），而**不共享**原始数据类型的成员变量
+* 深拷贝**不会共享**引用数据类型成员变量（它们的指针指向**不同**地址，但是拷贝后指针指向地址所存储的**值是相等的**），也**不共享**原始数据类型的成员变量
+* 在 C++ 中可以**自定义复制构造函数**、**重载赋值运算符**，**实现深拷贝**
 
 # 附：实现深拷贝完整代码
 
