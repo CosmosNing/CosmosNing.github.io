@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a7b505;
+  background: #c9bfc9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2934,6 +2934,7 @@ blockquote {
   border-radius: 10px;
 }
 .category-list-item a {
+  background: #4b0082;
   margin: 10px 10px;
   padding: 0 14px;
   display: inline-block;
