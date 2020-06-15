@@ -1,6 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Vim简易入门</title>
+    <url>/2020/06/15/vim-jian-yi-ru-men/</url>
+    <content><![CDATA[<blockquote>
+<p>最近，笔者在学习 Linux 中的常见命令。其中 Vim 作为文本编辑命令，是十分基础又非常强大的工具。然而，许多开发者因其命令繁琐，上手难度大，并没有完全发挥出 Vim 的潜力。因此，本文将介绍 Vim 的常见命令及其用法，供读者参考。通过本文，你将获得：</p>
+<ol>
+<li>了解 Vim 的四种模式。</li>
+<li>掌握 Vim 常见文本编辑命令。</li>
+</ol>
+</blockquote>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg" alt="题图"></p>
+<p>Photo by <a href="https://unsplash.com/@kdwk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Kdwk Leung</a> on <a href="https://unsplash.com/t/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
+<h1 id="什么是-Vim？"><a href="#什么是-Vim？" class="headerlink" title="什么是 Vim？"></a>什么是 Vim？</h1><p>Vim 是 <strong>Vi</strong> I<strong>M</strong>proved 的缩写。它是由 Bram Moolenaar 开发的开源免费文本编辑器。顾名思义，Vim 基于 Vi（另一个早期的文本编辑器） 但又不止于 Vi。由于其强大的文本处理功能，在很多类 Unix 系统中，Vim 都成了默认的文本编辑器。尤其在无图形化界面的服务器上，Vim 成为了绝大部分运维人员线上运维的选择。</p>
+<p>很多 Linux 发行版都内置了 Vim 命令，只需打开终端，输入如下命令，即可使用 Vim。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG" alt="Vim"></p>
+<h1 id="Vim-的四种模式"><a href="#Vim-的四种模式" class="headerlink" title="Vim 的四种模式"></a>Vim 的四种模式</h1><p>Vim 中的四种模式是 Vim 的核心设计理念之一。以四种模式为基础，理解和使用 Vim 的文本编辑命令就会容易许多。</p>
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p>Vim 中有四种模式，分别是：</p>
+<ul>
+<li>正常模式（Normal Mode）：用于查看文本和执行复制、粘贴等文本操作命令。</li>
+<li>插入模式（Insert Mode）：用于编辑文本。</li>
+<li>命令模式（Command Mode）：用于执行指定命令。</li>
+<li>可视模式（Visual Mode）：用于选中文本。</li>
+</ul>
+<h2 id="正常模式（Normal-Mode）"><a href="#正常模式（Normal-Mode）" class="headerlink" title="正常模式（Normal Mode）"></a>正常模式（Normal Mode）</h2><p>在 Vim 打开文件或者新建文件时，默认进入的模式是正常模式。在正常模式下，使用键盘直接输入字母或者数字，可能不会出现类似编辑文本时的结果。也就是说，该模式下，文本无法直接编辑。然而，通过某些特定的指令，可以完成一些常见的文本操作命令。</p>
+<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p>光标的位置将决定复制、粘贴等操作的位置，因此光标的操作于文本操作十分重要。不同于当前拥有图形界面的文字处理软件，Vim 中无法使用鼠标指定光标位置，而是使用键盘指令，完成光标的移动。这一设计，使得 Vim 无需鼠标，即可完成文本编辑的任务。这大大提高了文本编辑的效率。</p>
+<p>Vim 的光标移动又可以分为两类。分别是<strong>小范围移动</strong>、<strong>大范围移动</strong>。</p>
+<p>在<strong>小范围移动</strong>中，只涉及到四个字母 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>，分别代表<strong>左、下、上、右</strong>（相当于键盘上的光标键）</p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png" alt="小范围移动光标"></p>
+<div class="note info">
+            <p>部分 Vim 版本支持<strong>光标键</strong>移动光标，但仍有部分 Vim 不支持（由于相关操作系统会将光标键解释为其他字符），推荐熟练掌握 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 指令，完成小范围移动光标的任务。</p>
+          </div>
+
+<p>在<strong>大范围移动</strong>中，可以通过 <code>g</code>、<code>G</code> 快速跳转到<strong>第一行</strong>和<strong>最后一行</strong>；在 <code>G</code> 前加上数字，就可以跳转到指定行；<code>^</code>、<code>$</code> 则可以跳转到光标所在行的行首和行尾。这些移动方式将会极大地提高光标移动效率。</p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png" alt="大范围移动光标"></p>
+<h3 id="常见文本操作"><a href="#常见文本操作" class="headerlink" title="常见文本操作"></a>常见文本操作</h3><p>在正常模式下，除了可以移动光标，也可以执行一些简单的文本操作命令。具体的如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">指令</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">复制</td>
+<td align="center"><code>yy</code></td>
+<td align="center">复制整行</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>&lt;数字&gt;yy</code></td>
+<td align="center">复制当前光标所在行开始，连续&lt;数字&gt;行的文本</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>y$</code>（y +shift +4）</td>
+<td align="center">复制从当前光标所在字符开始，到本行末尾的文本</td>
+</tr>
+<tr>
+<td align="center">粘贴</td>
+<td align="center"><code>p</code></td>
+<td align="center">粘贴复制结果</td>
+</tr>
+<tr>
+<td align="center">剪切</td>
+<td align="center"><code>dd</code></td>
+<td align="center">剪切整行</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>d$</code></td>
+<td align="center">剪切从当前光标所在字符开始，到本行末尾的文本</td>
+</tr>
+<tr>
+<td align="center">撤销</td>
+<td align="center"><code>u</code></td>
+<td align="center">撤销命令</td>
+</tr>
+<tr>
+<td align="center">重做</td>
+<td align="center"><code>ctrl + r</code></td>
+<td align="center">重做命令</td>
+</tr>
+<tr>
+<td align="center">删除单个字符</td>
+<td align="center"><code>x</code></td>
+<td align="center">将当前光标位置的字符删除</td>
+</tr>
+<tr>
+<td align="center">替换单个字符</td>
+<td align="center"><code>r+&lt;指定字符&gt;</code></td>
+<td align="center">将当前光标位置的字符替换为指定字符</td>
+</tr>
+</tbody></table>
+<h2 id="插入模式（Insert-Mode）"><a href="#插入模式（Insert-Mode）" class="headerlink" title="插入模式（Insert Mode）"></a>插入模式（Insert Mode）</h2><p>在正常模式中，用户无法直接编辑文本。而如果需要直接编辑文本，则需要进入插入模式。插入模式有多种进入方式。具体如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">进入命令</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">按 <code>i</code> 进入</td>
+<td align="center">光标会在原位</td>
+</tr>
+<tr>
+<td align="center">按 <code>I</code>（大写 i：shift + i）进入</td>
+<td align="center">光标会在本行开头</td>
+</tr>
+<tr>
+<td align="center">按 <code>a</code> 进入</td>
+<td align="center">光标会在原位的下一位</td>
+</tr>
+<tr>
+<td align="center">按 <code>A</code>（shift + a）进入</td>
+<td align="center">光标会在本行最后一个字符的下一位</td>
+</tr>
+<tr>
+<td align="center">按 <code>o</code> 进入</td>
+<td align="center">光标会在当前行的下面另起一行</td>
+</tr>
+<tr>
+<td align="center">按 <code>O</code> （shift + o）进入</td>
+<td align="center">光标会在当前行的上面另起一行</td>
+</tr>
+</tbody></table>
+<p>进入插入模式之后，就可以直接编辑文本了。编辑完成后，可以按 <code>ESC</code> 键返回正常模式。</p>
+<h2 id="命令模式（Command-Mode）"><a href="#命令模式（Command-Mode）" class="headerlink" title="命令模式（Command Mode）"></a>命令模式（Command Mode）</h2><p>当处于正常模式时，按 <code>:</code> 键可进入命令模式。在命令模式下，可执行更多丰富的命令。这些命令大致可分为两类，一类命令用于设置 Vim 编辑器的属性，另一类则用来完成文件、文本操作任务。</p>
+<h3 id="Vim-设置"><a href="#Vim-设置" class="headerlink" title="Vim 设置"></a>Vim 设置</h3><p>vim 设置的一般格式如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">: <span class="built_in">set</span> &lt;设置项&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">: <span class="built_in">set</span> nu</span><br></pre></td></tr></table></figure>
+
+<p>可显示行号。</p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG" alt="Vim 显示行号"></p>
+<p>然而，上述设置方式仅对当前编辑文本进程有效，如需永久生效，则要修改 <code>/etc/vimrc</code> 文件。</p>
+<h3 id="文件、文本操作"><a href="#文件、文本操作" class="headerlink" title="文件、文本操作"></a>文件、文本操作</h3><p>在命令模式下，Vim 可以执行一些文件操作命令，如保存、退出等；亦可执行更加复杂的文本操作命令，如查找、替换等。</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能</th>
+<th align="center">命令</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">保存</td>
+<td align="center"><code>: w &lt;文件名&gt;</code></td>
+<td align="center">保存新文件</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>: w</code></td>
+<td align="center">表示保存到当前文件</td>
+</tr>
+<tr>
+<td align="center">退出</td>
+<td align="center"><code>: q</code></td>
+<td align="center">退出 vim</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>: q !</code></td>
+<td align="center">强制退出（默认不保存修改）</td>
+</tr>
+<tr>
+<td align="center">执行其他命令</td>
+<td align="center"><code>: ! &lt;命令&gt;</code></td>
+<td align="center">执行 shell 命令</td>
+</tr>
+<tr>
+<td align="center">查找操作</td>
+<td align="center"><code>: /&lt;正则表达式&gt;</code></td>
+<td align="center">按 <code>n</code> 查找下一个，<code>shift + n</code> 查找上一个</td>
+</tr>
+<tr>
+<td align="center">替换操作</td>
+<td align="center"><code>: s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
+<td align="center">针对当前光标所在行的字符进行替换</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
+<td align="center">全文搜索替换一处</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
+<td align="center">全文搜索、全部替换</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"><code>: m,n s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
+<td align="center">指定行范围内替换，其中 m，n 为正整数</td>
+</tr>
+</tbody></table>
+<h2 id="可视模式（Visual-Mode）"><a href="#可视模式（Visual-Mode）" class="headerlink" title="可视模式（Visual Mode）"></a>可视模式（Visual Mode）</h2><p>在复制等文本操作命令时，常常需要选中相关文本。这就需要进入 Vim 的可视模式。进入可视模式的方式比较常见的有 3 种，具体如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">进入命令</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">按 <code>v</code> 进入</td>
+<td align="center">字符可视模式，按行序以<strong>单个字符</strong>为单位进行选中操作</td>
+</tr>
+<tr>
+<td align="center">按 <code>V</code> 进入</td>
+<td align="center">行可视模式，按行序以<strong>单行</strong>为单位进行选中操作</td>
+</tr>
+<tr>
+<td align="center">按 <code>ctrl + v</code> 进入</td>
+<td align="center">块可视模式，以光标所在位置为顶点，自定义矩形块中的字符全部选定</td>
+</tr>
+</tbody></table>
+<p>按 <code>ESC</code> 键返回正常模式。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要介绍了 Vim 的四种模式和四种模式下的文本编辑及操作命令，希望对读者有所帮助。</p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png" alt="Vim 四种模式"></p>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><p><a href="https://www.bilibili.com/video/BV1Yt411X7mu" target="_blank" rel="noopener">【视频·中文】vim入门教程（共3讲） by 正月点灯笼</a></p>
+<p><a href="https://www.tutorialspoint.com/vim/vim_quick_guide.htm" target="_blank" rel="noopener">【文本·英文】Vim - Quick Guide from tutorialspoint</a></p>
+]]></content>
+      <categories>
+        <category>指南</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+        <tag>Linux</tag>
+        <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的浅拷贝和深拷贝</title>
     <url>/2020/05/18/c-zhong-de-qian-kao-bei-he-shen-kao-bei/</url>
     <content><![CDATA[<blockquote>
@@ -84,7 +320,7 @@
 
 ]]></content>
       <categories>
-        <category>杂项</category>
+        <category>C++</category>
       </categories>
       <tags>
         <tag>C++</tag>
