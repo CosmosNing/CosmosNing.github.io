@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="扒了下今年南航计算机学院的初试成绩，试图用数据分析的方式复盘我的考研初试成绩">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用数据复盘我的考研初试">
+<meta property="og:url" content="https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="扒了下今年南航计算机学院的初试成绩，试图用数据分析的方式复盘我的考研初试成绩">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%95%B0%E4%BA%8C%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png">
+<meta property="article:published_time" content="2020-06-30T12:51:25.000Z">
+<meta property="article:modified_time" content="2020-06-30T14:56:45.068Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="数据分析">
+<meta property="article:tag" content="研究生">
+<meta property="article:tag" content="初试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
+
+<link rel="canonical" href="https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>用数据复盘我的考研初试 | CosmosNing的个人博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9fd1f40248f9db466678920736a9fa3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CosmosNing的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
+      
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">43</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">8</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          用数据复盘我的考研初试
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-30 20:51:25 / 修改时间：22:56:45" itemprop="dateCreated datePublished" datetime="2020-06-30T20:51:25+08:00">2020-06-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E7%9B%98/" itemprop="url" rel="index"><span itemprop="name">复盘</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description">扒了下今年南航计算机学院的初试成绩，试图用数据分析的方式复盘我的考研初试成绩</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>受今年疫情的影响，2020 届研究生录取阶段到近几周才画上圆满的句号。距离开学还有些空闲时间，这段时间作为终点和起点的交会，是绝好的复盘机会。本文尝试以图表、关键的统计量简单地分析本年度南航官方公布的初试成绩情况，量化我的初试水平，并从这些客观的数据中分析原因，找到自身的不足，做好未来的打算。</p>
+<p>此外，本文亦希望读者可从数据分析中窥探出考研趋势，规划好自己的准备工作。</p>
+</blockquote>
+<h1 id="2020-南航计算机考研初试情况概述"><a href="#2020-南航计算机考研初试情况概述" class="headerlink" title="2020 南航计算机考研初试情况概述"></a>2020 南航计算机考研初试情况概述</h1><p>（数据来源：<a href="http://cs.nuaa.edu.cn/2020/0520/c10851a200876/page.htm" target="_blank" rel="noopener">官方公布的初试成绩（仅包括进入复试的部分）</a>）</p>
+<p>我对上述数据，分专业、分科目分别统计了分数情况。</p>
+<h2 id="电子信息（专硕）"><a href="#电子信息（专硕）" class="headerlink" title="电子信息（专硕）"></a>电子信息（专硕）</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-zhengzhi"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政治</td>
+<td align="center">78</td>
+<td align="center">56</td>
+<td align="center">66.41</td>
+<td align="center">66</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-英一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">英一</td>
+<td align="center">85</td>
+<td align="center">39</td>
+<td align="center">65.70</td>
+<td align="center">67</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%95%B0%E4%BA%8C%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-数二"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数二</td>
+<td align="center">134</td>
+<td align="center">65</td>
+<td align="center">95.34</td>
+<td align="center">94.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-829"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">829</td>
+<td align="center">134</td>
+<td align="center">64</td>
+<td align="center">100.69</td>
+<td align="center">101</td>
+</tr>
+</tbody></table>
+<h2 id="计算机科学与技术（学硕）"><a href="#计算机科学与技术（学硕）" class="headerlink" title="计算机科学与技术（学硕）"></a>计算机科学与技术（学硕）</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-zhengzhi"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政治</td>
+<td align="center">76</td>
+<td align="center">59</td>
+<td align="center">68</td>
+<td align="center">68.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-英一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">英一</td>
+<td align="center">85</td>
+<td align="center">43</td>
+<td align="center">67.90</td>
+<td align="center">70</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-数一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数一</td>
+<td align="center">126</td>
+<td align="center">73</td>
+<td align="center">95.88</td>
+<td align="center">97</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-829"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">829</td>
+<td align="center">130</td>
+<td align="center">87</td>
+<td align="center">110.63</td>
+<td align="center">110.5</td>
+</tr>
+</tbody></table>
+<h2 id="软件工程（学硕）"><a href="#软件工程（学硕）" class="headerlink" title="软件工程（学硕）"></a>软件工程（学硕）</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-zhengzhi"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政治</td>
+<td align="center">76</td>
+<td align="center">60</td>
+<td align="center">67.93</td>
+<td align="center">68</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-英一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">英一</td>
+<td align="center">81</td>
+<td align="center">47</td>
+<td align="center">65.93</td>
+<td align="center">69</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-数一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数一</td>
+<td align="center">115</td>
+<td align="center">69</td>
+<td align="center">89.34</td>
+<td align="center">86</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-829"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">829</td>
+<td align="center">143</td>
+<td align="center">66</td>
+<td align="center">102.41</td>
+<td align="center">104</td>
+</tr>
+</tbody></table>
+<h2 id="网络空间安全（学硕）"><a href="#网络空间安全（学硕）" class="headerlink" title="网络空间安全（学硕）"></a>网络空间安全（学硕）</h2><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-zhengzhi"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">政治</td>
+<td align="center">76</td>
+<td align="center">56</td>
+<td align="center">66.94</td>
+<td align="center">66.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-英一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">英一</td>
+<td align="center">81</td>
+<td align="center">49</td>
+<td align="center">65.5</td>
+<td align="center">65.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-数一"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数一</td>
+<td align="center">119</td>
+<td align="center">57</td>
+<td align="center">82.66</td>
+<td align="center">80.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-829"></p>
+<table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">最高</th>
+<th align="center">最低</th>
+<th align="center">均分</th>
+<th align="center">中位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">829</td>
+<td align="center">118</td>
+<td align="center">82</td>
+<td align="center">99.88</td>
+<td align="center">100.5</td>
+</tr>
+</tbody></table>
+<h1 id="量化我的水平"><a href="#量化我的水平" class="headerlink" title="量化我的水平"></a>量化我的水平</h1><p>如何量化我的水平呢？这里我使用了如下方法。</p>
+<p>首先，拿到本专业分科目的成绩数据。具体的对于我来说，我抽取了软件工程专业的各科分数。然后将单科成绩分别降序排名。从中找到我的分数的位次，并除以总进复试人数，获得一个百分比。针对不同百分比，每一科按照如下要求打分：</p>
+<p>当百分比落在</p>
+<ul>
+<li>0 % ~ 20 %：打 5 分</li>
+<li>21% ~ 40%： 打 4 分</li>
+<li>41% ~ 60%： 打 3 分</li>
+<li>61% ~ 80%： 打 2 分</li>
+<li>81% ~ 100%： 打 1 分</li>
+</ul>
+<p>我以上述方式量化的我的水平，具体如下：</p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png" alt="能力雷达图"></p>
+<p>初步分析可以发现，我的技能树有些歪，存在较为严重的偏科现象。英语有非常好的优势，数学处于中等水平，而政治和专业课则严重脱了我的后腿。</p>
+<h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><ol>
+<li>英语一直是我的强势科目，这要感谢初、高中英语的高强度的训练和全面的知识框架，让我不用太多时间，便能适应考研英语的套路。</li>
+<li>在准备研究生入学考试时，数学是我重点关注的工作，花了很多时间和精力做题训练。但没料到今年数一难度加大（数一今年全国均分 65 左右，类似 2018 年，具体数据可以参考各个考研老师的分析。我记得宇哥在今年 0 基础 30 讲视频里讲过），让我原形毕露，考的分数十分难看。不过，能够在同专业内排到中等水平，这是出乎我意料的，也是令我比较惊喜的。难的数学也会有好处，会把哪些比你强一点的半吊子也拉下来，和你“平起平坐”。</li>
+<li>专业课是我比较后悔的。这种情况完全是我过度轻视，缺少必要的时间投入导致的。</li>
+<li>政治不做评价。</li>
+</ol>
+<h1 id="今后打算"><a href="#今后打算" class="headerlink" title="今后打算"></a>今后打算</h1><p>最近选定了导师，今后会做知识图谱和深度学习的相关工作。希望自己在新的阶段，除了做项目、看文献，也需抽出时间提升自己的专业水平。为此，我制定了如下关键任务：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 每天至少 1 小时左右的专业知识学习</li>
+<li><input disabled="" type="checkbox"> 每周 1 篇博文，总结关键重要的知识点</li>
+<li><input disabled="" type="checkbox"> …（待补充）</li>
+</ul>
+<p>谨以此篇，作为近阶段学习工作的复盘。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/" title="用数据复盘我的考研初试">https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 数据分析</a>
+              <a href="/tags/%E7%A0%94%E7%A9%B6%E7%94%9F/" rel="tag"><i class="fa fa-tag"></i> 研究生</a>
+              <a href="/tags/%E5%88%9D%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 初试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/27/ru-he-xie-yi-feng-yan-jiu-sheng-zi-jian-xin/" rel="prev" title="如何写一封研究生自荐信">
+      <i class="fa fa-chevron-left"></i> 如何写一封研究生自荐信
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-南航计算机考研初试情况概述"><span class="nav-number">1.</span> <span class="nav-text">2020 南航计算机考研初试情况概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电子信息（专硕）"><span class="nav-number">1.1.</span> <span class="nav-text">电子信息（专硕）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机科学与技术（学硕）"><span class="nav-number">1.2.</span> <span class="nav-text">计算机科学与技术（学硕）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件工程（学硕）"><span class="nav-number">1.3.</span> <span class="nav-text">软件工程（学硕）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络空间安全（学硕）"><span class="nav-number">1.4.</span> <span class="nav-text">网络空间安全（学硕）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#量化我的水平"><span class="nav-number">2.</span> <span class="nav-text">量化我的水平</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原因分析"><span class="nav-number">3.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#今后打算"><span class="nav-number">4.</span> <span class="nav-text">今后打算</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">214k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:57</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
