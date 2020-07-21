@@ -3,7 +3,7 @@ title: Neo4j-4.0简介
 toc: true
 mathjax: true
 date: 2020-07-10 20:49:08
-description: introduction-to-Neo4j-4.0 第一讲
+description: 第一讲 introduction-to-Neo4j-4.0 
 permalink: neo4j/introduction-to-Neo4j-4-0/
 ---
 
