@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff09;
+  background: #142fb1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3299,4 +3299,9 @@ i.fa.fa-fw.fa-rss {
 }
 i.fa.fa-fw.fa-steam {
   color: #2ed573;
+}
+.note-title {
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
 }
