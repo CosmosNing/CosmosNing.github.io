@@ -266,6 +266,12 @@ _:b1    ab:postalCode    "49345" ;
 
 由此可知，空结点的一般格式为 `_:<空结点名称>`
 
+{% note info %}
+
+有时，Turtle 和 SPARQL 也使用方括号（`[]`）代表空结点。
+
+{% endnote %}
+
 ## Named Graphs
 
 和空结点类似，Named Graphs 也可以用来将一些相关的三元组组合在一起。而与之不同的是，Named Graphs 更加强大——可进一步赋予其元数据（metadata）。这种特性使得 Named Graphs 在某些应用场景下有着独特的优势。
@@ -383,9 +389,9 @@ ab:doctor
 
 # 参考资料
 
-* DuCharme B. [Learning SPARQL: querying and updating with SPARQL 1.1](http://learningsparql.com/)[M]. " O'Reilly Media, Inc.", 2013.
-* Juan Sequeda. [Introduction to: RDFa](https://www.dataversity.net/introduction-to-rdfa-2/). 2012
-* Juan Sequeda. [Introduction to: Ontologies](https://www.dataversity.net/introduction-to-ontologies/). 2011
+* Bob DuCharme. [Learning SPARQL: querying and updating with SPARQL 1.1](http://learningsparql.com/)
+* Juan Sequeda. [Introduction to: RDFa](https://www.dataversity.net/introduction-to-rdfa-2/).
+* Juan Sequeda. [Introduction to: Ontologies](https://www.dataversity.net/introduction-to-ontologies/).
 
 # 拓展阅读
 
