@@ -193,7 +193,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">SELECT [DISTINCT] &lt;variable1&gt; [&lt;variable2&gt; ...]</span><br><span class="line">[FROM ...]</span><br><span class="line">WHERE</span><br><span class="line">&#123;</span><br><span class="line">    triple pattern 1.</span><br><span class="line">    [triple pattern 2.]</span><br><span class="line">    ...</span><br><span class="line">    [附加条件...]</span><br><span class="line">&#125;</span><br><span class="line">[OFFSET 数字]</span><br><span class="line">[LIMIT 数字]</span><br><span class="line">[ORDER BY | GROUP BY ...]</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>CONSTRUCT</code> 查询结果返回一个 RDF 图，其语句一般格式如下：</li>
+<li><code>CONSTRUCT</code> 查询结果返回一个 RDF 图（三元组集合），其语句一般格式如下：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CONSTRUCT </span><br><span class="line">&#123; </span><br><span class="line">    triple pattern .</span><br><span class="line">    ...</span><br><span class="line">&#125; </span><br><span class="line">WHERE </span><br><span class="line">&#123; </span><br><span class="line">    triple pattern . </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
