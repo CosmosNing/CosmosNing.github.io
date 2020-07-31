@@ -88,7 +88,7 @@ WHERE
 [ORDER BY | GROUP BY ...]
 ```
 
-* `CONSTRUCT` 查询结果返回一个 RDF 图，其语句一般格式如下：
+* `CONSTRUCT` 查询结果返回一个 RDF 图（三元组集合），其语句一般格式如下：
 
 ```SPARQL
 CONSTRUCT 
