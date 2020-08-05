@@ -10,7 +10,6 @@ tags:
 - 图数据库查询语言
 categories:
 - 研究
-highlight.wrap: false
 ---
 
 > 最近在学习图数据库的基础知识。本文将参考 《[Learning SPARQL: querying and updating with SPARQL 1.1](http://learningsparql.com/)》这本书，简单介绍 RDF 数据查询语言 SPARQL。主要内容如下：
