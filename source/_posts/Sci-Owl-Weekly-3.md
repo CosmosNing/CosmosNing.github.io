@@ -49,7 +49,7 @@ Sci-Owl Weekly，每周日更新。
 
 # 聚焦
 
-* [特朗普签属总统令禁用 TikTok（抖音海外版） 和 WeChat（微信）](https://www.zdnet.com/article/donald-trump-signs-executive-orders-banning-tiktok-and-wechat/)
+* [特朗普签署总统令禁用 TikTok（抖音海外版） 和 WeChat（微信）](https://www.zdnet.com/article/donald-trump-signs-executive-orders-banning-tiktok-and-wechat/)
 
 ![wechat](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/macau-photo-agency-BkBPx42-y24-unsplash.jpg)
 
@@ -234,7 +234,7 @@ Minecraft 作为自由度最高的游戏，为玩家提供了一个发挥创意�
 
 ![Byte App](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/ByteApp.jpg)
 
-<p class="img-credit">Credit：<a href="">Byte</a></p>
+<p class="img-credit">Credit：<span>Byte</span></p>
 
 在 Vine 类应用的复兴的形势下，Byte 于今年早些时间发布了。Vine ，由 Twitter 联合拥有，是一个 6 秒短视频平台，几乎是最早的短视频应用，并且启发了包括 TikTok 等 App 的流行。然而不幸的是，Vine 在 2016 年被 Twitter 关闭了。作为 Vine 的创建者之一，Dom Hofmann 制作了 Byte，并且戏称这款应用是人们所钟爱的应用的精神续作。
 
@@ -260,7 +260,7 @@ Instagram 也有一些与 TikTok 不同的巨大的文化差异。“TikTok 更�
 
 ![Triller App](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/triller-app-store-ranking.jpeg)
 
-<p class="img-credit">Credit：<a href="">Solen Feyissa</a></p>
+<p class="img-credit">Credit：<span>Solen Feyissa</span></p>
 
 自从 2015 年开始，就有了 Triller 的身影。作为一款音视频简易剪辑的工具，你不需要许多专业知识，就能够通过这个应用创建你自己的音乐视频。在近几周 TikTok 风波的传播下，Triller 冲上了 App Store 榜首，成为了可能是最具攻击性的 TikTok 统治地位的挑战者。它从 TikTok 挖走了很多大咖，他们目前在 Triller 发布他们的跳舞视频。近期，它甚至控告 TikTok 侵犯了它的专利。
 
