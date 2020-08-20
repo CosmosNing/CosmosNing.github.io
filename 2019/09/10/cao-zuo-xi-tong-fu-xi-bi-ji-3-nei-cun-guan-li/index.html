@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment-Page.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Process.png?raw=true">
 <meta property="article:published_time" content="2019-09-10T14:51:48.000Z">
-<meta property="article:modified_time" content="2020-08-08T04:23:33.032Z">
+<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-08 12:23:33" itemprop="dateModified" datetime="2020-08-08T12:23:33+08:00">2020-08-08</time>
+                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,7 +287,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="4．内存管理"><a href="#4．内存管理" class="headerlink" title="4．内存管理"></a>4．内存管理</h1><h2 id="内存管理的基本概念"><a href="#内存管理的基本概念" class="headerlink" title="内存管理的基本概念"></a>内存管理的基本概念</h2><h3 id="链接与装入"><a href="#链接与装入" class="headerlink" title="链接与装入"></a>链接与装入</h3><p>（详见教材）</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<h1 id="4．内存管理"><a href="#4．内存管理" class="headerlink" title="4．内存管理"></a>4．内存管理</h1><h2 id="内存管理的基本概念"><a href="#内存管理的基本概念" class="headerlink" title="内存管理的基本概念"></a>内存管理的基本概念</h2><h3 id="链接与装入"><a href="#链接与装入" class="headerlink" title="链接与装入"></a>链接与装入</h3><p>（详见教材）</p>
 <h3 id="逻辑地址与物理地址空间"><a href="#逻辑地址与物理地址空间" class="headerlink" title="逻辑地址与物理地址空间"></a>逻辑地址与物理地址空间</h3><p>（详见教材）</p>
 <h3 id="对换与覆盖"><a href="#对换与覆盖" class="headerlink" title="对换与覆盖"></a>对换与覆盖</h3><p>（详见教材）</p>
 <h3 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h3><p>（详见教材）</p>
@@ -318,7 +318,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="离散（非连续）内存分配方法（★★★★★）"><a href="#离散（非连续）内存分配方法（★★★★★）" class="headerlink" title="离散（非连续）内存分配方法（★★★★★）"></a>离散（非连续）内存分配方法（★★★★★）</h3><h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><h5 id="逻辑地址到物理地址的转换"><a href="#逻辑地址到物理地址的转换" class="headerlink" title="逻辑地址到物理地址的转换"></a>逻辑地址到物理地址的转换</h5><h6 id="不含快表（两次访存）"><a href="#不含快表（两次访存）" class="headerlink" title="不含快表（两次访存）"></a>不含快表（两次访存）</h6><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page.png?raw=true" alt="不含快表分页地址变换机构"></p>
+<h3 id="离散（非连续）内存分配方法（★★★★★）"><a href="#离散（非连续）内存分配方法（★★★★★）" class="headerlink" title="离散（非连续）内存分配方法（★★★★★）"></a>离散（非连续）内存分配方法（★★★★★）</h3><h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><h5 id="逻辑地址到物理地址的转换"><a href="#逻辑地址到物理地址的转换" class="headerlink" title="逻辑地址到物理地址的转换"></a>逻辑地址到物理地址的转换</h5><h6 id="不含快表（两次访存）"><a href="#不含快表（两次访存）" class="headerlink" title="不含快表（两次访存）"></a>不含快表（两次访存）</h6><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page.png?raw=true" target="_blank" rel="noopener" title="不含快表分页地址变换机构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page.png?raw=true" alt="不含快表分页地址变换机构"></a></p>
 <ul>
 <li>设页面大小为 <em>L</em> ，逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li><strong>分析出页号和页面偏移量（根据题设地址结构或者计算得出）</strong>：计算页号 <em>P</em> （ <em>P</em> = <em>A</em> / <em>L</em> ）和页面偏移量 <em>W</em> （<em>W</em> = <em>A</em> % <em>L</em>  ）</li>
@@ -328,7 +328,7 @@
 </ol>
 </li>
 </ul>
-<h6 id="含快表"><a href="#含快表" class="headerlink" title="含快表"></a>含快表</h6><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page-TLB.png?raw=true" alt="含快表分页地址变换机构"></p>
+<h6 id="含快表"><a href="#含快表" class="headerlink" title="含快表"></a>含快表</h6><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page-TLB.png?raw=true" target="_blank" rel="noopener" title="含快表分页地址变换机构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Page-TLB.png?raw=true" alt="含快表分页地址变换机构"></a></p>
 <ul>
 <li>含快表的地址变换流程<ol>
 <li>CPU 给出逻辑地址后，由硬件进行地址转换，将页号<strong>送入高速缓存寄存器</strong>，并<strong>将此页号与快表中的所有页号进行比较</strong></li>
@@ -373,7 +373,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<h4 id="分段（两次访存）"><a href="#分段（两次访存）" class="headerlink" title="分段（两次访存）"></a>分段（两次访存）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment.png?raw=true" alt="分段地址变换机构"></p>
+<h4 id="分段（两次访存）"><a href="#分段（两次访存）" class="headerlink" title="分段（两次访存）"></a>分段（两次访存）</h4><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment.png?raw=true" target="_blank" rel="noopener" title="分段地址变换机构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment.png?raw=true" alt="分段地址变换机构"></a></p>
 <ul>
 <li>逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li><strong>提取段号和页内偏移量</strong>：逻辑地址 <em>A</em> 的结构：前几位是<strong>段号</strong>  <em>S</em> ，后几位是<strong>段内偏移</strong> <em>W</em> </li>
@@ -383,7 +383,7 @@
 </ol>
 </li>
 </ul>
-<h4 id="段页（三次访存）"><a href="#段页（三次访存）" class="headerlink" title="段页（三次访存）"></a>段页（三次访存）</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment-Page.png?raw=true" alt="段页地址变换机构"></p>
+<h4 id="段页（三次访存）"><a href="#段页（三次访存）" class="headerlink" title="段页（三次访存）"></a>段页（三次访存）</h4><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment-Page.png?raw=true" target="_blank" rel="noopener" title="段页地址变换机构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Segment-Page.png?raw=true" alt="段页地址变换机构"></a></p>
 <ul>
 <li>逻辑地址 <em>A</em> 到物理地址 <em>E</em> 的转换<ol>
 <li>依据<strong>段号</strong>查段表，找到<strong>页表始址</strong></li>
@@ -395,7 +395,7 @@
 <h2 id="虚拟内存分配方法"><a href="#虚拟内存分配方法" class="headerlink" title="虚拟内存分配方法"></a>虚拟内存分配方法</h2><h3 id="虚拟内存的概念"><a href="#虚拟内存的概念" class="headerlink" title="虚拟内存的概念"></a>虚拟内存的概念</h3><p>（详见教材）</p>
 <h3 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h3><p>（详见教材）</p>
 <h3 id="实现虚拟内存所需的硬件和软件支持"><a href="#实现虚拟内存所需的硬件和软件支持" class="headerlink" title="实现虚拟内存所需的硬件和软件支持"></a>实现虚拟内存所需的硬件和软件支持</h3><p>（详见教材）</p>
-<h3 id="请求分页（段）管理"><a href="#请求分页（段）管理" class="headerlink" title="请求分页（段）管理"></a>请求分页（段）管理</h3><h4 id="地址变换过程"><a href="#地址变换过程" class="headerlink" title="地址变换过程"></a>地址变换过程</h4><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Process.png?raw=true" alt="虚拟内存请求分页管理"></p>
+<h3 id="请求分页（段）管理"><a href="#请求分页（段）管理" class="headerlink" title="请求分页（段）管理"></a>请求分页（段）管理</h3><h4 id="地址变换过程"><a href="#地址变换过程" class="headerlink" title="地址变换过程"></a>地址变换过程</h4><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Process.png?raw=true" target="_blank" rel="noopener" title="虚拟内存请求分页管理" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/10/Process.png?raw=true" alt="虚拟内存请求分页管理"></a></p>
 <h3 id="页面置换算法（★★★★★）"><a href="#页面置换算法（★★★★★）" class="headerlink" title="页面置换算法（★★★★★）"></a>页面置换算法（★★★★★）</h3><h4 id="最佳（OPT）置换算法"><a href="#最佳（OPT）置换算法" class="headerlink" title="最佳（OPT）置换算法"></a>最佳（OPT）置换算法</h4><ul>
 <li>置换标准：淘汰<strong>最长时间内不再被访问</strong>的页面</li>
 <li>无法实现</li>
@@ -447,7 +447,12 @@
 <li>计算机操作系统.汤小丹等</li>
 <li>2020年操作系统考研复习指导.王道论坛</li>
 </ol>
-
+</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
     </div>
 
     
@@ -583,7 +588,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4．内存管理"><span class="nav-number">1.</span> <span class="nav-text">4．内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接与装入"><span class="nav-number">1.1.1.</span> <span class="nav-text">链接与装入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑地址与物理地址空间"><span class="nav-number">1.1.2.</span> <span class="nav-text">逻辑地址与物理地址空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对换与覆盖"><span class="nav-number">1.1.3.</span> <span class="nav-text">对换与覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定位"><span class="nav-number">1.1.4.</span> <span class="nav-text">重定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配方法"><span class="nav-number">1.2.</span> <span class="nav-text">内存分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续内存分配方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">连续内存分配方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散（非连续）内存分配方法（★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">离散（非连续）内存分配方法（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#逻辑地址到物理地址的转换"><span class="nav-number">1.2.2.1.1.</span> <span class="nav-text">逻辑地址到物理地址的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#不含快表（两次访存）"><span class="nav-number">1.2.2.1.1.1.</span> <span class="nav-text">不含快表（两次访存）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#含快表"><span class="nav-number">1.2.2.1.1.2.</span> <span class="nav-text">含快表</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多级页表"><span class="nav-number">1.2.2.1.2.</span> <span class="nav-text">多级页表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段（两次访存）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">分段（两次访存）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段页（三次访存）"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">段页（三次访存）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟内存分配方法"><span class="nav-number">1.3.</span> <span class="nav-text">虚拟内存分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存的概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">虚拟内存的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部性原理"><span class="nav-number">1.3.2.</span> <span class="nav-text">局部性原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现虚拟内存所需的硬件和软件支持"><span class="nav-number">1.3.3.</span> <span class="nav-text">实现虚拟内存所需的硬件和软件支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求分页（段）管理"><span class="nav-number">1.3.4.</span> <span class="nav-text">请求分页（段）管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址变换过程"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">地址变换过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面置换算法（★★★★★）"><span class="nav-number">1.3.5.</span> <span class="nav-text">页面置换算法（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最佳（OPT）置换算法"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">最佳（OPT）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先进先出（FIFO）置换算法"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">先进先出（FIFO）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最近最久未使用（LRU）置换算法"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">最近最久未使用（LRU）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时钟（CLOCK）置换算法（NRU，最近未用）"><span class="nav-number">1.3.5.4.</span> <span class="nav-text">时钟（CLOCK）置换算法（NRU，最近未用）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存保护与共享"><span class="nav-number">1.4.</span> <span class="nav-text">内存保护与共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抖动的概念和处理方法"><span class="nav-number">1.5.</span> <span class="nav-text">抖动的概念和处理方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理的基本概念"><span class="nav-number">1.</span> <span class="nav-text">内存管理的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接与装入"><span class="nav-number">1.1.</span> <span class="nav-text">链接与装入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑地址与物理地址空间"><span class="nav-number">1.2.</span> <span class="nav-text">逻辑地址与物理地址空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对换与覆盖"><span class="nav-number">1.3.</span> <span class="nav-text">对换与覆盖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定位"><span class="nav-number">1.4.</span> <span class="nav-text">重定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配方法"><span class="nav-number">2.</span> <span class="nav-text">内存分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连续内存分配方法"><span class="nav-number">2.1.</span> <span class="nav-text">连续内存分配方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散（非连续）内存分配方法（★★★★★）"><span class="nav-number">2.2.</span> <span class="nav-text">离散（非连续）内存分配方法（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分页"><span class="nav-number">2.2.1.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#逻辑地址到物理地址的转换"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">逻辑地址到物理地址的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#不含快表（两次访存）"><span class="nav-number">2.2.1.1.1.</span> <span class="nav-text">不含快表（两次访存）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#含快表"><span class="nav-number">2.2.1.1.2.</span> <span class="nav-text">含快表</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多级页表"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">多级页表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段（两次访存）"><span class="nav-number">2.2.2.</span> <span class="nav-text">分段（两次访存）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段页（三次访存）"><span class="nav-number">2.2.3.</span> <span class="nav-text">段页（三次访存）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟内存分配方法"><span class="nav-number">3.</span> <span class="nav-text">虚拟内存分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟内存的概念"><span class="nav-number">3.1.</span> <span class="nav-text">虚拟内存的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部性原理"><span class="nav-number">3.2.</span> <span class="nav-text">局部性原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现虚拟内存所需的硬件和软件支持"><span class="nav-number">3.3.</span> <span class="nav-text">实现虚拟内存所需的硬件和软件支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求分页（段）管理"><span class="nav-number">3.4.</span> <span class="nav-text">请求分页（段）管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#地址变换过程"><span class="nav-number">3.4.1.</span> <span class="nav-text">地址变换过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面置换算法（★★★★★）"><span class="nav-number">3.5.</span> <span class="nav-text">页面置换算法（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最佳（OPT）置换算法"><span class="nav-number">3.5.1.</span> <span class="nav-text">最佳（OPT）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先进先出（FIFO）置换算法"><span class="nav-number">3.5.2.</span> <span class="nav-text">先进先出（FIFO）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最近最久未使用（LRU）置换算法"><span class="nav-number">3.5.3.</span> <span class="nav-text">最近最久未使用（LRU）置换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时钟（CLOCK）置换算法（NRU，最近未用）"><span class="nav-number">3.5.4.</span> <span class="nav-text">时钟（CLOCK）置换算法（NRU，最近未用）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存保护与共享"><span class="nav-number">4.</span> <span class="nav-text">内存保护与共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抖动的概念和处理方法"><span class="nav-number">5.</span> <span class="nav-text">抖动的概念和处理方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number"></span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -798,7 +803,7 @@
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);
     })();

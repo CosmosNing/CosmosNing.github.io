@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-30T03:35:35.000Z">
-<meta property="article:modified_time" content="2020-08-08T04:23:33.028Z">
+<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -239,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-08 12:23:33" itemprop="dateModified" datetime="2020-08-08T12:23:33+08:00">2020-08-08</time>
+                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,7 +284,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true" alt="cover"></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true" target="_blank" rel="noopener" title="cover" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true" alt="cover"></a></p>
 <p>什么是分治？这是一种解决问题的方法。别看它名字高大上，其实我们在日常生活学习中经常用到它。我相信，你看完下面的例子后就可以明白分治的内涵了。</p>
 <p>还记得你小学是如何计算多个数连续相加吗？我想，一般的解决办法应该是这样的：</p>
 <p>从左到右，让第一个数和第二个数相加，所得的结果和后续的式子相加构成新的式子。此时，新得到的式子比原式更简单，更容易解决（因为要相加的数的个数变少了）。接着，让新的式子中的第一个数和第二个数相加，所得结果和后续剩下的式子构成另一个新的式子···如此进行下去，原式会不断的被化简，最终只剩下一个数，而这个数，正是原式的结果。</p>
@@ -341,7 +341,12 @@
 <li><strong>归并排序的时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
 <li><strong>快速排序的最好时间复杂度为 $O( N\cdot log( N ) )$ ，最坏时间复杂度为 $O( N^{2} )$ ，平均时间复杂度为 $O( N\cdot log( N ) )$ 。</strong></li>
 </ol>
-
+</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
     </div>
 
     
@@ -692,7 +697,7 @@
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);
     })();
