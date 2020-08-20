@@ -411,6 +411,10 @@ theme_config:
     # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
     # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
     fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+
+    # MathJax
+    # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    mathjax: https://cdn.bootcdn.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js
     
     # Internal version: 1.2.1
     # velocity: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js
@@ -450,3 +454,19 @@ permalink_pinyin:
 sitemap:
     path: sitemap.xml
     rel: false
+# hexo-light-gallery
+# https://github.com/lzane/hexo-light-gallery
+lightgallery:
+    # if you don't specify the css or js source, the default cdn will be used.
+    # css source url
+    css: https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css
+    # js source url
+    js: https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js
+    # sorry that I can not find any cdn hosting following plugins,
+    # please self-host the plugin js and add url here
+    plugins:
+      lg-thumbnail: https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js
+      lg-zoom: https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js
+      lg-autoplay: https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js
+      lg-fullscreen: https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js
+      lg-pager: https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js
