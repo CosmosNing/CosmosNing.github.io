@@ -1336,7 +1336,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ec1c06;
+  background: #5339f1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3312,4 +3312,7 @@ i.fa.fa-fw.fa-steam {
 }
 .image-caption {
   margin: 20px auto 15px !important;
+}
+.pace .pace-progress:before {
+  color: #1d1d1d !important;
 }
