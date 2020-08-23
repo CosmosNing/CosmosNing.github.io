@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="编程·学习·生活">
@@ -235,7 +238,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -330,7 +333,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -367,14 +370,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/cover.jpg?raw=true" target="_blank" rel="noopener" title="cover" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/cover.jpg?raw=true" alt="cover"></a></p>
+          <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/cover.jpg?raw=true" alt="cover"></p>
 <p>当今是一个互联网时代，很多人为了赶上时代的步伐，开始自学编程。其数量之多，夸张到让人不禁感叹“这真是一个全民编程的时代”。</p>
 <p>如果你到大街上，随便找几个人问问“你是否会编程”，他们大多数都会回答“我会，我会xx语言、xx语言”等。他们可以很快地给你写出一个“Hello World”或是对数据简单的处理程序。</p>
 <p>但是，他们真的会编程吗？你试试让他们编一个链表、或是一些排序、查找算法，他们或许会变得力不从心了。</p>
 <p>当下，大多数人对编程的理解便是这样：将编程的学习简化为语言的学习，将掌握语言与掌握编程对等。这种拘泥于语言形式的编程学习，在短时间内确实可以提高个人的编程水平，但从长期来看，容易遇到个人思维的瓶颈。</p>
 <p>在我看来，编程并不应该只局限于某一种或是某几种语言的具体形式，而更应该关注逻辑思维的培养。逻辑思维，说得简单一点，其实就是一种思考问题和解决问题的一些套路。如果你掌握了这些套路，并能够将他们组合应用，那么我恭喜你，你已经比大多数人强了。这些套路，在编程中，我们给了它一个比较高端的名字，便是“算法”。</p>
 <p>说到这里，一定有很多同学对算法产生了兴趣。这很棒！接下来的一段时间里，我会以《Grokking Algorithms －An illustrated guide for programmers and other curious people》这本书为参考，给大家分享一些常见的算法原理，以及它对应的实现。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/book.jpg?raw=true" target="_blank" rel="noopener" title="book" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/book.jpg?raw=true" alt="book"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/07/30/book.jpg?raw=true" alt="book"></p>
 <p>看到这儿，你肯定会有个疑问：为什么选择这本书呢？</p>
 <p>当今市面上有很多算法书，但是它们的侧重点不尽相同。</p>
 <p>比如，《算法导论》这本书比较侧重严谨性和全面性，说白了就是会劝退一些新手和小白。</p>
@@ -387,12 +390,7 @@
 <p>在这些基础数据结构和算法之后，会有一些更复杂一点的数据结构（图等）、配套的算法（宽度优先搜索、Dijkstra’s 算法等）和它的经典应用。</p>
 <p>最后本书会进一步深入，介绍一些有趣并且有用的算法（贪婪算法、动态编程【Dynamic programming】、K-近邻算法、并行算法、SHA算法等）</p>
 <p>各位同学们，准备好了吗？准备好了的话，请关注，点赞，时刻关注我的更新。:)</p>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
       
     </div>
 
@@ -598,6 +596,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -639,6 +641,16 @@
   
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/page/7/',]
+      });
+      });
+  </script>
 
 
 </body>

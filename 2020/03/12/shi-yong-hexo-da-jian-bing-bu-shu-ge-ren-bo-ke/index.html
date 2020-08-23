@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="手把手教你从零开始搭建一个个人博客">
@@ -53,7 +56,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG">
 <meta property="article:published_time" content="2020-03-12T15:15:36.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.709Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="前端">
 <meta property="article:tag" content="Hexo">
@@ -265,7 +268,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -310,7 +313,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<blockquote>
+        <blockquote>
 <p>前段时间，看到 Hexo 官方文档更新了使用 TravisCI 自动化部署部分。趁着这个机会，我将我的博客重新构建了一遍。这里记下简略过程，供读者参考。通过本篇文章，你将获得：</p>
 <ol>
 <li>使用 Hexo 构建静态博客</li>
@@ -331,25 +334,25 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
 
 <p>等待片刻，<strong>Hexo</strong> 会帮我们做初始化网站的工作。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-init-blog.PNG" target="_blank" rel="noopener" title="Hexo初始化" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-init-blog.PNG" alt="Hexo初始化"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-init-blog.PNG" alt="Hexo初始化"></p>
 <p>为方便后面部署，我们在 <code>blog</code> 中初始化一个 git 仓库，并配置好 git 相关信息。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入 blog 文件夹</span></span><br><span class="line">cd blog</span><br><span class="line"><span class="comment"># 初始化 Git 仓库</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># 查看 Git 状态</span></span><br><span class="line">git status</span><br><span class="line"><span class="comment"># 配置个人信息（与你注册 GitHub 的用户名、邮箱一致）</span></span><br><span class="line">git config -<span class="literal">-local</span> user.name &lt;你的用户名&gt;</span><br><span class="line">git config -<span class="literal">-local</span> user.email &lt;你的邮箱名&gt;</span><br><span class="line"><span class="comment"># 查看配置，user.name、user.email 是否配置成功</span></span><br><span class="line">git config -<span class="literal">-local</span> -<span class="literal">-list</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-init-and-config.PNG" target="_blank" rel="noopener" title="初始化Git仓库" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-init-and-config.PNG" alt="初始化Git仓库"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-init-and-config.PNG" alt="初始化Git仓库"></p>
 <p>接着，将仓库里的已有改动添加、提交。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"init with hexo-cli"</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-add-and-commit.PNG" target="_blank" rel="noopener" title="Git提交改动" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-add-and-commit.PNG" alt="Git提交改动"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-add-and-commit.PNG" alt="Git提交改动"></p>
 <p>在 blog 根目录，使用任意文本编辑器打开 <code>_config.yml</code> 文件，并在 <code>#Site</code> 部分输入你网站的信息。一个示例如下</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">CosmosNing的个人博客</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">探索·好奇</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">编程·学习·生活</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">个人博客;编程;学习;生活</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">CosmosNing</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">Asia/Shanghai</span></span><br></pre></td></tr></table></figure>
 
 <p>到现在， Hexo 最小配置已经完成。我们来看看效果如何。继续在命令行下输入如下命令</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果使用 PowerShell，则选择输入下一条命令（下同）</span></span><br><span class="line">hexo g; hexo s</span><br><span class="line"><span class="comment"># 如果使用 Git Bash 或者 Linux 终端，则选择输入下一条命令（下同）</span></span><br><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-g-and-hexo-s.PNG" target="_blank" rel="noopener" title="Hexo本地预览命令" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-g-and-hexo-s.PNG" alt="Hexo本地预览命令"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/hexo-g-and-hexo-s.PNG" alt="Hexo本地预览命令"></p>
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>你应该能得到类似这个画面</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/basic-result.PNG" target="_blank" rel="noopener" title="Hexo最小化配置效果" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/basic-result.PNG" alt="Hexo最小化配置效果"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/basic-result.PNG" alt="Hexo最小化配置效果"></p>
 <div class="note info">
             <h2 id="提示-终止预览"><a href="#提示-终止预览" class="headerlink" title="提示-终止预览"></a>提示-终止预览</h2><p>你可以在命令行中，按下 <code>Ctrl + C</code> 终止上述预览命令</p>
           </div>
@@ -364,14 +367,14 @@
 <p>至此，<strong>NexT</strong> 最小配置已经完成。我们来看看效果吧</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-hexo-g.PNG" target="_blank" rel="noopener" title="Hexo本地预览" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-hexo-g.PNG" alt="Hexo本地预览"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-hexo-g.PNG" alt="Hexo本地预览"></p>
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>你应该能得到类似这个画面</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-basic-result.PNG" target="_blank" rel="noopener" title="next最小配置效果" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-basic-result.PNG" alt="next最小配置效果"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/next-basic-result.PNG" alt="next最小配置效果"></p>
 <p>使用 <code>Ctrl + C</code> 终止上述命令。接下来，我们将这一阶段的改动提交到 Git 仓库。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 NexT 主题作为子模块加入仓库</span></span><br><span class="line">git submodule add https://github.com/theme<span class="literal">-next</span>/hexo<span class="literal">-theme</span><span class="literal">-next</span> themes/next</span><br><span class="line"><span class="comment"># 添加改动至暂存区</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># 提交</span></span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"add common site config with theme next(default config)"</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-commit-next-default.PNG" target="_blank" rel="noopener" title="NexT最小化配置提交" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-commit-next-default.PNG" alt="NexT最小化配置提交"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/git-commit-next-default.PNG" alt="NexT最小化配置提交"></p>
 <h2 id="配置功能页面及资源文件"><a href="#配置功能页面及资源文件" class="headerlink" title="配置功能页面及资源文件"></a>配置功能页面及资源文件</h2><p>一个完整的博客应该包括 <code>主页</code> 、<code>分类</code>、<code>标签</code>、 <code>归档</code> 等功能页面。而在 <strong>Hexo</strong> 帮我们初始化时，只是完成了博文页的设置。其他功能页需要手动设置。具体步骤如下</p>
 <ul>
 <li>创建 <code>关于</code> 页</li>
@@ -456,7 +459,7 @@
 
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>我得到了以下画面</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/my-result.PNG" target="_blank" rel="noopener" title="效果预览" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/my-result.PNG" alt="效果预览"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/my-result.PNG" alt="效果预览"></p>
 <h2 id="定制主题颜色及简单样式"><a href="#定制主题颜色及简单样式" class="headerlink" title="定制主题颜色及简单样式"></a>定制主题颜色及简单样式</h2><p>NexT 主题非常灵活，用户可以高度自定义，包括颜色，布局等。本节将浅显的介绍如何自定义主题的颜色及样式。</p>
 <div class="note default">
             <p>推荐你使用 <code>Chrome</code> 浏览器作为调试工具</p>
@@ -471,7 +474,7 @@
 
 <p>打开浏览器，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
 <p>按下 <code>F12</code> 打开<code>Chrome</code> 浏览器开发者工具。并点选左上角红框所示的按钮。这样，你就可以使用鼠标快速找到网页中某块元素的样式。然后修改右半部分（如蓝框所示） <code>Styles</code> 的样式，并观察网页效果。如果合适，将对应的样式类，复制到上述创建的 <code>styles.styl</code> 文件中，并保存。下次预览生成，你就会得到定制化的主题样式。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/ChromeDevTools.PNG" target="_blank" rel="noopener" title="ChromeDevTools" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/ChromeDevTools.PNG" alt="ChromeDevTools"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/ChromeDevTools.PNG" alt="ChromeDevTools"></p>
 <div class="note default">
             <p>点<a href="https://github.com/CosmosNing/CosmosNing.github.io/blob/source/source/_data/styles.styl" target="_blank" rel="noopener">这里</a>，查看我的样式配置。</p>
           </div>
@@ -483,31 +486,31 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基于最新提交，创建名为 source 的分支</span></span><br><span class="line">git branch source</span><br><span class="line"><span class="comment"># 切换到 source 分支</span></span><br><span class="line">git checkout source</span><br><span class="line"><span class="comment"># 删除 master ，供静态页面的部署</span></span><br><span class="line">git branch <span class="literal">-d</span> master</span><br></pre></td></tr></table></figure>
 
 <h2 id="创建-GithubPages-仓库"><a href="#创建-GithubPages-仓库" class="headerlink" title="创建 GithubPages 仓库"></a>创建 GithubPages 仓库</h2><p>登录你的 GitHub 账号，在主页的左侧，点击 <code>New</code> ，新建一个 GithubPages 仓库。你应该将其命名为 <code>&lt;你的 GitHub 用户名&gt;.github.io</code>，并点击 <code>Create repository</code> 完成创建。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo.png" target="_blank" rel="noopener" title="创建仓库" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo.png" alt="创建仓库"></a></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo-info.PNG" target="_blank" rel="noopener" title="填写仓库信息" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo-info.PNG" alt="填写仓库信息"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo.png" alt="创建仓库"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/new-repo-info.PNG" alt="填写仓库信息"></p>
 <p>接下来，需要将本地的博客仓库，推送到 GitHub。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:&lt;你的用户名&gt;/&lt;你的用户名&gt;.github.io.git</span><br><span class="line">git push <span class="literal">-u</span> origin source</span><br></pre></td></tr></table></figure>
 
 <h2 id="创建-Personal-Access-Token"><a href="#创建-Personal-Access-Token" class="headerlink" title="创建 Personal Access Token"></a>创建 Personal Access Token</h2><p>在浏览器新建一个标签页，前往 GitHub <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">新建 Personal Access Token</a>，只勾选 <code>repo</code> 的权限并生成一个新的 Token。Token 生成后请<strong>复制并保存好</strong>（因为只会出现一次，刷新页面就再也看不见了）。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token.PNG" target="_blank" rel="noopener" title="token" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token.PNG" alt="token"></a></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token-info.PNG" target="_blank" rel="noopener" title="token-info" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token-info.PNG" alt="token-info"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token.PNG" alt="token"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/token-info.PNG" alt="token-info"></p>
 <h2 id="安装及配置-TravisCI"><a href="#安装及配置-TravisCI" class="headerlink" title="安装及配置 TravisCI"></a>安装及配置 TravisCI</h2><p>在你的 GitHub 主页，点击上方菜单栏中的 <code>Marketplace</code>。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis01.png" target="_blank" rel="noopener" title="Travis-01" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis01.png" alt="Travis-01"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis01.png" alt="Travis-01"></p>
 <p>在搜索框中，搜索 <code>travis</code></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis02.PNG" target="_blank" rel="noopener" title="Travis-02" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis02.PNG" alt="Travis-02"></a></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis03.PNG" target="_blank" rel="noopener" title="Travis-03" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis03.PNG" alt="Travis-03"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis02.PNG" alt="Travis-02"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis03.PNG" alt="Travis-03"></p>
 <p>点选第一个 <code>Travis CI</code> ，并滑动到最后，选择 <code>Open Source</code>，再点击 <code>Install it for free</code>。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis04.PNG" target="_blank" rel="noopener" title="Travis-04" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis04.PNG" alt="Travis-04"></a></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis05.PNG" target="_blank" rel="noopener" title="Travis-05" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis05.PNG" alt="Travis-05"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis04.PNG" alt="Travis-04"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis05.PNG" alt="Travis-05"></p>
 <p>继续点 <code>绿色</code> 按钮。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis06.PNG" target="_blank" rel="noopener" title="Travis-06" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis06.PNG" alt="Travis-06"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis06.PNG" alt="Travis-06"></p>
 <p><code>Install</code> !</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis07.PNG" target="_blank" rel="noopener" title="Travis-07" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis07.PNG" alt="Travis-07"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis07.PNG" alt="Travis-07"></p>
 <p>现在我们可以在 <code>Travis CI</code> 官网上，登录并设置它了。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis08.PNG" target="_blank" rel="noopener" title="Travis-08" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis08.PNG" alt="Travis-08"></a></p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis09.PNG" target="_blank" rel="noopener" title="Travis-09" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis09.PNG" alt="Travis-09"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis08.PNG" alt="Travis-08"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis09.PNG" alt="Travis-09"></p>
 <p>点击你的博客仓库，新建一个环境变量。<strong>Name</strong> 为 <code>GH_TOKEN</code>，<strong>Value</strong> 为刚才你在 GitHub 生成的 Token。确保 <strong>DISPLAY VALUE IN BUILD LOG</strong> 保持 <strong>不被勾选</strong> 避免你的 Token 泄漏。点击 <strong>Add</strong> 保存</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG" target="_blank" rel="noopener" title="Travis-10" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG" alt="Travis-10"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/travis10.PNG" alt="Travis-10"></p>
 <p>在你的 Hexo 站点文件夹中新建一个 <code>.travis.yml</code> 文件：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sudo:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">10</span> <span class="comment"># use nodejs v10 LTS</span></span><br><span class="line"><span class="attr">cache:</span> <span class="string">npm</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">source</span> <span class="comment"># build source branch only</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="comment"># generate static files</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line">  <span class="attr">skip-cleanup:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">github-token:</span> <span class="string">$GH_TOKEN</span></span><br><span class="line">  <span class="attr">keep-history:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">target_branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">on:</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">source</span></span><br><span class="line">  <span class="attr">local-dir:</span> <span class="string">public</span></span><br></pre></td></tr></table></figure>
 
@@ -515,19 +518,14 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"你的提交信息"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
 <p>你的工作至此完成，可以泡杯咖啡，等待 <code>Travis CI</code> 运行结果（在你的 GitHub 博客仓库主页可以查看，如下图。如果是绿色的 ✅，那么成功；❎ 则代表失败）。</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG" target="_blank" rel="noopener" title="build-status" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG" alt="build-status"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/build-status.PNG" alt="build-status"></p>
 <h1 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h1><p>接下来你就可以自由的写博客啦。这里为你总结一些常用命令</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建博文</span></span><br><span class="line">hexo new &lt;标题名&gt;</span><br><span class="line"><span class="comment"># 本地预览</span></span><br><span class="line">hexo clean; hexo g; hexo s</span><br><span class="line"><span class="comment"># Git 推送</span></span><br><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">"你的提交信息"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
 
 
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档</a></p>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -801,6 +799,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -842,6 +844,16 @@
   
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/03/12/shi-yong-hexo-da-jian-bing-bu-shu-ge-ren-bo-ke/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {

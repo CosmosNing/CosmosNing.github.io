@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="整理一下数据结构基本概念和线性表的知识">
@@ -28,7 +31,7 @@
 <meta property="og:description" content="整理一下数据结构基本概念和线性表的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-11T15:29:16.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.709Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -236,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -281,7 +284,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<h1 id="1-数据结构基本概念及简单的算法分析"><a href="#1-数据结构基本概念及简单的算法分析" class="headerlink" title="1. 数据结构基本概念及简单的算法分析"></a>1. 数据结构基本概念及简单的算法分析</h1><h2 id="数据结构的基本概念"><a href="#数据结构的基本概念" class="headerlink" title="数据结构的基本概念"></a>数据结构的基本概念</h2><ol>
+        <h1 id="1-数据结构基本概念及简单的算法分析"><a href="#1-数据结构基本概念及简单的算法分析" class="headerlink" title="1. 数据结构基本概念及简单的算法分析"></a>1. 数据结构基本概念及简单的算法分析</h1><h2 id="数据结构的基本概念"><a href="#数据结构的基本概念" class="headerlink" title="数据结构的基本概念"></a>数据结构的基本概念</h2><ol>
 <li><strong>数据</strong>：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。</li>
 <li><strong>数据元素</strong>：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 <em>数据项</em> 组成，数据项是构成数据元素的不可分割的最小单位。</li>
 <li><strong>数据对象</strong>：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。</li>
@@ -443,12 +446,7 @@
 <li>数据结构（C语言版）.严蔚敏</li>
 <li>2020年数据结构考研复习指导.王道论坛</li>
 </ol>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -584,7 +582,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-number">1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的定义、特性"><span class="nav-number">2.</span> <span class="nav-text">算法的定义、特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的算法分析：时间复杂度、空间复杂度"><span class="nav-number">3.</span> <span class="nav-text">简单的算法分析：时间复杂度、空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线性表"><span class="nav-number"></span> <span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的存储与基本操作；"><span class="nav-number">1.</span> <span class="nav-text">顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表"><span class="nav-number">1.1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">1.2.</span> <span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的应用；"><span class="nav-number">2.</span> <span class="nav-text">顺序表和链表的应用；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一元多项式的表示及相加"><span class="nav-number">2.1.</span> <span class="nav-text">一元多项式的表示及相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表；双向链表；"><span class="nav-number">3.</span> <span class="nav-text">循环链表；双向链表；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-数据结构基本概念及简单的算法分析"><span class="nav-number">1.</span> <span class="nav-text">1. 数据结构基本概念及简单的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的定义、特性"><span class="nav-number">1.2.</span> <span class="nav-text">算法的定义、特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的算法分析：时间复杂度、空间复杂度"><span class="nav-number">1.3.</span> <span class="nav-text">简单的算法分析：时间复杂度、空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线性表"><span class="nav-number">2.</span> <span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的存储与基本操作；"><span class="nav-number">2.1.</span> <span class="nav-text">顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表"><span class="nav-number">2.1.1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的应用；"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表和链表的应用；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一元多项式的表示及相加"><span class="nav-number">2.2.1.</span> <span class="nav-text">一元多项式的表示及相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表；双向链表；"><span class="nav-number">2.3.</span> <span class="nav-text">循环链表；双向链表；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">2.3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">2.3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -719,6 +717,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -813,6 +815,16 @@
     
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2019/07/11/shu-ju-jie-gou-fu-xi-bi-ji-1-xu-lun-ji-xian-xing-biao/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {

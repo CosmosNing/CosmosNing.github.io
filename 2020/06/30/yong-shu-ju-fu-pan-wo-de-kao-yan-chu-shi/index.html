@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="扒了下今年南航计算机学院的初试成绩，试图用数据分析的方式复盘我的考研初试成绩">
@@ -45,7 +48,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png">
 <meta property="article:published_time" content="2020-06-30T12:51:25.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.709Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据分析">
 <meta property="article:tag" content="研究生">
@@ -256,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,13 +304,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<blockquote>
+        <blockquote>
 <p>受今年疫情的影响，2020 届研究生录取阶段到近几周才画上圆满的句号。距离开学还有些空闲时间，这段时间作为终点和起点的交会，是绝好的复盘机会。本文尝试以图表、关键的统计量简单地分析本年度南航官方公布的初试成绩情况，量化我的初试水平，并从这些客观的数据中分析原因，找到自身的不足，做好未来的打算。</p>
 <p>此外，本文亦希望读者可从数据分析中窥探出考研趋势，规划好自己的准备工作。</p>
 </blockquote>
 <h1 id="2020-南航计算机考研初试情况概述"><a href="#2020-南航计算机考研初试情况概述" class="headerlink" title="2020 南航计算机考研初试情况概述"></a>2020 南航计算机考研初试情况概述</h1><p>（数据来源：<a href="http://cs.nuaa.edu.cn/2020/0520/c10851a200876/page.htm" target="_blank" rel="noopener">官方公布的初试成绩（仅包括进入复试的部分）</a>）</p>
 <p>我对上述数据，分专业、分科目分别统计了分数情况。</p>
-<h2 id="电子信息（专硕）"><a href="#电子信息（专硕）" class="headerlink" title="电子信息（专硕）"></a>电子信息（专硕）</h2><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="电子信息-zhengzhi" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-zhengzhi"></a></p>
+<h2 id="电子信息（专硕）"><a href="#电子信息（专硕）" class="headerlink" title="电子信息（专硕）"></a>电子信息（专硕）</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-zhengzhi"></p>
 <table>
 <thead>
 <tr>
@@ -326,7 +329,7 @@
 <td align="center">66</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="电子信息-英一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-英一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-英一"></p>
 <table>
 <thead>
 <tr>
@@ -345,7 +348,7 @@
 <td align="center">67</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%95%B0%E4%BA%8C%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="电子信息-数二" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%95%B0%E4%BA%8C%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-数二"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-%E6%95%B0%E4%BA%8C%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-数二"></p>
 <table>
 <thead>
 <tr>
@@ -364,7 +367,7 @@
 <td align="center">94.5</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="电子信息-829" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-829"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%94%B5%E5%AD%90%E4%BF%A1%E6%81%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="电子信息-829"></p>
 <table>
 <thead>
 <tr>
@@ -383,7 +386,7 @@
 <td align="center">101</td>
 </tr>
 </tbody></table>
-<h2 id="计算机科学与技术（学硕）"><a href="#计算机科学与技术（学硕）" class="headerlink" title="计算机科学与技术（学硕）"></a>计算机科学与技术（学硕）</h2><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="计算机科学与技术-zhengzhi" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-zhengzhi"></a></p>
+<h2 id="计算机科学与技术（学硕）"><a href="#计算机科学与技术（学硕）" class="headerlink" title="计算机科学与技术（学硕）"></a>计算机科学与技术（学硕）</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-zhengzhi"></p>
 <table>
 <thead>
 <tr>
@@ -402,7 +405,7 @@
 <td align="center">68.5</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="计算机科学与技术-英一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-英一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-英一"></p>
 <table>
 <thead>
 <tr>
@@ -421,7 +424,7 @@
 <td align="center">70</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="计算机科学与技术-数一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-数一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-数一"></p>
 <table>
 <thead>
 <tr>
@@ -440,7 +443,7 @@
 <td align="center">97</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="计算机科学与技术-829" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-829"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="计算机科学与技术-829"></p>
 <table>
 <thead>
 <tr>
@@ -459,7 +462,7 @@
 <td align="center">110.5</td>
 </tr>
 </tbody></table>
-<h2 id="软件工程（学硕）"><a href="#软件工程（学硕）" class="headerlink" title="软件工程（学硕）"></a>软件工程（学硕）</h2><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="软件工程-zhengzhi" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-zhengzhi"></a></p>
+<h2 id="软件工程（学硕）"><a href="#软件工程（学硕）" class="headerlink" title="软件工程（学硕）"></a>软件工程（学硕）</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-zhengzhi"></p>
 <table>
 <thead>
 <tr>
@@ -478,7 +481,7 @@
 <td align="center">68</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="软件工程-英一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-英一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-英一"></p>
 <table>
 <thead>
 <tr>
@@ -497,7 +500,7 @@
 <td align="center">69</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="软件工程-数一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-数一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-数一"></p>
 <table>
 <thead>
 <tr>
@@ -516,7 +519,7 @@
 <td align="center">86</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="软件工程-829" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-829"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="软件工程-829"></p>
 <table>
 <thead>
 <tr>
@@ -535,7 +538,7 @@
 <td align="center">104</td>
 </tr>
 </tbody></table>
-<h2 id="网络空间安全（学硕）"><a href="#网络空间安全（学硕）" class="headerlink" title="网络空间安全（学硕）"></a>网络空间安全（学硕）</h2><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="网络空间安全-zhengzhi" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-zhengzhi"></a></p>
+<h2 id="网络空间安全（学硕）"><a href="#网络空间安全（学硕）" class="headerlink" title="网络空间安全（学硕）"></a>网络空间安全（学硕）</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%94%BF%E6%B2%BB%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-zhengzhi"></p>
 <table>
 <thead>
 <tr>
@@ -554,7 +557,7 @@
 <td align="center">66.5</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="网络空间安全-英一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-英一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E8%8B%B1%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-英一"></p>
 <table>
 <thead>
 <tr>
@@ -573,7 +576,7 @@
 <td align="center">65.5</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="网络空间安全-数一" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-数一"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-%E6%95%B0%E4%B8%80%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-数一"></p>
 <table>
 <thead>
 <tr>
@@ -592,7 +595,7 @@
 <td align="center">80.5</td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" target="_blank" rel="noopener" title="网络空间安全-829" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-829"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8-829%E5%88%86%E6%95%B0%E5%88%86%E5%B8%83%E6%83%85%E5%86%B5.png" alt="网络空间安全-829"></p>
 <table>
 <thead>
 <tr>
@@ -622,7 +625,7 @@
 <li>81% ~ 100%： 打 1 分</li>
 </ul>
 <p>我以上述方式量化的我的水平，具体如下：</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png" target="_blank" rel="noopener" title="能力雷达图" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png" alt="能力雷达图"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/%E8%83%BD%E5%8A%9B%E9%9B%B7%E8%BE%BE%E5%9B%BE.png" alt="能力雷达图"></p>
 <p>初步分析可以发现，我的技能树有些歪，存在较为严重的偏科现象。英语有非常好的优势，数学处于中等水平，而政治和专业课则严重脱了我的后腿。</p>
 <h1 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h1><ol>
 <li>英语一直是我的强势科目，这要感谢初、高中英语的高强度的训练和全面的知识框架，让我不用太多时间，便能适应考研英语的套路。</li>
@@ -637,12 +640,7 @@
 <li><input disabled="" type="checkbox"> …（待补充）</li>
 </ul>
 <p>谨以此篇，作为近阶段学习工作的复盘。</p>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -915,6 +913,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -956,6 +958,16 @@
   
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/06/30/yong-shu-ju-fu-pan-wo-de-kao-yan-chu-shi/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {

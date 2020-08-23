@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
@@ -36,7 +39,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true">
 <meta property="article:published_time" content="2019-10-04T14:25:24.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.072Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.709Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -245,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -290,7 +293,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<h1 id="3．存储器分层体系结构"><a href="#3．存储器分层体系结构" class="headerlink" title="3．存储器分层体系结构"></a>3．存储器分层体系结构</h1><h2 id="（★★）存储器的分层结构及存储硬件概述"><a href="#（★★）存储器的分层结构及存储硬件概述" class="headerlink" title="（★★）存储器的分层结构及存储硬件概述"></a>（★★）存储器的分层结构及存储硬件概述</h2><h3 id="存储系统的分层"><a href="#存储系统的分层" class="headerlink" title="存储系统的分层"></a>存储系统的分层</h3><ul>
+        <h1 id="3．存储器分层体系结构"><a href="#3．存储器分层体系结构" class="headerlink" title="3．存储器分层体系结构"></a>3．存储器分层体系结构</h1><h2 id="（★★）存储器的分层结构及存储硬件概述"><a href="#（★★）存储器的分层结构及存储硬件概述" class="headerlink" title="（★★）存储器的分层结构及存储硬件概述"></a>（★★）存储器的分层结构及存储硬件概述</h2><h3 id="存储系统的分层"><a href="#存储系统的分层" class="headerlink" title="存储系统的分层"></a>存储系统的分层</h3><ul>
 <li>寄存器</li>
 <li>Cache</li>
 <li>主存</li>
@@ -386,7 +389,7 @@
 <li>位扩展<ul>
 <li>用多个芯片对字长进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 8K × 8 位）</li>
 <li>连接方式<ul>
-<li><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" target="_blank" rel="noopener" title="位扩展" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" alt="位扩展"></a></li>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" alt="位扩展"></li>
 </ul>
 </li>
 </ul>
@@ -394,7 +397,7 @@
 <li>字扩展<ul>
 <li>用多个芯片对字的数量进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 64K × 1 位）</li>
 <li>连接方式<ul>
-<li><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" target="_blank" rel="noopener" title="字扩展" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" alt="字扩展"></a></li>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" alt="字扩展"></li>
 </ul>
 </li>
 </ul>
@@ -402,7 +405,7 @@
 <li>字位同时扩展<ul>
 <li>同时扩充字和位，组合上述两种扩展</li>
 <li>连接方式<ul>
-<li><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" target="_blank" rel="noopener" title="字位同时扩展" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></a></li>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></li>
 </ul>
 </li>
 </ul>
@@ -412,7 +415,7 @@
 </ul>
 <h3 id="多模块存储器的交叉存储"><a href="#多模块存储器的交叉存储" class="headerlink" title="多模块存储器的交叉存储"></a>多模块存储器的交叉存储</h3><ul>
 <li><strong>低位</strong>地址为<strong>体号</strong>，<strong>高位</strong>地址为<strong>体内地址</strong>，所以又称为低位交叉编址</li>
-<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" target="_blank" rel="noopener" title="多模块存储器的交叉存储" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></a></li>
+<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></li>
 <li>一些公式（★★）<ul>
 <li>设模块字长等于数据总线宽度，模块存取一个字的周期为 <em>T</em>，总线传送周期为 <em>r</em>， 为实现流水线方式存取，存储器交叉模块数应<strong>大于等于</strong><ul>
 <li>$m=\frac{T}{r}$ （<em>m</em> 称为<strong>交叉存取度</strong>）</li>
@@ -425,7 +428,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" target="_blank" rel="noopener" title="带Cache的CPU基本访存过程" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></a></p>
+<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></p>
 <h3 id="Cache和主存之间的映射方式（★★★★★★★★）"><a href="#Cache和主存之间的映射方式（★★★★★★★★）" class="headerlink" title="Cache和主存之间的映射方式（★★★★★★★★）"></a>Cache和主存之间的映射方式（★★★★★★★★）</h3><h4 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h4><ul>
 <li>映射关系<ul>
 <li>$cache\ 行号 = 主存块号\ Mod\ cache\ 行数$</li>
@@ -447,7 +450,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" target="_blank" rel="noopener" title="直接映射" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" alt="直接映射"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" alt="直接映射"></p>
 <h4 id="全相联映射"><a href="#全相联映射" class="headerlink" title="全相联映射"></a>全相联映射</h4><ul>
 <li>映射关系<ul>
 <li>主存块可装入 cache 中任意一行</li>
@@ -467,7 +470,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" target="_blank" rel="noopener" title="全相联映射" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" alt="全相联映射"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" alt="全相联映射"></p>
 <h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
 <li>映射关系<ul>
 <li>$cache\ 组号 = 主存块号\ Mod\ cache\ 组数$</li>
@@ -489,7 +492,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" target="_blank" rel="noopener" title="组相联映射" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" alt="组相联映射"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" alt="组相联映射"></p>
 <h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><p>（详见教材）</p>
 <h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h4 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h4><p>类似操作系统中内存管理页面置换</p>
 <ul>
@@ -593,12 +596,7 @@
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -734,7 +732,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）存储器的分层结构及存储硬件概述"><span class="nav-number">1.</span> <span class="nav-text">（★★）存储器的分层结构及存储硬件概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的分层"><span class="nav-number">1.1.</span> <span class="nav-text">存储系统的分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半导体随机访问存储器的组织"><span class="nav-number">1.2.</span> <span class="nav-text">半导体随机访问存储器的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读存储器及主存的主要技术指标"><span class="nav-number">1.3.</span> <span class="nav-text">只读存储器及主存的主要技术指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器芯片与CPU的连接"><span class="nav-number">1.4.</span> <span class="nav-text">存储器芯片与CPU的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多模块存储器的交叉存储"><span class="nav-number">1.5.</span> <span class="nav-text">多模块存储器的交叉存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）Cache"><span class="nav-number">2.</span> <span class="nav-text">（★★）Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓冲存储器的CPU基本访存过程"><span class="nav-number">2.1.</span> <span class="nav-text">高速缓冲存储器的CPU基本访存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache和主存之间的映射方式（★★★★★★★★）"><span class="nav-number">2.2.</span> <span class="nav-text">Cache和主存之间的映射方式（★★★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接映射"><span class="nav-number">2.2.1.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全相联映射"><span class="nav-number">2.2.2.</span> <span class="nav-text">全相联映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组相联映射"><span class="nav-number">2.2.3.</span> <span class="nav-text">组相联映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序"><span class="nav-number">2.3.</span> <span class="nav-text">程序访问的局部性原理对编程的影响及Cache-friendly的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache替换算法和Cache写策略"><span class="nav-number">2.4.</span> <span class="nav-text">Cache替换算法和Cache写策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换算法"><span class="nav-number">2.4.1.</span> <span class="nav-text">替换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-写策略"><span class="nav-number">2.4.2.</span> <span class="nav-text">Cache 写策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均访问时间的计算"><span class="nav-number">2.5.</span> <span class="nav-text">平均访问时间的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）虚拟存储器"><span class="nav-number">3.</span> <span class="nav-text">（★★）虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现方案"><span class="nav-number">3.2.</span> <span class="nav-text">三种实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><span class="nav-number">3.3.</span> <span class="nav-text">缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number"></span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3．存储器分层体系结构"><span class="nav-number">1.</span> <span class="nav-text">3．存储器分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）存储器的分层结构及存储硬件概述"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）存储器的分层结构及存储硬件概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的分层"><span class="nav-number">1.1.1.</span> <span class="nav-text">存储系统的分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半导体随机访问存储器的组织"><span class="nav-number">1.1.2.</span> <span class="nav-text">半导体随机访问存储器的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读存储器及主存的主要技术指标"><span class="nav-number">1.1.3.</span> <span class="nav-text">只读存储器及主存的主要技术指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器芯片与CPU的连接"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储器芯片与CPU的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多模块存储器的交叉存储"><span class="nav-number">1.1.5.</span> <span class="nav-text">多模块存储器的交叉存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）Cache"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓冲存储器的CPU基本访存过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">高速缓冲存储器的CPU基本访存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache和主存之间的映射方式（★★★★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cache和主存之间的映射方式（★★★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接映射"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全相联映射"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">全相联映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组相联映射"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">组相联映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序"><span class="nav-number">1.2.3.</span> <span class="nav-text">程序访问的局部性原理对编程的影响及Cache-friendly的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache替换算法和Cache写策略"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cache替换算法和Cache写策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换算法"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">替换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-写策略"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Cache 写策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均访问时间的计算"><span class="nav-number">1.2.5.</span> <span class="nav-text">平均访问时间的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）虚拟存储器"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现方案"><span class="nav-number">1.3.2.</span> <span class="nav-text">三种实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><span class="nav-number">1.3.3.</span> <span class="nav-text">缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -869,6 +867,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -963,6 +965,16 @@
     
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2019/10/04/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-3-cun-chu-qi-fen-ceng-ti-xi-jie-gou/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {

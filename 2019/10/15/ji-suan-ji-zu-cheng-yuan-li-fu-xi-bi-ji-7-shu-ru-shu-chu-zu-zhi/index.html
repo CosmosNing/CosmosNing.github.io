@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中输入输出组织的知识">
@@ -31,7 +34,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true">
 <meta property="article:published_time" content="2019-10-15T04:17:34.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.072Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.713Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -240,7 +243,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,7 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<h1 id="7．输入输出组织"><a href="#7．输入输出组织" class="headerlink" title="7．输入输出组织"></a>7．输入输出组织</h1><h2 id="（×）I-O系统基本概念"><a href="#（×）I-O系统基本概念" class="headerlink" title="（×）I/O系统基本概念"></a>（×）I/O系统基本概念</h2><p>（详见教材） </p>
+        <h1 id="7．输入输出组织"><a href="#7．输入输出组织" class="headerlink" title="7．输入输出组织"></a>7．输入输出组织</h1><h2 id="（×）I-O系统基本概念"><a href="#（×）I-O系统基本概念" class="headerlink" title="（×）I/O系统基本概念"></a>（×）I/O系统基本概念</h2><p>（详见教材） </p>
 <h2 id="（★）常见外部设备"><a href="#（★）常见外部设备" class="headerlink" title="（★）常见外部设备"></a>（★）常见外部设备</h2><h3 id="常见外部设备及其工作原理"><a href="#常见外部设备及其工作原理" class="headerlink" title="常见外部设备及其工作原理"></a>常见外部设备及其工作原理</h3><p>（详见教材）</p>
 <h3 id="部分外部设备的性能指标"><a href="#部分外部设备的性能指标" class="headerlink" title="部分外部设备的性能指标"></a>部分外部设备的性能指标</h3><h4 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h4><ul>
 <li>$VRAM\ 容量 = 分辨率\times 灰度级位数$</li>
@@ -323,7 +326,7 @@
 </ul>
 </li>
 <li><p>基本结构</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" target="_blank" rel="noopener" title="I/O接口基本结构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
 </li>
 </ul>
 <h3 id="I-O-端口及其编址"><a href="#I-O-端口及其编址" class="headerlink" title="I/O 端口及其编址"></a>I/O 端口及其编址</h3><ul>
@@ -336,7 +339,7 @@
 </li>
 </ul>
 <h2 id="（★★★）I-O的三种控制方式"><a href="#（★★★）I-O的三种控制方式" class="headerlink" title="（★★★）I/O的三种控制方式"></a>（★★★）I/O的三种控制方式</h2><p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
-<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" target="_blank" rel="noopener" title="I/O接口基本结构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></a></p>
+<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
 <h3 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h3><h4 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h4><p>（详见教材）</p>
 <h4 id="中断工作流程"><a href="#中断工作流程" class="headerlink" title="中断工作流程"></a>中断工作流程</h4><h5 id="中断响应（中断隐指令，硬件完成）"><a href="#中断响应（中断隐指令，硬件完成）" class="headerlink" title="中断响应（中断隐指令，硬件完成）"></a>中断响应（中断隐指令，硬件完成）</h5><ul>
 <li>响应中断的 3 个条件<ol>
@@ -367,7 +370,7 @@
 <li>多重中断：中断内可以嵌套中断</li>
 <li>中断屏蔽（见后解题技巧及重要结论中的总结）</li>
 </ul>
-<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" target="_blank" rel="noopener" title="I/O接口基本结构" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></a></p>
+<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
 <h4 id="DMA-的传送过程"><a href="#DMA-的传送过程" class="headerlink" title="DMA 的传送过程"></a>DMA 的传送过程</h4><p>DMA 传送过程主要分为三步</p>
 <ol>
 <li>预处理<ul>
@@ -407,12 +410,7 @@
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -548,7 +546,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）I-O系统基本概念"><span class="nav-number">1.</span> <span class="nav-text">（×）I&#x2F;O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）常见外部设备"><span class="nav-number">2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）I-O-接口"><span class="nav-number">3.</span> <span class="nav-text">（★）I&#x2F;O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-端口及其编址"><span class="nav-number">3.2.</span> <span class="nav-text">I&#x2F;O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）I-O的三种控制方式"><span class="nav-number">4.</span> <span class="nav-text">（★★★）I&#x2F;O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应（中断隐指令，硬件完成）"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行（中断程序完成）"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA-方式"><span class="nav-number">4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-控制器的组成"><span class="nav-number">4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-的传送过程"><span class="nav-number">4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number"></span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number"></span> <span class="nav-text">参考资料</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7．输入输出组织"><span class="nav-number">1.</span> <span class="nav-text">7．输入输出组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）I-O系统基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">（×）I&#x2F;O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）常见外部设备"><span class="nav-number">1.2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">1.2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）I-O-接口"><span class="nav-number">1.3.</span> <span class="nav-text">（★）I&#x2F;O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-端口及其编址"><span class="nav-number">1.3.2.</span> <span class="nav-text">I&#x2F;O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）I-O的三种控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">（★★★）I&#x2F;O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应（中断隐指令，硬件完成）"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行（中断程序完成）"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA-方式"><span class="nav-number">1.4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-控制器的组成"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-的传送过程"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -683,6 +681,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -777,6 +779,16 @@
     
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2019/10/15/ji-suan-ji-zu-cheng-yuan-li-fu-xi-bi-ji-7-shu-ru-shu-chu-zu-zhi/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {

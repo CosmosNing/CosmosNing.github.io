@@ -14,10 +14,13 @@
 
 
 <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
+  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="本文主要介绍 RDF 的基本概念">
@@ -29,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png">
 <meta property="article:published_time" content="2020-07-21T13:44:26.000Z">
-<meta property="article:modified_time" content="2020-08-20T16:46:12.068Z">
+<meta property="article:modified_time" content="2020-08-23T06:32:21.705Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="RDF">
 <meta property="article:tag" content="数据模型">
@@ -239,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 00:46:12" itemprop="dateModified" datetime="2020-08-21T00:46:12+08:00">2020-08-21</time>
+                <time title="修改时间：2020-08-23 14:32:21" itemprop="dateModified" datetime="2020-08-23T14:32:21+08:00">2020-08-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -284,7 +287,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/css/lightgallery.min.css" /><div class=".article-gallery"<blockquote>
+        <blockquote>
 <p>最近在学习图数据库的基础知识。本文将参考 《<a href="http://learningsparql.com/" target="_blank" rel="noopener">Learning SPARQL: querying and updating with SPARQL 1.1</a>》这本书，简单介绍图数据的数据模型 RDF。主要内容如下：</p>
 <ol>
 <li>RDF 简介</li>
@@ -296,7 +299,7 @@
 <h1 id="RDF-简介"><a href="#RDF-简介" class="headerlink" title="RDF 简介"></a>RDF 简介</h1><p>RDF 全称 Resource Description Framework（资源描述框架），是一种数据模型，它提供了一种独特的结构来存储数据文件。RDF 独特的结构使其在 Semantic Web、图数据库等领域应用十分广泛。</p>
 <h1 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h1><p>在 RDF 中，每一个基本单元可由一个三元组 $(s,\ p,\ o)$ 构成，其中 $s$ 代表 subject（主语），$p$ 代表 predicate（谓语）， $o$ 代表 object（宾语）。每一个三元组都可以陈述这样一个事实：一个由 $s$ 唯一标记的资源实体拥有 $p$ 属性，其属性值为 $o$ 。</p>
 <p>每一个三元组都可以通过图（graph）来表示，具体如下图：</p>
-<p><a href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png" target="_blank" rel="noopener" title="三元组图示" class="gallery-item"><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png" alt="三元组图示"></a></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png" alt="三元组图示"></p>
 <h1 id="存储方式及其结构"><a href="#存储方式及其结构" class="headerlink" title="存储方式及其结构"></a>存储方式及其结构</h1><h2 id="文件存储（序列化）"><a href="#文件存储（序列化）" class="headerlink" title="文件存储（序列化）"></a>文件存储（序列化）</h2><p>当数据以文件的形式存储时，RDF 有如下几种序列化格式</p>
 <h3 id="RDF-XML"><a href="#RDF-XML" class="headerlink" title="RDF/XML"></a>RDF/XML</h3><p>RDF/XML 是最古老的格式，最初出现在 1999 年 RDF 规格说明中。顾名思义，这种方式采取了与 XML 类似的结构存储数据单元（也就是一个三元组）。一个简单的例子如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 本例来自书籍《Learning SPARQL》，详见参考资料（下同） --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Being XML, RDF/XML uses regular XML comment delimiters. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- filename: ex029.rdf --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">rdf:RDF</span> <span class="attr">xmlns:rdf</span>=<span class="string">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:dc</span>=<span class="string">"http://purl.org/dc/elements/1.1/"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:v</span>=<span class="string">"http://www.w3.org/2006/vcard/"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rdf:Description</span> <span class="attr">rdf:about</span>=<span class="string">"urn:isbn:006251587X"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dc:title</span>&gt;</span>Weaving the Web<span class="tag">&lt;/<span class="name">dc:title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dc:creator</span> <span class="attr">rdf:resource</span>=<span class="string">"http://www.w3.org/People/Berners-Lee/card#i"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rdf:Description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rdf:Description</span> <span class="attr">rdf:about</span>=<span class="string">"http://www.w3.org/People/Berners-Lee/card#i"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">v:title</span>&gt;</span>Director<span class="tag">&lt;/<span class="name">v:title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rdf:Description</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">rdf:RDF</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -404,12 +407,7 @@
 <li><a href="https://www.w3.org/TR/rdf-primer/" target="_blank" rel="noopener">W3C RDF Primer</a></li>
 <li><a href="https://www.dataversity.net/introduction-to-rdf-vs-xml/" target="_blank" rel="noopener">Introduction to: RDF vs XML</a></li>
 </ul>
-</div><script src="https://cdn.bootcdn.net/ajax/libs/lightgallery-js/1.2.0/js/lightgallery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-autoplay.js@1.2.0/dist/lg-autoplay.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-fullscreen.js@1.2.0/dist/lg-fullscreen.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lg-pager.js@1.0.0/dist/lg-pager.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
-        var options = {
-            selector: '.gallery-item'
-        };
-        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
-        }</script>
+
     </div>
 
     
@@ -681,6 +679,10 @@
 
   
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
 
@@ -775,6 +777,16 @@
     
 
   
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/07/21/intro-to-rdf/',]
+      });
+      });
+  </script>
 
 <script>
 NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
