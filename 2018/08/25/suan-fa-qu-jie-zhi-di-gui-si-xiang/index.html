@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="从阶乘的编程实现说起">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-25T14:41:31.000Z">
-<meta property="article:modified_time" content="2020-08-23T11:02:48.069Z">
+<meta property="article:modified_time" content="2020-08-26T11:57:39.480Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -243,7 +243,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-23 19:02:48" itemprop="dateModified" datetime="2020-08-23T19:02:48+08:00">2020-08-23</time>
+                <time title="修改时间：2020-08-26 19:57:39" itemprop="dateModified" datetime="2020-08-26T19:57:39+08:00">2020-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,7 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true" alt="cover"></p>
+        <p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true" alt="cover"></p>
 <p>数学上有一种运算叫做阶乘，它的计算定义如下：</p>
 <p>$$<br>n ! = 1 × 2 × ··· × n ( n ≥ 1)<br>$$</p>
 <p>如果，让你依据上述公式，为阶乘运算写一个函数，你会怎么实现？</p>
@@ -314,7 +314,7 @@
 <p>要计算 $factorial(3)$ , 根据递推公式可以得到 $factorial(3) = 3 × factorial(2)$ 。为了计算 $factorial(2)$ ，我们先将当前的函数状态 $factorial(3)$ 压入栈中保存；</p>
 <p>···</p>
 <p>以此类推，我们会到达递归的出口，也就是直接给出的factorial(1)的值。然后我们从栈中取出最近一个函数状态 $factorial(2)$ ，得到 $factorial(2)$ 等于2；再进一步得到 $factorial(3)$ 等于6， $factorial(4)$ 等于24。</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态"></p>
+<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态"></p>
 <p>计算一个简单的4的阶乘，背后有这么多的栈的操作，看上去非常繁琐。同时，随着数据待求数字的增大，其递归层次也变得更深，而栈的空间是有限的，深层次的递归调用可能会使得栈存储不下，导致栈溢出，程序异常终止。</p>
 <p>在可读性方面，递归程序的简洁十分利于理解，但在效率方面，并不如循环递推高效。那递归为什么会存在于算法思想里呢？我想除了易于理解以外，还有一点便是有些问题只能通过递归来实现（比如说“汉诺塔问题”。由于篇幅有限，这里不做讨论，大家可以自己看看）。</p>
 <p>递归函数在执行过程比较特殊，对应的其时间复杂度的计算也比较特殊。以上述递归求阶乘为例，介绍一下递归函数时间复杂度的分析。</p>
@@ -604,7 +604,6 @@
   <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
   <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
