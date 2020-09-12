@@ -13,14 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
-  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="Sci-Owl Weekly 第 2 期">
@@ -45,21 +45,23 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/aron-visuals-R49cUgaQ0mk-unsplash.jpg">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/marianne-bos-eDOYvF6pM1I-unsplash.jpg">
 <meta property="article:published_time" content="2020-08-02T01:04:25.000Z">
-<meta property="article:modified_time" content="2020-09-12T13:27:27.528Z">
+<meta property="article:modified_time" content="2020-09-12T16:19:57.977Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="个人博客;编程;学习;生活">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/james-toose-zWA7Obpb4R4-unsplash.jpg">
 
+
 <link rel="canonical" href="https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -82,55 +84,64 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">CosmosNing的个人博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
-      
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
   </div>
 
   <div class="site-nav-right">
@@ -141,37 +152,37 @@
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">63</span></a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">51</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
 
-    <a href="/neo4j/" rel="section"><i class="fa fa-fw fa-book"></i>neo4j</a>
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -179,16 +190,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -196,34 +209,124 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#别让骗子利用你的声音"><span class="nav-number">1.</span> <span class="nav-text">别让骗子利用你的声音</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聚焦"><span class="nav-number">2.</span> <span class="nav-text">聚焦</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#好奇"><span class="nav-number">3.</span> <span class="nav-text">好奇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#百味"><span class="nav-number">4.</span> <span class="nav-text">百味</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#器术"><span class="nav-number">5.</span> <span class="nav-text">器术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拾贝"><span class="nav-number">6.</span> <span class="nav-text">拾贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#火花"><span class="nav-number">7.</span> <span class="nav-text">火花</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -235,61 +338,68 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CosmosNing的个人博客">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Sci-Owl Weekly #2：别让骗子利用你的声音
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-02 09:04:25" itemprop="dateCreated datePublished" datetime="2020-08-02T09:04:25+08:00">2020-08-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-12 21:27:27" itemprop="dateModified" datetime="2020-09-12T21:27:27+08:00">2020-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%A8%E5%88%8A/" itemprop="url" rel="index"><span itemprop="name">周刊</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-08-02 09:04:25" itemprop="dateCreated datePublished" datetime="2020-08-02T09:04:25+08:00">2020-08-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-13 00:19:57" itemprop="dateModified" datetime="2020-09-13T00:19:57+08:00">2020-09-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%91%A8%E5%88%8A/" itemprop="url" rel="index"><span itemprop="name">周刊</span></a>
+        </span>
+    </span>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">Sci-Owl Weekly 第 2 期</div>
-
         </div>
       </header>
 
@@ -297,14 +407,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>Sci-Owl Weekly，每周日更新。</p>
 <p>本周刊欢迎读者的建议与投稿，请发送相关信息至 <a href="mailto:cosmosning@gmail.com">cosmosning@gmail.com</a> 。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/james-toose-zWA7Obpb4R4-unsplash.jpg" alt="封面图"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/james-toose-zWA7Obpb4R4-unsplash.jpg" alt="封面图"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@portablepeopleproductions?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">James Toose</a>. <a href="https://unsplash.com/s/photos/owl?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
-<h1 id="别让骗子利用你的声音"><a href="#别让骗子利用你的声音" class="headerlink" title="别让骗子利用你的声音"></a>别让骗子利用你的声音</h1><p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/bermix-studio-F7DAQIDSk98-unsplash.jpg" alt="骗子"></p>
+<h1 id="别让骗子利用你的声音"><a href="#别让骗子利用你的声音" class="headerlink" title="别让骗子利用你的声音"></a>别让骗子利用你的声音</h1><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/bermix-studio-F7DAQIDSk98-unsplash.jpg" alt="骗子"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@bermixstudio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Bermix Studio</a>. <a href="https://unsplash.com/s/photos/fraud?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>据<a href="https://www.vice.com/en_us/article/pkyqvb/deepfake-audio-impersonating-ceo-fraud-attempt" target="_blank" rel="noopener">报道</a>，6 月，一位科技公司的雇员收到一封语音邮件。该邮件声称，自己是这家公司的 CEO ，发这封邮件的目的是要求他“立刻提供帮助”，以完成一项紧急的公司交易。之后，一家安全公司调查此事发现，虽然语音邮件中的声音与 CEO 十分相似，但这是由电脑软件生成的。这也就是近几年来常常提到的假冒音频（deepfake audio）。</p>
@@ -313,7 +421,7 @@
 <h1 id="聚焦"><a href="#聚焦" class="headerlink" title="聚焦"></a>聚焦</h1><ul>
 <li><a href="https://www.donews.com/news/detail/2/3105457.html" target="_blank" rel="noopener">Canalys：二季度华为全球智能手机市场首超三星夺冠</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/Canalys_Report.jpg" alt="Canalys 报告"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/Canalys_Report.jpg" alt="Canalys 报告"></p>
 <p class="img-credit">Source：<span>Canalys 报告</span></p>
 
 <p>据 Canalys 近期的一份报告指出，2020 年第二季度华为首次在全球智能手机市场上超越了三星，成为全球智能手机出货量第一的公司。</p>
@@ -321,7 +429,7 @@
 <ul>
 <li><a href="https://tech.163.com/20/0729/19/FINQ7D4M00097U7R.html" target="_blank" rel="noopener">字节跳动部分投资者对 TikTok 收购估值约 500 亿美元</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kon-karampelas-12TzzNLc2QM-unsplash.jpg" alt="TikTok"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kon-karampelas-12TzzNLc2QM-unsplash.jpg" alt="TikTok"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@konkarampelas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Kon Karampelas</a>. <a href="https://unsplash.com/s/photos/tiktok?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>路透社消息，在美国要求字节跳动放弃对 TikTok 控制权的压力下，该公司正在考虑处理TikTok 的一系列选择。其中一些投资者寻求收购 TikTok，并对其估值约 500 亿美元。</p>
@@ -330,14 +438,14 @@
 <ul>
 <li><a href="https://www.technologyreview.com/2020/07/29/1005770/nasas-new-mars-rover-perseverance-bristling-tech-find-signs-alien-life/" target="_blank" rel="noopener">NASA 的火星外星生命探索</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/brian-mcgowan-5_Z3YVosrCw-unsplash.jpg" alt="探测器"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/brian-mcgowan-5_Z3YVosrCw-unsplash.jpg" alt="探测器"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@sushioutlaw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Brian McGowan</a>. <a href="https://unsplash.com/s/photos/mars-planet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>在上周中国天问一号发生成功之后，美国 NASA 于当地时间 7 月 30 日向火星发射了“毅力”号探测器。该探测器试图找到外星生命迹象，并采集相关样本，返回地球。</p>
 <h1 id="好奇"><a href="#好奇" class="headerlink" title="好奇"></a>好奇</h1><ul>
 <li><a href="https://www.theverge.com/21317052/mobile-autonomous-robot-lab-assistant-research-speed" target="_blank" rel="noopener">化学实验助理机器人</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/robo-lab-assistant.png" alt="化学实验助理机器人"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/robo-lab-assistant.png" alt="化学实验助理机器人"></p>
 <p class="img-credit">Credit：University of Liverpool</p>
 
 <p>在普通人，做化学实验看来是专属于学生和研究员的工作。因为繁杂的反应原料，多样的仪器设备，需要人手精密地控制。</p>
@@ -358,7 +466,7 @@
 <ul>
 <li><a href="https://www.janklingler.com/" target="_blank" rel="noopener">美的令人窒息！色彩绚丽的细菌灯</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/bacteria-lamp.jpg" alt="细菌灯"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/bacteria-lamp.jpg" alt="细菌灯"></p>
 <p class="img-credit">Credit：trendnomad.com</p>
 
 <p><strong>亮点</strong></p>
@@ -369,7 +477,7 @@
 <ul>
 <li><a href="https://aeon.co/essays/if-language-began-in-the-hands-why-did-it-ever-leave" target="_blank" rel="noopener">从手到口：如果语言起源于手势，为什么口语成为目前语言的主要交流方式</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kristina-flour-BcjdbyKWquw-unsplash.jpg" alt="从手语到口语"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kristina-flour-BcjdbyKWquw-unsplash.jpg" alt="从手语到口语"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@tinaflour?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Kristina Flour</a>. <a href="https://unsplash.com/s/photos/mouth?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>有很多语言学习研究者支持语言起源于手势。例如在孩子发育成长时，他将首先学会手势，再学会说话。也有相关实验证明，对于猿类来说，口语是难以触及的，但是手语却相对轻松习得。那么，是什么原因导致语言从手势转移到口语呢？</p>
@@ -381,7 +489,7 @@
 <h1 id="百味"><a href="#百味" class="headerlink" title="百味"></a>百味</h1><ul>
 <li><a href="http://music.163.com/program/2068129904/56704863/" target="_blank" rel="noopener">播客 ·《高考前后的日子【VG聊天室347】》</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" alt="考场"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/ivan-aleksic-PDRFeeDniCk-unsplash.jpg" alt="考场"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@ivalex?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Ivan Aleksic</a>. <a href="https://unsplash.com/s/photos/classroom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>近几天，2020 年高考进入了志愿填报的阶段。高考前后你是怎么度过的呢？听一听来自游戏时光 VGtime 的编辑们对高考的回忆，以及他们学习和游戏之间的故事。</p>
@@ -389,7 +497,7 @@
 <ul>
 <li><a href="https://www.ted.com/talks/dean_furness_to_overcome_challenges_stop_comparing_yourself_to_others" target="_blank" rel="noopener">TED · 要克服挑战，请先停下与他人的比较</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/DeanFurness_2020S-embed.jpg" alt="Dean Furness"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/DeanFurness_2020S-embed.jpg" alt="Dean Furness"></p>
 <p class="img-credit">演讲人：<a href="https://www.ted.com/speakers/dean_furness" target="_blank" rel="noopener">Dean Furness</a>. TED</p>
 
 <p>Dean Furness 曾经是一位数据分析员。 2011 年的一次事故使他下身瘫痪，无法行走。但经过数年的康复，辛勤工作和物理治疗师的鼓励，他开始作为轮椅运动员参加了芝加哥和波士顿马拉松比赛。 现在，他谈论自己的经历以及面对困难挑战所需要采取的措施。</p>
@@ -397,7 +505,7 @@
 <ul>
 <li><a href="https://www.boredpanda.com/i-spend-days-on-bridges-to-take-images-of-roaming-vendors/" target="_blank" rel="noopener">图片 · 我在桥上花了几天时间拍摄小贩的图片</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/LoesHeerinkHanoi.png" alt="小商贩"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/LoesHeerinkHanoi.png" alt="小商贩"></p>
 <p class="img-credit">Credit：<a href="https://loesheerink.com/" target="_blank" rel="noopener">Loes Heerink</a>. <a href="https://www.boredpanda.com/i-spend-days-on-bridges-to-take-images-of-roaming-vendors/" target="_blank" rel="noopener"> Bored Panda</a></p>
 
 <p>Loes Heerink 从独特的视角捕捉了小商贩们的剪影。也许你从未关注她们：生活原来是如此多彩，却又饱含艰辛。</p>
@@ -409,7 +517,7 @@
 <ul>
 <li><a href="https://www.ted.com/talks/yann_lecun_deep_learning_neural_networks_and_the_future_of_ai" target="_blank" rel="noopener">视频 · 对话 Yann LeCun：深度学习、神经网络和 AI 的未来</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/YannLeCun_2020S-embed.jpg" alt="Yann LeCun"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/YannLeCun_2020S-embed.jpg" alt="Yann LeCun"></p>
 <p class="img-credit"> Yann LeCun. TED</p>
 
 <p>2020 年 6 月，TED 的策展人 Chris Anderson 与深度学习大师 Yann LeCun 进行了一次视频连线。Yann LeCun 在连线中聊了聊他目前正在从事的自监督机器学习研究，他是如何尝试构建像人类一样具有常识的机器，以及他对下一个在 AI 领域概念性突破的展望。</p>
@@ -436,7 +544,7 @@
 <h1 id="拾贝"><a href="#拾贝" class="headerlink" title="拾贝"></a>拾贝</h1><ul>
 <li><a href="https://www.wired.com/story/looking-for-gravitons-check-for-the-buzz/" target="_blank" rel="noopener">探测引力子</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/aron-visuals-R49cUgaQ0mk-unsplash.jpg" alt="粒子"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/aron-visuals-R49cUgaQ0mk-unsplash.jpg" alt="粒子"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@aronvisuals?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Aron Visuals</a>. <a href="https://unsplash.com/s/photos/particle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>很多物理学家认为引力子是存在的，但是他们中很少人认为我们能够探测到它们。引力子的世界只有当以尽可能小的比例放大时空结构时才会显现。这需要一种能够真正利用极端能量的设备。很不幸，任何能够直接探测到这种粒子的测量设备的 “普朗克长度” 必然太大，以至于会塌陷成一个黑洞。然而，近期发表的一篇<a href="https://arxiv.org/abs/2005.07211" target="_blank" rel="noopener">论文</a>通过理论计算，改变了这个观点：引力子可能会在引力波探测器中制造出可观测的“噪音”。</p>
@@ -448,7 +556,7 @@
 <ul>
 <li><a href="https://www.npr.org/sections/health-shots/2020/07/27/893289171/a-boy-with-muscular-dystrophy-was-headed-for-a-wheelchair-then-gene-therapy-arri" target="_blank" rel="noopener">一个男孩、一位科学家和一个从未失去希望的家庭</a></li>
 </ul>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/marianne-bos-eDOYvF6pM1I-unsplash.jpg" alt="残疾人"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/marianne-bos-eDOYvF6pM1I-unsplash.jpg" alt="残疾人"></p>
 <p class="img-credit">Credit：<a href="https://unsplash.com/@mariannebos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">marianne bos</a>. <a href="https://unsplash.com/s/photos/wheelchair?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 
 <p>在 Conner Curran 4 岁的时候，他被诊断出患有 Duchenne型肌营养不良症。这是一个由基因缺陷引起的疾病，并且会逐渐导致患者肌肉萎缩，最终难以靠自己行走。据当时的医嘱，这个疾病难以治愈。然而，5 年后，Conner 不仅仅能够走路，并且还能够跑的更快。这要归功于一项研究发展了近 30 年的实验性的基因疗法。</p>
@@ -461,97 +569,94 @@
 <p>Samulski 解释道，这样基因疗法试验由于技术方面的原因存在副作用，通常会影响肝脏。他坚信，自己能够解决这个问题。像往常一样，他产生了一个想法：“我们得在这里建立一个停止标记”。他告诉团队制作一个类似的样本。</p>
 <p>在随后的采访中，他告诉我他的团队已经在原有基础上像他所要求的那样加上了停止标记。并且，实验室正在动物身上做试验，观察这种改进是否有效。</p>
 <h1 id="火花"><a href="#火花" class="headerlink" title="火花"></a>火花</h1><blockquote class="blockquote-center">
-            <p>人生・事业的结果=思维方式×热情×能力</p>
+<p>人生・事业的结果=思维方式×热情×能力</p>
 <p>—— <a href="https://www.kyocera.com.cn/inamori/philosophy/words43.html" target="_blank" rel="noopener">稻盛和夫</a></p>
 
-          </blockquote>
+</blockquote>
 
 <hr>
 <blockquote class="blockquote-center">
-            <p>Context, not Control</p>
+<p>Context, not Control</p>
 <p>—— <a href="https://www.sanjieke.cn/youzhao/article/24025165" target="_blank" rel="noopener">字节跳动管理理念</a></p>
 
-          </blockquote>
+</blockquote>
     </div>
 
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>CosmosNing
+      <strong>本文作者： </strong>CosmosNing
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/" title="Sci-Owl Weekly #2：别让骗子利用你的声音">https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/</a>
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/" title="Sci-Owl Weekly #2：别让骗子利用你的声音">https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
 
-        
+          
 
   <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+    <span>欢迎关注我的其它发布渠道</span>
 
     <div class="social-list">
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
-                <span class="icon">
-                  <i class="fa fa-wechat"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
 
-                <span class="label">WeChat</span>
-              </a>
-            </div>
+            <span class="label">WeChat</span>
+          </a>
+        </div>
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="/atom.xml">
-                <span class="icon">
-                  <i class="fa fa-rss"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
-                <span class="label">RSS</span>
-              </a>
-            </div>
+            <span class="label">RSS</span>
+          </a>
+        </div>
     </div>
   </div>
 
 
-      <footer class="post-footer">
-
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/07/25/sci-owl-weekly-1/" rel="prev" title="Sci-Owl Weekly #1：科技探索者周刊创刊词">
-      <i class="fa fa-chevron-left"></i> Sci-Owl Weekly #1：科技探索者周刊创刊词
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/07/sci-owl-weekly-3/" rel="next" title="Sci-Owl Weekly #3：如何阅读更多的书籍">
-      Sci-Owl Weekly #3：如何阅读更多的书籍 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/25/sci-owl-weekly-1/" rel="prev" title="Sci-Owl Weekly #1：科技探索者周刊创刊词">
+                  <i class="fa fa-chevron-left"></i> Sci-Owl Weekly #1：科技探索者周刊创刊词
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/08/07/sci-owl-weekly-3/" rel="next" title="Sci-Owl Weekly #3：如何阅读更多的书籍">
+                  Sci-Owl Weekly #3：如何阅读更多的书籍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
     
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
@@ -560,12 +665,12 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -574,106 +679,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#别让骗子利用你的声音"><span class="nav-number">1.</span> <span class="nav-text">别让骗子利用你的声音</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聚焦"><span class="nav-number">2.</span> <span class="nav-text">聚焦</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#好奇"><span class="nav-number">3.</span> <span class="nav-text">好奇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#百味"><span class="nav-number">4.</span> <span class="nav-text">百味</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#器术"><span class="nav-number">5.</span> <span class="nav-text">器术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拾贝"><span class="nav-number">6.</span> <span class="nav-text">拾贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#火花"><span class="nav-number">7.</span> <span class="nav-text">火花</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="CosmosNing"
-      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
-  <p class="site-author-name" itemprop="name">CosmosNing</p>
-  <div class="site-description" itemprop="description">编程·学习·生活</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">63</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">51</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      
 
 <div class="copyright">
   
@@ -683,29 +702,22 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CosmosNing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">259k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:11</span>
+    <span title="站点阅读时长">3:55</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
-  </div>
-  <div class="addthis_inline_share_toolbox">
-    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -714,7 +726,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -724,47 +735,29 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 
 
 
 
-  
-<script src="/js/local-search.js"></script>
-
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -778,25 +771,35 @@
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
 
   
 
   
-  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
-      quicklink({
+      quicklink.listen({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/08/02/sci-owl-weekly-2/',]
       });
       });
   </script>
 
 <script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+NexT.utils.loadComments('#lv-container', () => {
   window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+    refer: "2020/08/02/sci-owl-weekly-2//"
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

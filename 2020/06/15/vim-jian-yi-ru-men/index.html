@@ -13,14 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
-  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="介绍 Vim 的常见命令及其用法">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png">
 <meta property="article:published_time" content="2020-06-15T04:07:06.000Z">
-<meta property="article:modified_time" content="2020-09-12T13:27:27.528Z">
+<meta property="article:modified_time" content="2020-09-12T16:19:57.977Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="Vim">
 <meta property="article:tag" content="Linux">
@@ -45,15 +45,17 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg">
 
+
 <link rel="canonical" href="https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -76,55 +78,64 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">CosmosNing的个人博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
-      
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
   </div>
 
   <div class="site-nav-right">
@@ -135,37 +146,37 @@
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">63</span></a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">51</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
 
-    <a href="/neo4j/" rel="section"><i class="fa fa-fw fa-book"></i>neo4j</a>
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -173,16 +184,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -190,34 +203,124 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Vim？"><span class="nav-number">1.</span> <span class="nav-text">什么是 Vim？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-的四种模式"><span class="nav-number">2.</span> <span class="nav-text">Vim 的四种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#总览"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正常模式（Normal-Mode）"><span class="nav-number">2.2.</span> <span class="nav-text">正常模式（Normal Mode）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动光标"><span class="nav-number">2.2.1.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见文本操作"><span class="nav-number">2.2.2.</span> <span class="nav-text">常见文本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入模式（Insert-Mode）"><span class="nav-number">2.3.</span> <span class="nav-text">插入模式（Insert Mode）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式（Command-Mode）"><span class="nav-number">2.4.</span> <span class="nav-text">命令模式（Command Mode）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim-设置"><span class="nav-number">2.4.1.</span> <span class="nav-text">Vim 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件、文本操作"><span class="nav-number">2.4.2.</span> <span class="nav-text">文件、文本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视模式（Visual-Mode）"><span class="nav-number">2.5.</span> <span class="nav-text">可视模式（Visual Mode）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓展阅读"><span class="nav-number">4.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,61 +332,68 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CosmosNing的个人博客">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Vim简易入门
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-15 12:07:06" itemprop="dateCreated datePublished" datetime="2020-06-15T12:07:06+08:00">2020-06-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-12 21:27:27" itemprop="dateModified" datetime="2020-09-12T21:27:27+08:00">2020-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">指南</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-06-15 12:07:06" itemprop="dateCreated datePublished" datetime="2020-06-15T12:07:06+08:00">2020-06-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-13 00:19:57" itemprop="dateModified" datetime="2020-09-13T00:19:57+08:00">2020-09-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8C%87%E5%8D%97/" itemprop="url" rel="index"><span itemprop="name">指南</span></a>
+        </span>
+    </span>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">介绍 Vim 的常见命令及其用法</div>
-
         </div>
       </header>
 
@@ -291,8 +401,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <blockquote>
 <p>最近，笔者在学习 Linux 中的常见命令。其中 Vim 作为文本编辑命令，是十分基础又非常强大的工具。然而，许多开发者因其命令繁琐，上手难度大，并没有完全发挥出 Vim 的潜力。因此，本文将介绍 Vim 的常见命令及其用法，供读者参考。通过本文，你将获得：</p>
 <ol>
@@ -300,13 +408,13 @@
 <li>掌握 Vim 常见文本编辑命令。</li>
 </ol>
 </blockquote>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg" alt="题图"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg" alt="题图"></p>
 <p>Photo by <a href="https://unsplash.com/@kdwk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Kdwk Leung</a> on <a href="https://unsplash.com/t/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
 <h1 id="什么是-Vim？"><a href="#什么是-Vim？" class="headerlink" title="什么是 Vim？"></a>什么是 Vim？</h1><p>Vim 是 <strong>Vi</strong> I<strong>M</strong>proved 的缩写。它是由 Bram Moolenaar 开发的开源免费文本编辑器。顾名思义，Vim 基于 Vi（另一个早期的文本编辑器） 但又不止于 Vi。由于其强大的文本处理功能，在很多类 Unix 系统中，Vim 都成了默认的文本编辑器。尤其在无图形化界面的服务器上，Vim 成为了绝大部分运维人员线上运维的选择。</p>
 <p>很多 Linux 发行版都内置了 Vim 命令，只需打开终端，输入如下命令，即可使用 Vim。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG" alt="Vim"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG" alt="Vim"></p>
 <h1 id="Vim-的四种模式"><a href="#Vim-的四种模式" class="headerlink" title="Vim 的四种模式"></a>Vim 的四种模式</h1><p>Vim 中的四种模式是 Vim 的核心设计理念之一。以四种模式为基础，理解和使用 Vim 的文本编辑命令就会容易许多。</p>
 <h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p>Vim 中有四种模式，分别是：</p>
 <ul>
@@ -319,13 +427,12 @@
 <h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p>光标的位置将决定复制、粘贴等操作的位置，因此光标的操作于文本操作十分重要。不同于当前拥有图形界面的文字处理软件，Vim 中无法使用鼠标指定光标位置，而是使用键盘指令，完成光标的移动。这一设计，使得 Vim 无需鼠标，即可完成文本编辑的任务。这大大提高了文本编辑的效率。</p>
 <p>Vim 的光标移动又可以分为两类。分别是<strong>小范围移动</strong>、<strong>大范围移动</strong>。</p>
 <p>在<strong>小范围移动</strong>中，只涉及到四个字母 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>，分别代表<strong>左、下、上、右</strong>（相当于键盘上的光标键）</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png" alt="小范围移动光标"></p>
-<div class="note info">
-            <p>部分 Vim 版本支持<strong>光标键</strong>移动光标，但仍有部分 Vim 不支持（由于相关操作系统会将光标键解释为其他字符），推荐熟练掌握 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 指令，完成小范围移动光标的任务。</p>
-          </div>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png" alt="小范围移动光标"></p>
+<div class="note info"><p>部分 Vim 版本支持<strong>光标键</strong>移动光标，但仍有部分 Vim 不支持（由于相关操作系统会将光标键解释为其他字符），推荐熟练掌握 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 指令，完成小范围移动光标的任务。</p>
+</div>
 
 <p>在<strong>大范围移动</strong>中，可以通过 <code>g</code>、<code>G</code> 快速跳转到<strong>第一行</strong>和<strong>最后一行</strong>；在 <code>G</code> 前加上数字，就可以跳转到指定行；<code>^</code>、<code>$</code> 则可以跳转到光标所在行的行首和行尾。这些移动方式将会极大地提高光标移动效率。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png" alt="大范围移动光标"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png" alt="大范围移动光标"></p>
 <h3 id="常见文本操作"><a href="#常见文本操作" class="headerlink" title="常见文本操作"></a>常见文本操作</h3><p>在正常模式下，除了可以移动光标，也可以执行一些简单的文本操作命令。具体的如下表所示：</p>
 <table>
 <thead>
@@ -428,7 +535,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: <span class="built_in">set</span> nu</span><br></pre></td></tr></table></figure>
 
 <p>可显示行号。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG" alt="Vim 显示行号"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG" alt="Vim 显示行号"></p>
 <p>然而，上述设置方式仅对当前编辑文本进程有效，如需永久生效，则要修改 <code>/etc/vimrc</code> 文件。</p>
 <h3 id="文件、文本操作"><a href="#文件、文本操作" class="headerlink" title="文件、文本操作"></a>文件、文本操作</h3><p>在命令模式下，Vim 可以执行一些文件操作命令，如保存、退出等；亦可执行更加复杂的文本操作命令，如查找、替换等。</p>
 <table>
@@ -513,7 +620,7 @@
 </tbody></table>
 <p>按 <code>ESC</code> 键返回正常模式。</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文主要介绍了 Vim 的四种模式和四种模式下的文本编辑及操作命令，希望对读者有所帮助。</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png" alt="Vim 四种模式"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png" alt="Vim 四种模式"></p>
 <h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><p><a href="https://www.bilibili.com/video/BV1Yt411X7mu" target="_blank" rel="noopener">【视频·中文】vim入门教程（共3讲） by 正月点灯笼</a></p>
 <p><a href="https://www.tutorialspoint.com/vim/vim_quick_guide.htm" target="_blank" rel="noopener">【文本·英文】Vim - Quick Guide from tutorialspoint</a></p>
 
@@ -522,55 +629,54 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>CosmosNing
+      <strong>本文作者： </strong>CosmosNing
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/" title="Vim简易入门">https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/</a>
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/" title="Vim简易入门">https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
 
-        
+          
 
   <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+    <span>欢迎关注我的其它发布渠道</span>
 
     <div class="social-list">
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
-                <span class="icon">
-                  <i class="fa fa-wechat"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
 
-                <span class="label">WeChat</span>
-              </a>
-            </div>
+            <span class="label">WeChat</span>
+          </a>
+        </div>
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="/atom.xml">
-                <span class="icon">
-                  <i class="fa fa-rss"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
-                <span class="label">RSS</span>
-              </a>
-            </div>
+            <span class="label">RSS</span>
+          </a>
+        </div>
     </div>
   </div>
 
-
-      <footer class="post-footer">
-          
           <div class="post-tags">
               <a href="/tags/Vim/" rel="tag"><i class="fa fa-tag"></i> Vim</a>
               <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
@@ -579,30 +685,27 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/05/18/c-zhong-de-qian-kao-bei-he-shen-kao-bei/" rel="prev" title="C++中的浅拷贝和深拷贝">
-      <i class="fa fa-chevron-left"></i> C++中的浅拷贝和深拷贝
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/27/ru-he-xie-yi-feng-yan-jiu-sheng-zi-jian-xin/" rel="next" title="如何写一封研究生自荐信">
-      如何写一封研究生自荐信 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/05/18/c-zhong-de-qian-kao-bei-he-shen-kao-bei/" rel="prev" title="C++中的浅拷贝和深拷贝">
+                  <i class="fa fa-chevron-left"></i> C++中的浅拷贝和深拷贝
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/06/27/ru-he-xie-yi-feng-yan-jiu-sheng-zi-jian-xin/" rel="next" title="如何写一封研究生自荐信">
+                  如何写一封研究生自荐信 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
     
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
@@ -611,12 +714,12 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -625,106 +728,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Vim？"><span class="nav-number">1.</span> <span class="nav-text">什么是 Vim？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vim-的四种模式"><span class="nav-number">2.</span> <span class="nav-text">Vim 的四种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#总览"><span class="nav-number">2.1.</span> <span class="nav-text">总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正常模式（Normal-Mode）"><span class="nav-number">2.2.</span> <span class="nav-text">正常模式（Normal Mode）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动光标"><span class="nav-number">2.2.1.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见文本操作"><span class="nav-number">2.2.2.</span> <span class="nav-text">常见文本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入模式（Insert-Mode）"><span class="nav-number">2.3.</span> <span class="nav-text">插入模式（Insert Mode）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式（Command-Mode）"><span class="nav-number">2.4.</span> <span class="nav-text">命令模式（Command Mode）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim-设置"><span class="nav-number">2.4.1.</span> <span class="nav-text">Vim 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件、文本操作"><span class="nav-number">2.4.2.</span> <span class="nav-text">文件、文本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视模式（Visual-Mode）"><span class="nav-number">2.5.</span> <span class="nav-text">可视模式（Visual Mode）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓展阅读"><span class="nav-number">4.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="CosmosNing"
-      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
-  <p class="site-author-name" itemprop="name">CosmosNing</p>
-  <div class="site-description" itemprop="description">编程·学习·生活</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">63</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">51</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      
 
 <div class="copyright">
   
@@ -734,29 +751,22 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CosmosNing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">259k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:11</span>
+    <span title="站点阅读时长">3:55</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
-  </div>
-  <div class="addthis_inline_share_toolbox">
-    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -765,7 +775,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -775,47 +784,29 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 
 
 
 
-  
-<script src="/js/local-search.js"></script>
-
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -829,25 +820,35 @@
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
 
   
 
   
-  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
-      quicklink({
+      quicklink.listen({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/',]
       });
       });
   </script>
 
 <script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+NexT.utils.loadComments('#lv-container', () => {
   window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+    refer: "2020/06/15/vim-jian-yi-ru-men/"
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];

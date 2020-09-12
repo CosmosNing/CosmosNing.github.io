@@ -13,14 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css">
-  <script src="https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"bounceIn","post_body":"bounceDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="本文主要介绍 RDF 的基本概念">
@@ -32,22 +32,24 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png">
 <meta property="article:published_time" content="2020-07-21T13:44:26.000Z">
-<meta property="article:modified_time" content="2020-09-12T13:27:27.528Z">
+<meta property="article:modified_time" content="2020-09-12T16:19:57.977Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="RDF">
 <meta property="article:tag" content="数据模型">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png">
 
+
 <link rel="canonical" href="https://cosmosning.github.io/2020/07/21/intro-to-rdf/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -70,55 +72,64 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">CosmosNing的个人博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">探索·好奇</h1>
-      
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
   </div>
 
   <div class="site-nav-right">
@@ -129,37 +140,37 @@
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">63</span></a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">51</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">11</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
 
-    <a href="/neo4j/" rel="section"><i class="fa fa-fw fa-book"></i>neo4j</a>
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -167,16 +178,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -184,34 +197,124 @@
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RDF-简介"><span class="nav-number">1.</span> <span class="nav-text">RDF 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本格式"><span class="nav-number">2.</span> <span class="nav-text">基本格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储方式及其结构"><span class="nav-number">3.</span> <span class="nav-text">存储方式及其结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储（序列化）"><span class="nav-number">3.1.</span> <span class="nav-text">文件存储（序列化）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDF-XML"><span class="nav-number">3.1.1.</span> <span class="nav-text">RDF&#x2F;XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#N3"><span class="nav-number">3.1.2.</span> <span class="nav-text">N3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Turtle"><span class="nav-number">3.1.3.</span> <span class="nav-text">Turtle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDFa"><span class="nav-number">3.1.4.</span> <span class="nav-text">RDFa</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库存储"><span class="nav-number">3.2.</span> <span class="nav-text">数据库存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他概念"><span class="nav-number">4.</span> <span class="nav-text">其他概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言标记、标签"><span class="nav-number">4.2.</span> <span class="nav-text">语言标记、标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lang"><span class="nav-number">4.2.1.</span> <span class="nav-text">@lang</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rdfs-label、rdfs-comment"><span class="nav-number">4.2.2.</span> <span class="nav-text">rdfs:label、rdfs:comment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空结点及其作用"><span class="nav-number">4.3.</span> <span class="nav-text">空结点及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Named-Graphs"><span class="nav-number">4.4.</span> <span class="nav-text">Named Graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDF-模式和-OWL"><span class="nav-number">4.5.</span> <span class="nav-text">RDF 模式和 OWL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓展阅读"><span class="nav-number">7.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/07/21/intro-to-rdf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,61 +326,68 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="CosmosNing的个人博客">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           RDF简介
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-21 21:44:26" itemprop="dateCreated datePublished" datetime="2020-07-21T21:44:26+08:00">2020-07-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-12 21:27:27" itemprop="dateModified" datetime="2020-09-12T21:27:27+08:00">2020-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index"><span itemprop="name">研究</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-07-21 21:44:26" itemprop="dateCreated datePublished" datetime="2020-07-21T21:44:26+08:00">2020-07-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-09-13 00:19:57" itemprop="dateModified" datetime="2020-09-13T00:19:57+08:00">2020-09-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index"><span itemprop="name">研究</span></a>
+        </span>
+    </span>
 
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>9.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 分钟</span>
-            </span>
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">本文主要介绍 RDF 的基本概念</div>
-
         </div>
       </header>
 
@@ -285,8 +395,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <blockquote>
 <p>最近在学习图数据库的基础知识。本文将参考 《<a href="http://learningsparql.com/" target="_blank" rel="noopener">Learning SPARQL: querying and updating with SPARQL 1.1</a>》这本书，简单介绍图数据的数据模型 RDF。主要内容如下：</p>
 <ol>
@@ -299,15 +407,16 @@
 <h1 id="RDF-简介"><a href="#RDF-简介" class="headerlink" title="RDF 简介"></a>RDF 简介</h1><p>RDF 全称 Resource Description Framework（资源描述框架），是一种数据模型，它提供了一种独特的结构来存储数据文件。RDF 独特的结构使其在 Semantic Web、图数据库等领域应用十分广泛。</p>
 <h1 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h1><p>在 RDF 中，每一个基本单元可由一个三元组 $(s,\ p,\ o)$ 构成，其中 $s$ 代表 subject（主语），$p$ 代表 predicate（谓语）， $o$ 代表 object（宾语）。每一个三元组都可以陈述这样一个事实：一个由 $s$ 唯一标记的资源实体拥有 $p$ 属性，其属性值为 $o$ 。</p>
 <p>每一个三元组都可以通过图（graph）来表示，具体如下图：</p>
-<p><img src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png" alt="三元组图示"></p>
+<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png" alt="三元组图示"></p>
 <h1 id="存储方式及其结构"><a href="#存储方式及其结构" class="headerlink" title="存储方式及其结构"></a>存储方式及其结构</h1><h2 id="文件存储（序列化）"><a href="#文件存储（序列化）" class="headerlink" title="文件存储（序列化）"></a>文件存储（序列化）</h2><p>当数据以文件的形式存储时，RDF 有如下几种序列化格式</p>
 <h3 id="RDF-XML"><a href="#RDF-XML" class="headerlink" title="RDF/XML"></a>RDF/XML</h3><p>RDF/XML 是最古老的格式，最初出现在 1999 年 RDF 规格说明中。顾名思义，这种方式采取了与 XML 类似的结构存储数据单元（也就是一个三元组）。一个简单的例子如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 本例来自书籍《Learning SPARQL》，详见参考资料（下同） --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Being XML, RDF/XML uses regular XML comment delimiters. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- filename: ex029.rdf --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">rdf:RDF</span> <span class="attr">xmlns:rdf</span>=<span class="string">"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:dc</span>=<span class="string">"http://purl.org/dc/elements/1.1/"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:v</span>=<span class="string">"http://www.w3.org/2006/vcard/"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rdf:Description</span> <span class="attr">rdf:about</span>=<span class="string">"urn:isbn:006251587X"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dc:title</span>&gt;</span>Weaving the Web<span class="tag">&lt;/<span class="name">dc:title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dc:creator</span> <span class="attr">rdf:resource</span>=<span class="string">"http://www.w3.org/People/Berners-Lee/card#i"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rdf:Description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rdf:Description</span> <span class="attr">rdf:about</span>=<span class="string">"http://www.w3.org/People/Berners-Lee/card#i"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">v:title</span>&gt;</span>Director<span class="tag">&lt;/<span class="name">v:title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rdf:Description</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">rdf:RDF</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>通过 RDF/XML 格式存储时，其文件后缀名为 <code>.rdf</code>。文件中，所有数据由<code>&lt;rdf:RDF&gt;</code> 和 <code>&lt;/rdf:RDF&gt;</code> 包裹，并且在 <code>&lt;rdf:RDF&gt;</code> 属性中定义了前缀（prefix）。</p>
-<div class="note info">
-            <p class="note-title">前缀 prefix</p><p>RDF 是在 Semantic Web 的背景下提出的，而 Semantic Web 要求在全网下能够唯一标识一个资源，故其采用了 <code>URI</code> 作为资源的唯一标记。<code>URI</code> 一般较为冗长，而定义前缀 ，可以减少数据单元中冗长的书写，从而突出数据的重点；当处于不同的前缀中时，数据资源也不会因同名而相互冲突。由于第二点的优势， 前缀又被称作名称空间（namespace）。</p>
-          </div>
+<div class="note info"><p class="note-title">前缀 prefix</p>
+
+<p>RDF 是在 Semantic Web 的背景下提出的，而 Semantic Web 要求在全网下能够唯一标识一个资源，故其采用了 <code>URI</code> 作为资源的唯一标记。<code>URI</code> 一般较为冗长，而定义前缀 ，可以减少数据单元中冗长的书写，从而突出数据的重点；当处于不同的前缀中时，数据资源也不会因同名而相互冲突。由于第二点的优势， 前缀又被称作名称空间（namespace）。</p>
+</div>
 
 <p>每一个数据单元的主语为 <code>rdf:Description</code> 中 <code>rdf:about</code> 属性的值；<code>rdf:Description</code> 子结点标签则代表了数据单元的谓语；宾语可以是 <code>rdf:Description</code> 子结点标签中的纯文字，也可以是子结点标签 <code>rdf:resource</code> 属性所设定的 URI 值。</p>
 <p>由于 XML 受限的表达性、RDF/XML 数据文件解析困难等原因，RDF/XML 并没有流行开来。</p>
@@ -315,9 +424,14 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># The hash symbol is the comment delimiter in n3. </span><br><span class="line"># filename: ex031.n3</span><br><span class="line"></span><br><span class="line">@prefix dc: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">purl.org</span>/<span class="attr">dc</span>/<span class="attr">elements</span>/<span class="attr">1.1</span>/&gt;</span> .</span><br><span class="line">@prefix v:  <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">2006</span>/<span class="attr">vcard</span>/&gt;</span> .</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">People</span>/<span class="attr">Berners-Lee</span>/<span class="attr">card</span>#<span class="attr">i</span>&gt;</span></span><br><span class="line">      v:title "Director" .</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">urn:isbn:006251587X</span>&gt;</span></span><br><span class="line">      dc:creator <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">People</span>/<span class="attr">Berners-Lee</span>/<span class="attr">card</span>#<span class="attr">i</span>&gt;</span> ;</span><br><span class="line">      dc:title "Weaving the Web" .</span><br></pre></td></tr></table></figure>
 
 <p>通过 N3 格式存储时，其文件后缀名为 <code>.n3</code>。与 RDF/XML 格式类似，N3 使用三元组来声明前缀。这个三元组中， <code>@prefix</code> 为主语，<code>&lt;prefix name&gt;:</code> 为谓语，<code>&lt;uri&gt;</code> 则为宾语，并且用英文句号作为三元组的结束标记。在声明完前缀之后，便可以接着以三元组的形式存储数据。例如，第 8 至 9 行为一个三元组，其主语为 <code>&lt;http://www.w3.org/People/Berners-Lee/card#i&gt;</code>，谓语为 <code>v:title</code>，宾语为 <code>&quot;Director&quot;</code>。该三元组说明，由主语标识的资源（此例为人）的头衔为 Director。第 11 至 13 行为第 2 、3 个三元组，分别表示由 <code>&lt;urn:isbn:006251587X&gt;</code> 所标识的书籍的作者是 <code>&lt;http://www.w3.org/People/Berners-Lee/card#i&gt;</code> 这个人；这本书的书名为 <code>&quot;Weaving the Web&quot;</code> 。</p>
-<div class="note info">
-            <p class="note-title">N3中的 <code>.</code>、<code>;</code>、<code>,</code></p><ul><li><code>.</code> 代表三元组的结束</li><li><code>;</code> 代表下一个三元组与当前三元组拥有<strong>相同的主语</strong></li><li><code>,</code> 代表下一个三元组与当前三元组拥有<strong>相同的主语和谓语</strong></li></ul>
-          </div>
+<div class="note info"><p class="note-title">N3中的 <code>.</code>、<code>;</code>、<code>,</code></p>
+
+<ul>
+<li><code>.</code> 代表三元组的结束</li>
+<li><code>;</code> 代表下一个三元组与当前三元组拥有<strong>相同的主语</strong></li>
+<li><code>,</code> 代表下一个三元组与当前三元组拥有<strong>相同的主语和谓语</strong></li>
+</ul>
+</div>
 
 <h3 id="Turtle"><a href="#Turtle" class="headerlink" title="Turtle"></a>Turtle</h3><p>Turtle 是另一种 RDF 序列化的格式，并且使用十分广泛。下面是一个例子：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># filename: ex002.ttl</span><br><span class="line"></span><br><span class="line">@prefix ab: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">learningsparql.com</span>/<span class="attr">ns</span>/<span class="attr">addressbook</span>#&gt;</span> .</span><br><span class="line"></span><br><span class="line">ab:richard ab:homeTel "(229) 276-5135" . </span><br><span class="line">ab:richard ab:email   "richard49@hotmail.com" . </span><br><span class="line"></span><br><span class="line">ab:cindy ab:homeTel "(245) 646-5488" . </span><br><span class="line">ab:cindy ab:email   "cindym@gmail.com" . </span><br><span class="line"></span><br><span class="line">ab:craig ab:homeTel "(194) 966-1505" . </span><br><span class="line">ab:craig ab:email   "craigellis@yahoo.com" . </span><br><span class="line">ab:craig ab:email   "c.ellis@usairwaysgroup.com" .</span><br></pre></td></tr></table></figure>
@@ -334,9 +448,10 @@
 
 <h2 id="数据库存储"><a href="#数据库存储" class="headerlink" title="数据库存储"></a>数据库存储</h2><p>除了文件序列化存储方式，RDF 数据亦可存储在数据库中。数据库中 RDF 的存储结构通常由数据库管理系统决定。这里先搁置一边。</p>
 <h1 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>根据上一节的例子，我们发现 RDF 中主要有两类数据，一类为 URI ，另一类为字符串。尽管很多处理 RDF 数据的工具能够根据字符串数据推测数据类型，但仍然建议你在数据中指明各个数据的类型。</p>
-<div class="note info">
-            <p class="note-title">没有双引号的字符串的类型推断</p><p>当你省略了字符串的双引号，那么处理 RDF 数据的工具将认为该数据类型要么是布尔量（真或假），要么是数字。</p>
-          </div>
+<div class="note info"><p class="note-title">没有双引号的字符串的类型推断</p>
+
+<p>当你省略了字符串的双引号，那么处理 RDF 数据的工具将认为该数据类型要么是布尔量（真或假），要么是数字。</p>
+</div>
 
 <p>在 Turtle 格式中，在数据后面加上两个脱字符（<code>^</code>），并指明标定数据类型的 URI（可使用前缀缩写表示，也可以使用完整的 URI 表示），就可以手动指定数据类型。具体的例子如下（第 7 至 10 行）：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># filename: ex033.ttl</span><br><span class="line"></span><br><span class="line">@prefix xsd: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">2001</span>/<span class="attr">XMLSchema</span>#&gt;</span> .</span><br><span class="line">@prefix d:   <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">learningsparql.com</span>/<span class="attr">ns</span>/<span class="attr">data</span>#&gt;</span> .</span><br><span class="line">@prefix dm:  <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">learningsparql.com</span>/<span class="attr">ns</span>/<span class="attr">demo</span>#&gt;</span> .</span><br><span class="line"></span><br><span class="line">d:item342 dm:shipped     "2011-02-14"^^<span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">2001</span>/<span class="attr">XMLSchema</span>#<span class="attr">date</span>&gt;</span> . </span><br><span class="line">d:item342 dm:quantity    "4"^^xsd:integer . </span><br><span class="line">d:item342 dm:invoiced    "false"^^xsd:boolean . </span><br><span class="line">d:item342 dm:costPerItem "3.50"^^xsd:decimal .</span><br></pre></td></tr></table></figure>
@@ -350,18 +465,16 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># filename: ex037.ttl</span><br><span class="line"></span><br><span class="line">@prefix :     <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.learningsparql.com</span>/<span class="attr">ns</span>/<span class="attr">demo</span>#&gt;</span> . </span><br><span class="line">@prefix rdfs: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">www.w3.org</span>/<span class="attr">2000</span>/<span class="attr">01</span>/<span class="attr">rdf-schema</span>#&gt;</span> .</span><br><span class="line"></span><br><span class="line">:sideDish42 rdfs:label "french fries"@en-US . </span><br><span class="line">:sideDish42 rdfs:label "chips"@en-GB . </span><br><span class="line"></span><br><span class="line">:sideDish43 rdfs:label "chips"@en-US . </span><br><span class="line">:sideDish43 rdfs:label "crisps"@en-GB .</span><br></pre></td></tr></table></figure>
 
 <h3 id="rdfs-label、rdfs-comment"><a href="#rdfs-label、rdfs-comment" class="headerlink" title="rdfs:label、rdfs:comment"></a>rdfs:label、rdfs:comment</h3><p><code>rdfs:label</code>、<code>rdfs:comment</code> 是 RDF 中非常重要的两个属性名。<code>rdfs:label</code> 通常用来以方便人阅读的名称指代资源，<code>rdfs:comment</code> 通常用来更细节地描述资源。这两个属性值会加深我们对相关资源的理解。</p>
-<div class="note info">
-            <p>P.S. 在 W3C SKOS 标准下，有两个相关的属性，分别是 <code>skos:prefLabel</code>（代表偏好标签） 和 <code>skos:altLabel</code>（代表替代标签）。</p>
-          </div>
+<div class="note info"><p>P.S. 在 W3C SKOS 标准下，有两个相关的属性，分别是 <code>skos:prefLabel</code>（代表偏好标签） 和 <code>skos:altLabel</code>（代表替代标签）。</p>
+</div>
 
 <h2 id="空结点及其作用"><a href="#空结点及其作用" class="headerlink" title="空结点及其作用"></a>空结点及其作用</h2><p>在实际情况下，有很多数据是复合数据，即该数据可以分解为更小的数据项（小数据项并不可再分）。例如，地址信息就可以分解为国家、省份、城市、区县、街道、邮编等数据项。那么，如何在 RDF 中表示这样的数据呢？这就需要引入一个独特的结点——空结点。</p>
 <p>具体的，空结点将作为联系复合数据属性与各个小数据项之间的桥梁：一是作为复合数据属性（谓语）的属性值（宾语），二是作为小数据项谓语的主语。举个书上的例子你就能理解了（其中 <code>_:b1</code> 为空结点）：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># filename: ex041.ttl</span><br><span class="line"></span><br><span class="line">@prefix ab: <span class="tag">&lt;<span class="name">http:</span>//<span class="attr">learningsparql.com</span>/<span class="attr">ns</span>/<span class="attr">addressbook</span>#&gt;</span> .</span><br><span class="line"></span><br><span class="line">ab:i0432 ab:firstName    "Richard" ;</span><br><span class="line">        ab:lastName      "Mutt" ;</span><br><span class="line">        ab:homeTel       "(229) 276-5135" ;</span><br><span class="line">        ab:email         "richard49@hotmail.com" ;</span><br><span class="line">        ab:address       _:b1 .</span><br><span class="line"></span><br><span class="line">_:b1    ab:postalCode    "49345" ;</span><br><span class="line">        ab:city          "Springfield" ;</span><br><span class="line">        ab:streetAddress "32 Main St." ;</span><br><span class="line">        ab:region        "Connecticut" .</span><br></pre></td></tr></table></figure>
 
 <p>由此可知，空结点的一般格式为 <code>_:&lt;空结点名称&gt;</code></p>
-<div class="note info">
-            <p>有时，Turtle 和 SPARQL 也使用方括号（<code>[]</code>）代表空结点。</p>
-          </div>
+<div class="note info"><p>有时，Turtle 和 SPARQL 也使用方括号（<code>[]</code>）代表空结点。</p>
+</div>
 
 <h2 id="Named-Graphs"><a href="#Named-Graphs" class="headerlink" title="Named Graphs"></a>Named Graphs</h2><p>和空结点类似，Named Graphs 也可以用来将一些相关的三元组组合在一起。而与之不同的是，Named Graphs 更加强大——可进一步赋予其元数据（metadata）。这种特性使得 Named Graphs 在某些应用场景下有着独特的优势。</p>
 <h2 id="RDF-模式和-OWL"><a href="#RDF-模式和-OWL" class="headerlink" title="RDF 模式和 OWL"></a>RDF 模式和 OWL</h2><p>在程序设计中，经常会考虑复用问题，因为复用可以有效提高软件开发效率。十分幸运，RDF 也提供了复用方案，即 RDF 模式和 OWL（Web Ontological Language）。</p>
@@ -377,9 +490,13 @@
 <li><code>rdfs:range</code>  ：<strong>该属性的值是 <code>rdfs:range</code> 所在三元组宾语的类别</strong></li>
 </ul>
 <p>依照这样的关系，在 RDF 中，我们能推理出很多隐藏在图中的结论。</p>
-<div class="note info no-icon">
-            <p class="note-title">面向对象 V.S. RDF 模式</p><ul><li>在面向对象系统中，需要实例化一个类，生成一个对象，并将具体的值赋给这个对象。</li><li>在基于 RDF 的标准下，为资源的元数据添加一个属性，就有可能使得该资源属于某一个之前未属于的类别。</li></ul>
-          </div>
+<div class="note info no-icon"><p class="note-title">面向对象 V.S. RDF 模式</p>
+
+<ul>
+<li>在面向对象系统中，需要实例化一个类，生成一个对象，并将具体的值赋给这个对象。</li>
+<li>在基于 RDF 的标准下，为资源的元数据添加一个属性，就有可能使得该资源属于某一个之前未属于的类别。</li>
+</ul>
+</div>
 
 <p>然而，RDF 模式还是有限的，它无法描述类之间的联系。要解决这个问题，便引入了 OWL。</p>
 <p>下面，我将结合书上的例子说明：</p>
@@ -413,55 +530,54 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>CosmosNing
+      <strong>本文作者： </strong>CosmosNing
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://cosmosning.github.io/2020/07/21/intro-to-rdf/" title="RDF简介">https://cosmosning.github.io/2020/07/21/intro-to-rdf/</a>
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/07/21/intro-to-rdf/" title="RDF简介">https://cosmosning.github.io/2020/07/21/intro-to-rdf/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
 </div>
 
-        
+          
 
   <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+    <span>欢迎关注我的其它发布渠道</span>
 
     <div class="social-list">
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
-                <span class="icon">
-                  <i class="fa fa-wechat"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
 
-                <span class="label">WeChat</span>
-              </a>
-            </div>
+            <span class="label">WeChat</span>
+          </a>
+        </div>
 
-            <div class="social-item">
-              <a target="_blank" class="social-link" href="/atom.xml">
-                <span class="icon">
-                  <i class="fa fa-rss"></i>
-                </span>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
-                <span class="label">RSS</span>
-              </a>
-            </div>
+            <span class="label">RSS</span>
+          </a>
+        </div>
     </div>
   </div>
 
-
-      <footer class="post-footer">
-          
           <div class="post-tags">
               <a href="/tags/RDF/" rel="tag"><i class="fa fa-tag"></i> RDF</a>
               <a href="/tags/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 数据模型</a>
@@ -469,30 +585,27 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/07/02/kao-yan-bei-kao-zhi-wo-jian/" rel="prev" title="考研备考之我见">
-      <i class="fa fa-chevron-left"></i> 考研备考之我见
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/22/sparql-grammar-tutorial/" rel="next" title="SPARQL简易入门">
-      SPARQL简易入门 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/02/kao-yan-bei-kao-zhi-wo-jian/" rel="prev" title="考研备考之我见">
+                  <i class="fa fa-chevron-left"></i> 考研备考之我见
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/22/sparql-grammar-tutorial/" rel="next" title="SPARQL简易入门">
+                  SPARQL简易入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
     
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
@@ -501,12 +614,12 @@
 
 <script>
   window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
+    let { activeClass } = CONFIG.comments;
     if (CONFIG.comments.storage) {
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -515,106 +628,20 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RDF-简介"><span class="nav-number">1.</span> <span class="nav-text">RDF 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本格式"><span class="nav-number">2.</span> <span class="nav-text">基本格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储方式及其结构"><span class="nav-number">3.</span> <span class="nav-text">存储方式及其结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件存储（序列化）"><span class="nav-number">3.1.</span> <span class="nav-text">文件存储（序列化）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDF-XML"><span class="nav-number">3.1.1.</span> <span class="nav-text">RDF&#x2F;XML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#N3"><span class="nav-number">3.1.2.</span> <span class="nav-text">N3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Turtle"><span class="nav-number">3.1.3.</span> <span class="nav-text">Turtle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDFa"><span class="nav-number">3.1.4.</span> <span class="nav-text">RDFa</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库存储"><span class="nav-number">3.2.</span> <span class="nav-text">数据库存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他概念"><span class="nav-number">4.</span> <span class="nav-text">其他概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言标记、标签"><span class="nav-number">4.2.</span> <span class="nav-text">语言标记、标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lang"><span class="nav-number">4.2.1.</span> <span class="nav-text">@lang</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rdfs-label、rdfs-comment"><span class="nav-number">4.2.2.</span> <span class="nav-text">rdfs:label、rdfs:comment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空结点及其作用"><span class="nav-number">4.3.</span> <span class="nav-text">空结点及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Named-Graphs"><span class="nav-number">4.4.</span> <span class="nav-text">Named Graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDF-模式和-OWL"><span class="nav-number">4.5.</span> <span class="nav-text">RDF 模式和 OWL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拓展阅读"><span class="nav-number">7.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="CosmosNing"
-      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
-  <p class="site-author-name" itemprop="name">CosmosNing</p>
-  <div class="site-description" itemprop="description">编程·学习·生活</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">63</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">51</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>Rss</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-steam"></i>Steam</a>
-      </span>
-  </div>
-
-
-
-      </div>
-        <div class="back-to-top motion-element">
-          <i class="fa fa-arrow-up"></i>
-          <span>0%</span>
-        </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      
 
 <div class="copyright">
   
@@ -624,29 +651,22 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">CosmosNing</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">259k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:11</span>
+    <span title="站点阅读时长">3:55</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
-  </div>
-  <div class="addthis_inline_share_toolbox">
-    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -655,7 +675,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -665,47 +684,29 @@
       </span>
     </span>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
   </div>
 
+    </div>
+  </footer>
+
   
-  <script src="https://cdn.bootcss.com/animejs/3.1.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
-  <script src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 
 
 
 
-  
-<script src="/js/local-search.js"></script>
-
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -719,19 +720,21 @@
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
 
   
-      
 
-<script>
+  
+      <script>
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
         tags: 'ams'
@@ -751,7 +754,7 @@
           }, '', false],
           insertedScript: [200, () => {
             document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
+              const target = node.parentNode;
               if (target.nodeName.toLowerCase() === 'li') {
                 target.parentNode.classList.add('has-jax');
               }
@@ -760,14 +763,13 @@
         }
       }
     };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
+    const script = document.createElement('script');
+    script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
   } else {
     MathJax.startup.document.state(0);
+    MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typeset();
   }
@@ -776,21 +778,21 @@
     
 
   
-  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
   <script>
       window.addEventListener('load', () => {
-      quicklink({
+      quicklink.listen({
         timeout : 3000,
         priority: true,
-        ignores : [uri => uri.includes('#'),uri => uri == 'https://cosmosning.github.io/2020/07/21/intro-to-rdf/',]
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/07/21/intro-to-rdf/',]
       });
       });
   </script>
 
 <script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+NexT.utils.loadComments('#lv-container', () => {
   window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+    refer: "2020/07/21/intro-to-rdf//"
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
