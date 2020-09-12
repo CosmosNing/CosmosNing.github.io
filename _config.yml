@@ -93,48 +93,64 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: nnext
 
 # next theme config
 theme_config:
+  # ===============================================================
+  # It's recommended to use Alternate Theme Config to configure the theme
+  # Modifying this file may result in merge conflict
+  # See: https://theme-next.js.org/docs/getting-started/configuration
+  # ===============================================================
+
+  # ---------------------------------------------------------------
+  # Theme Core Configuration Settings
+  # See: https://theme-next.js.org/docs/theme-settings/
+  # ---------------------------------------------------------------
+
   # Remove unnecessary files after hexo generate.
-  minify: false
-  
+  minify: true
+
   # Define custom file paths.
   # Create your custom files in site directory `source/_data` and uncomment needed files below.
   custom_file_path:
-    #head: source/_data/head.swig
-    #header: source/_data/header.swig
-    #sidebar: source/_data/sidebar.swig
-    #postMeta: source/_data/post-meta.swig
-    #postBodyEnd: source/_data/post-body-end.swig
-    #footer: source/_data/footer.swig
-    #bodyEnd: source/_data/body-end.swig
+    #head: source/_data/head.njk
+    #header: source/_data/header.njk
+    #sidebar: source/_data/sidebar.njk
+    #postMeta: source/_data/post-meta.njk
+    #postBodyEnd: source/_data/post-body-end.njk
+    #footer: source/_data/footer.njk
+    #bodyEnd: source/_data/body-end.njk
     #variable: source/_data/variables.styl
     #mixin: source/_data/mixins.styl
     style: source/_data/styles.styl
 
+
+  # ---------------------------------------------------------------
+  # Scheme Settings
+  # ---------------------------------------------------------------
+
+  # Schemes
+  #scheme: Muse
+  #scheme: Mist
+  #scheme: Pisces
+  scheme: Gemini
+
+  # Dark Mode
+  darkmode: true
+
+
+  # ---------------------------------------------------------------
+  # Site Information Settings
+  # ---------------------------------------------------------------
+
   favicon:
-    small: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico # /images/avatar-16.ico
-    medium: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
+    small: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico
+    medium: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico
     apple_touch_icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png
-    safari_pinned_tab:  https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg # /images/avatar.svg
+    safari_pinned_tab: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg
     #android_manifest: /images/manifest.json
     #ms_browserconfig: /images/browserconfig.xml
-
-  footer:
-    # Specify the date when the site was setup. If not defined, current year will be used.
-    since: 2018
-
-    # Icon between year and copyright info.
-    icon:
-      # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
-      # `heart` is recommended with animation in red (#ff0000).
-      name: heart
-      # If you want to animate the icon, set it to true.
-      animated: true
-      # Change the color of icon, using Hex Code.
-      color: "#ff4757"
 
   # Creative Commons 4.0 International License.
   # See: https://creativecommons.org/share-your-work/licensing-types-examples
@@ -149,34 +165,23 @@ theme_config:
 
 
   # ---------------------------------------------------------------
-  # Scheme Settings
-  # ---------------------------------------------------------------
-
-  # Schemes
-  #scheme: Muse
-  #scheme: Mist
-  #scheme: Pisces
-  scheme: Gemini
-
-  # ---------------------------------------------------------------
   # Menu Settings
   # ---------------------------------------------------------------
 
   # Usage: `Key: /link/ || icon`
   # Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.
   # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
-  # When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -> archives).
   # External url should start with http:// or https://
   menu:
-    home: / || home
-    about: /about/ || user
-    tags: /tags/ || tags
-    categories: /categories/ || th
-    archives: /archives/ || archive
-    neo4j: /neo4j/ || book
-    #schedule: /schedule/ || calendar
-    #sitemap: /sitemap.xml || sitemap
-    #commonweal: /404/ || heartbeat
+    home: / || fa fa-home
+    about: /about/ || fa fa-user
+    tags: /tags/ || fa fa-tags
+    categories: /categories/ || fa fa-th
+    archives: /archives/ || fa fa-archive
+    neo4j: /neo4j/ || fa fa-book
+    #schedule: /schedule/ || fa fa-calendar
+    #sitemap: /sitemap.xml || fa fa-sitemap
+    #commonweal: /404/ || fa fa-heartbeat
 
   # Enable / Disable menu icons / item badges.
   menu_settings:
@@ -186,7 +191,7 @@ theme_config:
 
   # ---------------------------------------------------------------
   # Sidebar Settings
-  # See: https://theme-next.org/docs/theme-settings/sidebar
+  # See: https://theme-next.js.org/docs/theme-settings/sidebar
   # ---------------------------------------------------------------
 
   sidebar:
@@ -210,13 +215,11 @@ theme_config:
     padding: 18
     # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
     offset: 12
-    # Enable sidebar on narrow view (only for Muse | Mist).
-    onmobile: false
 
   # Sidebar Avatar
   avatar:
     # Replace the default image and set the url here.
-    url: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png # /images/avatar.png #/images/avatar.gif
+    url: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png #/images/avatar.gif
     # If true, the avatar will be dispalyed in circle.
     rounded: true
     # If true, the avatar will be rotated with the cursor.
@@ -230,29 +233,52 @@ theme_config:
   # Key is the link label showing to end users.
   # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
   social:
-    GitHub: https://github.com/CosmosNing || github
-    Linkedin: https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/ || linkedin
-    E-Mail: mailto:cosmosning@gmail.com || envelope
-    Rss: /atom.xml || rss
-    Steam: https://steamcommunity.com/profiles/76561198328448195/ || steam
-    #Weibo: https://weibo.com/yourname || weibo
-    #Google: https://plus.google.com/yourname || google
-    #Twitter: https://twitter.com/yourname || twitter
-    #FB Page: https://www.facebook.com/yourname || facebook
-    #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
-    #YouTube: https://youtube.com/yourname || youtube
-    #Instagram: https://instagram.com/yourname || instagram
-    #Skype: skype:yourname?call|chat || skype
+    GitHub: https://github.com/CosmosNing || fab fa-github
+    Linkedin: https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/ || fab fa-linkedin
+    E-Mail: mailto:cosmosning@gmail.com || fa fa-envelope
+    Rss: /atom.xml || fa fa-rss
+    Steam: https://steamcommunity.com/profiles/76561198328448195/ || fab fa-steam
+    #Weibo: https://weibo.com/yourname || fab fa-weibo
+    #Google: https://plus.google.com/yourname || fab fa-google
+    #Twitter: https://twitter.com/yourname || fab fa-twitter
+    #FB Page: https://www.facebook.com/yourname || fab fa-facebook
+    #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
+    #YouTube: https://youtube.com/yourname || fab fa-youtube
+    #Instagram: https://instagram.com/yourname || fab fa-instagram
+    #Skype: skype:yourname?call|chat || fab fa-skype
+
+  # ---------------------------------------------------------------
+  # Footer Settings
+  # See: https://theme-next.js.org/docs/theme-settings/footer
+  # ---------------------------------------------------------------
+
+  footer:
+    # Specify the date when the site was setup. If not defined, current year will be used.
+    since: 2018
+
+    # Icon between year and copyright info.
+    icon:
+      # Icon name in Font Awesome. See: https://fontawesome.com/icons
+      name: fa fa-heart
+      # If you want to animate the icon, set it to true.
+      animated: true
+      # Change the color of icon, using Hex Code.
+      color: "#ff4757"
+
+    # Powered by Hexo & NexT
+    powered: true
+
+  # ---------------------------------------------------------------
+  # Post Settings
+  # See: https://theme-next.js.org/docs/theme-settings/posts
+  # ---------------------------------------------------------------
 
   # Post wordcount display settings
-  # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+  # Dependencies: https://github.com/next-theme/hexo-word-counter
   symbols_count_time:
     separated_meta: true
     item_text_post: true
     item_text_total: false
-    exclude_codeblock: true
-    awl: 2
-    wpm: 300
 
   # Use icon instead of the symbol # to indicate the tag at the bottom of the post
   tag_icon: true
@@ -260,36 +286,51 @@ theme_config:
   # Subscribe through Telegram Channel, Twitter, etc.
   # Usage: `Key: permalink || icon` (Font Awesome)
   follow_me:
-    #Twitter: https://twitter.com/username || twitter
-    #Telegram: https://t.me/channel_name || telegram
-    WeChat: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg || wechat
-    RSS: /atom.xml || rss
+    #Twitter: https://twitter.com/username || fab fa-twitter
+    #Telegram: https://t.me/channel_name || fab fa-telegram
+    WeChat: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg || fab fa-weixin
+    RSS: /atom.xml || fa fa-rss
 
+  # ---------------------------------------------------------------
+  # Custom Page Settings
+  # See: https://theme-next.js.org/docs/theme-settings/custom-pages
+  # ---------------------------------------------------------------
+
+  # TagCloud settings for tags page.
   tagcloud:
-    # All values below are same as default, change them by yourself.
-    min: 10 # Minimun font size in px
-    max: 20 # Maxium font size in px
-    start: "#1C1C1C" # Start color (hex, rgba, hsla or color keywords)
-    end: "#4F4F4F" # End color (hex, rgba, hsla or color keywords)
-    amount: 200 # Amount of tags, change it if you have more than 200 tags
-  
+    min: 12 # Minimun font size in px
+    max: 30 # Maxium font size in px
+    amount: 200 # Total amount of tags
+    orderby: name # Order of tags
+    order: 1 # Sort order
+
+  # ---------------------------------------------------------------
+  # Misc Theme Settings
+  # See: https://theme-next.js.org/docs/theme-settings/miscellaneous
+  # ---------------------------------------------------------------
+
+  # Reduce padding / margin indents on devices with narrow width.
+  mobile_layout_economy: true
+
   codeblock:
     # Code Highlight theme
-    # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
-    # See: https://github.com/chriskempson/tomorrow-theme
-    highlight_theme: night
+    # All available themes: https://theme-next.js.org/highlight/
+    theme:
+      light: default
+      dark: tomorrow-night
+    prism:
+      light: prism
+      dark: prism-dark
     # Add copy button on codeblock
     copy_button:
       enable: true
-      # Show text copy result.
-      show_result: true
       # Available values: default | flat | mac
       style: mac
 
   back2top:
     enable: true
     # Back to top in sidebar.
-    sidebar: true
+    sidebar: false
     # Scroll percent label in b2t button.
     scrollpercent: true
 
@@ -301,44 +342,71 @@ theme_config:
     color: "#37c6c0"
     height: 3px
 
+  # Bookmark Support
+  bookmark:
+    enable: true
+    # Customize the color of the bookmark.
+    color: "#222"
+    # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
+    # If manual, only save it by clicking the bookmark-icon.
+    save: auto
+
   # `Follow me on GitHub` banner in the top-right corner.
   github_banner:
     enable: true
     permalink: https://github.com/CosmosNing
     title: 在 GitHub 上关注我
 
-  # Change headers hierarchy on site-subtitle (will be main site description) and on all post / page titles for better SEO-optimization.
-  seo: true
+  # ---------------------------------------------------------------
+  # SEO Settings
+  # See: https://theme-next.js.org/docs/theme-settings/seo
+  # ---------------------------------------------------------------
+
+  # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
+  baidu_push: false
+
+
+  # ---------------------------------------------------------------
+  # Third Party Plugins & Services Settings
+  # See: https://theme-next.js.org/docs/third-party-services/
+  # More plugins: https://github.com/next-theme/awesome-next
+  # You may need to install the corresponding dependency packages
+  # ---------------------------------------------------------------
 
   # Math Formulas Render Support
+  # Warning: Please install / uninstall the relevant renderer according to the documentation.
+  # See: https://theme-next.js.org/docs/third-party-services/math-equations
+  # Server-side plugin: https://github.com/next-theme/hexo-filter-mathjax
   math:
-    # Default (true) will load mathjax / katex script on demand.
+    # Default (false) will load mathjax / katex script on demand.
     # That is it only render those page which has `mathjax: true` in Front-matter.
-    # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
-    per_page: true
+    # If you set it to true, it will load mathjax / katex srcipt EVERY PAGE.
+    every_page: false
 
-    # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
     mathjax:
       enable: true
-      # See: https://mhchem.github.io/MathJax-mhchem/
-      mhchem: false
 
-    # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
     katex:
       enable: false
       # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
       copy_tex: false
+
+  # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
+  # For more information: https://fancyapps.com/fancybox
+  fancybox: true
+
   # Vanilla JavaScript plugin for lazyloading images.
   # For more information: https://github.com/ApoorvSaxena/lozad.js
-  lazyload: false
+  lazyload: true
 
   # Pangu Support
   # For more information: https://github.com/vinta/pangu.js
+  # Server-side plugin: https://github.com/next-theme/hexo-pangu
   pangu: true
 
   # Quicklink Support
   # For more information: https://github.com/GoogleChromeLabs/quicklink
-  # Front-matter (unsupport home archive).
+  # Front-matter variable (unsupport home archive).
   quicklink:
     enable: true
 
@@ -351,20 +419,17 @@ theme_config:
     delay: true
     # Custom a time in milliseconds by which the browser must execute prefetching.
     timeout: 3000
-    # Default (true) will enable fetch() or falls back to XHR.
+    # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
     priority: true
 
     # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
     # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
     ignores:
 
-  # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
-  # For more information: https://fancyapps.com/fancybox
-  fancybox: true
 
   # ---------------------------------------------------------------
   # Comments Settings
-  # See: https://theme-next.org/docs/third-party-services/comments
+  # See: https://theme-next.js.org/docs/third-party-services/comments
   # ---------------------------------------------------------------
 
   # Multiple Comment System Support
@@ -389,25 +454,44 @@ theme_config:
   # LiveRe comments system
   # You can get your uid from https://livere.com/insight/myCode (General web site)
   livere_uid: MTAyMC8zOTkzMi8xNjQ1OQ== # <your_uid>
-  
-  # Baidu Analytics
-  baidu_analytics: e9fd1f40248f9db466678920736a9fa3
-  
+
+  # ---------------------------------------------------------------
+  # Post Widgets & Content Sharing Services
+  # See: https://theme-next.js.org/docs/third-party-services/post-widgets
+  # ---------------------------------------------------------------
+
   # AddThis Share. See: https://www.addthis.com
   # Go to https://www.addthis.com/dashboard to customize your tools.
   add_this_id: ra-5e8a99b79a6be052
 
+
+  # ---------------------------------------------------------------
+  # Statistics and Analytics
+  # See: https://theme-next.js.org/docs/third-party-services/statistics-and-analytics
+  # ---------------------------------------------------------------
+
+  # Baidu Analytics
+  baidu_analytics: e9fd1f40248f9db466678920736a9fa3 # <app_id>
+
+  # Show Views / Visitors of the website / page with busuanzi.
+  # Get more information on http://ibruce.info/2015/04/04/busuanzi
   busuanzi_count:
     enable: true
     total_visitors: true
-    total_visitors_icon: user
+    total_visitors_icon: fa fa-user
     total_views: true
-    total_views_icon: eye
+    total_views_icon: fa fa-eye
     post_views: true
-    post_views_icon: eye
+    post_views_icon: far fa-eye
+
+
+  # ---------------------------------------------------------------
+  # Search Services
+  # See: https://theme-next.js.org/docs/third-party-services/search-services
+  # ---------------------------------------------------------------
 
   # Local Search
-  # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
+  # Dependencies: https://github.com/next-theme/hexo-generator-searchdb
   local_search:
     enable: true
     # If auto, trigger search by changing input.
@@ -420,6 +504,12 @@ theme_config:
     # Preload the search data when the page loads.
     preload: true
 
+  # ---------------------------------------------------------------
+  # Tags Settings
+  # See: https://theme-next.js.org/docs/tag-plugins/
+  # ---------------------------------------------------------------
+
+  # Note tag (bs-callout)
   note:
     # Note tag style values:
     #  - simple    bs-callout old alert style. Default.
@@ -431,92 +521,91 @@ theme_config:
     # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
     # Offset also applied to label tag variables. This option can work with disabled note tag.
     light_bg_offset: -12
-  
-  # Use velocity to animate everything.
-  # For more information: http://velocityjs.org
+
+
+  # ---------------------------------------------------------------
+  # Animation Settings
+  # ---------------------------------------------------------------
+
+  # Use Animate.css to animate everything.
+  # For more information: https://animate.style
   motion:
     enable: true
     async: true
     transition:
-      # Transition variants:
-      # fadeIn | flipXIn | flipYIn | flipBounceXIn | flipBounceYIn
-      # swoopIn | whirlIn | shrinkIn | expandIn
-      # bounceIn | bounceUpIn | bounceDownIn | bounceLeftIn | bounceRightIn
-      # slideUpIn | slideDownIn | slideLeftIn | slideRightIn
-      # slideUpBigIn | slideDownBigIn | slideLeftBigIn | slideRightBigIn
-      # perspectiveUpIn | perspectiveDownIn | perspectiveLeftIn | perspectiveRightIn
-      post_block: fadeIn
+      # All available transition variants: https://theme-next.js.org/animate/
+      post_block: bounceInDown
       post_header: bounceIn
-      post_body: bounceDownIn
+      post_body: bounceInDown
       coll_header: slideLeftIn
       # Only for Pisces | Gemini.
       sidebar: slideUpIn
-    
-  # Progress bar in the top during page loading.
-  # Dependencies: https://github.com/theme-next/theme-next-pace
-  # For more information: https://github.com/HubSpot/pace
-  pace:
-    enable: true
-    # Themes list:
-    # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
-    # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
-    theme: center-atom
-  
+
+  #! ==============================================================
+  #! DO NOT EDIT THE FOLLOWING SETTINGS
+  #! UNLESS YOU KNOW WHAT YOU ARE DOING
+  #! See: https://theme-next.js.org/docs/advanced-settings/vendors
+  #! ==============================================================
+
+  # It's recommended to use the same version as in `_vendors.yml` to avoid potential problems.
+  # Remember to use the https protocol of CDN links when you enable https on your site.
   vendors:
-    # Internal path prefix.
-    _internal: lib
+    # The CDN provider of NexT internal scripts.
+    # Available values: local | jsdelivr | unpkg | cdnjs
+    # Warning: If you are using the latest master branch of NexT, please set `internal: local`
+    internal: local
+    # The default CDN provider of third-party plugins.
+    # Available values: local | jsdelivr | unpkg | cdnjs
+    # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
+    plugins: jsdelivr
 
-    # Internal version: 3.1.0
-    # anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
-    anime: https://cdn.bootcss.com/animejs/3.1.0/anime.min.js
+    # In the following settings, you can specify the CDN link for each plugin.
+    # If left blank, the default CDN provider set by `plugins` option will be used.
 
-    # Internal version: 4.7.0
-    # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
-    # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-    fontawesome: https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
+    # Anime.js
+    # For more information: https://animejs.com
+    anime: https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js
+
+    # Font Awesome
+    # For more information: https://fontawesome.com
+    fontawesome: https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css
+
+    # Prism
+    prism:
+    prism_autoloader:
+    prism_line_numbers:
 
     # MathJax
-    # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    mathjax: https://cdn.bootcdn.net/ajax/libs/mathjax/3.0.5/es5/tex-mml-chtml.js
+    mathjax: https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.0/es5/tex-mml-chtml.js
+
+    # KaTeX
+    katex:
+    copy_tex_js:
+    copy_tex_css:
+
+    # Pjax
+    pjax:
 
     # FancyBox
-    # jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
-    # fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
-    # fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
     jquery: https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js
-    fancybox: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js
+    fancybox_js: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js
     fancybox_css: https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css
-    
-    # Internal version: 1.2.1
-    # velocity: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js
-    # velocity: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js
-    # velocity_ui: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js
-    # velocity_ui: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js
-    velocity: https://cdn.bootcss.com/velocity/1.2.1/velocity.min.js
-    velocity_ui: https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js
 
-    # # Lazyload
-    # # lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
-    # # lazyload: //cdnjs.cloudflare.com/ajax/libs/lozad.js/1.9.0/lozad.min.js
-    # lazyload: https://cdn.bootcdn.net/ajax/libs/lozad.js/1.9.0/lozad.min.js
+    # Medium-zoom
+    mediumzoom:
+
+    # Lazyload
+    lazyload: https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js
 
     # Pangu
-    # pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
-    # pangu: //cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
     pangu: https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js
 
     # Quicklink
-    # quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
-    quicklink: https://cdn.bootcdn.net/ajax/libs/quicklink/1.0.0/quicklink.umd.js
+    quicklink: https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js
 
-    # Internal version: 1.0.2
-    # pace: //cdn.jsdelivr.net/npm/pace-js@1/pace.min.js
-    # pace: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js
-    # pace_css: //cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css
-    # pace_css: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css
-    pace: https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/pace.min.js
-    # pace_css: https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-bounce.min.css
-    pace_css: https://cdn.bootcdn.net/ajax/libs/pace/1.0.2/themes/silver/pace-theme-center-atom.min.css
+    # Animate.css
+    # Warning: motion won't work with animate.css version 3.2.0 or later
+    animate_css: https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
