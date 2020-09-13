@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="学习是什么？什么情况下我们需要机器学习？学习分为哪几种？机器学习和其他领域有什么样的关系？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《从理论到算法理解机器学习》引言">
+<meta property="og:url" content="https://cosmosning.github.io/2020/09/13/intro-to-ml/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="学习是什么？什么情况下我们需要机器学习？学习分为哪几种？机器学习和其他领域有什么样的关系？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-13T06:51:46.000Z">
+<meta property="article:modified_time" content="2020-09-13T11:58:25.720Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="learning">
+<meta property="article:tag" content="generalization">
+<meta property="article:tag" content="inductive reasoning">
+<meta property="article:tag" content="inductive inference">
+<meta property="article:tag" content="prior knowledge">
+<meta property="article:tag" content="inductive bias">
+<meta property="article:tag" content="No-Free-Lunch Theorem">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://cosmosning.github.io/2020/09/13/intro-to-ml/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>《从理论到算法理解机器学习》引言 | CosmosNing的个人博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9fd1f40248f9db466678920736a9fa3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-neo4j">
+
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-Is-Learning？"><span class="nav-number">1.</span> <span class="nav-text">What Is Learning？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#When-We-Need-Machine-Learning？"><span class="nav-number">2.</span> <span class="nav-text">When We Need Machine Learning？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tasks-That-Are-to-Complex-to-Program"><span class="nav-number">2.1.</span> <span class="nav-text">Tasks That Are to Complex to Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptivity"><span class="nav-number">2.2.</span> <span class="nav-text">Adaptivity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Types-of-Learning"><span class="nav-number">3.</span> <span class="nav-text">Types of Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervised-versus-Unsupervised"><span class="nav-number">3.1.</span> <span class="nav-text">Supervised versus Unsupervised</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-versus-Passive"><span class="nav-number">3.2.</span> <span class="nav-text">Active versus Passive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Helpful-of-the-Teacher"><span class="nav-number">3.3.</span> <span class="nav-text">Helpful of the Teacher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Online-versus-Batch-Learning-Protocol"><span class="nav-number">3.4.</span> <span class="nav-text">Online versus Batch Learning Protocol</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Relations-to-Other-Fields"><span class="nav-number">4.</span> <span class="nav-text">Relations to Other Fields</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#With-AI"><span class="nav-number">4.1.</span> <span class="nav-text">With AI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Statistics"><span class="nav-number">4.2.</span> <span class="nav-text">With Statistics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/09/13/intro-to-ml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《从理论到算法理解机器学习》引言
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-09-13 14:51:46 / 修改时间：19:58:25" itemprop="dateCreated datePublished" datetime="2020-09-13T14:51:46+08:00">2020-09-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%8E%E7%90%86%E8%AE%BA%E5%88%B0%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">从理论到算法理解机器学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">学习是什么？什么情况下我们需要机器学习？学习分为哪几种？机器学习和其他领域有什么样的关系？</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>最近上了一门课，叫做“智能信息检索”。老师推荐了一本教材 《Understanding Machine Learning: From Theory to Algorithms》（文末提供官方下载链接），来解释<strong>智能</strong>的含义。本文基于我对教材的理解，对其引言部分做了一些要点概括，供读者参考。</p>
+</blockquote>
+<h1 id="What-Is-Learning？"><a href="#What-Is-Learning？" class="headerlink" title="What Is Learning？"></a>What Is Learning？</h1><p>粗略地讲，<strong>学习是一个将经历（<em>experience</em>）转换为技能（<em>expertise</em>）或知识（<em>knowledge</em>）的过程</strong>。一般地，一个学习算法的<strong>输入</strong>是<strong>训练数据</strong>（代表经历），<strong>输出</strong>是<strong>技能</strong>。</p>
+<p>一种常见的学习方法是 “记忆学习”（<em>learning by memorization</em>）。类似人类学习的“死记硬背”，这种学习方法有时候十分有效，但是它却缺失了学习系统中一个十分重要的能力，即<strong>泛化能力</strong>（<em>generalization</em>）。换句话讲，一个成功的学习系统理应能够依据已知知识，正确处理未知的情况。</p>
+<div class="note info"><p><strong>泛化能力</strong> （<em>generalization</em>） 有时也被称作<strong>归纳推理</strong> （<em>inductive reasoning / inductive inference</em>）</p>
+</div>
+
+<p>然而，<strong>归纳推理可能会导致错误结论</strong>。那么怎样才能减少犯错呢？</p>
+<p>答案是：在学习系统中<strong>引入先验知识</strong>（<em>prior knowledge</em>）！</p>
+<div class="note info"><p><strong>先验知识</strong>（<em>prior knowledge</em>） 有时也被称作<strong>归纳偏好</strong> （<em>inductive bias</em>）</p>
+</div>
+
+<p>从书中举得几个例子来看，<strong>引入先验知识，使整个学习过程带有偏好，是一个成功的学习算法必然发生的事情</strong>（这种现象是 <strong>No-Free-Lunch Theorem</strong> 的具体表现）。粗略来说，学习算法开始训练时所引入的先验知识越强，从训练样本中学习就越简单。但是，先验知识越强，学习的灵活性也就越低，因为整个学习过程被这些预定假设束缚住了。</p>
+<h1 id="When-We-Need-Machine-Learning？"><a href="#When-We-Need-Machine-Learning？" class="headerlink" title="When We Need Machine Learning？"></a>When We Need Machine Learning？</h1><p>那么，在哪些情况下，我们需要利用机器学习解决问题呢？主要有以下两个方面：</p>
+<ul>
+<li>问题的复杂性（<em>complexity</em>）</li>
+<li>任务的适应性需求（<em>adaptivity</em>）</li>
+</ul>
+<h2 id="Tasks-That-Are-to-Complex-to-Program"><a href="#Tasks-That-Are-to-Complex-to-Program" class="headerlink" title="Tasks That Are to Complex to Program"></a>Tasks That Are to Complex to Program</h2><ul>
+<li><em>Tasks Performed by Animals / Humans</em>：我们暂时无法理解一些我们能够处理的日常任务，例如驾驶汽车、语音识别、图像理解。以现有的知识，难以抽象出一个良好的程序去执行这些任务。然而，先进的机器学习程序，只要接受足够的训练样本训练，就可以从中学习经验，并在这些任务中达到不错的效果。</li>
+<li><em>Tasks beyond Human Capabilities</em>：另一类适合用机器学习解决的问题是对巨大的且复杂的数据（例如宇宙空间数据、医疗数据、天气数据等）进行分析。这些数据的处理和分析通常超越了我们自身的分析能力。使用机器学习，可以充分利用计算机的能力，找到数据中有价值的信息。</li>
+</ul>
+<h2 id="Adaptivity"><a href="#Adaptivity" class="headerlink" title="Adaptivity"></a>Adaptivity</h2><ul>
+<li>预先编程的程序有一个缺陷，即死板性（<em>rigidity</em>）。也就是说，一旦程序写好了，安装到系统中后，程序就不会变化了。然而，现实中许多任务都是在不断变化的。</li>
+<li>而机器学习（其天生可以适应不同的输入数据）提供了一种解决此类任务的方案。</li>
+</ul>
+<h1 id="Types-of-Learning"><a href="#Types-of-Learning" class="headerlink" title="Types of Learning"></a>Types of Learning</h1><h2 id="Supervised-versus-Unsupervised"><a href="#Supervised-versus-Unsupervised" class="headerlink" title="Supervised versus Unsupervised"></a>Supervised versus Unsupervised</h2><p>如果将学习看作是一个“利用经历来获取技能”的过程，那么监督学习和非监督学习可以描述如下：</p>
+<ul>
+<li><strong>监督（<em>Supervised</em>）学习</strong>：在该场景中，“经历”（亦可称作训练样本）包含了十分重要的信息；而这些信息却在测试样本中丢失了。从监督学习中学习到的技能的目标是，预测测试数据中的确实信息。这就好像环境作为一名老师通过提供额外的信息（通常称作<strong>“标签”</strong> <em>label</em>）”监督”学生（学习算法）的学习。</li>
+<li><strong>非监督（<em>Unsupervised</em>）学习</strong>：对于非监督学习来说，训练数据和测试数据几乎没什么区别。通常，这种学习方法通过处理输入数据，来达到<strong>总结数据</strong>、<strong>压缩数据</strong>的目标。<strong>聚类</strong>——将一个数据集分成几个子集，同一子集具有相似性——是非监督学习中一个典型的例子。</li>
+<li>在监督与非监督之间，还存在一种不同的方法——<strong>强化学习</strong>。</li>
+</ul>
+<h2 id="Active-versus-Passive"><a href="#Active-versus-Passive" class="headerlink" title="Active versus Passive"></a>Active versus Passive</h2><ul>
+<li><strong>主动（<em>Active</em>）学习</strong>：主动学习在在训练过程中将会与环境交互。</li>
+<li><strong>被动（<em>Passive</em>）学习</strong>：被动学习只会观测环境所提供的信息，而不会影响（influence）或指导（direct）它。</li>
+</ul>
+<div class="note info"><p><strong>例子</strong></p>
+<ul>
+<li>垃圾邮件识别通常是被动学习，因为它等着用户为它标记收到的邮件是否是垃圾邮件。</li>
+<li>在主动学习的场景下，学习算法会在训练过程中要求用户标记它指定的邮件，或者甚至是由学习算法生成的邮件，来增强它对什么是垃圾邮件的理解。</li>
+</ul>
+</div>
+
+<h2 id="Helpful-of-the-Teacher"><a href="#Helpful-of-the-Teacher" class="headerlink" title="Helpful of the Teacher"></a>Helpful of the Teacher</h2><ul>
+<li>主动提供信息<ul>
+<li>训练信息<strong>正相关</strong>——普通学习：例如，教师会不断尝试为学生提供最有用的信息，来达到某种学习目标。</li>
+<li>训练信息<strong>负相关</strong>——<strong>对抗（<em>Adversarial</em>）学习</strong>：例如垃圾邮件生成器将会努力误导垃圾邮件识别器。</li>
+</ul>
+</li>
+<li>被动提供信息<ul>
+<li><strong>统计学习（<em>Statistical Learning</em>）</strong>：有时候，信息并不是他人主动提供的。例如科学家在认识自然时，环境，作为一位老师，并不会根据学生的需求主动的提供信息，因此是被动的提供信息。这种情况下，输入数据常常被认为是由某种随机过程（<em>random process</em>）产生。这样，就可以使用统计学习解决问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="Online-versus-Batch-Learning-Protocol"><a href="#Online-versus-Batch-Learning-Protocol" class="headerlink" title="Online versus Batch Learning Protocol"></a>Online versus Batch Learning Protocol</h2><ul>
+<li><strong>在线学习（<em>Online Learning</em>）</strong>：学习算法必须在训练过程中，在线反馈。例如，股票交易员需要基于目前位置积累的经验，做出每日决策。虽说随着时间推移，他会称为一名专家，但是也可能在此过程中犯下代价高昂的错误。</li>
+<li><strong>批处理学习（<em>Batch Learning</em>）</strong>：只有在处理大量的数据后，该算法才能获得所需的技能。在数据挖掘场景下，数据挖掘算法会处理大量的数据之后，才会得出相关的结论。</li>
+</ul>
+<h1 id="Relations-to-Other-Fields"><a href="#Relations-to-Other-Fields" class="headerlink" title="Relations to Other Fields"></a>Relations to Other Fields</h1><h2 id="With-AI"><a href="#With-AI" class="headerlink" title="With AI"></a>With AI</h2><ul>
+<li>机器学习是 AI 的一个分支。</li>
+<li>机器学习更关注<strong>利用计算机的优势和独特的能力</strong>来<strong>补充</strong>人类的智能，因此常常处理一些远超人类能力的任务。</li>
+<li>AI 更关注创造一个能够自动<strong>模仿</strong>智能行为的机器。</li>
+</ul>
+<h2 id="With-Statistics"><a href="#With-Statistics" class="headerlink" title="With Statistics"></a>With Statistics</h2><ul>
+<li>统计学：提出假设（专业人员） $\rightarrow$ <strong>验证假设</strong>（统计学）</li>
+<li>机器学习：利用数据，<strong>挖掘规律</strong>，解释原因。</li>
+<li>机器学习对<strong>算法</strong>层面的考虑更多</li>
+<li>统计学常常关注数据的<strong>渐进性</strong>（<strong>无穷</strong>情况下的特性），机器学习则关注<strong>有限</strong>的样本空间</li>
+<li>统计学通常<strong>预先假设数据分布</strong>，而机器学习是<strong>分布无关</strong>的（<em>distribution-free</em>）</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Shai Shalev-Shwartz, Shai Ben-David. <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html" target="_blank" rel="noopener">Understanding Machine Learning: From Theory to Algorithms</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/09/13/intro-to-ml/" title="《从理论到算法理解机器学习》引言">https://cosmosning.github.io/2020/09/13/intro-to-ml/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          
+
+  <div class="followme">
+    <span>欢迎关注我的其它发布渠道</span>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+          <div class="post-tags">
+              <a href="/tags/learning/" rel="tag"><i class="fa fa-tag"></i> learning</a>
+              <a href="/tags/generalization/" rel="tag"><i class="fa fa-tag"></i> generalization</a>
+              <a href="/tags/inductive-reasoning/" rel="tag"><i class="fa fa-tag"></i> inductive reasoning</a>
+              <a href="/tags/inductive-inference/" rel="tag"><i class="fa fa-tag"></i> inductive inference</a>
+              <a href="/tags/prior-knowledge/" rel="tag"><i class="fa fa-tag"></i> prior knowledge</a>
+              <a href="/tags/inductive-bias/" rel="tag"><i class="fa fa-tag"></i> inductive bias</a>
+              <a href="/tags/No-Free-Lunch-Theorem/" rel="tag"><i class="fa fa-tag"></i> No-Free-Lunch Theorem</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/12/notes-of-kat-keywords-to-sparql-translation-2018/" rel="prev" title="KAT: Keywords-to-SPARQL Translation Over RDF Graphs 阅读笔记">
+                  <i class="fa fa-chevron-left"></i> KAT: Keywords-to-SPARQL Translation Over RDF Graphs 阅读笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">262k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:58</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/09/13/intro-to-ml/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments('#lv-container', () => {
+  window.livereOptions = {
+    refer: "2020/09/13/intro-to-ml/"
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
