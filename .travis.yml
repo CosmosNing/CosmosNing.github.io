@@ -1,4 +1,7 @@
 sudo: false
+addons:
+  apt_packages:
+    - pandoc
 language: node_js
 node_js:
   - 10 # use nodejs v10 LTS
