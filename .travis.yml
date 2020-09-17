@@ -1,7 +1,7 @@
 sudo: true
 before_script:
   - wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb
-  - dpkg -i ./pandoc-2.7-1-amd64.deb
+  - sudo dpkg -i ./pandoc-2.7-1-amd64.deb
 language: node_js
 node_js:
   - 10 # use nodejs v10 LTS
