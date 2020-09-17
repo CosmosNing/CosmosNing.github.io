@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中概述知识">
@@ -31,7 +30,7 @@
 <meta property="og:description" content="整理一下计算机组成原理中概述知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-09-24T14:47:03.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -152,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -162,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -226,7 +225,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1．计算机系统概述"><span class="nav-number">1.</span> <span class="nav-text">1．计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）计算机的发展历程"><span class="nav-number">1.1.</span> <span class="nav-text">（×）计算机的发展历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）冯·诺依曼计算机结构"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）冯·诺依曼计算机结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冯·诺依曼计算机结构的特点"><span class="nav-number">1.2.1.</span> <span class="nav-text">冯·诺依曼计算机结构的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机硬件的基本组成与功能"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算机硬件的基本组成与功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统的组成（硬件-软件）及其层次结构"><span class="nav-number">1.2.3.</span> <span class="nav-text">计算机系统的组成（硬件+软件）及其层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的工作原理"><span class="nav-number">1.2.4.</span> <span class="nav-text">计算机的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）计算机的性能指标"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）计算机的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU执行时间"><span class="nav-number">1.3.1.</span> <span class="nav-text">CPU执行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPI（★★★★）"><span class="nav-number">1.3.2.</span> <span class="nav-text">CPI（★★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时钟周期-T"><span class="nav-number">1.3.3.</span> <span class="nav-text">时钟周期 T</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主频-f"><span class="nav-number">1.3.4.</span> <span class="nav-text">主频 f</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MIPS"><span class="nav-number">1.3.5.</span> <span class="nav-text">MIPS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机系统概述"><span class="nav-number">1.</span> <span class="nav-text">1．计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机的发展历程"><span class="nav-number">1.1.</span> <span class="nav-text">（×）计算机的发展历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冯诺依曼计算机结构"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）冯·诺依曼计算机结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#冯诺依曼计算机结构的特点"><span class="nav-number">1.2.1.</span> <span class="nav-text">冯·诺依曼计算机结构的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机硬件的基本组成与功能"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算机硬件的基本组成与功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统的组成硬件软件及其层次结构"><span class="nav-number">1.2.3.</span> <span class="nav-text">计算机系统的组成（硬件+软件）及其层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机的工作原理"><span class="nav-number">1.2.4.</span> <span class="nav-text">计算机的工作原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机的性能指标"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）计算机的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cpu执行时间"><span class="nav-number">1.3.1.</span> <span class="nav-text">CPU执行时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cpi"><span class="nav-number">1.3.2.</span> <span class="nav-text">CPI（★★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时钟周期-t"><span class="nav-number">1.3.3.</span> <span class="nav-text">时钟周期 T</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主频-f"><span class="nav-number">1.3.4.</span> <span class="nav-text">主频 f</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mips"><span class="nav-number">1.3.5.</span> <span class="nav-text">MIPS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -242,7 +241,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -255,7 +254,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -346,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -373,7 +372,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>930</span>
+      <span>948</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -392,25 +391,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="1．计算机系统概述"><a href="#1．计算机系统概述" class="headerlink" title="1．计算机系统概述"></a>1．计算机系统概述</h1><h2 id="（×）计算机的发展历程"><a href="#（×）计算机的发展历程" class="headerlink" title="（×）计算机的发展历程"></a>（×）计算机的发展历程</h2><p>（详见教材）</p>
-<h2 id="（★★）冯·诺依曼计算机结构"><a href="#（★★）冯·诺依曼计算机结构" class="headerlink" title="（★★）冯·诺依曼计算机结构"></a>（★★）冯·诺依曼计算机结构</h2><h3 id="冯·诺依曼计算机结构的特点"><a href="#冯·诺依曼计算机结构的特点" class="headerlink" title="冯·诺依曼计算机结构的特点"></a>冯·诺依曼计算机结构的特点</h3><ul>
+        <h1 id="计算机系统概述">1．计算机系统概述</h1>
+<h2 id="计算机的发展历程">（×）计算机的发展历程</h2>
+<p>（详见教材）</p>
+<h2 id="冯诺依曼计算机结构">（★★）冯·诺依曼计算机结构</h2>
+<h3 id="冯诺依曼计算机结构的特点">冯·诺依曼计算机结构的特点</h3>
+<ul>
 <li><strong>“存储程序”</strong>工作方式</li>
 <li>由<strong>运算器、控制器、存储器、输入设备、输出设备</strong> 5 个基本部件组成</li>
 <li>指令和数据存储在存储器内；控制器能控制指令自动执行；运算器可以算术运算、逻辑运算；操作人员通过输入输出设备使用计算机</li>
 <li>计算机内部用<strong>二进制表示</strong>指令和数据；每条指令由<strong>操作码</strong>（指名操作类型）和<strong>地址码</strong>（指出操作数所在地址）组成；<strong>一组指令组成程序</strong></li>
 </ul>
-<h3 id="计算机硬件的基本组成与功能"><a href="#计算机硬件的基本组成与功能" class="headerlink" title="计算机硬件的基本组成与功能"></a>计算机硬件的基本组成与功能</h3><ul>
+<h3 id="计算机硬件的基本组成与功能">计算机硬件的基本组成与功能</h3>
+<ul>
 <li>中央处理器（CPU）</li>
-<li>存储器<ul>
+<li>存储器
+<ul>
 <li>外存</li>
 <li>内存</li>
-</ul>
-</li>
+</ul></li>
 <li>I/O 控制器</li>
 <li>外部设备</li>
 <li>总线</li>
 </ul>
-<h3 id="计算机系统的组成（硬件-软件）及其层次结构"><a href="#计算机系统的组成（硬件-软件）及其层次结构" class="headerlink" title="计算机系统的组成（硬件+软件）及其层次结构"></a>计算机系统的组成（硬件+软件）及其层次结构</h3><ul>
+<h3 id="计算机系统的组成硬件软件及其层次结构">计算机系统的组成（硬件+软件）及其层次结构</h3>
+<ul>
 <li>应用（问题）</li>
 <li>算法</li>
 <li>编程（语言）</li>
@@ -422,39 +427,47 @@
 <li>器件</li>
 </ul>
 <p>其中 ISA 为软硬件的交界面</p>
-<h3 id="计算机的工作原理"><a href="#计算机的工作原理" class="headerlink" title="计算机的工作原理"></a>计算机的工作原理</h3><p>（详见教材）</p>
-<h2 id="（★★）计算机的性能指标"><a href="#（★★）计算机的性能指标" class="headerlink" title="（★★）计算机的性能指标"></a>（★★）计算机的性能指标</h2><h3 id="CPU执行时间"><a href="#CPU执行时间" class="headerlink" title="CPU执行时间"></a>CPU执行时间</h3><ul>
-<li>用于程序执行的时间，包括<ul>
+<h3 id="计算机的工作原理">计算机的工作原理</h3>
+<p>（详见教材）</p>
+<h2 id="计算机的性能指标">（★★）计算机的性能指标</h2>
+<h3 id="cpu执行时间">CPU执行时间</h3>
+<ul>
+<li>用于程序执行的时间，包括
+<ul>
 <li>用户 CPU 时间：用于运行用户程序代码的时间</li>
 <li>系统 CPU 时间：为了执行用户程序而需要 CPU 运行操作系统程序的时间</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="CPI（★★★★）"><a href="#CPI（★★★★）" class="headerlink" title="CPI（★★★★）"></a>CPI（★★★★）</h3><ul>
+<h3 id="cpi">CPI（★★★★）</h3>
+<ul>
 <li>执行一条指令所需要的时钟周期</li>
-<li>一些公式<ul>
-<li>$CPU执行时间 = \frac{程序所含时钟周期数}{时钟频率}=程序所含时钟周期数\times 时钟周期$</li>
-<li>$程序的总时钟周期数=程序所含指令条数\times CPI$  （这里的 <em>CPI</em> 是综合  <em>CPI</em> ）</li>
-<li>$程序总时钟周期数=\sum_{i=1}^{n}(CPI_i\times C_i)$ （有 <em>n</em> 种不同的指令，第 <em>i</em> 种指令条数和 <em>CPI</em> 分别是 $C_i$  和 $CPI_i$ ）</li>
-<li>$CPI = \sum_{i=1}^{n}(CPI_i\times F_i) =程序总时钟周期数\div程序所含指令条数$ ，其中 $F_i$ 为第 <em>i</em> 种指令在程序中所占的比例</li>
-<li>$CPU执行时间 = CPI\times 程序总指令数\times时钟周期=\frac{(指令条数\times CPI)}{主频}$</li>
+<li>一些公式
+<ul>
+<li><span class="math inline">\(CPU执行时间 = \frac{程序所含时钟周期数}{时钟频率}=程序所含时钟周期数\times 时钟周期\)</span></li>
+<li><span class="math inline">\(程序的总时钟周期数=程序所含指令条数\times CPI\)</span> （这里的 <em>CPI</em> 是综合 <em>CPI</em> ）</li>
+<li><span class="math inline">\(程序总时钟周期数=\sum_{i=1}^{n}(CPI_i\times C_i)\)</span> （有 <em>n</em> 种不同的指令，第 <em>i</em> 种指令条数和 <em>CPI</em> 分别是 <span class="math inline">\(C_i\)</span> 和 <span class="math inline">\(CPI_i\)</span> ）</li>
+<li><span class="math inline">\(CPI = \sum_{i=1}^{n}(CPI_i\times F_i) =程序总时钟周期数\div程序所含指令条数\)</span> ，其中 <span class="math inline">\(F_i\)</span> 为第 <em>i</em> 种指令在程序中所占的比例</li>
+<li><span class="math inline">\(CPU执行时间 = CPI\times 程序总指令数\times时钟周期=\frac{(指令条数\times CPI)}{主频}\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="时钟周期-T"><a href="#时钟周期-T" class="headerlink" title="时钟周期 T"></a>时钟周期 T</h3><ul>
+<h3 id="时钟周期-t">时钟周期 T</h3>
+<ul>
 <li>CPU 主脉冲信号的宽度</li>
 </ul>
-<h3 id="主频-f"><a href="#主频-f" class="headerlink" title="主频 f"></a>主频 f</h3><ul>
+<h3 id="主频-f">主频 f</h3>
+<ul>
 <li>时钟周期的倒数：f = 1 / T</li>
 </ul>
-<h3 id="MIPS"><a href="#MIPS" class="headerlink" title="MIPS"></a>MIPS</h3><ul>
+<h3 id="mips">MIPS</h3>
+<ul>
 <li>每秒执行多少百万条指令</li>
-<li>公式<ul>
-<li>$MIPS=\frac{指令条数}{执行时间\times 10^6} = \frac{主频（注意以MHz为单位）}{CPI}$</li>
+<li>公式
+<ul>
+<li><span class="math inline">\(MIPS=\frac{指令条数}{执行时间\times 10^6} = \frac{主频（注意以MHz为单位）}{CPI}\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
@@ -590,13 +603,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -628,8 +641,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

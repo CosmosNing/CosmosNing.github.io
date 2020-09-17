@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下操作系统中设备管理的知识">
@@ -34,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true">
 <meta property="article:published_time" content="2019-09-14T14:50:53.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
@@ -156,7 +155,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -166,7 +165,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -230,7 +229,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5．设备管理"><span class="nav-number">1.</span> <span class="nav-text">5．设备管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O体系结构"><span class="nav-number">1.1.</span> <span class="nav-text">I&#x2F;O体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O控制方法"><span class="nav-number">1.2.</span> <span class="nav-text">I&#x2F;O控制方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O分配中的数据结构和分配方法"><span class="nav-number">1.3.</span> <span class="nav-text">I&#x2F;O分配中的数据结构和分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设备分配中的数据结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">设备分配中的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设备控制表-（DCT）"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">设备控制表 （DCT）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上述几种数据结构之间的关系"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">上述几种数据结构之间的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分配方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">分配方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道和通道程序"><span class="nav-number">1.4.</span> <span class="nav-text">通道和通道程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通道"><span class="nav-number">1.4.1.</span> <span class="nav-text">通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通道程序（★）"><span class="nav-number">1.4.2.</span> <span class="nav-text">通道程序（★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备独立性及其实现方法"><span class="nav-number">1.5.</span> <span class="nav-text">设备独立性及其实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设备独立性"><span class="nav-number">1.5.1.</span> <span class="nav-text">设备独立性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方法"><span class="nav-number">1.5.2.</span> <span class="nav-text">实现方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟设备和SPOOLing技术"><span class="nav-number">1.6.</span> <span class="nav-text">虚拟设备和SPOOLing技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPOOLing技术（★★★）"><span class="nav-number">1.6.1.</span> <span class="nav-text">SPOOLing技术（★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲管理（★★★★★）"><span class="nav-number">1.7.</span> <span class="nav-text">缓冲管理（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单缓冲（★★★）"><span class="nav-number">1.7.1.</span> <span class="nav-text">单缓冲（★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双缓冲（★★★）"><span class="nav-number">1.7.2.</span> <span class="nav-text">双缓冲（★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环形缓冲"><span class="nav-number">1.7.3.</span> <span class="nav-text">环形缓冲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲池"><span class="nav-number">1.7.4.</span> <span class="nav-text">缓冲池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备处理与I-O软件"><span class="nav-number">1.8.</span> <span class="nav-text">设备处理与I&#x2F;O软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备分配"><span class="nav-number">1.9.</span> <span class="nav-text">设备分配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设备管理"><span class="nav-number">1.</span> <span class="nav-text">5．设备管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#io体系结构"><span class="nav-number">1.1.</span> <span class="nav-text">I&#x2F;O体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io控制方法"><span class="nav-number">1.2.</span> <span class="nav-text">I&#x2F;O控制方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io分配中的数据结构和分配方法"><span class="nav-number">1.3.</span> <span class="nav-text">I&#x2F;O分配中的数据结构和分配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设备分配中的数据结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">设备分配中的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设备控制表-dct"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">设备控制表 （DCT）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制器控制表coct通道控制表chct系统设备控制表sdt"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上述几种数据结构之间的关系"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">上述几种数据结构之间的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分配方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">分配方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通道和通道程序"><span class="nav-number">1.4.</span> <span class="nav-text">通道和通道程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通道"><span class="nav-number">1.4.1.</span> <span class="nav-text">通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通道程序"><span class="nav-number">1.4.2.</span> <span class="nav-text">通道程序（★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备独立性及其实现方法"><span class="nav-number">1.5.</span> <span class="nav-text">设备独立性及其实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设备独立性"><span class="nav-number">1.5.1.</span> <span class="nav-text">设备独立性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现方法"><span class="nav-number">1.5.2.</span> <span class="nav-text">实现方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟设备和spooling技术"><span class="nav-number">1.6.</span> <span class="nav-text">虚拟设备和SPOOLing技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spooling技术"><span class="nav-number">1.6.1.</span> <span class="nav-text">SPOOLing技术（★★★）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓冲管理"><span class="nav-number">1.7.</span> <span class="nav-text">缓冲管理（★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单缓冲"><span class="nav-number">1.7.1.</span> <span class="nav-text">单缓冲（★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双缓冲"><span class="nav-number">1.7.2.</span> <span class="nav-text">双缓冲（★★★）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环形缓冲"><span class="nav-number">1.7.3.</span> <span class="nav-text">环形缓冲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲池"><span class="nav-number">1.7.4.</span> <span class="nav-text">缓冲池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备处理与io软件"><span class="nav-number">1.8.</span> <span class="nav-text">设备处理与I&#x2F;O软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设备分配"><span class="nav-number">1.9.</span> <span class="nav-text">设备分配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -246,7 +245,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,7 +258,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -350,7 +349,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,7 +395,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="5．设备管理"><a href="#5．设备管理" class="headerlink" title="5．设备管理"></a>5．设备管理</h1><h2 id="I-O体系结构"><a href="#I-O体系结构" class="headerlink" title="I/O体系结构"></a>I/O体系结构</h2><p>从上至下依次为</p>
+        <h1 id="设备管理">5．设备管理</h1>
+<h2 id="io体系结构">I/O体系结构</h2>
+<p>从上至下依次为</p>
 <ul>
 <li><strong>用户层软件</strong>：产生 I/O 请求、格式化 I/O、Spooling</li>
 <li><strong>设备独立性软件</strong>：映射、保护、分块、缓冲、分配</li>
@@ -404,89 +405,120 @@
 <li><strong>中断处理程序</strong></li>
 <li><strong>硬件</strong>：执行 I/O 操作</li>
 </ul>
-<h2 id="I-O控制方法"><a href="#I-O控制方法" class="headerlink" title="I/O控制方法"></a>I/O控制方法</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true" alt="IO控制流程对比"></p>
+<h2 id="io控制方法">I/O控制方法</h2>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true" alt="IO控制流程对比" /><figcaption>IO控制流程对比</figcaption>
+</figure>
 <ul>
-<li>采用<strong>轮询</strong>的可编程 I/O 方式<ul>
+<li>采用<strong>轮询</strong>的可编程 I/O 方式
+<ul>
 <li>易于实现，但 CPU 和 I/O 设备只能串行工作，<strong>CPU效率较低</strong></li>
-</ul>
-</li>
-<li>采用<strong>中断</strong>的可编程 I/O 方式<ul>
+</ul></li>
+<li>采用<strong>中断</strong>的可编程 I/O 方式
+<ul>
 <li>比上一种方法有优势，但数据中的每一个字在存储器与 I/O 控制器之间的传输都要经过 CPU ，这就导致这种方式仍会<strong>消耗较多的 CPU 时间</strong></li>
-</ul>
-</li>
-<li><strong>直接存储器访问（DMA）</strong>方式<ul>
+</ul></li>
+<li><strong>直接存储器访问（DMA）</strong>方式
+<ul>
 <li>DMA 控制时，传输基本单位是<strong>数据块</strong>，只有<strong>传送开始和结束时</strong>才需要 CPU 的参与，CPU 利用率较高</li>
-</ul>
-</li>
-<li>I/O <strong>通道</strong>方式（通道是一种特殊的<strong>硬件</strong>）<ul>
+</ul></li>
+<li>I/O <strong>通道</strong>方式（通道是一种特殊的<strong>硬件</strong>）
+<ul>
 <li>I/O 通道传送基本单位是<strong>一组数据块</strong>，有更高的自主权，CPU 利用率更高</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>总结：整个 I/O 控制方法的发展，总的来说就是四个字——“简政放权”：减轻 CPU 对所有操作控制的压力，让合适的“人”（如其他专门硬件）去处理合适的“事”（如这里的 I/O 操作）。</p>
-<h2 id="I-O分配中的数据结构和分配方法"><a href="#I-O分配中的数据结构和分配方法" class="headerlink" title="I/O分配中的数据结构和分配方法"></a>I/O分配中的数据结构和分配方法</h2><h3 id="设备分配中的数据结构"><a href="#设备分配中的数据结构" class="headerlink" title="设备分配中的数据结构"></a>设备分配中的数据结构</h3><h4 id="设备控制表-（DCT）"><a href="#设备控制表-（DCT）" class="headerlink" title="设备控制表 （DCT）"></a>设备控制表 （DCT）</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true" alt="DCT"></p>
-<h4 id="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"><a href="#控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）" class="headerlink" title="控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）"></a>控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true" alt="COCT-CHCT-SDT"></p>
-<h4 id="上述几种数据结构之间的关系"><a href="#上述几种数据结构之间的关系" class="headerlink" title="上述几种数据结构之间的关系"></a>上述几种数据结构之间的关系</h4><ul>
+<h2 id="io分配中的数据结构和分配方法">I/O分配中的数据结构和分配方法</h2>
+<h3 id="设备分配中的数据结构">设备分配中的数据结构</h3>
+<h4 id="设备控制表-dct">设备控制表 （DCT）</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true" alt="DCT" /><figcaption>DCT</figcaption>
+</figure>
+<h4 id="控制器控制表coct通道控制表chct系统设备控制表sdt">控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true" alt="COCT-CHCT-SDT" /><figcaption>COCT-CHCT-SDT</figcaption>
+</figure>
+<h4 id="上述几种数据结构之间的关系">上述几种数据结构之间的关系</h4>
+<ul>
 <li>DCT 与 COCT <strong>一一对应</strong></li>
 <li>CHCT 与 COCT <strong>一对多</strong>（一个通道可谓多个设备控制器服务）</li>
 <li>SDT 整个系统只有 <strong>一张</strong></li>
 </ul>
-<h3 id="分配方法"><a href="#分配方法" class="headerlink" title="分配方法"></a>分配方法</h3><p>设备分配的<strong>安全性</strong>指分配设备时<strong>防止发生死锁</strong></p>
+<h3 id="分配方法">分配方法</h3>
+<p>设备分配的<strong>安全性</strong>指分配设备时<strong>防止发生死锁</strong></p>
 <p>（具体见教材）</p>
-<h2 id="通道和通道程序"><a href="#通道和通道程序" class="headerlink" title="通道和通道程序"></a>通道和通道程序</h2><h3 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h3><p>（具体见教材）</p>
-<h3 id="通道程序（★）"><a href="#通道程序（★）" class="headerlink" title="通道程序（★）"></a>通道程序（★）</h3><ul>
+<h2 id="通道和通道程序">通道和通道程序</h2>
+<h3 id="通道">通道</h3>
+<p>（具体见教材）</p>
+<h3 id="通道程序">通道程序（★）</h3>
+<ul>
 <li>通道程序由一系列通道指令构成。</li>
-<li>通道指令构成如下<ul>
+<li>通道指令构成如下
+<ul>
 <li>操作码：包括 <strong>读</strong> <strong>写</strong> <strong>控制</strong> 等操作</li>
 <li>内存地址：操作数据的<strong>内存首址</strong></li>
 <li>计数：操作数据的<strong>字节数</strong>（与上一项 内存地址 相加，即可获得操作数据的内存范围）</li>
 <li>通道程序结束位 <em>P</em> ：<em>P</em> = 1 表示本条指令是通道程序的最后一条指令</li>
 <li>记录结束标志 <em>R</em> ：<em>R</em> = 0 表示本条指令和下一条指令处理的数据是<strong>同一条记录</strong>；<em>R</em> = 1 表示这是处理某条记录的最后一条指令</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="设备独立性及其实现方法"><a href="#设备独立性及其实现方法" class="headerlink" title="设备独立性及其实现方法"></a>设备独立性及其实现方法</h2><h3 id="设备独立性"><a href="#设备独立性" class="headerlink" title="设备独立性"></a>设备独立性</h3><p>（具体见教材）</p>
-<h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><p>（具体见教材）</p>
-<h2 id="虚拟设备和SPOOLing技术"><a href="#虚拟设备和SPOOLing技术" class="headerlink" title="虚拟设备和SPOOLing技术"></a>虚拟设备和SPOOLing技术</h2><h3 id="SPOOLing技术（★★★）"><a href="#SPOOLing技术（★★★）" class="headerlink" title="SPOOLing技术（★★★）"></a>SPOOLing技术（★★★）</h3><p>（具体见教材）</p>
-<h2 id="缓冲管理（★★★★★）"><a href="#缓冲管理（★★★★★）" class="headerlink" title="缓冲管理（★★★★★）"></a>缓冲管理（★★★★★）</h2><p>假设一块数据</p>
+<h2 id="设备独立性及其实现方法">设备独立性及其实现方法</h2>
+<h3 id="设备独立性">设备独立性</h3>
+<p>（具体见教材）</p>
+<h3 id="实现方法">实现方法</h3>
+<p>（具体见教材）</p>
+<h2 id="虚拟设备和spooling技术">虚拟设备和SPOOLing技术</h2>
+<h3 id="spooling技术">SPOOLing技术（★★★）</h3>
+<p>（具体见教材）</p>
+<h2 id="缓冲管理">缓冲管理（★★★★★）</h2>
+<p>假设一块数据</p>
 <table>
 <thead>
-<tr>
-<th align="center">操作</th>
-<th align="center">所需时间</th>
+<tr class="header">
+<th style="text-align: center;">操作</th>
+<th style="text-align: center;">所需时间</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">磁盘 → 缓冲区</td>
-<td align="center"><em>T</em></td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">磁盘 → 缓冲区</td>
+<td style="text-align: center;"><em>T</em></td>
 </tr>
-<tr>
-<td align="center">缓冲区 → 用户区</td>
-<td align="center"><em>M</em></td>
+<tr class="even">
+<td style="text-align: center;">缓冲区 → 用户区</td>
+<td style="text-align: center;"><em>M</em></td>
 </tr>
-<tr>
-<td align="center">CPU 处理</td>
-<td align="center"><em>C</em></td>
+<tr class="odd">
+<td style="text-align: center;">CPU 处理</td>
+<td style="text-align: center;"><em>C</em></td>
 </tr>
-</tbody></table>
-<h3 id="单缓冲（★★★）"><a href="#单缓冲（★★★）" class="headerlink" title="单缓冲（★★★）"></a>单缓冲（★★★）</h3><ul>
-<li>每块数据处理时间为<ul>
+</tbody>
+</table>
+<h3 id="单缓冲">单缓冲（★★★）</h3>
+<ul>
+<li>每块数据处理时间为
+<ul>
 <li>max(<em>C</em>, <em>T</em>) + <em>M</em></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="双缓冲（★★★）"><a href="#双缓冲（★★★）" class="headerlink" title="双缓冲（★★★）"></a>双缓冲（★★★）</h3><ul>
-<li>每块数据处理时间为<ul>
-<li>max(<em>C+M</em>, <em>T</em>) </li>
-</ul>
-</li>
+<h3 id="双缓冲">双缓冲（★★★）</h3>
+<ul>
+<li>每块数据处理时间为
+<ul>
+<li>max(<em>C+M</em>, <em>T</em>)</li>
+</ul></li>
 </ul>
 <p>时间计算小结：能并行的放在 max 内取大的，再和只能串行的任务时间相加</p>
-<h3 id="环形缓冲"><a href="#环形缓冲" class="headerlink" title="环形缓冲"></a>环形缓冲</h3><p>（具体见教材）</p>
-<h3 id="缓冲池"><a href="#缓冲池" class="headerlink" title="缓冲池"></a>缓冲池</h3><p>（具体见教材）</p>
-<h2 id="设备处理与I-O软件"><a href="#设备处理与I-O软件" class="headerlink" title="设备处理与I/O软件"></a>设备处理与I/O软件</h2><p>（具体见教材）</p>
-<h2 id="设备分配"><a href="#设备分配" class="headerlink" title="设备分配"></a>设备分配</h2><p>（具体见教材）</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h3 id="环形缓冲">环形缓冲</h3>
+<p>（具体见教材）</p>
+<h3 id="缓冲池">缓冲池</h3>
+<p>（具体见教材）</p>
+<h2 id="设备处理与io软件">设备处理与I/O软件</h2>
+<p>（具体见教材）</p>
+<h2 id="设备分配">设备分配</h2>
+<p>（具体见教材）</p>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机操作系统.汤小丹等</li>
 <li>2020年操作系统考研复习指导.王道论坛</li>
 </ol>
@@ -622,13 +654,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -660,8 +692,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

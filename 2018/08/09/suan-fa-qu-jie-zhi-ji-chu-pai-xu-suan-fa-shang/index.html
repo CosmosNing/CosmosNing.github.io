@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="一起来探索一下排序算法吧">
@@ -43,7 +42,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/10.jpg?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/11.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-09T02:47:42.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -166,7 +165,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -176,7 +175,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -255,7 +254,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -268,7 +267,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -359,7 +358,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -386,7 +385,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -405,7 +404,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/cover.jpg?raw=true" alt="cover"></p>
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p><a href="https://cosmosning.github.io/2018/08/02/%E7%AE%97%E6%B3%95%E8%B6%A3%E8%A7%A3%E4%B9%8B%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">之前的文章</a>中提到的二分查找算法中要求数据序列是有序的。然而，生活中的很多数据却是无序的。将无序转换为有序，这就需要排序算法。今天，我们就来一起探索一下几种常见的基础排序算法。</p>
 <p>很多基础的排序算法都来源于实际生活中对于某些特定的问题情境的抽象、提炼和总结。你不信？我们一起来分析一下几个例子。</p>
 <p>还记得很小的时候，上体育课时，体育老师是如何把你们从高到矮排队吗？老师先目测大家的身高，排出一个基本有序的队伍。然后，依据相邻同学的身高对比，再进行微调。调整的标准如下：</p>
@@ -415,51 +416,76 @@
 <p>那么这种方法如何交由计算机来实现呢？在从实际方法到计算机实现的过程中，我们经常会遇到一个困难，即，在具体情境下的处理流程不能直接拿来就用。这就需要我们做一定的转化。比如本例，老师可以先目测，排出基本有序的队伍，而计算机不会目测。如何解决这个问题呢？利用计算机可以机械地、重复地处理一些基本运算的特性，我们将每一种相邻的情况枚举出来，再判断处理，就可以实现这个排序方法。</p>
 <p>有关这种排序方法的处理流程，我们通过一个具体的数字排序例子来感受一下。</p>
 <p>比如有一个无序数字序列如下：</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/1.jpg?raw=true" alt="无序序列"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/1.jpg?raw=true" alt="无序序列" /><figcaption>无序序列</figcaption>
+</figure>
 <p>我们要使用上述的排序方法，使之从小到大排列。</p>
 <p>我们从头开始对数据进行对比处理。</p>
 <p>①对比第1个和第2个数据，第2个数据较小，因而需要交换。交换后的序列如下</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/2.jpg?raw=true" alt="交换1"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/2.jpg?raw=true" alt="交换1" /><figcaption>交换1</figcaption>
+</figure>
 <p>②对比第2个和第3个数据，两个数据排列符合排序要求，因而不需要交换。此次处理后的序列如下：</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/3.jpg?raw=true" alt="交换2"></p>
-<p>③同样的方式处理，可以得到以下序列 </p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/4.jpg?raw=true" alt="交换3"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/3.jpg?raw=true" alt="交换2" /><figcaption>交换2</figcaption>
+</figure>
+<p>③同样的方式处理，可以得到以下序列</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/4.jpg?raw=true" alt="交换3" /><figcaption>交换3</figcaption>
+</figure>
 <p>（P.S.87和88比较，顺序符合要求，不交换）</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/5.jpg?raw=true" alt="交换4"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/5.jpg?raw=true" alt="交换4" /><figcaption>交换4</figcaption>
+</figure>
 <p>（P.S.88和61比较，不符合顺序要求，交换）</p>
 <p>经过这一轮的排序，我们发现序列中的最大值已经达到目标位置，但是整个序列还不是有序的。如何解决呢？可以仿照这一轮的排序对之前无序的序列做同样的操作。</p>
 <p>第二轮的排序每次的序列如下所示：</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/6.jpg?raw=true" alt="交换5"></p>
-<p>（P.S.83和84比较，顺序符合要求，不交换） </p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/7.jpg?raw=true" alt="交换6"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/6.jpg?raw=true" alt="交换5" /><figcaption>交换5</figcaption>
+</figure>
+<p>（P.S.83和84比较，顺序符合要求，不交换）</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/7.jpg?raw=true" alt="交换6" /><figcaption>交换6</figcaption>
+</figure>
 <p>（P.S.84和87比较，顺序符合要求，不交换）</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/8.jpg?raw=true" alt="交换7"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/8.jpg?raw=true" alt="交换7" /><figcaption>交换7</figcaption>
+</figure>
 <p>（P.S.87和61比较，不符合顺序要求，交换）</p>
 <p>经过这一轮的排序，次大值也到了目标位置。</p>
 <p>第三轮：</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/9.jpg?raw=true" alt="交换8"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/9.jpg?raw=true" alt="交换8" /><figcaption>交换8</figcaption>
+</figure>
 <p>（P.S.83和84比较，顺序符合要求，不交换）</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/10.jpg?raw=true" alt="交换9"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/10.jpg?raw=true" alt="交换9" /><figcaption>交换9</figcaption>
+</figure>
 <p>（P.S.84和61比较，不符合顺序要求，交换）</p>
 <p>第四轮</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/11.jpg?raw=true" alt="交换10"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/09/11.jpg?raw=true" alt="交换10" /><figcaption>交换10</figcaption>
+</figure>
 <p>（P.S.83和61比较，不符合顺序要求，交换）</p>
 <p>通过上面这个实际的例子，我们发现，每一轮排序都会在前面无序的序列中通过交换相邻数字的方式找到其中的最大值，和后面的数字形成一个有序的部分。这个过程就像水中的一个气泡，从底端慢慢的飘升到水面的过程，所以我们将这种排序算法成为“冒泡排序”。</p>
 <p>到了实现环节，就需要选择合适的存储结构，并利用三种基本的程序结构来描述这个算法的流程。</p>
 <p>由于排序过程中涉及到交换，链表中的数据位置交换比较复杂，为了简单起见，我们利用数组来实现。算法流程中的很多次的比较可以通过循环加上分支来描述。</p>
 <p>因而，有如下的Python代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    冒泡排序：</span></span><br><span class="line"><span class="string">      将一个无序的数据列表lst转换为从小到大的返回</span></span><br><span class="line"><span class="string">     参数：</span></span><br><span class="line"><span class="string">      lst：待排序的数据列表</span></span><br><span class="line"><span class="string">     返回：</span></span><br><span class="line"><span class="string">      排好序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):                          <span class="comment">#排序轮数</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(lst) - i - <span class="number">1</span>):              <span class="comment">#每一轮的排序次数</span></span><br><span class="line">            <span class="keyword">if</span> lst[j] &gt; lst[j+<span class="number">1</span>]:</span><br><span class="line">                lst[j],lst[j+<span class="number">1</span>] = lst[j+<span class="number">1</span>],lst[j]      <span class="comment">#这里交换相邻的数据，用到了python中的特殊写法。具体可以百度"python a,b=b,a"</span></span><br><span class="line">            print(<span class="string">"第&#123;&#125;轮第&#123;&#125;次排序后结果："</span>.format(i+<span class="number">1</span>, j+<span class="number">1</span>))</span><br><span class="line">            print(lst)</span><br><span class="line">            print()                                    <span class="comment">#打印空行</span></span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line">lst = [<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"调用函数:"</span>,bubble_sort(lst))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">第1轮第1次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 88, 87, 61]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第1轮第2次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 88, 87, 61]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第1轮第3次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 87, 88, 61]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第1轮第4次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 87, 61, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第2轮第1次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 87, 61, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第2轮第2次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 87, 61, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第2轮第3次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 61, 87, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第3轮第1次排序后结果：</span></span><br><span class="line"><span class="string">[83, 84, 61, 87, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第3轮第2次排序后结果：</span></span><br><span class="line"><span class="string">[83, 61, 84, 87, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第4轮第1次排序后结果：</span></span><br><span class="line"><span class="string">[61, 83, 84, 87, 88]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">调用函数: [61, 83, 84, 87, 88]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>最后，我们简单地评价一下这个算法的性能。在上面一个具体的算法流程中，我们可以发现如下的规律：</p>
-<p>对于一个含有 $N$ 个数据元素的序列，它需要进行 $N – 1$ 轮比较，每一轮（记轮数为 $i$ ，从1开始计数）比较中又需要比较 $N – i$ 次比较。所以，一个完整的“冒泡排序”过程总共需要</p>
-<p>$$<br>\begin{aligned}<br>&amp;\ \ \ \ \  ( N - 1 ) + ( N - 2 ) + ··· + 1\<br>&amp;=\frac{( N - 1 )( N - 1 + 1 )}{2}\<br>&amp;= \frac{N(N - 1)}{2}<br>\end{aligned}<br>$$</p>
-<p>次比较。所以“冒泡排序”算法的时间复杂度为 $O(N^{2})$ 。</p>
+<p>对于一个含有 <span class="math inline">\(N\)</span> 个数据元素的序列，它需要进行 <span class="math inline">\(N – 1\)</span> 轮比较，每一轮（记轮数为 <span class="math inline">\(i\)</span> ，从1开始计数）比较中又需要比较 <span class="math inline">\(N – i\)</span> 次比较。所以，一个完整的“冒泡排序”过程总共需要</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\ \ \ \ \  ( N - 1 ) + ( N - 2 ) + ··· + 1\\
+&amp;=\frac{( N - 1 )( N - 1 + 1 )}{2}\\  
+&amp;= \frac{N(N - 1)}{2}
+\end{aligned}
+\]</span></p>
+<p>次比较。所以“冒泡排序”算法的时间复杂度为 <span class="math inline">\(O(N^{2})\)</span> 。</p>
 <p>好了，今天就到这里。让我们简单回顾一下本文的要点：</p>
-<ol>
+<ol type="1">
 <li><strong>冒泡排序算法的核心思想：比较相邻的两个数据，若顺序不对，则将其位置交换。</strong></li>
-<li><strong>冒泡排序的时间复杂度为 $O ( N^{2} )$ 。</strong></li>
+<li><strong>冒泡排序的时间复杂度为 <span class="math inline">\(O ( N^{2} )\)</span> 。</strong></li>
 </ol>
 
     </div>
@@ -594,13 +620,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -632,8 +658,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

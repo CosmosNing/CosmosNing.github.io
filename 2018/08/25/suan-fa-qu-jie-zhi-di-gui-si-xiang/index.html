@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="从阶乘的编程实现说起">
@@ -33,7 +32,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-25T14:41:31.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -156,7 +155,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -166,7 +165,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -245,7 +244,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -258,7 +257,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -349,7 +348,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -376,7 +375,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -395,41 +394,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true" alt="cover"></p>
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p>数学上有一种运算叫做阶乘，它的计算定义如下：</p>
-<p>$$<br>n ! = 1 × 2 × ··· × n ( n ≥ 1)<br>$$</p>
+<p><span class="math display">\[
+n ! = 1 × 2 × ··· × n ( n ≥ 1)
+\]</span></p>
 <p>如果，让你依据上述公式，为阶乘运算写一个函数，你会怎么实现？</p>
 <p>我想大部分人会利用循环做乘法，得到阶乘结果。这种方法，我们通常称作递推实现方法。</p>
 <p>其实，阶乘的运算还可以通过另一种方式实现，那就是递归实现。我们仔细观察，可以发现，原阶乘计算公式进一步可以化为</p>
-<p>$$<br>\begin{aligned}<br>n ! &amp;= 1 × 2 × ··· × n \<br>      &amp;= n × (n - 1) ! \<br>      &amp;( n ≥ 1，1 ! = 1，0 ! = 1)\<br>\end{aligned}<br>$$</p>
-<p>也就是说， $n$ 的阶乘可以通过 $n$ 本身和 $n – 1$ 的阶乘结果确定；更进一步， $n - 1$ 的阶乘可以通过 $n - 1$ 本身和 $n – 2$ 的阶乘结果确定···最终，这样的推导，会到求 1 的阶乘，而 1 的阶乘是 1 。这时，我们将1的结果逐层回代，最后会得到 $n$ 的阶乘。</p>
+<p><span class="math display">\[
+\begin{aligned}
+n ! &amp;= 1 × 2 × ··· × n \\
+      &amp;= n × (n - 1) ! \\
+      &amp;( n ≥ 1，1 ! = 1，0 ! = 1)\\
+\end{aligned}
+\]</span></p>
+<p>也就是说， <span class="math inline">\(n\)</span> 的阶乘可以通过 <span class="math inline">\(n\)</span> 本身和 <span class="math inline">\(n – 1\)</span> 的阶乘结果确定；更进一步， <span class="math inline">\(n - 1\)</span> 的阶乘可以通过 <span class="math inline">\(n - 1\)</span> 本身和 <span class="math inline">\(n – 2\)</span> 的阶乘结果确定···最终，这样的推导，会到求 1 的阶乘，而 1 的阶乘是 1 。这时，我们将1的结果逐层回代，最后会得到 <span class="math inline">\(n\)</span> 的阶乘。</p>
 <p>上述递归阶乘算法的实现便可通过Python描述如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    factorial</span></span><br><span class="line"><span class="string">     计算一个数的阶乘</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     n：待求阶乘的整数</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     阶乘计算的结果</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> n &lt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">"输入不能为负数。"</span>)</span><br><span class="line">    <span class="keyword">elif</span> n == <span class="number">1</span> <span class="keyword">or</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">print(factorial(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">24</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>从上面的实现中，我们可以总结递归实现的两大特点：</p>
-<p>第一点，       也是程序中最重要的一点，就是“自身调用自身部分”（也就是程序中的第15行）。这部分将当前求解的问题，化简为可以利用自身解决的更小的子问题（在本例中，即是将求 $n$ 的阶乘转化为 $n$ 本身和 $n – 1$ 的阶乘的乘积结果）。这部分的描述，通常是以一个公式的形式呈现，这个公式我们称作“递推公式”。</p>
-<p>第二点，       为了不让递归程序陷入死循环，因而我们需要为递归程序设置一个出口。通常的实现方式是给定一个初始条件，这个初始条件使得所有递归的中间结果获得确定。（在本例中，便是对 $n$ 等于 1 或者是 0 的时候，直接给出其阶乘的结果）</p>
+<p>第一点， 也是程序中最重要的一点，就是“自身调用自身部分”（也就是程序中的第15行）。这部分将当前求解的问题，化简为可以利用自身解决的更小的子问题（在本例中，即是将求 <span class="math inline">\(n\)</span> 的阶乘转化为 <span class="math inline">\(n\)</span> 本身和 <span class="math inline">\(n – 1\)</span> 的阶乘的乘积结果）。这部分的描述，通常是以一个公式的形式呈现，这个公式我们称作“递推公式”。</p>
+<p>第二点， 为了不让递归程序陷入死循环，因而我们需要为递归程序设置一个出口。通常的实现方式是给定一个初始条件，这个初始条件使得所有递归的中间结果获得确定。（在本例中，便是对 <span class="math inline">\(n\)</span> 等于 1 或者是 0 的时候，直接给出其阶乘的结果）</p>
 <p>递归程序通常看起来比较简洁，也易于理解，但是它的执行效率是极低的。我们来实际看一个例子。</p>
 <p>比如，我要计算4的阶乘，上述递归实现的阶乘的计算过程是怎样的呢？</p>
 <p>在描述这个过程之前，先补充一下“栈”的概念。栈，是一种数据结构。它对数据的操作只在表的一端（这个部位通常被叫做“栈顶”），并且只支持两种操作，一个是Push操作（用于将数据压入栈顶），一个是Pop操作（将栈顶的元素弹出）。</p>
 <p>形象一点，你可以把栈的一个个元素想象成一个个盘子，每次的Push操作就是将盘子放在栈的顶端；而每次的Pop操作便是从栈的顶端取出一个盘子。由此可见，栈是一个“先进后出”的数据结构。</p>
 <p>对于递归程序来说，为了获得最终的答案，必须要程序自己维护中间的函数状态（因为代码中并没有像循环一样明确给出）。利用什么样的结构来保存这些信息呢？我们仔细看一下递归函数的一般流程。递归的过程，通常是从待解决的问题，通过递推公式，一层一层地推到已知的初始条件的子问题；然后，在依据已知子问题的解，一层一层返回，最终得到原问题的解。这些中间状态的存取是后存的先取用，先存的后取用，这个和栈的特质完全一致，因而，可以利用栈这种数据结构来维护函数的中间状态。</p>
-<p>我们利用上述栈的知识，来看一下 $factorial(4)$ 的执行过程。</p>
-<p>要计算 $factorial(4)$ , 根据递推公式可以得到 $factorial(4) = 4 × factorial(3)$ 。为了计算 $factorial(3)$ ，我们先将当前的函数状态 $factorial(4)$ 压入栈中保存；</p>
-<p>要计算 $factorial(3)$ , 根据递推公式可以得到 $factorial(3) = 3 × factorial(2)$ 。为了计算 $factorial(2)$ ，我们先将当前的函数状态 $factorial(3)$ 压入栈中保存；</p>
+<p>我们利用上述栈的知识，来看一下 <span class="math inline">\(factorial(4)\)</span> 的执行过程。</p>
+<p>要计算 <span class="math inline">\(factorial(4)\)</span> , 根据递推公式可以得到 <span class="math inline">\(factorial(4) = 4 × factorial(3)\)</span> 。为了计算 <span class="math inline">\(factorial(3)\)</span> ，我们先将当前的函数状态 <span class="math inline">\(factorial(4)\)</span> 压入栈中保存；</p>
+<p>要计算 <span class="math inline">\(factorial(3)\)</span> , 根据递推公式可以得到 <span class="math inline">\(factorial(3) = 3 × factorial(2)\)</span> 。为了计算 <span class="math inline">\(factorial(2)\)</span> ，我们先将当前的函数状态 <span class="math inline">\(factorial(3)\)</span> 压入栈中保存；</p>
 <p>···</p>
-<p>以此类推，我们会到达递归的出口，也就是直接给出的factorial(1)的值。然后我们从栈中取出最近一个函数状态 $factorial(2)$ ，得到 $factorial(2)$ 等于2；再进一步得到 $factorial(3)$ 等于6， $factorial(4)$ 等于24。</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态"></p>
+<p>以此类推，我们会到达递归的出口，也就是直接给出的factorial(1)的值。然后我们从栈中取出最近一个函数状态 <span class="math inline">\(factorial(2)\)</span> ，得到 <span class="math inline">\(factorial(2)\)</span> 等于2；再进一步得到 <span class="math inline">\(factorial(3)\)</span> 等于6， <span class="math inline">\(factorial(4)\)</span> 等于24。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/25/%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E6%A0%88%E7%9A%84%E7%8A%B6%E6%80%81.jpg?raw=true" alt="执行过程中栈的状态" /><figcaption>执行过程中栈的状态</figcaption>
+</figure>
 <p>计算一个简单的4的阶乘，背后有这么多的栈的操作，看上去非常繁琐。同时，随着数据待求数字的增大，其递归层次也变得更深，而栈的空间是有限的，深层次的递归调用可能会使得栈存储不下，导致栈溢出，程序异常终止。</p>
 <p>在可读性方面，递归程序的简洁十分利于理解，但在效率方面，并不如循环递推高效。那递归为什么会存在于算法思想里呢？我想除了易于理解以外，还有一点便是有些问题只能通过递归来实现（比如说“汉诺塔问题”。由于篇幅有限，这里不做讨论，大家可以自己看看）。</p>
 <p>递归函数在执行过程比较特殊，对应的其时间复杂度的计算也比较特殊。以上述递归求阶乘为例，介绍一下递归函数时间复杂度的分析。</p>
-<p>假设问题规模为 $N$，所需的步骤为 $T( N )$ ，根据代码第 15 行可知，乘法需要1次，递归调用 $factorial$ 需要 $T ( N -1 )$ 次；进一步则有递推公式 $T ( N ) = T ( N – 1 ) + 1$ 。</p>
-<p>将此递推下去，可得 $T ( N ) = T (1) + N – 1$ 。当问题规模为1时，显然只需一步即可。所以 $T ( N ) = 1 + N – 1 = N$ ，从而时间复杂度为 $O ( N )$ 。</p>
+<p>假设问题规模为 <span class="math inline">\(N\)</span>，所需的步骤为 <span class="math inline">\(T( N )\)</span> ，根据代码第 15 行可知，乘法需要1次，递归调用 <span class="math inline">\(factorial\)</span> 需要 <span class="math inline">\(T ( N -1 )\)</span> 次；进一步则有递推公式 <span class="math inline">\(T ( N ) = T ( N – 1 ) + 1\)</span> 。</p>
+<p>将此递推下去，可得 <span class="math inline">\(T ( N ) = T (1) + N – 1\)</span> 。当问题规模为1时，显然只需一步即可。所以 <span class="math inline">\(T ( N ) = 1 + N – 1 = N\)</span> ，从而时间复杂度为 <span class="math inline">\(O ( N )\)</span> 。</p>
 <p>由此可见，递归函数的时间复杂度分析，可以通过寻找所需步骤的递推公式来分析。</p>
 <p>在文章的最后，照例进行总结：</p>
-<ol>
+<ol type="1">
 <li><strong>递归简单来说，便是包含有“自身调用自身”的编程实现方法。</strong></li>
 <li><strong>递归函数通常分为两大部分：一是递推部分、二是初始条件。</strong></li>
 <li><strong>递归的过程，通常是从待解决的问题，通过递推公式，一层一层地推到已知的初始条件的子问题；然后，在依据已知子问题的解，一层一层返回，最终得到原问题的解。</strong></li>
@@ -571,13 +579,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -609,8 +617,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

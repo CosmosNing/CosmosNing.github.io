@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="介绍一个高效的查找算法——二分查找">
@@ -35,7 +34,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/2.jpg?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/3.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-02T14:35:46.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -158,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -168,7 +167,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -247,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -260,7 +259,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -351,7 +350,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -397,7 +396,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/cover.jpg?raw=true" alt="cover"></p>
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p>在正式开始之前，我们先尝试来玩一个猜数游戏。游戏规则如下：</p>
 <blockquote>
 <p>游戏裁判会指定一个从小到大的数字范围，并从中抽取一个作为猜数的正确结果。参与游戏者在分隔的状态下开始猜数。他们的每一次猜数，游戏裁判会分别告知其所猜之数是大了还是小了。最终猜数次数少者获胜。</p>
@@ -417,13 +418,19 @@
 <p>第三种，如果正确答案是给定范围的中间的数，那么很幸运，只需一次便可；如果正确答案是第一个或是最后一个数，那可能就会就会需要很多次。这里的很多次究竟是几次呢？这里我们一起研究一个具体的例子，来找找规律。</p>
 <p>比如有一组数为从 1 开始，一直到 10 的 10 个整数，假定猜数的正确答案是 1 ，我们利用折半猜数的策略来分析一下：</p>
 <p>第一次猜数，猜 5 ，</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/1.jpg?raw=true" alt="第一次猜数"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/1.jpg?raw=true" alt="第一次猜数" /><figcaption>第一次猜数</figcaption>
+</figure>
 <p>答案大了，数据范围切掉一半，剩下 1 ~ 4 ；</p>
 <p>第二次猜数，猜 2，</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/2.jpg?raw=true" alt="第二次猜数"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/2.jpg?raw=true" alt="第二次猜数" /><figcaption>第二次猜数</figcaption>
+</figure>
 <p>答案大了，数据切掉一半，只剩下 1 ；</p>
 <p>第三次猜数，猜 1 ，</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/3.jpg?raw=true" alt="第三次猜数"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/02/3.jpg?raw=true" alt="第三次猜数" /><figcaption>第三次猜数</figcaption>
+</figure>
 <p>答案正确，游戏结束。</p>
 <p>如果将正确答案换作 10 ，上述过程又会怎样？推荐大家自己动手尝试一下，这里我不再讨论。在这种情况下，猜数次数为 4 次。</p>
 <p>上述分析，我们很容易看到，10 个数据中猜一个数最多需要 3 ~ 4 次。这 3 和 4 究竟和 10 有什么关系呢？如果对数字敏感的同学一定会发现：log2(10) 约为 3.32 ，而这个数在 3 和 4 之间！</p>
@@ -438,11 +445,8 @@
 <p>说了这么多，终于到了代码实现的环节。这里的代码实现，我遵循原书中的Python实现（因为这真的是一个非常简单易学的语言，并且十分适合算法的表达）。</p>
 <p>具体代码如下（Python3.6.1测试通过）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(list, item)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    二分查找：</span></span><br><span class="line"><span class="string">      在一个从小到大排序的数据列表list中，</span></span><br><span class="line"><span class="string">      搜索是否存在数据item</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">      list： 保存从小到大排序的数字列表</span></span><br><span class="line"><span class="string">      item： 待查找的数字</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">      如果list中存在item，</span></span><br><span class="line"><span class="string">      那么返回item在list中的下标，</span></span><br><span class="line"><span class="string">      否则返回None</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 列表的开始的下标</span></span><br><span class="line">    low = <span class="number">0</span></span><br><span class="line">    <span class="comment"># 计算列表最后一个元素的下标</span></span><br><span class="line">    high = len(list) <span class="number">-1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">        <span class="comment"># 计算介于low和high范围中间元素的下标</span></span><br><span class="line">        mid = (int)((low + high)/<span class="number">2</span>)</span><br><span class="line">        <span class="comment">#取列表中间的元素</span></span><br><span class="line">        guess = list[mid]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 以下依据不同情况对下标进行处理</span></span><br><span class="line">        <span class="keyword">if</span> guess == item:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> guess &gt; item:</span><br><span class="line">            high = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            low = mid + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例程</span></span><br><span class="line">lst = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]</span><br><span class="line">print(binary_search(lst,<span class="number">1</span>))</span><br><span class="line"><span class="comment"># 输出：0</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>在文章的最后，我们简单回顾一下本篇文章的要点。</p>
-<ol>
+<ol type="1">
 <li><strong>算法是一系列为了完成某一任务的步骤序列</strong></li>
 <li><strong>对比算法的优劣可以从最好情况、最坏情况、平均情况三个方面入手</strong></li>
 <li><strong>大O可以简洁地描述算法的时间性能和存储数据的空间占用（分别称为算法的“时间复杂度”和“空间复杂度”），并且其所描述的通常是最坏情况</strong></li>
@@ -582,13 +586,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -620,8 +624,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

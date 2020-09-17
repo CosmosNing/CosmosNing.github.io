@@ -16,22 +16,21 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
-  <meta name="description" content="Introduction to Neo4j 4.0(16hrs)Introduction to Neo4j 4.0">
+  <meta name="description" content="Introduction to Neo4j 4.0(16hrs) Introduction to Neo4j 4.0">
 <meta property="og:type" content="website">
 <meta property="og:title" content="neo4j 教程翻译">
 <meta property="og:url" content="https://cosmosning.github.io/neo4j/index.html">
 <meta property="og:site_name" content="CosmosNing的个人博客">
-<meta property="og:description" content="Introduction to Neo4j 4.0(16hrs)Introduction to Neo4j 4.0">
+<meta property="og:description" content="Introduction to Neo4j 4.0(16hrs) Introduction to Neo4j 4.0">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-10T12:41:06.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.428Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="个人博客;编程;学习;生活">
 <meta name="twitter:card" content="summary">
@@ -153,7 +152,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -163,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -227,7 +226,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction-to-Neo4j-4-0-16hrs"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Neo4j 4.0(16hrs)</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#introduction-to-neo4j-4.016hrs"><span class="nav-number">1.</span> <span class="nav-text">Introduction to Neo4j 4.0(16hrs)</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -243,7 +242,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -256,7 +255,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -331,7 +330,8 @@
       
       
       <div class="post-body">
-          <h1 id="Introduction-to-Neo4j-4-0-16hrs"><a href="#Introduction-to-Neo4j-4-0-16hrs" class="headerlink" title="Introduction to Neo4j 4.0(16hrs)"></a><a href="https://neo4j.com/graphacademy/online-training/introduction-to-neo4j-40/" target="_blank" rel="noopener">Introduction to Neo4j 4.0</a>(16hrs)</h1><p><a href="/neo4j/introduction-to-Neo4j-4-0/">Introduction to Neo4j 4.0</a></p>
+          <h1 id="introduction-to-neo4j-4.016hrs"><a href="https://neo4j.com/graphacademy/online-training/introduction-to-neo4j-40/" target="_blank" rel="noopener">Introduction to Neo4j 4.0</a>(16hrs)</h1>
+<p><a href="/neo4j/introduction-to-Neo4j-4-0/">Introduction to Neo4j 4.0</a></p>
 
       </div>
       
@@ -392,13 +392,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -430,8 +430,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

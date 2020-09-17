@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中运算方法和运算部件的知识">
@@ -42,7 +41,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Div.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Cyclic-Shift.png?raw=true">
 <meta property="article:published_time" content="2019-09-28T15:36:08.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -164,7 +163,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -174,7 +173,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -238,7 +237,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2．运算方法与运算部件"><span class="nav-number">1.</span> <span class="nav-text">2．运算方法与运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）数制与编码"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）数制与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进位计数制及其相互转换"><span class="nav-number">1.1.1.</span> <span class="nav-text">进位计数制及其相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进位计数制"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">进位计数制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互转换"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#R-进制-gt-十进制"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">R 进制 -&gt; 十进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#十进制-gt-R-进制"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">十进制 -&gt; R 进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#八进制-lt-gt-二进制"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">八进制 &lt;-&gt; 二进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#十六进制-lt-gt-二进制"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">十六进制 &lt;-&gt; 二进制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真值和机器数"><span class="nav-number">1.1.2.</span> <span class="nav-text">真值和机器数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BCD编码"><span class="nav-number">1.1.3.</span> <span class="nav-text">BCD编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符与字符串"><span class="nav-number">1.1.4.</span> <span class="nav-text">字符与字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ASCII-码"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">ASCII 码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#汉字"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">汉字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串的存放"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">字符串的存放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验码"><span class="nav-number">1.1.5.</span> <span class="nav-text">校验码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#奇偶校验"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">奇偶校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#海明校验"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">海明校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环冗余（CRC）校验"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">循环冗余（CRC）校验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）定点数的表示、运算与运算部件"><span class="nav-number">1.2.</span> <span class="nav-text">（★★★）定点数的表示、运算与运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号数与有符号整数的表示"><span class="nav-number">1.2.1.</span> <span class="nav-text">无符号数与有符号整数的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原码"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">原码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反码"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">反码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移码"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">移码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码定点数加减法运算"><span class="nav-number">1.2.2.</span> <span class="nav-text">补码定点数加减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定点数乘除运算"><span class="nav-number">1.2.3.</span> <span class="nav-text">定点数乘除运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原码一位乘"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">原码一位乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码一位乘"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">补码一位乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原码除法（不恢复余数法）"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">原码除法（不恢复余数法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码除法（加减交替法）"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">补码除法（加减交替法）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#溢出概念和判别方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">溢出概念和判别方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判别方法"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">判别方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一位符号位"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">一位符号位</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#双符号位"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">双符号位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位运算"><span class="nav-number">1.2.5.</span> <span class="nav-text">移位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术移位"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">算术移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑移位"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">逻辑移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环移位"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">循环移位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）浮点数的表示与运算"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）浮点数的表示与运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数的表示"><span class="nav-number">1.3.1.</span> <span class="nav-text">浮点数的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IEEE754标准"><span class="nav-number">1.3.2.</span> <span class="nav-text">IEEE754标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数的加减运算"><span class="nav-number">1.3.3.</span> <span class="nav-text">浮点数的加减运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数规格化"><span class="nav-number">1.3.4.</span> <span class="nav-text">浮点数规格化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）ALU的功能与结构"><span class="nav-number">1.4.</span> <span class="nav-text">（★）ALU的功能与结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补码加减运算器的实现"><span class="nav-number">1.4.1.</span> <span class="nav-text">补码加减运算器的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型指令完成设计与实现"><span class="nav-number">1.4.2.</span> <span class="nav-text">典型指令完成设计与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）掌握不同层次程序员看到的运算"><span class="nav-number">1.5.</span> <span class="nav-text">（★★）掌握不同层次程序员看到的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高级语言以C语言为例"><span class="nav-number">1.5.1.</span> <span class="nav-text">高级语言以C语言为例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISA层面则以MIPS32为例"><span class="nav-number">1.5.2.</span> <span class="nav-text">ISA层面则以MIPS32为例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运算方法与运算部件"><span class="nav-number">1.</span> <span class="nav-text">2．运算方法与运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数制与编码"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）数制与编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进位计数制及其相互转换"><span class="nav-number">1.1.1.</span> <span class="nav-text">进位计数制及其相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进位计数制"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">进位计数制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互转换"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">相互转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#r-进制---十进制"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">R 进制 -&gt; 十进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#十进制---r-进制"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">十进制 -&gt; R 进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#八进制---二进制"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">八进制 &lt;-&gt; 二进制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#十六进制---二进制"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">十六进制 &lt;-&gt; 二进制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#真值和机器数"><span class="nav-number">1.1.2.</span> <span class="nav-text">真值和机器数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bcd编码"><span class="nav-number">1.1.3.</span> <span class="nav-text">BCD编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符与字符串"><span class="nav-number">1.1.4.</span> <span class="nav-text">字符与字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ascii-码"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">ASCII 码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#汉字"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">汉字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串的存放"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">字符串的存放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校验码"><span class="nav-number">1.1.5.</span> <span class="nav-text">校验码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#奇偶校验"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">奇偶校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#海明校验"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">海明校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环冗余crc校验"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">循环冗余（CRC）校验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定点数的表示运算与运算部件"><span class="nav-number">1.2.</span> <span class="nav-text">（★★★）定点数的表示、运算与运算部件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号数与有符号整数的表示"><span class="nav-number">1.2.1.</span> <span class="nav-text">无符号数与有符号整数的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原码"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">原码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反码"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">反码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移码"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">移码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码定点数加减法运算"><span class="nav-number">1.2.2.</span> <span class="nav-text">补码定点数加减法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定点数乘除运算"><span class="nav-number">1.2.3.</span> <span class="nav-text">定点数乘除运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原码一位乘"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">原码一位乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码一位乘"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">补码一位乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原码除法不恢复余数法"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">原码除法（不恢复余数法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补码除法加减交替法"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">补码除法（加减交替法）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#溢出概念和判别方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">溢出概念和判别方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判别方法"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">判别方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一位符号位"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">一位符号位</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#双符号位"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">双符号位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位运算"><span class="nav-number">1.2.5.</span> <span class="nav-text">移位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术移位"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">算术移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑移位"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">逻辑移位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环移位"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">循环移位</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮点数的表示与运算"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）浮点数的表示与运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数的表示"><span class="nav-number">1.3.1.</span> <span class="nav-text">浮点数的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee754标准"><span class="nav-number">1.3.2.</span> <span class="nav-text">IEEE754标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数的加减运算"><span class="nav-number">1.3.3.</span> <span class="nav-text">浮点数的加减运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点数规格化"><span class="nav-number">1.3.4.</span> <span class="nav-text">浮点数规格化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alu的功能与结构"><span class="nav-number">1.4.</span> <span class="nav-text">（★）ALU的功能与结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补码加减运算器的实现"><span class="nav-number">1.4.1.</span> <span class="nav-text">补码加减运算器的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型指令完成设计与实现"><span class="nav-number">1.4.2.</span> <span class="nav-text">典型指令完成设计与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#掌握不同层次程序员看到的运算"><span class="nav-number">1.5.</span> <span class="nav-text">（★★）掌握不同层次程序员看到的运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高级语言以c语言为例"><span class="nav-number">1.5.1.</span> <span class="nav-text">高级语言以C语言为例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isa层面则以mips32为例"><span class="nav-number">1.5.2.</span> <span class="nav-text">ISA层面则以MIPS32为例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -254,7 +253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -267,7 +266,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -358,7 +357,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -385,7 +384,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -404,367 +403,453 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="2．运算方法与运算部件"><a href="#2．运算方法与运算部件" class="headerlink" title="2．运算方法与运算部件"></a>2．运算方法与运算部件</h1><h2 id="（★★）数制与编码"><a href="#（★★）数制与编码" class="headerlink" title="（★★）数制与编码"></a>（★★）数制与编码</h2><h3 id="进位计数制及其相互转换"><a href="#进位计数制及其相互转换" class="headerlink" title="进位计数制及其相互转换"></a>进位计数制及其相互转换</h3><h4 id="进位计数制"><a href="#进位计数制" class="headerlink" title="进位计数制"></a>进位计数制</h4><ul>
-<li>r 进制数可表示为<ul>
-<li>$\sum_{i=n}^{-m}K_ir^i$ </li>
-<li>其中 <em>r</em> 是基数，$K_i$ 的取值可以是 0 , 1, ··· , r - 1共 <em>r</em> 个数码中的任意一个</li>
+        <h1 id="运算方法与运算部件">2．运算方法与运算部件</h1>
+<h2 id="数制与编码">（★★）数制与编码</h2>
+<h3 id="进位计数制及其相互转换">进位计数制及其相互转换</h3>
+<h4 id="进位计数制">进位计数制</h4>
+<ul>
+<li>r 进制数可表示为
+<ul>
+<li><span class="math inline">\(\sum_{i=n}^{-m}K_ir^i\)</span></li>
+<li>其中 <em>r</em> 是基数，<span class="math inline">\(K_i\)</span> 的取值可以是 0 , 1, ··· , r - 1共 <em>r</em> 个数码中的任意一个</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="相互转换"><a href="#相互转换" class="headerlink" title="相互转换"></a>相互转换</h4><h5 id="R-进制-gt-十进制"><a href="#R-进制-gt-十进制" class="headerlink" title="R 进制 -&gt; 十进制"></a>R 进制 -&gt; 十进制</h5><ul>
+<h4 id="相互转换">相互转换</h4>
+<h5 id="r-进制---十进制">R 进制 -&gt; 十进制</h5>
+<ul>
 <li><strong>按权展开</strong>即可</li>
 </ul>
-<h5 id="十进制-gt-R-进制"><a href="#十进制-gt-R-进制" class="headerlink" title="十进制 -&gt; R 进制"></a>十进制 -&gt; R 进制</h5><ul>
+<h5 id="十进制---r-进制">十进制 -&gt; R 进制</h5>
+<ul>
 <li>整数部分：<strong>除基取余，上右下左</strong></li>
 <li>小数部分：<strong>乘基取整，上左下右</strong></li>
 </ul>
-<h5 id="八进制-lt-gt-二进制"><a href="#八进制-lt-gt-二进制" class="headerlink" title="八进制 &lt;-&gt; 二进制"></a>八进制 &lt;-&gt; 二进制</h5><ul>
+<h5 id="八进制---二进制">八进制 &lt;-&gt; 二进制</h5>
+<ul>
 <li><strong>1 位</strong>八进制对应 <strong>3 位</strong> 二进制</li>
-<li>二进制转八进制，若位数不够，则整数部分高位补 0 ，小数部分低位补 0 </li>
+<li>二进制转八进制，若位数不够，则整数部分高位补 0 ，小数部分低位补 0</li>
 </ul>
-<h5 id="十六进制-lt-gt-二进制"><a href="#十六进制-lt-gt-二进制" class="headerlink" title="十六进制 &lt;-&gt; 二进制"></a>十六进制 &lt;-&gt; 二进制</h5><ul>
+<h5 id="十六进制---二进制">十六进制 &lt;-&gt; 二进制</h5>
+<ul>
 <li><strong>1 位</strong>八进制对应 <strong>4 位</strong> 二进制</li>
-<li>二进制转十六进制，若位数不够，则整数部分高位补 0 ，小数部分低位补 0 </li>
+<li>二进制转十六进制，若位数不够，则整数部分高位补 0 ，小数部分低位补 0</li>
 </ul>
-<h3 id="真值和机器数"><a href="#真值和机器数" class="headerlink" title="真值和机器数"></a>真值和机器数</h3><ul>
+<h3 id="真值和机器数">真值和机器数</h3>
+<ul>
 <li>真值：带有 “+” 和 “-” 的数</li>
 <li>机器数：用 “0” 和 “1” 代表数字符号的数，包括 <strong>原码、补码、反码</strong>等</li>
 </ul>
-<h3 id="BCD编码"><a href="#BCD编码" class="headerlink" title="BCD编码"></a>BCD编码</h3><ul>
-<li>用 4 位 二进制数来表示十进制中 0~9 这 10 个数码。（由于 2 的 4 次方 为 16 ，故有 6  个冗余状态）</li>
-<li>8421码：每 4 位 对应 1 个十进制位。<ul>
-<li>相加修正<ul>
+<h3 id="bcd编码">BCD编码</h3>
+<ul>
+<li>用 4 位 二进制数来表示十进制中 0~9 这 10 个数码。（由于 2 的 4 次方 为 16 ，故有 6 个冗余状态）</li>
+<li>8421码：每 4 位 对应 1 个十进制位。
+<ul>
+<li>相加修正
+<ul>
 <li>若对应位相加结果 &lt;= 十进制的 9 ，则不需要修正</li>
 <li>若大于，则要<strong>加 6 修正</strong> ，并向高位进位</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="字符与字符串"><a href="#字符与字符串" class="headerlink" title="字符与字符串"></a>字符与字符串</h3><h4 id="ASCII-码"><a href="#ASCII-码" class="headerlink" title="ASCII 码"></a>ASCII 码</h4><ul>
+<h3 id="字符与字符串">字符与字符串</h3>
+<h4 id="ascii-码">ASCII 码</h4>
+<ul>
 <li>7 位二进制表示</li>
 </ul>
-<h4 id="汉字"><a href="#汉字" class="headerlink" title="汉字"></a>汉字</h4><ul>
-<li>汉字编码包括<strong>输入编码、汉字内码、汉字字形码</strong><ul>
+<h4 id="汉字">汉字</h4>
+<ul>
+<li>汉字编码包括<strong>输入编码、汉字内码、汉字字形码</strong>
+<ul>
 <li>区域码：<strong>两个字节</strong>表示一个汉字，每个字节 <strong>7 位</strong></li>
-<li>$国标码 = (区位码)_{16}+2020H​$</li>
-<li>$汉字内码 = (国标码)_{16}+8080H​$</li>
+<li><span class="math inline">\(国标码 = (区位码)_{16}+2020H​\)</span></li>
+<li><span class="math inline">\(汉字内码 = (国标码)_{16}+8080H​\)</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="字符串的存放"><a href="#字符串的存放" class="headerlink" title="字符串的存放"></a>字符串的存放</h4><ul>
+<h4 id="字符串的存放">字符串的存放</h4>
+<ul>
 <li>大端：<strong>高位字节</strong>到<strong>低位字节</strong>依次存放</li>
 <li>小端：<strong>低位字节</strong>到<strong>高位字节</strong>依次存放</li>
 <li>注意：是以<strong>字节</strong>为单位存放，不是以位为单位存放</li>
 </ul>
-<h3 id="校验码"><a href="#校验码" class="headerlink" title="校验码"></a>校验码</h3><h4 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h4><ul>
+<h3 id="校验码">校验码</h3>
+<h4 id="奇偶校验">奇偶校验</h4>
+<ul>
 <li>奇校验： <strong>1 的个数</strong>为奇数</li>
 <li>偶校验： <strong>1 的个数</strong>为偶数</li>
 </ul>
-<h4 id="海明校验"><a href="#海明校验" class="headerlink" title="海明校验"></a>海明校验</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-1.png?raw=true" alt="海明校验1"></p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-2.png?raw=true" alt="海明校验2"></p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-3.png?raw=true" alt="海明校验3"></p>
-<h4 id="循环冗余（CRC）校验"><a href="#循环冗余（CRC）校验" class="headerlink" title="循环冗余（CRC）校验"></a>循环冗余（CRC）校验</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-1.png?raw=true" alt="循环冗余校验1"></p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-2.png?raw=true" alt="循环冗余校验2"></p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-3.png?raw=true" alt="循环冗余校验3"></p>
-<h2 id="（★★★）定点数的表示、运算与运算部件"><a href="#（★★★）定点数的表示、运算与运算部件" class="headerlink" title="（★★★）定点数的表示、运算与运算部件"></a>（★★★）定点数的表示、运算与运算部件</h2><h3 id="无符号数与有符号整数的表示"><a href="#无符号数与有符号整数的表示" class="headerlink" title="无符号数与有符号整数的表示"></a>无符号数与有符号整数的表示</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><ul>
+<h4 id="海明校验">海明校验</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-1.png?raw=true" alt="海明校验1" /><figcaption>海明校验1</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-2.png?raw=true" alt="海明校验2" /><figcaption>海明校验2</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Hamming-3.png?raw=true" alt="海明校验3" /><figcaption>海明校验3</figcaption>
+</figure>
+<h4 id="循环冗余crc校验">循环冗余（CRC）校验</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-1.png?raw=true" alt="循环冗余校验1" /><figcaption>循环冗余校验1</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-2.png?raw=true" alt="循环冗余校验2" /><figcaption>循环冗余校验2</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/CRC-3.png?raw=true" alt="循环冗余校验3" /><figcaption>循环冗余校验3</figcaption>
+</figure>
+<h2 id="定点数的表示运算与运算部件">（★★★）定点数的表示、运算与运算部件</h2>
+<h3 id="无符号数与有符号整数的表示">无符号数与有符号整数的表示</h3>
+<h4 id="概述">概述</h4>
+<ul>
 <li>无符号数：所有位为数值位</li>
 <li>有符号数：第一位为符号位（ 0 为 正，1 为负），剩余位为数值位</li>
 </ul>
-<h4 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h4><ul>
+<h4 id="原码">原码</h4>
+<ul>
 <li>最高位为符号位，剩余位为数值位，表示该数的绝对值</li>
 <li>0 有<strong>两种</strong>表示</li>
 </ul>
-<h4 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h4><ul>
-<li>原码到补码的转换<ul>
+<h4 id="补码">补码</h4>
+<ul>
+<li>原码到补码的转换
+<ul>
 <li>正数：不变</li>
 <li>负数：符号位不变，数值位<strong>按位取反，末位加一</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>0 仅有<strong>一种</strong>表示</li>
 </ul>
-<h4 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h4><ul>
-<li>原码到反码的转换<ul>
+<h4 id="反码">反码</h4>
+<ul>
+<li>原码到反码的转换
+<ul>
 <li>正数；不变</li>
 <li>负数：符号位不变，数值位<strong>按位取反</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>0 有<strong>两种</strong>表示</li>
 </ul>
-<h4 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h4><ul>
+<h4 id="移码">移码</h4>
+<ul>
 <li>补码到移码的转换：<strong>补码的符号位取反</strong>，即得到对应的移码</li>
 <li>0 仅有<strong>一种</strong>表示</li>
 </ul>
-<h3 id="补码定点数加减法运算"><a href="#补码定点数加减法运算" class="headerlink" title="补码定点数加减法运算"></a>补码定点数加减法运算</h3><ul>
-<li>公式<br>$$<br>[A+B]<em>{补}=[A]</em>{补}+[B]<em>{补}<br>$$<br>$$<br>[A-B]</em>{补}=[A]<em>{补}+[-B]</em>{补}<br>$$</li>
+<h3 id="补码定点数加减法运算">补码定点数加减法运算</h3>
+<ul>
+<li>公式 <span class="math display">\[
+[A+B]_{补}=[A]_{补}+[B]_{补}
+\]</span> <span class="math display">\[
+[A-B]_{补}=[A]_{补}+[-B]_{补}
+\]</span></li>
 <li>注意：运算结果仍为<strong>补码</strong>，此步计算完后，要<strong>回化</strong>，转为机器数或者真值</li>
 </ul>
-<h3 id="定点数乘除运算"><a href="#定点数乘除运算" class="headerlink" title="定点数乘除运算"></a>定点数乘除运算</h3><h4 id="原码一位乘"><a href="#原码一位乘" class="headerlink" title="原码一位乘"></a>原码一位乘</h4><ul>
-<li>步骤：<ol>
+<h3 id="定点数乘除运算">定点数乘除运算</h3>
+<h4 id="原码一位乘">原码一位乘</h4>
+<ul>
+<li>步骤：
+<ol type="1">
 <li>操作数取绝对值运算，结果符号位取<strong>操作数符号位</strong>的<strong>异或</strong>结果。</li>
 <li>部分积长度同被乘数，取 n + 1 位（双符号位），初值为 0</li>
-<li>从乘数的最低位开始判断<ol>
+<li>从乘数的最低位开始判断
+<ol type="1">
 <li>若最低位为 1，部分积加上 | x | ，再右移一位</li>
 <li>若最低位为 0，部分积加上 0 ，再右移一位</li>
-</ol>
-</li>
+</ol></li>
 <li>重复 3</li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Mul.png?raw=true" alt="原码一位乘"></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Mul.png?raw=true" alt="原码一位乘" /><figcaption>原码一位乘</figcaption>
+</figure>
 <p>注：最后结果要加上符号位：符号位 <strong>1 异或 0 = 1</strong> ，最终得 x 乘 y = -0.10001111</p>
-<h4 id="补码一位乘"><a href="#补码一位乘" class="headerlink" title="补码一位乘"></a>补码一位乘</h4><ul>
-<li><p>步骤：</p>
-<ol>
+<h4 id="补码一位乘">补码一位乘</h4>
+<ul>
+<li>步骤：
+<ol type="1">
 <li>符号位参与运算，运算的数均以补码表示</li>
 <li><strong>被乘数</strong>一般取<strong>双符号位</strong>，<strong>部分积</strong>取<strong>双符号位</strong>，初值为 0 ，<strong>乘数</strong>可取<strong>单符号位</strong></li>
-<li><strong>乘数末位增设附加位 $y_{n+1}$ ，且初值为 0</strong> </li>
+<li><strong>乘数末位增设附加位 <span class="math inline">\(y_{n+1}\)</span> ，且初值为 0</strong></li>
 <li>对应下面的表格，进行相关操作</li>
 <li>移位按补码右移规则进行</li>
 <li>循环上述操作</li>
-</ol>
-</li>
-<li><p>Booth 算法的移位规则</p>
-</li>
+</ol></li>
+<li>Booth 算法的移位规则</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">$y_n$（高位）</th>
-<th align="center">$y_{n+1}$（低位）</th>
-<th align="center">操作</th>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(y_n\)</span>（高位）</th>
+<th style="text-align: center;"><span class="math inline">\(y_{n+1}\)</span>（低位）</th>
+<th style="text-align: center;">操作</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">部分积右移一位</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">部分积右移一位</td>
 </tr>
-<tr>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">部分积加$[X]_{补}$ ，右移一位</td>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">部分积加<span class="math inline">\([X]_{补}\)</span> ，右移一位</td>
 </tr>
-<tr>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">部分积加$[-X]_{补}$ ，右移一位</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">部分积加<span class="math inline">\([-X]_{补}\)</span> ，右移一位</td>
 </tr>
-<tr>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">部分积右移一位</td>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">部分积右移一位</td>
 </tr>
-</tbody></table>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true" alt="补码一位乘"></p>
-<h4 id="原码除法（不恢复余数法）"><a href="#原码除法（不恢复余数法）" class="headerlink" title="原码除法（不恢复余数法）"></a>原码除法（不恢复余数法）</h4><ul>
-<li>步骤：<ol>
+</tbody>
+</table>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Mul.png?raw=true" alt="补码一位乘" /><figcaption>补码一位乘</figcaption>
+</figure>
+<h4 id="原码除法不恢复余数法">原码除法（不恢复余数法）</h4>
+<ul>
+<li>步骤：
+<ol type="1">
 <li>符号位不参与运算，结果符号位为操作数符号位两者的异或</li>
-<li>用被除数减去乘数<ol>
+<li>用被除数减去乘数
+<ol type="1">
 <li>若余数为<strong>正</strong>，商上 <strong>1</strong> ，左移一位，再减去除数</li>
 <li>若余数为<strong>负</strong>，商上 <strong>0</strong> ，左移一位，再加上除数</li>
-</ol>
-</li>
+</ol></li>
 <li>当最后一步，余数为负（上商 0 ），需要加上除数，得到正确的余数</li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Div.png?raw=true" alt="原码不恢复余数法"></p>
-<h4 id="补码除法（加减交替法）"><a href="#补码除法（加减交替法）" class="headerlink" title="补码除法（加减交替法）"></a>补码除法（加减交替法）</h4><ul>
-<li>步骤：<ol>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/True-Code-Div.png?raw=true" alt="原码不恢复余数法" /><figcaption>原码不恢复余数法</figcaption>
+</figure>
+<h4 id="补码除法加减交替法">补码除法（加减交替法）</h4>
+<ul>
+<li>步骤：
+<ol type="1">
 <li>符号位参与运算，运算的数均以补码表示</li>
 <li>若被除数与除数<strong>同号</strong>，则被除数<strong>减去</strong>除数；若被除数与除数<strong>异号</strong>，则被除数<strong>加上</strong>除数（<strong>同号相减，异号相加</strong>）</li>
 <li>若余数与除数<strong>同号</strong>，则商上 <strong>1</strong> ，左移一位，<strong>减去</strong>除数；若余数与除数<strong>异号</strong>，则商上 <strong>0</strong> ，左移一位，<strong>加上</strong>除数（<strong>同号商 1 左移减，异号商 0 左移加</strong>）</li>
 <li>重复 3</li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Div.png?raw=true" alt="补码加减交替法"></p>
-<h3 id="溢出概念和判别方法"><a href="#溢出概念和判别方法" class="headerlink" title="溢出概念和判别方法"></a>溢出概念和判别方法</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Two-s-Complement-Code-Div.png?raw=true" alt="补码加减交替法" /><figcaption>补码加减交替法</figcaption>
+</figure>
+<h3 id="溢出概念和判别方法">溢出概念和判别方法</h3>
+<h4 id="概念">概念</h4>
+<ul>
 <li>运算结果超出了表示范围</li>
 </ul>
-<h4 id="判别方法"><a href="#判别方法" class="headerlink" title="判别方法"></a>判别方法</h4><h5 id="一位符号位"><a href="#一位符号位" class="headerlink" title="一位符号位"></a>一位符号位</h5><ul>
+<h4 id="判别方法">判别方法</h4>
+<h5 id="一位符号位">一位符号位</h5>
+<ul>
 <li>原操作数符号相同，结果符号与原操作不同，结果溢出</li>
 </ul>
-<h5 id="双符号位"><a href="#双符号位" class="headerlink" title="双符号位"></a>双符号位</h5><ul>
+<h5 id="双符号位">双符号位</h5>
+<ul>
 <li>运算结果<strong>双符号位相同</strong>，表示未<strong>溢出</strong></li>
 <li>运算结果<strong>双符号位不同</strong>，表示<strong>溢出</strong>，符号位最高位决定正负</li>
 </ul>
-<h3 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h3><h4 id="算术移位"><a href="#算术移位" class="headerlink" title="算术移位"></a>算术移位</h4><ul>
+<h3 id="移位运算">移位运算</h3>
+<h4 id="算术移位">算术移位</h4>
+<ul>
 <li>针对有符号数，移位过程中符号位不变</li>
 <li>（★★★★）移位后填补空位原则如下表</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center"></th>
-<th align="center">码制</th>
-<th align="center">添补代码</th>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">码制</th>
+<th style="text-align: center;">添补代码</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">正数</td>
-<td align="center">原码、补码、反码</td>
-<td align="center">0</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">正数</td>
+<td style="text-align: center;">原码、补码、反码</td>
+<td style="text-align: center;">0</td>
 </tr>
-<tr>
-<td align="center">负数</td>
-<td align="center">原码</td>
-<td align="center">0</td>
+<tr class="even">
+<td style="text-align: center;">负数</td>
+<td style="text-align: center;">原码</td>
+<td style="text-align: center;">0</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center">补码</td>
-<td align="center">左移添 0</td>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">补码</td>
+<td style="text-align: center;">左移添 0</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">右移添 1</td>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">右移添 1</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center">反码</td>
-<td align="center">1</td>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">反码</td>
+<td style="text-align: center;">1</td>
 </tr>
-</tbody></table>
-<h4 id="逻辑移位"><a href="#逻辑移位" class="headerlink" title="逻辑移位"></a>逻辑移位</h4><ul>
+</tbody>
+</table>
+<h4 id="逻辑移位">逻辑移位</h4>
+<ul>
 <li>针对无符号数（或者说把该机器数当成无符号数）</li>
-<li>移位规则<ul>
+<li>移位规则
+<ul>
 <li>左移和右移，空位都添 0</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h4 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Cyclic-Shift.png?raw=true" alt="循环移位"></p>
-<h2 id="（★★）浮点数的表示与运算"><a href="#（★★）浮点数的表示与运算" class="headerlink" title="（★★）浮点数的表示与运算"></a>（★★）浮点数的表示与运算</h2><h3 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h3><ul>
-<li>$N=r^E\times M$</li>
+<h4 id="循环移位">循环移位</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/28/Cyclic-Shift.png?raw=true" alt="循环移位" /><figcaption>循环移位</figcaption>
+</figure>
+<h2 id="浮点数的表示与运算">（★★）浮点数的表示与运算</h2>
+<h3 id="浮点数的表示">浮点数的表示</h3>
+<ul>
+<li><span class="math inline">\(N=r^E\times M\)</span></li>
 <li>其中，<em>r</em> 为阶码的底（隐含，在计算机中 <em>r</em> = 2），<em>E</em> 为阶码，<em>M</em> 为尾数</li>
 </ul>
-<h3 id="IEEE754标准"><a href="#IEEE754标准" class="headerlink" title="IEEE754标准"></a>IEEE754标准</h3><ul>
+<h3 id="ieee754标准">IEEE754标准</h3>
+<ul>
 <li>统一数据格式如下表</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">$m_s$</th>
-<th align="center">$E$</th>
-<th align="center">$M$</th>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(m_s\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(E\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(M\)</span></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">数符</td>
-<td align="center">阶码（<strong>移码</strong>表示）</td>
-<td align="center">尾数（<strong>原码</strong>表示）</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">数符</td>
+<td style="text-align: center;">阶码（<strong>移码</strong>表示）</td>
+<td style="text-align: center;">尾数（<strong>原码</strong>表示）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>不同类型浮点数数位安排</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">类型</th>
-<th align="center">数符</th>
-<th align="center">阶码</th>
-<th align="center">尾数数值</th>
-<th align="center">总位数</th>
-<th align="center">偏置值</th>
+<tr class="header">
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">数符</th>
+<th style="text-align: center;">阶码</th>
+<th style="text-align: center;">尾数数值</th>
+<th style="text-align: center;">总位数</th>
+<th style="text-align: center;">偏置值</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">短浮点数(float)</td>
-<td align="center">1</td>
-<td align="center">8</td>
-<td align="center">23</td>
-<td align="center">32</td>
-<td align="center">127（7FH）</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">短浮点数(float)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">127（7FH）</td>
 </tr>
-<tr>
-<td align="center">长浮点数(double)</td>
-<td align="center">1</td>
-<td align="center">11</td>
-<td align="center">52</td>
-<td align="center">64</td>
-<td align="center">1023（3FFH）</td>
+<tr class="even">
+<td style="text-align: center;">长浮点数(double)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">1023（3FFH）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
-<li>注<ul>
+<li>注
+<ul>
 <li>由于规格化后，尾数最高位总为 1 ，可将此位隐含，故尾数实际可多存一位（还原此浮点数时，需要补上最高位的 1）</li>
-<li>以短浮点数为例<ul>
+<li>以短浮点数为例
+<ul>
 <li>偏置值为 127 （而非 128 ），因为要用<strong>全1</strong>表示<strong>无穷大</strong></li>
 <li>阶码范围为 1~254，因为<strong>全0</strong>表示<strong>非规格化数</strong></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="浮点数的加减运算"><a href="#浮点数的加减运算" class="headerlink" title="浮点数的加减运算"></a>浮点数的加减运算</h3><ul>
-<li>步骤<ul>
-<li>对阶<ul>
+<h3 id="浮点数的加减运算">浮点数的加减运算</h3>
+<ul>
+<li>步骤
+<ul>
+<li>对阶
+<ul>
 <li>小阶向大阶看齐：小阶右移，阶增加，直至阶码相等</li>
-</ul>
-</li>
+</ul></li>
 <li>尾数求和</li>
 <li>规格化（详见下一个标题）</li>
-<li>舍入<ul>
-<li>0 舍 1 入<ul>
-<li>尾数右移<ul>
+<li>舍入
+<ul>
+<li>0 舍 1 入
+<ul>
+<li>尾数右移
+<ul>
 <li>低位丢弃了 0 ，则舍去</li>
 <li>低位丢弃了 1 ，则尾数加一（可能导致溢出，需右规处理）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>恒置 1<ul>
+</ul></li>
+</ul></li>
+<li>恒置 1
+<ul>
 <li>尾数右移，低位恒置 1</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>溢出判断<ul>
-<li>双符号位补码：双符号位相同，未溢出；双符号位不同，溢出。溢出情况又分为<ul>
+</ul></li>
+</ul></li>
+<li>溢出判断
+<ul>
+<li>双符号位补码：双符号位相同，未溢出；双符号位不同，溢出。溢出情况又分为
+<ul>
 <li>双符号位为 10，下溢</li>
 <li>双符号位为 01，上溢</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="浮点数规格化"><a href="#浮点数规格化" class="headerlink" title="浮点数规格化"></a>浮点数规格化</h3><ul>
-<li>规格化后<ul>
+<h3 id="浮点数规格化">浮点数规格化</h3>
+<ul>
+<li>规格化后
+<ul>
 <li>原码：最高数值位总为 1</li>
 <li>补码：符号位和最高数值位不同</li>
 <li>根据这个性质，可判断浮点数中的尾数是否是规格化数</li>
-</ul>
-</li>
-<li>非规格化尾数的规格化操作<ul>
-<li>左规<ul>
+</ul></li>
+<li>非规格化尾数的规格化操作
+<ul>
+<li>左规
+<ul>
 <li><strong>左移</strong>一位，阶码<strong>减一</strong></li>
-</ul>
-</li>
-<li>右规<ul>
+</ul></li>
+<li>右规
+<ul>
 <li><strong>右移</strong>一位，阶码<strong>加一</strong></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="（★）ALU的功能与结构"><a href="#（★）ALU的功能与结构" class="headerlink" title="（★）ALU的功能与结构"></a>（★）ALU的功能与结构</h2><h3 id="补码加减运算器的实现"><a href="#补码加减运算器的实现" class="headerlink" title="补码加减运算器的实现"></a>补码加减运算器的实现</h3><p>（详见教材）</p>
-<h3 id="典型指令完成设计与实现"><a href="#典型指令完成设计与实现" class="headerlink" title="典型指令完成设计与实现"></a>典型指令完成设计与实现</h3><p>（详见教材）</p>
-<h2 id="（★★）掌握不同层次程序员看到的运算"><a href="#（★★）掌握不同层次程序员看到的运算" class="headerlink" title="（★★）掌握不同层次程序员看到的运算"></a>（★★）掌握不同层次程序员看到的运算</h2><h3 id="高级语言以C语言为例"><a href="#高级语言以C语言为例" class="headerlink" title="高级语言以C语言为例"></a>高级语言以C语言为例</h3><p>（详见教材）</p>
-<h3 id="ISA层面则以MIPS32为例"><a href="#ISA层面则以MIPS32为例" class="headerlink" title="ISA层面则以MIPS32为例"></a>ISA层面则以MIPS32为例</h3><p>（详见教材）</p>
-<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
+<h2 id="alu的功能与结构">（★）ALU的功能与结构</h2>
+<h3 id="补码加减运算器的实现">补码加减运算器的实现</h3>
+<p>（详见教材）</p>
+<h3 id="典型指令完成设计与实现">典型指令完成设计与实现</h3>
+<p>（详见教材）</p>
+<h2 id="掌握不同层次程序员看到的运算">（★★）掌握不同层次程序员看到的运算</h2>
+<h3 id="高级语言以c语言为例">高级语言以C语言为例</h3>
+<p>（详见教材）</p>
+<h3 id="isa层面则以mips32为例">ISA层面则以MIPS32为例</h3>
+<p>（详见教材）</p>
+<h1 id="解题技巧及重要结论">解题技巧及重要结论</h1>
+<ul>
 <li>BCD 码表示的数相加减，可以先将两数转换为十进制（每 4 位二进制位看成 1 位十进制位），十进制相加减，在将十进制结果转换为 BCD 码表示。</li>
 <li>判断 8421 BCD 码的合法性：检查是否出现 <strong>1010~1111</strong> 范围内的二进制数，若有，则非法。</li>
-<li>海明校验码能纠一位错应该满足 $2^k\ge n+k +1$ ，其中 <em>n</em> 为数据位数，<em>k</em> 为校验位数</li>
+<li>海明校验码能纠一位错应该满足 <span class="math inline">\(2^k\ge n+k +1\)</span> ，其中 <em>n</em> 为数据位数，<em>k</em> 为校验位数</li>
 <li>一种判运算结果溢出的技巧：全部转换成十进制进行对应计算，在依据数据位数所确定的数据表示范围，来判断结果是否溢出。</li>
 <li><strong>补码</strong>表示时，若<strong>符号位相同</strong>，则<strong>数值位越大码越大</strong></li>
 </ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
@@ -900,13 +985,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -938,8 +1023,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

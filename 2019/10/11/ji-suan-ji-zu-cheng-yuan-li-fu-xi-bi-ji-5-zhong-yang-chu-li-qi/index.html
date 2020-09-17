@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中中央处理器的知识">
@@ -31,7 +30,7 @@
 <meta property="og:description" content="整理一下计算机组成原理中中央处理器的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-11T14:22:27.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -152,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -162,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -226,7 +225,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5．中央处理器"><span class="nav-number">1.</span> <span class="nav-text">5．中央处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）指令的执行过程"><span class="nav-number">1.1.</span> <span class="nav-text">（★★★）指令的执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期"><span class="nav-number">1.1.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期的数据流及对应微操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">指令周期的数据流及对应微操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#取指周期"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间址周期"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行周期"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断周期"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）数据通路及控制器"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）数据通路及控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）异常与中断"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）异常与中断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#中央处理器"><span class="nav-number">1.</span> <span class="nav-text">5．中央处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#指令的执行过程"><span class="nav-number">1.1.</span> <span class="nav-text">（★★★）指令的执行过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期"><span class="nav-number">1.1.1.</span> <span class="nav-text">指令周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令周期的数据流及对应微操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">指令周期的数据流及对应微操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#取指周期"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">取指周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#间址周期"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">间址周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行周期"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">执行周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断周期"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">中断周期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据通路及控制器"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）数据通路及控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常与中断"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）异常与中断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -242,7 +241,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -255,7 +254,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -346,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -373,7 +372,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -392,270 +391,295 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="5．中央处理器"><a href="#5．中央处理器" class="headerlink" title="5．中央处理器"></a>5．中央处理器</h1><h2 id="（★★★）指令的执行过程"><a href="#（★★★）指令的执行过程" class="headerlink" title="（★★★）指令的执行过程"></a>（★★★）指令的执行过程</h2><h3 id="指令周期"><a href="#指令周期" class="headerlink" title="指令周期"></a>指令周期</h3><ul>
-<li>一个指令周期包括四个部分，从前到后分别是<ul>
+        <h1 id="中央处理器">5．中央处理器</h1>
+<h2 id="指令的执行过程">（★★★）指令的执行过程</h2>
+<h3 id="指令周期">指令周期</h3>
+<ul>
+<li>一个指令周期包括四个部分，从前到后分别是
+<ul>
 <li>取指周期：取指令</li>
 <li>间址周期（可无）：取操作数的有效地址</li>
 <li>执行周期：执行指令</li>
 <li>中断周期（可无）：处理中断请求</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h3 id="指令周期的数据流及对应微操作"><a href="#指令周期的数据流及对应微操作" class="headerlink" title="指令周期的数据流及对应微操作"></a>指令周期的数据流及对应微操作</h3><h4 id="取指周期"><a href="#取指周期" class="headerlink" title="取指周期"></a>取指周期</h4><ul>
+<h3 id="指令周期的数据流及对应微操作">指令周期的数据流及对应微操作</h3>
+<h4 id="取指周期">取指周期</h4>
+<ul>
 <li>数据流</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">序号</th>
-<th align="center">数据流</th>
-<th align="center">解释说明</th>
+<tr class="header">
+<th style="text-align: center;">序号</th>
+<th style="text-align: center;">数据流</th>
+<th style="text-align: center;">解释说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">PC $\rightarrow$ MAR $\rightarrow$ 地址总线 $\rightarrow$ 主存</td>
-<td align="center">PC 中的地址送入主存</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">PC <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow\)</span> 地址总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td style="text-align: center;">PC 中的地址送入主存</td>
 </tr>
-<tr>
-<td align="center">2</td>
-<td align="center">CU发出控制信号 $\rightarrow$ 控制总线 $\rightarrow$ 主存</td>
-<td align="center">CU 向主存发出控制信号</td>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">CU发出控制信号 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td style="text-align: center;">CU 向主存发出控制信号</td>
 </tr>
-<tr>
-<td align="center">3</td>
-<td align="center">主存 $\rightarrow$ 数据总线 $\rightarrow$ MDR $\rightarrow$ IR</td>
-<td align="center">主存将指定地址的<strong>指令</strong>送入 IR 寄存器</td>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">主存 <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> MDR <span class="math inline">\(\rightarrow\)</span> IR</td>
+<td style="text-align: center;">主存将指定地址的<strong>指令</strong>送入 IR 寄存器</td>
 </tr>
-<tr>
-<td align="center">4</td>
-<td align="center">CU发出读命令 $\rightarrow$ PC 内容加 1</td>
-<td align="center">PC 自增</td>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">CU发出读命令 <span class="math inline">\(\rightarrow\)</span> PC 内容加 1</td>
+<td style="text-align: center;">PC 自增</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>微操作</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">序号</th>
-<th align="center">微操作</th>
-<th align="center">说明</th>
+<tr class="header">
+<th style="text-align: center;">序号</th>
+<th style="text-align: center;">微操作</th>
+<th style="text-align: center;">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1</td>
-<td align="center">PC $\rightarrow$ MAR</td>
-<td align="center">将现行指令地址送入 MAR</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">PC <span class="math inline">\(\rightarrow\)</span> MAR</td>
+<td style="text-align: center;">将现行指令地址送入 MAR</td>
 </tr>
-<tr>
-<td align="center">2</td>
-<td align="center">1 $\rightarrow$ R</td>
-<td align="center">命令存储器读</td>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1 <span class="math inline">\(\rightarrow\)</span> R</td>
+<td style="text-align: center;">命令存储器读</td>
 </tr>
-<tr>
-<td align="center">3</td>
-<td align="center">M( MAR ) $\rightarrow$ MDR</td>
-<td align="center">现行指令从存储器中读至 MDR</td>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">M( MAR ) <span class="math inline">\(\rightarrow\)</span> MDR</td>
+<td style="text-align: center;">现行指令从存储器中读至 MDR</td>
 </tr>
-<tr>
-<td align="center">4</td>
-<td align="center">MDR $\rightarrow$ IR</td>
-<td align="center">现行<strong>指令</strong>送入 IR</td>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">MDR <span class="math inline">\(\rightarrow\)</span> IR</td>
+<td style="text-align: center;">现行<strong>指令</strong>送入 IR</td>
 </tr>
-<tr>
-<td align="center">5</td>
-<td align="center">OP( IR ) $\rightarrow$ CU</td>
-<td align="center">指令操作码送入 CU 译码</td>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">OP( IR ) <span class="math inline">\(\rightarrow\)</span> CU</td>
+<td style="text-align: center;">指令操作码送入 CU 译码</td>
 </tr>
-<tr>
-<td align="center">6</td>
-<td align="center">( PC ) + 1 $\rightarrow$ PC</td>
-<td align="center">形成下一条指令的地址</td>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">( PC ) + 1 <span class="math inline">\(\rightarrow\)</span> PC</td>
+<td style="text-align: center;">形成下一条指令的地址</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>（★）小总结：主存 和 CPU 的数据交互总是经过<strong>总线</strong>和<strong>相应的寄存器</strong></p>
-<h4 id="间址周期"><a href="#间址周期" class="headerlink" title="间址周期"></a>间址周期</h4><ul>
+<h4 id="间址周期">间址周期</h4>
+<ul>
 <li>数据流</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 56%" />
+<col style="width: 40%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>序号</th>
 <th>数据流</th>
 <th>解释说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>1</td>
-<td>Ad( IR )  $\rightarrow$ MAR $\rightarrow​$ 地址总线 $\rightarrow​$ 主存</td>
+<td>Ad( IR ) <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow​\)</span> 地址总线 <span class="math inline">\(\rightarrow​\)</span> 主存</td>
 <td>IR 中指令的地址码部分送入主存</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
-<td>CU发出读命令 $\rightarrow$ 控制总线 $\rightarrow$ 主存</td>
+<td>CU发出读命令 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>CU 向主存发出控制信号</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
-<td>主存 $\rightarrow$ 数据总线 $\rightarrow$ MDR</td>
+<td>主存 <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> MDR</td>
 <td>主存将指定地址的<strong>有效地址</strong>送入 MDR 寄存器</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>微操作</li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>序号</th>
 <th>微操作</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>1</td>
-<td>Ad( IR ) $\rightarrow$ MAR</td>
+<td>Ad( IR ) <span class="math inline">\(\rightarrow\)</span> MAR</td>
 <td>将指令字的地址码（形式地址）部分送入 MAR</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
-<td>1 $\rightarrow$ R</td>
+<td>1 <span class="math inline">\(\rightarrow\)</span> R</td>
 <td>命令存储器读</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
-<td>M( MAR ) $\rightarrow$ MDR</td>
+<td>M( MAR ) <span class="math inline">\(\rightarrow\)</span> MDR</td>
 <td>将<strong>有效地址</strong>从存储器中读至 MDR</td>
 </tr>
-</tbody></table>
-<h4 id="执行周期"><a href="#执行周期" class="headerlink" title="执行周期"></a>执行周期</h4><ul>
-<li><p>数据流（具体指令具体分析）</p>
-</li>
-<li><p>微操作（具体指令具体分析）</p>
-</li>
+</tbody>
+</table>
+<h4 id="执行周期">执行周期</h4>
+<ul>
+<li><p>数据流（具体指令具体分析）</p></li>
+<li><p>微操作（具体指令具体分析）</p></li>
 </ul>
-<h4 id="中断周期"><a href="#中断周期" class="headerlink" title="中断周期"></a>中断周期</h4><ul>
+<h4 id="中断周期">中断周期</h4>
+<ul>
 <li>数据流</li>
 </ul>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>序号</th>
 <th>数据流</th>
 <th>解释说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>1</td>
-<td>CU 控制将 SP 减 1 $\rightarrow$ MAR $\rightarrow$ 地址总线 $\rightarrow$ 主存</td>
+<td>CU 控制将 SP 减 1 <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow\)</span> 地址总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>将栈顶指针送入主存</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
-<td>CU发出写命令 $\rightarrow$ 控制总线 $\rightarrow​$ 主存</td>
+<td>CU发出写命令 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow​\)</span> 主存</td>
 <td>CU 向主存发出控制信号</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
-<td>PC $\rightarrow$ MDR  $\rightarrow$ 数据总线 $\rightarrow$ 主存</td>
+<td>PC <span class="math inline">\(\rightarrow\)</span> MDR <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>保存断点到主存</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
-<td>CU ( 中断服务程序的入口地址 )$\rightarrow$  PC</td>
+<td>CU ( 中断服务程序的入口地址 )<span class="math inline">\(\rightarrow\)</span> PC</td>
 <td>将中断服务程序的入口地址送入 PC</td>
 </tr>
-</tbody></table>
-<h2 id="（★★）数据通路及控制器"><a href="#（★★）数据通路及控制器" class="headerlink" title="（★★）数据通路及控制器"></a>（★★）数据通路及控制器</h2><p>（详见教材）</p>
-<h2 id="（★★）异常与中断"><a href="#（★★）异常与中断" class="headerlink" title="（★★）异常与中断"></a>（★★）异常与中断</h2><p>（详见教材）</p>
-<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
-<li>几个概念的关系<ul>
+</tbody>
+</table>
+<h2 id="数据通路及控制器">（★★）数据通路及控制器</h2>
+<p>（详见教材）</p>
+<h2 id="异常与中断">（★★）异常与中断</h2>
+<p>（详见教材）</p>
+<h1 id="解题技巧及重要结论">解题技巧及重要结论</h1>
+<ul>
+<li>几个概念的关系
+<ul>
 <li>指令与微程序<strong>一一对应</strong></li>
 <li>微程序由<strong>多条</strong>微指令</li>
 <li>每条微指令中又有<strong>多条</strong>微操作</li>
-</ul>
-</li>
+</ul></li>
 <li>若指令系统中，具有 <strong>n</strong> 种机器指令，则控制存储器中的微程序数量至少为 <strong>n + 2</strong> （ 2 的含义：1 条公共取指，1 条处理中断）</li>
-<li>指令流水线中的计算<ul>
-<li>吞吐率<ul>
-<li>基本公式<ul>
-<li>$TP=\frac{n}{T_k}$ ，<ul>
-<li>$n$ 为任务数，$T_k$ 是完成 $n$ 个任务所花费的时间</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>当流水线各段处理时间相等时，进一步有<ul>
-<li>$TP=\frac{n}{(k+n-1)\Delta t}​$<ul>
-<li>k 级流水线，$\Delta t$ 为时钟周期</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>加速比<ul>
-<li>基本公式<ul>
-<li>$S=\frac{T_0}{T_k}$</li>
-</ul>
-</li>
-<li>当流水线各段处理时间相等时，进一步有<ul>
-<li>$S=\frac{kn\Delta t}{(k+n-1)\Delta t}=\frac{kn}{k+n-1}$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>流水线效率<ul>
-<li>$E=\frac{T_0}{kT_k}$<ul>
-<li>$T_0$ 为顺序执行 $n$ 个任务所用的总时间</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>指令流水线中的计算
+<ul>
+<li>吞吐率
+<ul>
+<li>基本公式
+<ul>
+<li><span class="math inline">\(TP=\frac{n}{T_k}\)</span> ，
+<ul>
+<li><span class="math inline">\(n\)</span> 为任务数，<span class="math inline">\(T_k\)</span> 是完成 <span class="math inline">\(n\)</span> 个任务所花费的时间</li>
+</ul></li>
+</ul></li>
+<li>当流水线各段处理时间相等时，进一步有
+<ul>
+<li><span class="math inline">\(TP=\frac{n}{(k+n-1)\Delta t}​\)</span>
+<ul>
+<li>k 级流水线，<span class="math inline">\(\Delta t\)</span> 为时钟周期</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>加速比
+<ul>
+<li>基本公式
+<ul>
+<li><span class="math inline">\(S=\frac{T_0}{T_k}\)</span></li>
+</ul></li>
+<li>当流水线各段处理时间相等时，进一步有
+<ul>
+<li><span class="math inline">\(S=\frac{kn\Delta t}{(k+n-1)\Delta t}=\frac{kn}{k+n-1}\)</span></li>
+</ul></li>
+</ul></li>
+<li>流水线效率
+<ul>
+<li><span class="math inline">\(E=\frac{T_0}{kT_k}\)</span>
+<ul>
+<li><span class="math inline">\(T_0\)</span> 为顺序执行 <span class="math inline">\(n\)</span> 个任务所用的总时间</li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li>依据各段指令的时间，确定时钟周期：选各段指令的时间<strong>最大的</strong></li>
 <li>超标量流水线的含义：指的是 CPU 中存在<strong>一条以上</strong>的流水线，在<strong>每个时钟周期</strong>内可以完成<strong>一条以上</strong>的指令（空间换时间）</li>
-<li>单流水线处理机（度为 1 ）和超标量流水线（度为 d）的多条指令连续执行的时间计算问题<ul>
-<li>利用公式 $T_k=(k+n-1)\Delta t$ ，其中 k 级流水线，n 为指令条数， $\Delta t$ 为时钟周期</li>
+<li>单流水线处理机（度为 1 ）和超标量流水线（度为 d）的多条指令连续执行的时间计算问题
+<ul>
+<li>利用公式 <span class="math inline">\(T_k=(k+n-1)\Delta t\)</span> ，其中 k 级流水线，n 为指令条数， <span class="math inline">\(\Delta t\)</span> 为时钟周期</li>
 <li>注意：超标量中<strong>指令条数要除以度数</strong>，再带入公式计算</li>
-</ul>
-</li>
-<li>影响流水线的因素<ul>
-<li>结构相关（资源冲突）<ul>
+</ul></li>
+<li>影响流水线的因素
+<ul>
+<li>结构相关（资源冲突）
+<ul>
 <li>多条指令同一时间竞争统一资源</li>
-<li>解决方案<ul>
+<li>解决方案
+<ul>
 <li>前一条使用时，后一条等待一个时钟周期</li>
 <li>设置更多的相关资源</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>数据相关（数据冲突）<ul>
+</ul></li>
+</ul></li>
+<li>数据相关（数据冲突）
+<ul>
 <li>后一条指令需要前一条指令执行完毕才能执行（比如说后一条指令需要前一条指令计算的结果）</li>
-<li>解决方案<ul>
+<li>解决方案
+<ul>
 <li>后一条指令中插入 NOP 操作，等待前一条指令执行完成</li>
 <li>设置数据旁路</li>
 <li>编译优化，调整指令顺序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>控制相关（控制冲突）<ul>
+</ul></li>
+</ul></li>
+<li>控制相关（控制冲突）
+<ul>
 <li>指令跳转时，导致流水线断流</li>
-<li>解决方案<ul>
+<li>解决方案
+<ul>
 <li>分支预测</li>
 <li>等</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
@@ -791,13 +815,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -829,8 +853,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

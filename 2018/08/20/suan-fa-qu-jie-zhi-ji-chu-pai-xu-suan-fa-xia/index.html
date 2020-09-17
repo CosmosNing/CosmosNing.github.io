@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="一起来分析一下打牌时排序牌的方法">
@@ -32,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/20/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-20T05:56:34.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -155,7 +154,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -244,7 +243,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -257,7 +256,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,7 +347,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,39 +393,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/20/cover.jpg?raw=true" alt="cover"></p>
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/20/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p>打牌是很多人喜欢的与亲朋好友一起娱乐的一种方式。在牌局开始，打牌的各位都要依此摸牌。与此同时，为了方便后续出牌，很多人对摸到的牌从大到小排序。这种排序手法，在算法中，被称作“插入排序”。</p>
 <p>为了理解“插入排序”的主要流程，我们先来简单地回顾一下对牌排序的流程。</p>
 <p>每摸一张牌，我们都会将这张牌和手上的牌依次进行对比，找到合适的位置插入，保证手上的牌是有序的。下次摸牌时，也是类似的流程。最终，手上会是一个有序的牌组。</p>
 <p>将上述流程抽象概括一下，就是：每次将一个待排序的数据，在前面已排好序的子序列中从后向前扫描， 按其值大小找到适当的位置并插入其中，直到序列中的全部数据都插入完毕为止。</p>
 <p>这个算法的流程在排序牌的例子中已经有了非常直观的解释，这里我们直接进入代码实现环节。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序</span></span><br><span class="line"><span class="string">     将无序的数字列表变成从小到大的数字列表返回</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     按从小到大排列的列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">        k = i<span class="comment">#保存插入的位置</span></span><br><span class="line">        tmp = lst[i]<span class="comment">#暂时保存当前待插入元素的值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> lst[i] &lt; lst[j]:</span><br><span class="line">                k = j<span class="comment">#找到插入位置，保存到k中</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, k, <span class="number">-1</span>):</span><br><span class="line">            lst[j] = lst[j<span class="number">-1</span>]<span class="comment">#将列表中相关数据移位，方便元素插入</span></span><br><span class="line"></span><br><span class="line">        lst[k] = tmp<span class="comment">#插入元素</span></span><br><span class="line"></span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序结果:"</span>.format(i+<span class="number">1</span>),lst)<span class="comment">#print(lst)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例程</span></span><br><span class="line">lst = [<span class="number">89</span>, <span class="number">43</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">"最终结果"</span>,insert_sort(lst))</span><br><span class="line">        </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">第1次排序结果: [89, 43, 88, 87, 61]</span></span><br><span class="line"><span class="string">第2次排序结果: [43, 89, 88, 87, 61]</span></span><br><span class="line"><span class="string">第3次排序结果: [43, 88, 89, 87, 61]</span></span><br><span class="line"><span class="string">第4次排序结果: [43, 87, 88, 89, 61]</span></span><br><span class="line"><span class="string">第5次排序结果: [43, 61, 87, 88, 89]</span></span><br><span class="line"><span class="string">最终结果 [43, 61, 87, 88, 89]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>假设待排序的数据量为 $N$ ，依据上述插入排序算法，外层循环将执行 $N$ 次，内层循环依据外层循环次数 $i$ 将执行 $i$ 次（将两个内层循环次数相加即可）。所以该算法至多执行<br>$$<br>\begin{aligned}<br>&amp;\ \ \ \ \ 1+2+3+ ··· +N-1\<br>&amp;= (N-1)(1 + N – 1)/2\<br>&amp;= N(N-1)/2<br>\end{aligned}<br>$$<br>次。所以插入排序的时间复杂度为 $O(N^{2})$ 。</p>
+<p>假设待排序的数据量为 <span class="math inline">\(N\)</span> ，依据上述插入排序算法，外层循环将执行 <span class="math inline">\(N\)</span> 次，内层循环依据外层循环次数 <span class="math inline">\(i\)</span> 将执行 <span class="math inline">\(i\)</span> 次（将两个内层循环次数相加即可）。所以该算法至多执行 <span class="math display">\[
+\begin{aligned}
+&amp;\ \ \ \ \ 1+2+3+ ··· +N-1\\ 
+&amp;= (N-1)(1 + N – 1)/2\\
+&amp;= N(N-1)/2
+\end{aligned}
+\]</span> 次。所以插入排序的时间复杂度为 <span class="math inline">\(O(N^{2})\)</span> 。</p>
 <p>插入排序算法在时间性能上来说，表现得并不理想。能不能对他进行优化呢？希尔（Donald Shell）提出了他对该算法的改进。这个算法描述如下：</p>
 <blockquote>
-<p>取一个小于 $n$ 的整数 $d_{1}$ 作为第一个增量， 把序列中的全部数据分成 $d_{1}$ 个组。 所有距离为 $d_{1}$ 的倍数的数据放在同一个组中；</p>
-<p>$n$ 在各组内进行直接插入排序；</p>
-<p>$n$  取第二个增量 $d_{2} &lt; d_{1}$ ， 重复上述的分组和排序， 直至所取的增量 $d_{t}=1(d_{t}&lt; …&lt;d_{2}&lt;d_{1})$ ， 即所有数据都放在同一组中进行直接插入排序为止。</p>
+<p>取一个小于 <span class="math inline">\(n\)</span> 的整数 <span class="math inline">\(d_{1}\)</span> 作为第一个增量， 把序列中的全部数据分成 <span class="math inline">\(d_{1}\)</span> 个组。 所有距离为 <span class="math inline">\(d_{1}\)</span> 的倍数的数据放在同一个组中；</p>
+<p><span class="math inline">\(n\)</span> 在各组内进行直接插入排序；</p>
+<p><span class="math inline">\(n\)</span> 取第二个增量 <span class="math inline">\(d_{2} &lt; d_{1}\)</span> ， 重复上述的分组和排序， 直至所取的增量 <span class="math inline">\(d_{t}=1(d_{t}&lt; …&lt;d_{2}&lt;d_{1})\)</span> ， 即所有数据都放在同一组中进行直接插入排序为止。</p>
 </blockquote>
 <p>所以这个算法本质是一种分组插入排序。除了插入排序的思想，更关键的是算法中增量序列d的确定。</p>
 <p>有一种增量叫做Hibbard增量，其表达式如下：</p>
-<p>$$<br>h_{i} = 2^{i} - 1<br>$$</p>
-<p>它可以使希尔排序的时间复杂度降低到 $O(N^{\frac{3}{2}})$ 。</p>
+<p><span class="math display">\[
+h_{i} = 2^{i} - 1
+\]</span></p>
+<p>它可以使希尔排序的时间复杂度降低到 <span class="math inline">\(O(N^{\frac{3}{2}})\)</span> 。</p>
 <p>我们以这种增量序列生成方式来实现一下希尔排序。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参考：https://baike.baidu.com/item/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/3229428?fr=aladdin#7_8</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_insert</span><span class="params">(lst,dk)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    shell_insert:</span></span><br><span class="line"><span class="string">     按照增量dk，对lst中的元素进行分组插入排序</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：存储待排序的数据列表</span></span><br><span class="line"><span class="string">     dk:增量</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     分组排序后的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dk,len(lst)):</span><br><span class="line">        tmp = lst[i]</span><br><span class="line">        m = i - dk</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i-dk, -dk<span class="number">-1</span>,-dk):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span>(j &gt;= i%dk <span class="keyword">and</span> lst[j] &gt; tmp):</span><br><span class="line">                m = j</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            lst[j+dk] = lst[j]</span><br><span class="line">        <span class="keyword">if</span> m != i - dk:</span><br><span class="line">            lst[m+dk] = tmp</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dkHibbard</span><span class="params">(t, k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    dkHibbard:</span></span><br><span class="line"><span class="string">     按照Hibbard增量生成方式生成增量</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     t：排序的总趟数</span></span><br><span class="line"><span class="string">     k：当前排序的趟数</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     当前趟数的Hibbard增量</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">return</span> (int)(math.pow(<span class="number">2</span>,t-k+<span class="number">1</span>)<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(lst, t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    希尔排序：</span></span><br><span class="line"><span class="string">     对无序的数据列表排序，使之从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">     t：排序当前数据列表的总趟数</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, t+<span class="number">1</span>):</span><br><span class="line">        </span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序前序列:"</span>.format(i),lst)</span><br><span class="line">        lst = shell_insert(lst, dkHibbard(t, i))</span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序使用的增量&#123;&#125;"</span>.format(i,dkHibbard(t, i)))</span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序结果:"</span>.format(i),lst)</span><br><span class="line">        print()</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        dk = (int)(math.pow(2,t-i+1)-1)</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序前序列:".format(i),lst)</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序使用的增量&#123;&#125;".format(i,dk))</span></span><br><span class="line"><span class="string">        for j in range(dk,len(lst)):</span></span><br><span class="line"><span class="string">            tmp = lst[j]</span></span><br><span class="line"><span class="string">            m = j - dk</span></span><br><span class="line"><span class="string">            for k in range(j-dk, -dk-1,-dk):</span></span><br><span class="line"><span class="string">                if not(k &gt;= j%dk and lst[k] &gt; tmp):</span></span><br><span class="line"><span class="string">                    m = k</span></span><br><span class="line"><span class="string">                    break</span></span><br><span class="line"><span class="string">                lst[k+dk] = lst[k]</span></span><br><span class="line"><span class="string">            if m != j - dk:</span></span><br><span class="line"><span class="string">                lst[m+dk] = tmp</span></span><br><span class="line"><span class="string">        print("第&#123;&#125;次排序结果:".format(i),lst)</span></span><br><span class="line"><span class="string">        print()</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序趟数等于log2(待排序的数据量大小 + 1)取整</span></span><br><span class="line">print(shell_sort([<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">61</span>, <span class="number">50</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">80</span>, <span class="number">99</span>],(int)(math.log2(<span class="number">10</span>+<span class="number">1</span>))))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">第1次排序前序列: [84, 83, 88, 87, 61, 50, 70, 60, 80, 99]</span></span><br><span class="line"><span class="string">第1次排序使用的增量7</span></span><br><span class="line"><span class="string">第1次排序结果: [60, 80, 88, 87, 61, 50, 70, 84, 83, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第2次排序前序列: [60, 80, 88, 87, 61, 50, 70, 84, 83, 99]</span></span><br><span class="line"><span class="string">第2次排序使用的增量3</span></span><br><span class="line"><span class="string">第2次排序结果: [60, 61, 50, 70, 80, 83, 87, 84, 88, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">第3次排序前序列: [60, 61, 50, 70, 80, 83, 87, 84, 88, 99]</span></span><br><span class="line"><span class="string">第3次排序使用的增量1</span></span><br><span class="line"><span class="string">第3次排序结果: [50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>大家可以对照上述程序的执行过程来体会希尔排序的排序流程。在实现希尔排序的过程中，默认采用了函数嵌套的写法。同时，我也写了不用函数嵌套的写法。（将50<del>54注释，将56</del>72行取消注释，即是不用函数嵌套的写法）。</p>
+<p>大家可以对照上述程序的执行过程来体会希尔排序的排序流程。在实现希尔排序的过程中，默认采用了函数嵌套的写法。同时，我也写了不用函数嵌套的写法。（将50<sub>54注释，将56</sub>72行取消注释，即是不用函数嵌套的写法）。</p>
 <p>在文章的最后，照例进行总结：</p>
-<ol>
+<ol type="1">
 <li><strong>插入排序的主要流程：每次将一个待排序的数据，在前面已排好序的子序列中从后向前扫描，按其值大小找到适当的位置并插入其中，直到序列中的全部数据都插入完毕为止。</strong></li>
-<li><strong>插入排序的时间复杂度为 $O(N^{2})$ 。</strong></li>
+<li><strong>插入排序的时间复杂度为 <span class="math inline">\(O(N^{2})\)</span> 。</strong></li>
 <li><strong>一种插入排序的改进算法，希尔排序，本质是一种分组排序方法。</strong></li>
-<li><strong>利用Hibbard增量生成希尔排序中需要的增量序列，可以使得其时间复杂度变为 $O(N^{\frac{3}{2}})$ 。</strong></li>
+<li><strong>利用Hibbard增量生成希尔排序中需要的增量序列，可以使得其时间复杂度变为 <span class="math inline">\(O(N^{\frac{3}{2}})\)</span> 。</strong></li>
 </ol>
 
     </div>
@@ -561,13 +564,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -599,8 +602,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

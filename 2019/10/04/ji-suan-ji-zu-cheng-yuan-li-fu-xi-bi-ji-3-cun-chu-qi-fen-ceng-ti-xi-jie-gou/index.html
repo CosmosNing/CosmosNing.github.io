@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中存储器分层体系结构的知识">
@@ -39,7 +38,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true">
 <meta property="article:published_time" content="2019-10-04T14:25:24.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -161,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -171,7 +170,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -235,7 +234,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3．存储器分层体系结构"><span class="nav-number">1.</span> <span class="nav-text">3．存储器分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）存储器的分层结构及存储硬件概述"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）存储器的分层结构及存储硬件概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的分层"><span class="nav-number">1.1.1.</span> <span class="nav-text">存储系统的分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半导体随机访问存储器的组织"><span class="nav-number">1.1.2.</span> <span class="nav-text">半导体随机访问存储器的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读存储器及主存的主要技术指标"><span class="nav-number">1.1.3.</span> <span class="nav-text">只读存储器及主存的主要技术指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器芯片与CPU的连接"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储器芯片与CPU的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多模块存储器的交叉存储"><span class="nav-number">1.1.5.</span> <span class="nav-text">多模块存储器的交叉存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）Cache"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓冲存储器的CPU基本访存过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">高速缓冲存储器的CPU基本访存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache和主存之间的映射方式（★★★★★★★★）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cache和主存之间的映射方式（★★★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接映射"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全相联映射"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">全相联映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组相联映射"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">组相联映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序"><span class="nav-number">1.2.3.</span> <span class="nav-text">程序访问的局部性原理对编程的影响及Cache-friendly的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache替换算法和Cache写策略"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cache替换算法和Cache写策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换算法"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">替换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache-写策略"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Cache 写策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均访问时间的计算"><span class="nav-number">1.2.5.</span> <span class="nav-text">平均访问时间的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★）虚拟存储器"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现方案"><span class="nav-number">1.3.2.</span> <span class="nav-text">三种实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><span class="nav-number">1.3.3.</span> <span class="nav-text">缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#存储器分层体系结构"><span class="nav-number">1.</span> <span class="nav-text">3．存储器分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储器的分层结构及存储硬件概述"><span class="nav-number">1.1.</span> <span class="nav-text">（★★）存储器的分层结构及存储硬件概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#存储系统的分层"><span class="nav-number">1.1.1.</span> <span class="nav-text">存储系统的分层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#半导体随机访问存储器的组织"><span class="nav-number">1.1.2.</span> <span class="nav-text">半导体随机访问存储器的组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只读存储器及主存的主要技术指标"><span class="nav-number">1.1.3.</span> <span class="nav-text">只读存储器及主存的主要技术指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储器芯片与cpu的连接"><span class="nav-number">1.1.4.</span> <span class="nav-text">存储器芯片与CPU的连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多模块存储器的交叉存储"><span class="nav-number">1.1.5.</span> <span class="nav-text">多模块存储器的交叉存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cache"><span class="nav-number">1.2.</span> <span class="nav-text">（★★）Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高速缓冲存储器的cpu基本访存过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">高速缓冲存储器的CPU基本访存过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache和主存之间的映射方式"><span class="nav-number">1.2.2.</span> <span class="nav-text">Cache和主存之间的映射方式（★★★★★★★★）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接映射"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">直接映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全相联映射"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">全相联映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组相联映射"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">组相联映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序访问的局部性原理对编程的影响及cache-friendly的程序"><span class="nav-number">1.2.3.</span> <span class="nav-text">程序访问的局部性原理对编程的影响及Cache-friendly的程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache替换算法和cache写策略"><span class="nav-number">1.2.4.</span> <span class="nav-text">Cache替换算法和Cache写策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#替换算法"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">替换算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cache-写策略"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Cache 写策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平均访问时间的计算"><span class="nav-number">1.2.5.</span> <span class="nav-text">平均访问时间的计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟存储器"><span class="nav-number">1.3.</span> <span class="nav-text">（★★）虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种实现方案"><span class="nav-number">1.3.2.</span> <span class="nav-text">三种实现方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺页的处理及tlb的原理和作用重点虚拟地址和物理地址的转换问题查段表和页表"><span class="nav-number">1.3.3.</span> <span class="nav-text">缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -251,7 +250,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -264,7 +263,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -355,7 +354,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -382,7 +381,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3k</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -401,306 +400,346 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="3．存储器分层体系结构"><a href="#3．存储器分层体系结构" class="headerlink" title="3．存储器分层体系结构"></a>3．存储器分层体系结构</h1><h2 id="（★★）存储器的分层结构及存储硬件概述"><a href="#（★★）存储器的分层结构及存储硬件概述" class="headerlink" title="（★★）存储器的分层结构及存储硬件概述"></a>（★★）存储器的分层结构及存储硬件概述</h2><h3 id="存储系统的分层"><a href="#存储系统的分层" class="headerlink" title="存储系统的分层"></a>存储系统的分层</h3><ul>
+        <h1 id="存储器分层体系结构">3．存储器分层体系结构</h1>
+<h2 id="存储器的分层结构及存储硬件概述">（★★）存储器的分层结构及存储硬件概述</h2>
+<h3 id="存储系统的分层">存储系统的分层</h3>
+<ul>
 <li>寄存器</li>
 <li>Cache</li>
 <li>主存</li>
 <li>辅存（外存）</li>
 </ul>
 <p>注：从上到下，速度变慢，容量变大，成本变低</p>
-<h3 id="半导体随机访问存储器的组织"><a href="#半导体随机访问存储器的组织" class="headerlink" title="半导体随机访问存储器的组织"></a>半导体随机访问存储器的组织</h3><ul>
+<h3 id="半导体随机访问存储器的组织">半导体随机访问存储器的组织</h3>
+<ul>
 <li>基本结构（详见教材）</li>
 <li>支持<strong>随机存取</strong>，<strong>掉电数据丢失</strong></li>
 <li>分为 SRAM 和 DRAM</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">特点</th>
-<th align="center">SRAM</th>
-<th align="center">DRAM</th>
+<tr class="header">
+<th style="text-align: center;">特点</th>
+<th style="text-align: center;">SRAM</th>
+<th style="text-align: center;">DRAM</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">存储信息</td>
-<td align="center">触发器</td>
-<td align="center">电容</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">存储信息</td>
+<td style="text-align: center;">触发器</td>
+<td style="text-align: center;">电容</td>
 </tr>
-<tr>
-<td align="center">破坏性读出</td>
-<td align="center">非</td>
-<td align="center">是</td>
+<tr class="even">
+<td style="text-align: center;">破坏性读出</td>
+<td style="text-align: center;">非</td>
+<td style="text-align: center;">是</td>
 </tr>
-<tr>
-<td align="center">需要刷新</td>
-<td align="center">不要</td>
-<td align="center">要</td>
+<tr class="odd">
+<td style="text-align: center;">需要刷新</td>
+<td style="text-align: center;">不要</td>
+<td style="text-align: center;">要</td>
 </tr>
-<tr>
-<td align="center">送行列地址</td>
-<td align="center">同时送</td>
-<td align="center">分两次</td>
+<tr class="even">
+<td style="text-align: center;">送行列地址</td>
+<td style="text-align: center;">同时送</td>
+<td style="text-align: center;">分两次</td>
 </tr>
-<tr>
-<td align="center">运行速度</td>
-<td align="center">快</td>
-<td align="center">慢</td>
+<tr class="odd">
+<td style="text-align: center;">运行速度</td>
+<td style="text-align: center;">快</td>
+<td style="text-align: center;">慢</td>
 </tr>
-<tr>
-<td align="center">集成度</td>
-<td align="center">低</td>
-<td align="center">高</td>
+<tr class="even">
+<td style="text-align: center;">集成度</td>
+<td style="text-align: center;">低</td>
+<td style="text-align: center;">高</td>
 </tr>
-<tr>
-<td align="center">发热量（功耗）</td>
-<td align="center">大</td>
-<td align="center">小</td>
+<tr class="odd">
+<td style="text-align: center;">发热量（功耗）</td>
+<td style="text-align: center;">大</td>
+<td style="text-align: center;">小</td>
 </tr>
-<tr>
-<td align="center">存储成本</td>
-<td align="center">高</td>
-<td align="center">低</td>
+<tr class="even">
+<td style="text-align: center;">存储成本</td>
+<td style="text-align: center;">高</td>
+<td style="text-align: center;">低</td>
 </tr>
-<tr>
-<td align="center">主要用途</td>
-<td align="center">高速缓存</td>
-<td align="center">主机内存</td>
+<tr class="odd">
+<td style="text-align: center;">主要用途</td>
+<td style="text-align: center;">高速缓存</td>
+<td style="text-align: center;">主机内存</td>
 </tr>
-</tbody></table>
-<h3 id="只读存储器及主存的主要技术指标"><a href="#只读存储器及主存的主要技术指标" class="headerlink" title="只读存储器及主存的主要技术指标"></a>只读存储器及主存的主要技术指标</h3><ul>
+</tbody>
+</table>
+<h3 id="只读存储器及主存的主要技术指标">只读存储器及主存的主要技术指标</h3>
+<ul>
 <li>支持<strong>随机存取</strong>，<strong>掉电非易失</strong></li>
-<li>分为<ul>
+<li>分为
+<ul>
 <li>MROM：内容出厂前写入，无法后期改动</li>
 <li>PROM：一次可改</li>
 <li>EPROM：可多次擦除，多次写入</li>
 <li>Flash Memory（闪存，如 <strong>U 盘</strong>）</li>
 <li>SSD</li>
-</ul>
-</li>
-<li>性能指标（★★★）<ul>
-<li>$存储容量=存储字数\times 字长$ ，<strong>存储字数</strong>表示存储器<strong>地址空间大小</strong>，<strong>字长</strong>表示一次存储操作的<strong>数据</strong>量</li>
-<li>$存储速度=\frac{数据的宽度}{存储周期}$<ul>
+</ul></li>
+<li>性能指标（★★★）
+<ul>
+<li><span class="math inline">\(存储容量=存储字数\times 字长\)</span> ，<strong>存储字数</strong>表示存储器<strong>地址空间大小</strong>，<strong>字长</strong>表示一次存储操作的<strong>数据</strong>量</li>
+<li><span class="math inline">\(存储速度=\frac{数据的宽度}{存储周期}\)</span>
+<ul>
 <li>其中存储周期中包括两个部分，一个是<strong>存取时间</strong>，另一个是<strong>恢复时间</strong></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="存储器芯片与CPU的连接"><a href="#存储器芯片与CPU的连接" class="headerlink" title="存储器芯片与CPU的连接"></a>存储器芯片与CPU的连接</h3><ul>
-<li>主存与 CPU 之间有三条线相连，分别是<ul>
+<h3 id="存储器芯片与cpu的连接">存储器芯片与CPU的连接</h3>
+<ul>
+<li>主存与 CPU 之间有三条线相连，分别是
+<ul>
 <li>数据线（双向）</li>
-<li>控制信号线（CPU $\rightarrow$ 主存）</li>
-<li>地址线（CPU $\rightarrow$ 主存）</li>
-</ul>
-</li>
-<li>主存容量扩展（★★★★）<ul>
-<li>位扩展<ul>
+<li>控制信号线（CPU <span class="math inline">\(\rightarrow\)</span> 主存）</li>
+<li>地址线（CPU <span class="math inline">\(\rightarrow\)</span> 主存）</li>
+</ul></li>
+<li>主存容量扩展（★★★★）
+<ul>
+<li>位扩展
+<ul>
 <li>用多个芯片对字长进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 8K × 8 位）</li>
-<li>连接方式<ul>
-<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" alt="位扩展"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>字扩展<ul>
+<li>连接方式
+<ul>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit.png?raw=true" alt="位扩展" /></li>
+</ul></li>
+</ul></li>
+<li>字扩展
+<ul>
 <li>用多个芯片对字的数量进行扩充（如 8 片 8K × 1 位芯片位扩展后，得到 64K × 1 位）</li>
-<li>连接方式<ul>
-<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" alt="字扩展"></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>字位同时扩展<ul>
+<li>连接方式
+<ul>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Word.png?raw=true" alt="字扩展" /></li>
+</ul></li>
+</ul></li>
+<li>字位同时扩展
+<ul>
 <li>同时扩充字和位，组合上述两种扩展</li>
-<li>连接方式<ul>
-<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" alt="字位同时扩展"></li>
+<li>连接方式
+<ul>
+<li><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Bit-Word.png?raw=true" title="fig:" alt="字位同时扩展" /></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="多模块存储器的交叉存储"><a href="#多模块存储器的交叉存储" class="headerlink" title="多模块存储器的交叉存储"></a>多模块存储器的交叉存储</h3><ul>
+<h3 id="多模块存储器的交叉存储">多模块存储器的交叉存储</h3>
+<ul>
 <li><strong>低位</strong>地址为<strong>体号</strong>，<strong>高位</strong>地址为<strong>体内地址</strong>，所以又称为低位交叉编址</li>
-<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推）<br><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储"></li>
-<li>一些公式（★★）<ul>
-<li>设模块字长等于数据总线宽度，模块存取一个字的周期为 <em>T</em>，总线传送周期为 <em>r</em>， 为实现流水线方式存取，存储器交叉模块数应<strong>大于等于</strong><ul>
-<li>$m=\frac{T}{r}$ （<em>m</em> 称为<strong>交叉存取度</strong>）</li>
+<li>交叉编址：每个模块按 <strong>“模 m”</strong> 交叉编址。（即 0，m，···，( k - 1 )m，···存储在第一个单元，其他以此类推） <img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cross.png?raw=true" alt="多模块存储器的交叉存储" /></li>
+<li>一些公式（★★）
+<ul>
+<li>设模块字长等于数据总线宽度，模块存取一个字的周期为 <em>T</em>，总线传送周期为 <em>r</em>， 为实现流水线方式存取，存储器交叉模块数应<strong>大于等于</strong>
+<ul>
+<li><span class="math inline">\(m=\frac{T}{r}\)</span> （<em>m</em> 称为<strong>交叉存取度</strong>）</li>
+</ul></li>
+<li>连续存储 <em>m</em> 个字的时间为
+<ul>
+<li><span class="math inline">\(t=T+(m-1)r\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-<li>连续存储 <em>m</em> 个字的时间为<ul>
-<li>$t=T+(m-1)r$</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="（★★）Cache"><a href="#（★★）Cache" class="headerlink" title="（★★）Cache"></a>（★★）Cache</h2><h3 id="高速缓冲存储器的CPU基本访存过程"><a href="#高速缓冲存储器的CPU基本访存过程" class="headerlink" title="高速缓冲存储器的CPU基本访存过程"></a>高速缓冲存储器的CPU基本访存过程</h3><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程"></p>
-<h3 id="Cache和主存之间的映射方式（★★★★★★★★）"><a href="#Cache和主存之间的映射方式（★★★★★★★★）" class="headerlink" title="Cache和主存之间的映射方式（★★★★★★★★）"></a>Cache和主存之间的映射方式（★★★★★★★★）</h3><h4 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h4><ul>
-<li>映射关系<ul>
-<li>$cache\ 行号 = 主存块号\ Mod\ cache\ 行数$</li>
-</ul>
-</li>
+<h2 id="cache">（★★）Cache</h2>
+<h3 id="高速缓冲存储器的cpu基本访存过程">高速缓冲存储器的CPU基本访存过程</h3>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Cache.png?raw=true" alt="带Cache的CPU基本访存过程" /><figcaption>带Cache的CPU基本访存过程</figcaption>
+</figure>
+<h3 id="cache和主存之间的映射方式">Cache和主存之间的映射方式（★★★★★★★★）</h3>
+<h4 id="直接映射">直接映射</h4>
+<ul>
+<li>映射关系
+<ul>
+<li><span class="math inline">\(cache\ 行号 = 主存块号\ Mod\ cache\ 行数\)</span></li>
+</ul></li>
 <li>地址结构</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">标记</th>
-<th align="center">cache <strong>行号</strong></th>
-<th align="center">块内地址</th>
+<tr class="header">
+<th style="text-align: center;">标记</th>
+<th style="text-align: center;">cache <strong>行号</strong></th>
+<th style="text-align: center;">块内地址</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
-</tbody></table>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" alt="直接映射"></p>
-<h4 id="全相联映射"><a href="#全相联映射" class="headerlink" title="全相联映射"></a>全相联映射</h4><ul>
-<li>映射关系<ul>
+</tbody>
+</table>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Direct.png?raw=true" alt="直接映射" /><figcaption>直接映射</figcaption>
+</figure>
+<h4 id="全相联映射">全相联映射</h4>
+<ul>
+<li>映射关系
+<ul>
 <li>主存块可装入 cache 中任意一行</li>
-</ul>
-</li>
+</ul></li>
 <li>地址结构</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">标记</th>
-<th align="center">块内地址</th>
+<tr class="header">
+<th style="text-align: center;">标记</th>
+<th style="text-align: center;">块内地址</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center"></td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
-</tbody></table>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" alt="全相联映射"></p>
-<h4 id="组相联映射"><a href="#组相联映射" class="headerlink" title="组相联映射"></a>组相联映射</h4><ul>
-<li>映射关系<ul>
-<li>$cache\ 组号 = 主存块号\ Mod\ cache\ 组数$</li>
-</ul>
-</li>
+</tbody>
+</table>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Full.png?raw=true" alt="全相联映射" /><figcaption>全相联映射</figcaption>
+</figure>
+<h4 id="组相联映射">组相联映射</h4>
+<ul>
+<li>映射关系
+<ul>
+<li><span class="math inline">\(cache\ 组号 = 主存块号\ Mod\ cache\ 组数\)</span></li>
+</ul></li>
 <li>地址结构</li>
 </ul>
 <table>
 <thead>
-<tr>
-<th align="center">标记</th>
-<th align="center">cache <strong>组号</strong></th>
-<th align="center">块内地址</th>
+<tr class="header">
+<th style="text-align: center;">标记</th>
+<th style="text-align: center;">cache <strong>组号</strong></th>
+<th style="text-align: center;">块内地址</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
-</tbody></table>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" alt="组相联映射"></p>
-<h3 id="程序访问的局部性原理对编程的影响及Cache-friendly的程序"><a href="#程序访问的局部性原理对编程的影响及Cache-friendly的程序" class="headerlink" title="程序访问的局部性原理对编程的影响及Cache-friendly的程序"></a>程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3><p>（详见教材）</p>
-<h3 id="Cache替换算法和Cache写策略"><a href="#Cache替换算法和Cache写策略" class="headerlink" title="Cache替换算法和Cache写策略"></a>Cache替换算法和Cache写策略</h3><h4 id="替换算法"><a href="#替换算法" class="headerlink" title="替换算法"></a>替换算法</h4><p>类似操作系统中内存管理页面置换</p>
+</tbody>
+</table>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/04/Group.png?raw=true" alt="组相联映射" /><figcaption>组相联映射</figcaption>
+</figure>
+<h3 id="程序访问的局部性原理对编程的影响及cache-friendly的程序">程序访问的局部性原理对编程的影响及Cache-friendly的程序</h3>
+<p>（详见教材）</p>
+<h3 id="cache替换算法和cache写策略">Cache替换算法和Cache写策略</h3>
+<h4 id="替换算法">替换算法</h4>
+<p>类似操作系统中内存管理页面置换</p>
 <ul>
 <li>FIFO</li>
 <li>LRU</li>
 <li>LFU</li>
 <li>随机替换</li>
 </ul>
-<h4 id="Cache-写策略"><a href="#Cache-写策略" class="headerlink" title="Cache 写策略"></a>Cache 写策略</h4><ul>
-<li>全写法<ul>
-<li>基本做法：写操作时，若写命中，则同时写 Cache 和主存；若写不命中，则有以下两种处理方法<ul>
+<h4 id="cache-写策略">Cache 写策略</h4>
+<ul>
+<li>全写法
+<ul>
+<li>基本做法：写操作时，若写命中，则同时写 Cache 和主存；若写不命中，则有以下两种处理方法
+<ul>
 <li>写分配法：先在主存块中更新相应存储单元，然后分配一个 Cache 行，将更新后的主存块装到分配的 Cache 行中</li>
 <li>非写分配法：仅更新主存单元而不装入主存块到 Cache 中</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>回写法<ul>
+</ul></li>
+</ul></li>
+<li>回写法
+<ul>
 <li>基本做法：若写命中，则写入 Cache 而不写入主存；若写不命中，则在 Cache 中分配一行，将主存块调入该 Cache 行中并更新相应单元的内容。</li>
+</ul></li>
 </ul>
-</li>
+<h3 id="平均访问时间的计算">平均访问时间的计算</h3>
+<ul>
+<li>命中率：<span class="math inline">\(H=\frac{N_c}{N_c+N_m}\)</span> ，其中 <span class="math inline">\(N_c\)</span> 为命中 cache 的次数，<span class="math inline">\(N_m\)</span> 为访问主存的次数</li>
+<li>平均访存时间：<span class="math inline">\(T_a=Ht_c+(1-H)t_m\)</span> ，<span class="math inline">\(t_c\)</span> 为命中时 cache 访存的时间，<span class="math inline">\(t_m\)</span> 为未命中时的访存时间</li>
 </ul>
-<h3 id="平均访问时间的计算"><a href="#平均访问时间的计算" class="headerlink" title="平均访问时间的计算"></a>平均访问时间的计算</h3><ul>
-<li>命中率：$H=\frac{N_c}{N_c+N_m}$ ，其中 $N_c$ 为命中 cache 的次数，$N_m$ 为访问主存的次数</li>
-<li>平均访存时间：$T_a=Ht_c+(1-H)t_m$ ，$t_c$ 为命中时 cache 访存的时间，$t_m$ 为未命中时的访存时间</li>
-</ul>
-<h2 id="（★★）虚拟存储器"><a href="#（★★）虚拟存储器" class="headerlink" title="（★★）虚拟存储器"></a>（★★）虚拟存储器</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>（详见教材）</p>
-<h3 id="三种实现方案"><a href="#三种实现方案" class="headerlink" title="三种实现方案"></a>三种实现方案</h3><ul>
+<h2 id="虚拟存储器">（★★）虚拟存储器</h2>
+<h3 id="基本概念">基本概念</h3>
+<p>（详见教材）</p>
+<h3 id="三种实现方案">三种实现方案</h3>
+<ul>
 <li>页式</li>
 <li>段式</li>
 <li>段页式</li>
 </ul>
-<h3 id="缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）"><a href="#缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）" class="headerlink" title="缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）"></a>缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</h3><p>（参见操作系统-内存管理部分的<a href="https://cosmosning.github.io/2019/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"><strong>离散（非连续）内存分配方法</strong></a>）</p>
-<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
-<li>有关SRAM、DRAM芯片引脚数的计算：<ul>
+<h3 id="缺页的处理及tlb的原理和作用重点虚拟地址和物理地址的转换问题查段表和页表">缺页的处理及TLB的原理和作用（重点：虚拟地址和物理地址的转换问题、查段表和页表）</h3>
+<p>（参见操作系统-内存管理部分的<a href="https://cosmosning.github.io/2019/09/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B03-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"><strong>离散（非连续）内存分配方法</strong></a>）</p>
+<h1 id="解题技巧及重要结论">解题技巧及重要结论</h1>
+<ul>
+<li>有关SRAM、DRAM芯片引脚数的计算：
+<ul>
 <li>引脚包括<strong>地址线</strong>、<strong>数据线</strong>、<strong>片选信号线</strong>、<strong>读信号线</strong>、<strong>写信号线</strong>、<strong>电源信号线</strong>、<strong>接地线</strong></li>
 <li>地址线、数据线条数由芯片容量确定（如 <strong>1024 × 8 位</strong> 有 10 根地址线，8根数据线）（地址线的计算注意题设条件，若采用<strong>地址复用技术</strong>，地址线条数要相应<strong>除以二</strong>，此时<strong>片选</strong>分为<strong>两根</strong>：<strong>行通选</strong>、<strong>列通选</strong>）</li>
 <li>读信号线和写信号线有时候会合并成<strong>一根</strong></li>
-</ul>
-</li>
-<li>确定某地址 A 所在芯片的最小地址<ul>
+</ul></li>
+<li>确定某地址 A 所在芯片的最小地址
+<ul>
 <li>例题：假定用若干 2K × 4 位的芯片组成一个 8K × 8 位的存储器，则地址 0B1FH 所在芯片的最小地址为</li>
-<li>分析<ul>
+<li>分析
+<ul>
 <li>2K 说明每一片芯片地址位数为 11 位，8K 对应的有 13 位（其中低 11 位为片内选，2 位为片选）</li>
 <li>0B1FH 写成二进制，将片内选部分写成全 0 即可得相应的最小地址</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>根据地址范围确定芯片地址线位数<ul>
+</ul></li>
+</ul></li>
+<li>根据地址范围确定芯片地址线位数
+<ul>
 <li>先计算：<strong>最大地址 - 最小地址 + 1</strong></li>
 <li>上一步的结果，从低位（第 1 位）到高位，第一个出现 1 的位数<strong>减去 1</strong>，即为相应芯片的地址线位数</li>
-</ul>
-</li>
-<li>芯片接线问题<ul>
+</ul></li>
+<li>芯片接线问题
+<ul>
 <li>从<strong>低位</strong>开始接<strong>地址线</strong>，然后接<strong>译码</strong>线</li>
-</ul>
-</li>
-<li>交叉编址中的访存冲突的判定：<ul>
-<li>先计算对应访存地址所在的模块序号：*<em>模块序号( id ) = 访存地址( A ) % 存储器交叉模块数 ( n ) *</em></li>
+</ul></li>
+<li>交叉编址中的访存冲突的判定：
+<ul>
+<li>先计算对应访存地址所在的模块序号：<strong>模块序号( id ) = 访存地址( A ) % 存储器交叉模块数 ( n ) </strong></li>
 <li>判定访存冲突的规则：给定的访存地址在相邻的 n 次访问中出现在同一存储模块内。</li>
-</ul>
-</li>
+</ul></li>
 <li>交叉编址中的流水线存取的时间（或周期等）计算</li>
-<li>cache <strong>组相联映射</strong>中组号的计算<ul>
+<li>cache <strong>组相联映射</strong>中组号的计算
+<ul>
 <li>将<strong>主存单元块号除以主存块大小</strong>即可；或者将块号写成二进制，根据主存块大小确定块内地址位数（如 32 B 代表有 5 位），块号二进制中低地址为块内地址，剩下的位数为块号，把相应的位数转换成十进制即可。</li>
-</ul>
-</li>
-<li>cache <strong>直接映像（直接映射）</strong> 的地址划分<ul>
-<li>基本公式：$cache\ 行数=\frac{cache 容量}{主存块每块大小}​$</li>
-<li>$cache\ 块内地址位数=log_2(cache\ 行大小【以B为单位】)​$</li>
-<li>$cache\ 行号位数=log_2(cache\ 行数)=log_2(\frac{cache 容量}{主存块每块大小})$</li>
-<li>主存标记位数<ul>
-<li>$主存标记位数=log_2(主存容量大小)-cache\ 块内地址位数-cache\ 组号位数$</li>
-<li>$主存标记位数=log_2(\frac{主存容量}{cache\ 能存放的数据容量})$（注意是<strong>数据容量</strong>，cache 的总容量【具体见下】不同）</li>
-</ul>
-</li>
-<li>应用：主存装入 cache 的地址：将主存地址写成二进制，取这个二进制的低位，这些低位与 cache  地址结构中除主存标记位以外的对应，即为装入 cache 的地址</li>
-</ul>
-</li>
-<li>cache <strong>组相联映射</strong> 的地址划分<ul>
-<li>$cache\ 块内地址位数=log_2(主存块大小【以B为单位】)$</li>
-<li>$cache\ 组号位数=\frac{cache\ 容量}{主存块大小\times 路数}​$</li>
-<li>$主存标记位数=log_2(主存容量大小)-cache\ 块内地址位数-cache\ 组号位数​$</li>
-</ul>
-</li>
+</ul></li>
+<li>cache <strong>直接映像（直接映射）</strong> 的地址划分
+<ul>
+<li>基本公式：<span class="math inline">\(cache\ 行数=\frac{cache 容量}{主存块每块大小}​\)</span></li>
+<li><span class="math inline">\(cache\ 块内地址位数=log_2(cache\ 行大小【以B为单位】)​\)</span></li>
+<li><span class="math inline">\(cache\ 行号位数=log_2(cache\ 行数)=log_2(\frac{cache 容量}{主存块每块大小})\)</span></li>
+<li>主存标记位数
+<ul>
+<li><span class="math inline">\(主存标记位数=log_2(主存容量大小)-cache\ 块内地址位数-cache\ 组号位数\)</span></li>
+<li><span class="math inline">\(主存标记位数=log_2(\frac{主存容量}{cache\ 能存放的数据容量})\)</span>（注意是<strong>数据容量</strong>，cache 的总容量【具体见下】不同）</li>
+</ul></li>
+<li>应用：主存装入 cache 的地址：将主存地址写成二进制，取这个二进制的低位，这些低位与 cache 地址结构中除主存标记位以外的对应，即为装入 cache 的地址</li>
+</ul></li>
+<li>cache <strong>组相联映射</strong> 的地址划分
+<ul>
+<li><span class="math inline">\(cache\ 块内地址位数=log_2(主存块大小【以B为单位】)\)</span></li>
+<li><span class="math inline">\(cache\ 组号位数=\frac{cache\ 容量}{主存块大小\times 路数}​\)</span></li>
+<li><span class="math inline">\(主存标记位数=log_2(主存容量大小)-cache\ 块内地址位数-cache\ 组号位数​\)</span></li>
+</ul></li>
 <li><strong>直接映射</strong>分<strong>行</strong>，<strong>组相联映射</strong>分<strong>组</strong></li>
-<li>cache容量的计算<ul>
+<li>cache容量的计算
+<ul>
 <li>cache 容量包括<strong>存储容量</strong>和<strong>标记阵列容量</strong>（有效位【1位，一定有】、标记位【一定有，由 cache 地址划分】、一致性维护位【指明采用<strong>回写法</strong>才有】、替换算法控制位）</li>
-<li>$cache\ 容量 = cache\ 行数\times (标记位位数之和 +主存每块存储容量【注意单位为 bit】)$</li>
-<li>其中<ul>
-<li>$cache\ 行数=\frac{cache\ 容量}{主存块大小}$</li>
-<li>$标记位数之和=1【代表有效位】+主存标记位数+···（根据题意要求，增补）$</li>
-<li>$主存每块大小=字节数\times 字节数位数$</li>
+<li><span class="math inline">\(cache\ 容量 = cache\ 行数\times (标记位位数之和 +主存每块存储容量【注意单位为 bit】)\)</span></li>
+<li>其中
+<ul>
+<li><span class="math inline">\(cache\ 行数=\frac{cache\ 容量}{主存块大小}\)</span></li>
+<li><span class="math inline">\(标记位数之和=1【代表有效位】+主存标记位数+···（根据题意要求，增补）\)</span></li>
+<li><span class="math inline">\(主存每块大小=字节数\times 字节数位数\)</span></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
@@ -836,13 +875,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -874,8 +913,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="整理一下计算机组成原理中输入输出组织的知识">
@@ -34,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true">
 <meta property="article:published_time" content="2019-10-15T04:17:34.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -156,7 +155,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -166,7 +165,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -230,7 +229,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#7．输入输出组织"><span class="nav-number">1.</span> <span class="nav-text">7．输入输出组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#（×）I-O系统基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">（×）I&#x2F;O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）常见外部设备"><span class="nav-number">1.2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">1.2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★）I-O-接口"><span class="nav-number">1.3.</span> <span class="nav-text">（★）I&#x2F;O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I-O-端口及其编址"><span class="nav-number">1.3.2.</span> <span class="nav-text">I&#x2F;O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（★★★）I-O的三种控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">（★★★）I&#x2F;O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应（中断隐指令，硬件完成）"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行（中断程序完成）"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DMA-方式"><span class="nav-number">1.4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-控制器的组成"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA-的传送过程"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出组织"><span class="nav-number">1.</span> <span class="nav-text">7．输入输出组织</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#io系统基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">（×）I&#x2F;O系统基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见外部设备"><span class="nav-number">1.2.</span> <span class="nav-text">（★）常见外部设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见外部设备及其工作原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见外部设备及其工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分外部设备的性能指标"><span class="nav-number">1.2.2.</span> <span class="nav-text">部分外部设备的性能指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示器"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">显示器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">磁盘</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io-接口"><span class="nav-number">1.3.</span> <span class="nav-text">（★）I&#x2F;O 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能及基本结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">功能及基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io-端口及其编址"><span class="nav-number">1.3.2.</span> <span class="nav-text">I&#x2F;O 端口及其编址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io的三种控制方式"><span class="nav-number">1.4.</span> <span class="nav-text">（★★★）I&#x2F;O的三种控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序查询方式"><span class="nav-number">1.4.1.</span> <span class="nav-text">程序查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中断方式"><span class="nav-number">1.4.2.</span> <span class="nav-text">中断方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中断的基本概念"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">中断的基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中断工作流程"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">中断工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#中断响应中断隐指令硬件完成"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">中断响应（中断隐指令，硬件完成）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中断执行中断程序完成"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">中断执行（中断程序完成）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重中断和中断屏蔽"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">多重中断和中断屏蔽</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dma-方式"><span class="nav-number">1.4.3.</span> <span class="nav-text">DMA 方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dma-控制器的组成"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">DMA 控制器的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dma-的传送过程"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">DMA 的传送过程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解题技巧及重要结论"><span class="nav-number">2.</span> <span class="nav-text">解题技巧及重要结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -246,7 +245,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,7 +258,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -350,7 +349,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -377,7 +376,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -396,34 +395,46 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="7．输入输出组织"><a href="#7．输入输出组织" class="headerlink" title="7．输入输出组织"></a>7．输入输出组织</h1><h2 id="（×）I-O系统基本概念"><a href="#（×）I-O系统基本概念" class="headerlink" title="（×）I/O系统基本概念"></a>（×）I/O系统基本概念</h2><p>（详见教材） </p>
-<h2 id="（★）常见外部设备"><a href="#（★）常见外部设备" class="headerlink" title="（★）常见外部设备"></a>（★）常见外部设备</h2><h3 id="常见外部设备及其工作原理"><a href="#常见外部设备及其工作原理" class="headerlink" title="常见外部设备及其工作原理"></a>常见外部设备及其工作原理</h3><p>（详见教材）</p>
-<h3 id="部分外部设备的性能指标"><a href="#部分外部设备的性能指标" class="headerlink" title="部分外部设备的性能指标"></a>部分外部设备的性能指标</h3><h4 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h4><ul>
-<li>$VRAM\ 容量 = 分辨率\times 灰度级位数$</li>
-<li>$VRAM\ 带宽 =分辨率\times 灰度级位数\times 帧频$</li>
-</ul>
-<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><ul>
-<li><p>外存容量：$面数\times 磁道数\times 道容量$</p>
+        <h1 id="输入输出组织">7．输入输出组织</h1>
+<h2 id="io系统基本概念">（×）I/O系统基本概念</h2>
+<p>（详见教材）</p>
+<h2 id="常见外部设备">（★）常见外部设备</h2>
+<h3 id="常见外部设备及其工作原理">常见外部设备及其工作原理</h3>
+<p>（详见教材）</p>
+<h3 id="部分外部设备的性能指标">部分外部设备的性能指标</h3>
+<h4 id="显示器">显示器</h4>
 <ul>
-<li>其中，<ul>
-<li>$面数=2n-2$ ，n 为磁盘片数</li>
-<li>$磁道数=\frac{道密度\times (D外-D内)}{2}$ ，D 为直径</li>
-<li>$道容量=\pi D\times 位密度$</li>
+<li><span class="math inline">\(VRAM\ 容量 = 分辨率\times 灰度级位数\)</span></li>
+<li><span class="math inline">\(VRAM\ 带宽 =分辨率\times 灰度级位数\times 帧频\)</span></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>（★★★★★★）存取速度（数据传输率）：$v=道容量\times 转速$</p>
-</li>
-<li><p>（★★★★★★）存取时间</p>
+<h4 id="磁盘">磁盘</h4>
 <ul>
-<li>$T存取时间=T找道+T找扇区+T数据传输​$<br>$$<br>T_{找道}=\frac{T_{max}-T_{min}}{2}\ T_{max}为最长找道时间，T_{min}为最短找道时间<br>$$</li>
+<li>外存容量：<span class="math inline">\(面数\times 磁道数\times 道容量\)</span>
+<ul>
+<li>其中，
+<ul>
+<li><span class="math inline">\(面数=2n-2\)</span> ，n 为磁盘片数</li>
+<li><span class="math inline">\(磁道数=\frac{道密度\times (D外-D内)}{2}\)</span> ，D 为直径</li>
+<li><span class="math inline">\(道容量=\pi D\times 位密度\)</span></li>
+</ul></li>
+</ul></li>
+<li>（★★★★★★）存取速度（数据传输率）：<span class="math inline">\(v=道容量\times 转速\)</span></li>
+<li>（★★★★★★）存取时间
+<ul>
+<li><span class="math inline">\(T存取时间=T找道+T找扇区+T数据传输​\)</span> <span class="math display">\[
+T_{找道}=\frac{T_{max}-T_{min}}{2}\\ T_{max}为最长找道时间，T_{min}为最短找道时间
+\]</span></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>$$<br>T_{找扇区}=\frac{0+\frac{1}{n}}{2}\ n为转速<br>$$</p>
-<p>$$<br>T_{数据传输时间}=L\times \frac{1}{v}\ L为数据量大小，v为数据传输率<br>$$</p>
-<h2 id="（★）I-O-接口"><a href="#（★）I-O-接口" class="headerlink" title="（★）I/O 接口"></a>（★）I/O 接口</h2><h3 id="功能及基本结构"><a href="#功能及基本结构" class="headerlink" title="功能及基本结构"></a>功能及基本结构</h3><ul>
+<p><span class="math display">\[
+T_{找扇区}=\frac{0+\frac{1}{n}}{2}\\ n为转速
+\]</span></p>
+<p><span class="math display">\[
+T_{数据传输时间}=L\times \frac{1}{v}\\ L为数据量大小，v为数据传输率
+\]</span></p>
+<h2 id="io-接口">（★）I/O 接口</h2>
+<h3 id="功能及基本结构">功能及基本结构</h3>
+<ul>
 <li><p>功能</p>
 <ul>
 <li>实现<strong>主机和外设的通信</strong>联络控制</li>
@@ -431,90 +442,105 @@
 <li><strong>数据缓冲</strong></li>
 <li><strong>信号格式转换</strong>（如串并转换）</li>
 <li><strong>传送控制命令和状态信息</strong></li>
-</ul>
-</li>
+</ul></li>
 <li><p>基本结构</p>
-<p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构"></p>
-</li>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/IO-Interface.png?raw=true" alt="I/O接口基本结构" /><figcaption>I/O接口基本结构</figcaption>
+</figure></li>
 </ul>
-<h3 id="I-O-端口及其编址"><a href="#I-O-端口及其编址" class="headerlink" title="I/O 端口及其编址"></a>I/O 端口及其编址</h3><ul>
+<h3 id="io-端口及其编址">I/O 端口及其编址</h3>
+<ul>
 <li><strong>I/O 端口</strong>是指接口电路中可被 CPU 直接访问的<strong>寄存器</strong>，主要有<strong>数据端口</strong>、<strong>状态端口</strong>和<strong>控制端口</strong></li>
-<li><strong>I/O 端口</strong>和<strong>I/O 接口</strong>的关系：$I/O\ 端口 + 相应控制逻辑电路\overset{组成}{=} I/O\ 接口$</li>
-<li>I/O 端口编址方式<ul>
+<li><strong>I/O 端口</strong>和<strong>I/O 接口</strong>的关系：<span class="math inline">\(I/O\ 端口 + 相应控制逻辑电路\overset{组成}{=} I/O\ 接口\)</span></li>
+<li>I/O 端口编址方式
+<ul>
 <li>统一编址</li>
 <li>独立编址</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="（★★★）I-O的三种控制方式"><a href="#（★★★）I-O的三种控制方式" class="headerlink" title="（★★★）I/O的三种控制方式"></a>（★★★）I/O的三种控制方式</h2><p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
-<h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构"></p>
-<h3 id="中断方式"><a href="#中断方式" class="headerlink" title="中断方式"></a>中断方式</h3><h4 id="中断的基本概念"><a href="#中断的基本概念" class="headerlink" title="中断的基本概念"></a>中断的基本概念</h4><p>（详见教材）</p>
-<h4 id="中断工作流程"><a href="#中断工作流程" class="headerlink" title="中断工作流程"></a>中断工作流程</h4><h5 id="中断响应（中断隐指令，硬件完成）"><a href="#中断响应（中断隐指令，硬件完成）" class="headerlink" title="中断响应（中断隐指令，硬件完成）"></a>中断响应（中断隐指令，硬件完成）</h5><ul>
-<li>响应中断的 3 个条件<ol>
+<h2 id="io的三种控制方式">（★★★）I/O的三种控制方式</h2>
+<p><a href="https://cosmosning.github.io/2019/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B04-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/">回看操作系统相关知识</a></p>
+<h3 id="程序查询方式">程序查询方式</h3>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/Prog-Query.png?raw=true" alt="I/O接口基本结构" /><figcaption>I/O接口基本结构</figcaption>
+</figure>
+<h3 id="中断方式">中断方式</h3>
+<h4 id="中断的基本概念">中断的基本概念</h4>
+<p>（详见教材）</p>
+<h4 id="中断工作流程">中断工作流程</h4>
+<h5 id="中断响应中断隐指令硬件完成">中断响应（中断隐指令，硬件完成）</h5>
+<ul>
+<li>响应中断的 3 个条件
+<ol type="1">
 <li>CPU 处于 “开中断” 状态</li>
 <li>至少要有一个未被屏蔽的中断请求</li>
 <li>当前指令执行完</li>
-</ol>
-</li>
-<li>中断响应周期中完成以下几个操作<ol>
+</ol></li>
+<li>中断响应周期中完成以下几个操作
+<ol type="1">
 <li><strong>关中断</strong>（将中断允许标志为“禁止”）</li>
 <li><strong>保存断点</strong></li>
 <li><strong>识别中断源并转中断服务程序</strong></li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<h5 id="中断执行（中断程序完成）"><a href="#中断执行（中断程序完成）" class="headerlink" title="中断执行（中断程序完成）"></a>中断执行（中断程序完成）</h5><ul>
-<li>接着中断响应周期的操作<ol>
+<h5 id="中断执行中断程序完成">中断执行（中断程序完成）</h5>
+<ul>
+<li>接着中断响应周期的操作
+<ol type="1">
 <li><strong>保存现场和屏蔽字</strong></li>
 <li><strong>开中断</strong></li>
 <li><strong>执行中断服务程序</strong></li>
 <li><strong>关中断</strong></li>
 <li><strong>恢复现场和屏蔽字</strong></li>
 <li><strong>开中断、中断返回</strong></li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<h4 id="多重中断和中断屏蔽"><a href="#多重中断和中断屏蔽" class="headerlink" title="多重中断和中断屏蔽"></a>多重中断和中断屏蔽</h4><ul>
+<h4 id="多重中断和中断屏蔽">多重中断和中断屏蔽</h4>
+<ul>
 <li>多重中断：中断内可以嵌套中断</li>
 <li>中断屏蔽（见后解题技巧及重要结论中的总结）</li>
 </ul>
-<h3 id="DMA-方式"><a href="#DMA-方式" class="headerlink" title="DMA 方式"></a>DMA 方式</h3><h4 id="DMA-控制器的组成"><a href="#DMA-控制器的组成" class="headerlink" title="DMA 控制器的组成"></a>DMA 控制器的组成</h4><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构"></p>
-<h4 id="DMA-的传送过程"><a href="#DMA-的传送过程" class="headerlink" title="DMA 的传送过程"></a>DMA 的传送过程</h4><p>DMA 传送过程主要分为三步</p>
-<ol>
-<li>预处理<ul>
+<h3 id="dma-方式">DMA 方式</h3>
+<h4 id="dma-控制器的组成">DMA 控制器的组成</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/10/15/DMA-Controller.png?raw=true" alt="I/O接口基本结构" /><figcaption>I/O接口基本结构</figcaption>
+</figure>
+<h4 id="dma-的传送过程">DMA 的传送过程</h4>
+<p>DMA 传送过程主要分为三步</p>
+<ol type="1">
+<li>预处理
+<ul>
 <li>准备内存区</li>
 <li>设置传送参数</li>
 <li>发送“启动 DMA ”命令，然后调度 CPU 执行其他进程</li>
-</ul>
-</li>
-<li>数据传送<ul>
+</ul></li>
+<li>数据传送
+<ul>
 <li>整个数据传送过程由 DMA 单独完成</li>
-</ul>
-</li>
-<li>后处理<ul>
+</ul></li>
+<li>后处理
+<ul>
 <li>数据传输完成后，DMA 发出“ DMA 结束”给 CPU，转入中断服务程序，做一些数据校验等后处理工作</li>
-</ul>
-</li>
+</ul></li>
 </ol>
-<h1 id="解题技巧及重要结论"><a href="#解题技巧及重要结论" class="headerlink" title="解题技巧及重要结论"></a>解题技巧及重要结论</h1><ul>
-<li><p>显示器中的相关计算公式补充</p>
+<h1 id="解题技巧及重要结论">解题技巧及重要结论</h1>
 <ul>
-<li>$n=log_2(m)$ ，其中，m 为颜色数，n 为刷新存储器中存储单元的字长</li>
-</ul>
-</li>
-<li><p>磁盘相关计算公式补充</p>
+<li>显示器中的相关计算公式补充
 <ul>
-<li>$数据传输率=转速(单位：*/s)\times 每个磁道的扇区数\times每个扇区上的数据量$</li>
-</ul>
-</li>
-<li><p>中断优先级和屏蔽字的相互确定</p>
+<li><span class="math inline">\(n=log_2(m)\)</span> ，其中，m 为颜色数，n 为刷新存储器中存储单元的字长</li>
+</ul></li>
+<li>磁盘相关计算公式补充
+<ul>
+<li><span class="math inline">\(数据传输率=转速(单位：*/s)\times 每个磁道的扇区数\times每个扇区上的数据量\)</span></li>
+</ul></li>
+<li>中断优先级和屏蔽字的相互确定
 <ul>
 <li>依据优先级确定屏蔽字：依据优先级，某一级中断只能<strong>屏蔽自己及比自己低优先级</strong>的中断，故中断屏蔽字对应位数取 1 ，其他位取 0 。</li>
 <li>依据屏蔽字确定优先级：<strong>比</strong>屏蔽字的<strong>二进制数据大小</strong>，大的优先级高</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<h1 id="参考资料">参考资料</h1>
+<ol type="1">
 <li>计算机组成与系统结构.袁春风等</li>
 <li>2020年计算机组成原理考研复习指导.王道论坛</li>
 </ol>
@@ -650,13 +676,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -688,8 +714,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

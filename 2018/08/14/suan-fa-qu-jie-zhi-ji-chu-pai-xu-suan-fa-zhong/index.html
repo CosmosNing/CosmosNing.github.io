@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="从音乐软件分析你的个性说起">
@@ -32,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/14/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-14T10:20:38.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.724Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -155,7 +154,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -244,7 +243,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -257,7 +256,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,7 +347,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,7 +393,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/14/cover.jpg?raw=true" alt="cover"></p>
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/14/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p>说起音乐，很多人都喜欢。大多数人的手机中几乎都至少有一款音乐app，这些app除了给你提供音乐播放的功能，也在悄悄记录着你的一些个性化信息。比如：某首歌你听了多少次、听歌在什么时候等等。这些数据杂乱无章，似乎没有任何价值，但是其中却深藏着你的喜好厌恶。在当今手机用户增长缓慢（甚至增长停滞）的阶段，各大同类型的app面临着非常激烈的竞争。不抓住这些用户数据，可能就会在这场残酷的竞争中败下阵来。</p>
 <p>如何利用这些数据来留住留住用户，提升用户在产品上的粘性呢？很多app给出了如下的答卷：</p>
 <p>这种方案便是基于用户的行为数据构建用户的标签，依据各种标签的综合，提供个性化的服务。</p>
@@ -408,28 +409,21 @@
 <p>在剩下的歌曲中，找到次数最大的的歌曲，放在第二个位置；</p>
 <p>···（其他以此类推，直到整个序列有序）</p>
 <p>这种方法的流程可以这样概括：在待比较的序列中，找到最大的，依此放到有序序列的末尾。循环上述操作，直至整个序列有序。</p>
-<p>上述方法，我们可以很容易发现，需要两倍于数据容量大小的空间（一个用于存储原始的无序序列，另一个用于保存排序后的结果），这样做，对于空间的来说，是十分浪费的。可以将使用空间进行缩减吗？当然可以。我们可以将找到的最 $i$ 大的数据和序列中第 $i$ 个元素交换即可。</p>
+<p>上述方法，我们可以很容易发现，需要两倍于数据容量大小的空间（一个用于存储原始的无序序列，另一个用于保存排序后的结果），这样做，对于空间的来说，是十分浪费的。可以将使用空间进行缩减吗？当然可以。我们可以将找到的最 <span class="math inline">\(i\)</span> 大的数据和序列中第 <span class="math inline">\(i\)</span> 个元素交换即可。</p>
 <p>所以，改进后的流程可以这样概括：在剩余的待比较的数中选择一个最大的数与这个剩余序列的第1 个数交换位置。循环上述操作，直至整个序列有序。</p>
 <p>这样的“选择”“交换”的排序算法，我们称它为“选择排序”。</p>
 <p>由于这个算法流程比较简单，我们结合代码来观察一下它的排序过程：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_max</span><span class="params">(lst,start)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    find_max:</span></span><br><span class="line"><span class="string">     寻找列表从下标start开始的后续元素中最大值的下标</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待寻找的列表</span></span><br><span class="line"><span class="string">     start：开始搜索的下标</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     start下标后续元素最大值的下标</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    max_index = start</span><br><span class="line">    max_elem = lst[max_index]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start + <span class="number">1</span>, len(lst)):</span><br><span class="line">        <span class="keyword">if</span> lst[i] &gt; max_elem:</span><br><span class="line">            max_index = i</span><br><span class="line">            max_elem = lst[i]</span><br><span class="line">    <span class="keyword">return</span> max_index</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selection_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    选择排序：</span></span><br><span class="line"><span class="string">     将一个无序的列表变成一个从大到小的列表</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     排好序的列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst)):</span><br><span class="line">        max_index = find_max(lst,i)</span><br><span class="line">        lst[i], lst[max_index] = lst[max_index], lst[i]</span><br><span class="line">        print(<span class="string">"第&#123;&#125;次排序结果:"</span>.format(i+<span class="number">1</span>),lst)</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例子</span></span><br><span class="line"><span class="keyword">print</span> (selection_sort([<span class="number">84</span>, <span class="number">83</span>, <span class="number">88</span>, <span class="number">87</span>, <span class="number">67</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">第1次排序结果: [88, 83, 84, 87, 67]</span></span><br><span class="line"><span class="string">第2次排序结果: [88, 87, 84, 83, 67]</span></span><br><span class="line"><span class="string">第3次排序结果: [88, 87, 84, 83, 67]</span></span><br><span class="line"><span class="string">第4次排序结果: [88, 87, 84, 83, 67]</span></span><br><span class="line"><span class="string">第5次排序结果: [88, 87, 84, 83, 67]</span></span><br><span class="line"><span class="string">[88, 87, 84, 83, 67]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p>选择排序的排序流程在上述输出结果中已有体现，这里留给大家观察思考，我不过多分析。</p>
 <p>在实际实现选择排序这个算法时，我没有像传统的方式一样，将“选择”和“交换”写在一个函数里面；而是将“选择”和“交换”分开，先实现“选择”（即上面代码中的 find_max函数），在排序算法中调用，然后实现交换，并循环完成排序。这样做（称作“函数嵌套”），有优有劣。一方面，可以使算法的主要函数（如本例的selection_sort）的逻辑比较清晰，容易理解（这就像你写程序时，main函数写的非常简洁，只是调用了相关函数一样）；同时，子问题模块化（如本例的find_max），方便别的地方调用。另一方面，当代码量比较庞大时，可能会存在多层函数嵌套，这对于理解完整的实现细节流程无疑增加了难度。希望大家在这一方面，自己做好权衡。</p>
-<p>这个算法的性能如何呢？其效率不是很高，时间复杂度为 $O ( N^{2} )$ 。具体的推算流程留给大家思考。</p>
+<p>这个算法的性能如何呢？其效率不是很高，时间复杂度为 <span class="math inline">\(O ( N^{2} )\)</span> 。具体的推算流程留给大家思考。</p>
 <p>好了，在文章的最后，照例进行今天的总结：</p>
-<ol>
-<li><p><strong>排序操作其实是一种朴素的数据信息分析的手段：将无序的数据转换成有序的序列，也许就会发现潜在于数据中的价值。</strong></p>
-</li>
+<ol type="1">
+<li><p><strong>排序操作其实是一种朴素的数据信息分析的手段：将无序的数据转换成有序的序列，也许就会发现潜在于数据中的价值。</strong></p></li>
 <li><p><strong>选择排序算法的核心思想：在剩余的待比较的数中选择一个最大的数与这个剩余序列的第1个数交换位置。循环上述操作，直至整个序列有序（降序情况）。</strong></p>
-<p><strong>P.S.升序情况也可类似实现</strong></p>
-</li>
-<li><p>*<em>选择排序的时间复杂度为 $O ( N^{2} )$ *</em></p>
-</li>
-<li><p><strong>函数嵌套作为一种实现手段，有优有劣，需要大家做好权衡</strong></p>
-</li>
+<p><strong>P.S.升序情况也可类似实现</strong></p></li>
+<li><p><strong>选择排序的时间复杂度为 <span class="math inline">\(O ( N^{2} )\)</span> </strong></p></li>
+<li><p><strong>函数嵌套作为一种实现手段，有优有劣，需要大家做好权衡</strong></p></li>
 </ol>
 
     </div>
@@ -564,13 +558,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -602,8 +596,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>

@@ -16,11 +16,10 @@
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 
   <meta name="description" content="那些让你刷得停不下来的内容平台是怎样做个性化推荐的？">
@@ -32,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/11/03/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-11-03T06:25:21.000Z">
-<meta property="article:modified_time" content="2020-09-13T11:58:25.720Z">
+<meta property="article:modified_time" content="2020-09-17T13:21:27.424Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
@@ -155,7 +154,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">58</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -165,7 +164,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">64</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">65</span></a>
 
   </li>
         <li class="menu-item menu-item-neo4j">
@@ -229,7 +228,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个交互实例"><span class="nav-number">2.</span> <span class="nav-text">一个交互实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征提取"><span class="nav-number">3.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似推荐"><span class="nav-number">4.</span> <span class="nav-text">相似推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K近邻（K-nearest-neighbors，KNN）算法"><span class="nav-number">5.</span> <span class="nav-text">K近邻（K-nearest neighbors，KNN）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">5.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似度定义"><span class="nav-number">5.2.</span> <span class="nav-text">相似度定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">5.3.</span> <span class="nav-text">算法实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个交互实例"><span class="nav-number">2.</span> <span class="nav-text">一个交互实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征提取"><span class="nav-number">3.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相似推荐"><span class="nav-number">4.</span> <span class="nav-text">相似推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k近邻k-nearest-neighborsknn算法"><span class="nav-number">5.</span> <span class="nav-text">K近邻（K-nearest neighbors，KNN）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法描述"><span class="nav-number">5.1.</span> <span class="nav-text">算法描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相似度定义"><span class="nav-number">5.2.</span> <span class="nav-text">相似度定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">5.3.</span> <span class="nav-text">算法实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -245,7 +244,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -258,7 +257,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -349,7 +348,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-09-13 19:58:25" itemprop="dateModified" datetime="2020-09-13T19:58:25+08:00">2020-09-13</time>
+        <time title="修改时间：2020-09-17 21:21:27" itemprop="dateModified" datetime="2020-09-17T21:21:27+08:00">2020-09-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -376,7 +375,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.1k</span>
+      <span>4.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -395,55 +394,68 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p><img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/11/03/cover.jpg?raw=true" alt="cover"></p>
+        <h2 id="引入">引入</h2>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/11/03/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+</figure>
 <p>每天，互联网上都会产生大量的内容信息，如何做好这些信息内容的分类、整理与分发是每一个内容平台需要不断思考的问题。内容平台除了鼓励内容创作者产出更优质的内容，更需要通过某种方式持续不断地抓住内容消费者的注意力，从而让内容创作者、内容消费者和平台形成一个有机的生态结构。那么，该怎样持续不断地吸引内容消费者的眼球呢？这几年来各种内容平台最佳内容分发实践，便是做好用户的个性化推荐。</p>
 <p>那么，这些个性化推荐到底是怎么做的呢？我们先来看一个具体的交互实例。</p>
-<h2 id="一个交互实例"><a href="#一个交互实例" class="headerlink" title="一个交互实例"></a>一个交互实例</h2><p>如果你在一个相关内容平台刚刚注册为新用户后，平台可能会让你选择一些感兴趣的领域，并自动为你关注相关领域的优质创作者。这些内容成为平台对你个性的第一次试探。</p>
+<h2 id="一个交互实例">一个交互实例</h2>
+<p>如果你在一个相关内容平台刚刚注册为新用户后，平台可能会让你选择一些感兴趣的领域，并自动为你关注相关领域的优质创作者。这些内容成为平台对你个性的第一次试探。</p>
 <p>在此之后，平台会继续基于你的浏览、点赞及评论等记录，逐渐修正对你个性的认识。随着你与平台互动的次数越来越多，平台就可以做到非常精准的推荐，并且这些内容持续不断，让你“刷得停不下来”。</p>
 <p>源源不断的内容资讯流，加上个性化推荐，极大地提高了用户对各个内容平台的粘性，并间接地为内容平台创造了商业价值。那么，这里的个性化推荐到底该怎么做，才能达到这种效果呢？</p>
 <p>我觉得，一个较好的个性推荐系统要做好以下两点：</p>
-<ol>
+<ol type="1">
 <li>内容创作者、内容、内容消费者三者的<strong>特征提取</strong>。</li>
 <li>基于上述特征的<strong>相似推荐</strong>。</li>
 </ol>
-<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><p>特征提取，简单来说，就是从某一事物中找到一组能够较为完整的描述其特征的属性组。这些特征，简单一点，可以由你与平台之间的互动数据来量化。这些数据包括但不限于你对某一方面的内容的浏览量、点赞次数、评论次数。</p>
+<h2 id="特征提取">特征提取</h2>
+<p>特征提取，简单来说，就是从某一事物中找到一组能够较为完整的描述其特征的属性组。这些特征，简单一点，可以由你与平台之间的互动数据来量化。这些数据包括但不限于你对某一方面的内容的浏览量、点赞次数、评论次数。</p>
 <p>此外，还需要给这些属性组贴上符合其特质的标签。除了平台手动或者自动地给其中的内容和用户贴上标签，平台也鼓励用户自己给自己贴上标签。上面的例子中，平台在让你选择感兴趣的方面时，其实就是初步地给你打上略带个性但又普适的标签。</p>
-<h2 id="相似推荐"><a href="#相似推荐" class="headerlink" title="相似推荐"></a>相似推荐</h2><p>那么，有了这些属性组和其对应的标签后，怎么去利用它们呢？可以定义属性组之间的相似度，给一组新的完全未知的属性组贴上可能的标签，再依据标签做推荐。</p>
+<h2 id="相似推荐">相似推荐</h2>
+<p>那么，有了这些属性组和其对应的标签后，怎么去利用它们呢？可以定义属性组之间的相似度，给一组新的完全未知的属性组贴上可能的标签，再依据标签做推荐。</p>
 <p>那么，依据打上的标签，如何做推荐呢？</p>
 <p>如果一个<strong>内容</strong>和某一<strong>内容消费者</strong>的标签相似度十分高，那么就可以把该内容推荐给他；如果一个<strong>内容创作者</strong>和<strong>内容消费者</strong>的标签相似度十分高，那么就可以把这个内容创作者推荐给该内容消费者关注；如果一个<strong>内容消费者</strong>（假设为 <em>小明</em> ）和另一个<strong>内容消费者</strong>（假设为 <em>小刚</em> ）的标签相似度十分高，那么 <em>小明</em> 点赞过、喜欢过的内容、内容创作者可以推荐给 <em>小刚</em> ，同样的，基于 <em>小刚</em> 和平台、内容、内容作者的互动数据也可以给 <em>小明</em> 做推荐。</p>
 <p>上面提到，对于特征提取，我们可以利用一些较为简单的方法得到大量的属性组和对应的标签数据。这块内容我暂时不做过深的讨论。</p>
 <p>而相似推荐则需要一些算法支撑。仔细思考相似推荐这个流程，其实这个过程就是基于属性组之间的相似度，将一些事物分到不同的类别当中，再根据类别做推荐。这里的<strong>分类</strong>，是<strong>机器学习</strong>中一个典型的任务。分类任务中有很多算法，其中一种较为简单的算法便是下面要介绍的 <strong>K 近邻算法</strong> 。</p>
-<h2 id="K近邻（K-nearest-neighbors，KNN）算法"><a href="#K近邻（K-nearest-neighbors，KNN）算法" class="headerlink" title="K近邻（K-nearest neighbors，KNN）算法"></a>K近邻（<em>K-nearest neighbors</em>，<em>KNN</em>）算法</h2><h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>K 近邻的算法思想很简单。对于一个含有若干属性组的未知的事物，通过计算它和其他所有已贴上标签的属性组之间的相似度，然后找到相似度最大的 <em>k</em> 个，从中找到次数出现最多的标签，作为未知的事物的类别。</p>
-<p>对应的，K 近邻的算法伪码描述如下<a href="https://www.researchgate.net/figure/260397165_Pseudocode-for-KNN-classification" target="_blank" rel="noopener">^1</a>：</p>
+<h2 id="k近邻k-nearest-neighborsknn算法">K近邻（<em>K-nearest neighbors</em>，<em>KNN</em>）算法</h2>
+<h3 id="算法描述">算法描述</h3>
+<p>K 近邻的算法思想很简单。对于一个含有若干属性组的未知的事物，通过计算它和其他所有已贴上标签的属性组之间的相似度，然后找到相似度最大的 <em>k</em> 个，从中找到次数出现最多的标签，作为未知的事物的类别。</p>
+<p>对应的，K 近邻的算法伪码描述如下<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;P.S.我修改了其中一部分</span><br><span class="line"></span><br><span class="line">kNearest Neighbor</span><br><span class="line">Classify ( X, Y, x ) &#x2F;&#x2F; X: training data, Y: class labels of X, x unknown sample</span><br><span class="line"></span><br><span class="line">    for 𝑖 &#x3D; 1 to m do</span><br><span class="line">        Compute similarity s( Xi, x )</span><br><span class="line">    end for</span><br><span class="line"></span><br><span class="line">    Compute set I containing indices for the k largest similarities s( Xi, x ).</span><br><span class="line"></span><br><span class="line">    return majority label for &#123; Yi where i ∈ I &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="相似度定义"><a href="#相似度定义" class="headerlink" title="相似度定义"></a>相似度定义</h3><p>由上面的伪码描述可知，这个算法的关键便是对两个属性组之间的相似度的定义。</p>
+<h3 id="相似度定义">相似度定义</h3>
+<p>由上面的伪码描述可知，这个算法的关键便是对两个属性组之间的相似度的定义。</p>
 <p>两个属性组可以被量化为两个向量。对于向量之间的相似度，可以用他们之间的距离来表示。</p>
 <p>较为常见的计算向量之间的距离公式有以下两种：</p>
-<ol>
+<ol type="1">
 <li>欧氏距离</li>
 <li>余弦距离</li>
 </ol>
-<p>欧氏距离利用类似勾股定理公式计算两个向量之间的距离。例如，有两个向量$\vec{a}=(x_1,x_2,\cdots,x_n) ,\vec{b}=(y_1,y_2,\cdots,y_n)$，他们之间的欧氏距离定义为</p>
-<p>$$<br>distance_{Euclidean} = \sqrt{\overset{n}{\underset{i=1}{\sum}}{(x_{i} - y_{i})^{2}}}<br>$$</p>
+<p>欧氏距离利用类似勾股定理公式计算两个向量之间的距离。例如，有两个向量<span class="math inline">\(\vec{a}=(x_1,x_2,\cdots,x_n) ,\vec{b}=(y_1,y_2,\cdots,y_n)\)</span>，他们之间的欧氏距离定义为</p>
+<p><span class="math display">\[
+distance_{Euclidean} = \sqrt{\overset{n}{\underset{i=1}{\sum}}{(x_{i} - y_{i})^{2}}}
+\]</span></p>
 <p>两个向量之间的欧氏距离越大，两个向量之间的相似度越低；反之越高。</p>
 <p>余弦距离就是计算两个向量之间夹角的余弦值，套用上述用于计算欧氏距离的两个向量，可以定义他们之间的余弦距离如下：</p>
-<p>$$<br>distance_{Cosine} = \frac{\overset{n}{\underset{i=1}{\sum}}x_{i}y_{i}}{\sqrt{\overset{n}{\underset{i=1}{\sum}}{x_{i}^{2}}}\cdot\sqrt{\overset{n}{\underset{i=1}{\sum}}{y_{i}^{2}}}}<br>$$<br>我们知道，当余弦值等于 1 时，两个向量之间的夹角为 0 °，这表示它们之间的相似度最高；当余弦值等于 0 时，两个向量之间的夹角为 90 °，这表示它们之间没什么相关性；如果余弦值等于 -1 ，此时两个向量的方向完全相反，这表示他们的相似度最低。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><p>基于上面的伪码和相似度定义公式，可以很容易给出如下的 <em>Python</em> 实现：</p>
+<p><span class="math display">\[
+distance_{Cosine} = \frac{\overset{n}{\underset{i=1}{\sum}}x_{i}y_{i}}{\sqrt{\overset{n}{\underset{i=1}{\sum}}{x_{i}^{2}}}\cdot\sqrt{\overset{n}{\underset{i=1}{\sum}}{y_{i}^{2}}}}
+\]</span> 我们知道，当余弦值等于 1 时，两个向量之间的夹角为 0 °，这表示它们之间的相似度最高；当余弦值等于 0 时，两个向量之间的夹角为 90 °，这表示它们之间没什么相关性；如果余弦值等于 -1 ，此时两个向量的方向完全相反，这表示他们的相似度最低。</p>
+<h3 id="算法实现">算法实现</h3>
+<p>基于上面的伪码和相似度定义公式，可以很容易给出如下的 <em>Python</em> 实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance_euclidean</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个向量之间的欧氏距离</span></span><br><span class="line"><span class="string">    :param a: 向量1</span></span><br><span class="line"><span class="string">    :param b: 向量2</span></span><br><span class="line"><span class="string">    :return:  两个向量之间的欧氏距离</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">assert</span> len(a) == len(b)</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(sum([math.pow((x - y), <span class="number">2</span>) <span class="keyword">for</span> [x, y] <span class="keyword">in</span> list(zip(a, b))]))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance_cosine</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个向量之间的余弦距离</span></span><br><span class="line"><span class="string">    :param a: 向量1</span></span><br><span class="line"><span class="string">    :param b: 向量2</span></span><br><span class="line"><span class="string">    :return: 两个向量之间的余弦距离</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">assert</span> len(a) == len(a)</span><br><span class="line">    <span class="keyword">return</span> (sum([x * y <span class="keyword">for</span> [x, y] <span class="keyword">in</span> list(zip(a, b))])) / (</span><br><span class="line">        (math.sqrt(sum([x * x <span class="keyword">for</span> x <span class="keyword">in</span> a]))) * (math.sqrt(sum([y * y <span class="keyword">for</span> y <span class="keyword">in</span> b]))))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knn_classifier</span><span class="params">(X, Y, x, k, distance)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    利用K近邻算法给未知类别的属性组x分类</span></span><br><span class="line"><span class="string">    :param X: 已知类别属性组</span></span><br><span class="line"><span class="string">    :param Y: X所对应的标签</span></span><br><span class="line"><span class="string">    :param x: 未知类别属性组</span></span><br><span class="line"><span class="string">    :param k: 超参数k</span></span><br><span class="line"><span class="string">    :param distance: 距离定义函数</span></span><br><span class="line"><span class="string">    :return: x 可能所处的类别</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s = &#123;&#125;   <span class="comment"># 存储相似度（或者距离）</span></span><br><span class="line">    m = len(X)  <span class="comment"># 已知数据组数</span></span><br><span class="line">    reverse = <span class="literal">False</span> <span class="comment"># 存储决定距离集合是升序还是降序。默认为False（升序）</span></span><br><span class="line">    <span class="keyword">if</span> distance <span class="keyword">is</span> distance_cosine: <span class="comment"># 如果距离计算函数是余弦距离，那么要降序排列，置 reverse 为 True</span></span><br><span class="line">        reverse = <span class="literal">True</span></span><br><span class="line">    <span class="comment"># 计算距离</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">        s[i] = distance(X[i], x)</span><br><span class="line">    <span class="comment"># 排序（升序还是降序由距离函数所决定）</span></span><br><span class="line">    res_lst = sorted(s.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=reverse)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在 k 个相似度最大的邻居中给各个标签出现的次数计数</span></span><br><span class="line">    k_neighbors = &#123;&#125;</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i, _ <span class="keyword">in</span> res_lst:</span><br><span class="line">        <span class="keyword">if</span> Y[i] <span class="keyword">in</span> k_neighbors.keys():</span><br><span class="line">            k_neighbors[Y[i]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            k_neighbors[Y[i]] = <span class="number">1</span></span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> count == k:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 给上述计数的标签排序（降序）</span></span><br><span class="line">    label_count_lst = sorted(k_neighbors.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回结果</span></span><br><span class="line">    <span class="keyword">return</span> label_count_lst[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    group = [[<span class="number">0.1</span>, <span class="number">0</span>], [<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">1.1</span>, <span class="number">1.9</span>], [<span class="number">0.3</span>, <span class="number">0.1</span>]]</span><br><span class="line">    labels = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>, <span class="string">'B'</span>, <span class="string">'A'</span>]</span><br><span class="line">    unknown = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">    print(knn_classifier(group, labels, unknown, <span class="number">5</span>, distance_euclidean))</span><br><span class="line">    <span class="comment"># print(knn_classifier(group,labels,x,5,distance_cosine))</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>今天我和你一起了解到个性化推荐的一般套路，并由此引出<strong>机器学习</strong>中的<strong>分类</strong>任务里一个非常简单的算法——<strong>K近邻算法</strong>。最后，我将本文的要点总结如下：</p>
-<ol>
+<h2 id="总结">总结</h2>
+<p>今天我和你一起了解到个性化推荐的一般套路，并由此引出<strong>机器学习</strong>中的<strong>分类</strong>任务里一个非常简单的算法——<strong>K近邻算法</strong>。最后，我将本文的要点总结如下：</p>
+<ol type="1">
 <li><strong>一个较好的个性推荐系统应该处理好两个关键问题：一是特征提取、二是相似推荐</strong></li>
 <li><strong>做特征提取，一方面深入挖掘用户的行为数据，获取用户特征；另一方面鼓励用户给自己贴上标签，获取与特征对应的标签信息。这样就获得大量的（特征属性组，标签）数据积累，为下一步更精准的推荐打下基础</strong></li>
 <li><strong>在积累了大量的用户行为数据后和一些符合用户个性的标签后，可以利用K近邻算法给新的用户分类别，做类别的相似推荐</strong></li>
 </ol>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>https://www.researchgate.net/figure/260397165_Pseudocode-for-KNN-classification<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
 
     </div>
 
@@ -577,13 +589,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">273k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:58</span>
+    <span title="站点阅读时长">4:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -615,8 +627,6 @@
 
   
   <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
