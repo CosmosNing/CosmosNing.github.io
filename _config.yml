@@ -393,7 +393,7 @@ theme_config:
 
   # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
   # For more information: https://fancyapps.com/fancybox
-  fancybox: true
+  fancybox: false
 
   # Vanilla JavaScript plugin for lazyloading images.
   # For more information: https://github.com/ApoorvSaxena/lozad.js
