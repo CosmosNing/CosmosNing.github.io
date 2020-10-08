@@ -340,8 +340,8 @@ L_{(\mathcal{D},f)}(h_S) \le \epsilon
         <category>从理论到算法理解机器学习</category>
       </categories>
       <tags>
-        <tag>statistical learning framework</tag>
-        <tag>empirical risk minimization</tag>
+        <tag>Statistical learning framework</tag>
+        <tag>Empirical risk minimization</tag>
       </tags>
   </entry>
   <entry>
@@ -434,12 +434,12 @@ L_{(\mathcal{D},f)}(h_S) \le \epsilon
         <category>从理论到算法理解机器学习</category>
       </categories>
       <tags>
-        <tag>learning</tag>
-        <tag>generalization</tag>
-        <tag>inductive reasoning</tag>
-        <tag>inductive inference</tag>
-        <tag>prior knowledge</tag>
-        <tag>inductive bias</tag>
+        <tag>Learning</tag>
+        <tag>Generalization</tag>
+        <tag>Inductive reasoning</tag>
+        <tag>Inductive inference</tag>
+        <tag>Prior knowledge</tag>
+        <tag>Inductive bias</tag>
         <tag>No-Free-Lunch Theorem</tag>
       </tags>
   </entry>
