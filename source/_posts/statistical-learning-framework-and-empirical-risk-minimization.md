@@ -5,8 +5,8 @@ mathjax: true
 date: 2020-09-16 09:02:33
 description: 机器学习中有一个形式化的模型——统计学习框架，它是如何定义的？经验风险最小化（ERM）是一个十分基础的学习范式，它的学习目标是什么？为什么它是有效的？
 tags:
-- statistical learning framework
-- empirical risk minimization
+- Statistical learning framework
+- Empirical risk minimization
 categories:
 - 从理论到算法理解机器学习
 ---

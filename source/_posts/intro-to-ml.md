@@ -5,12 +5,12 @@ mathjax: true
 date: 2020-09-13 14:51:46
 description: 学习是什么？什么情况下我们需要机器学习？学习分为哪几种？机器学习和其他领域有什么样的关系？
 tags:
-- learning
-- generalization
-- inductive reasoning
-- inductive inference
-- prior knowledge
-- inductive bias
+- Learning
+- Generalization
+- Inductive reasoning
+- Inductive inference
+- Prior knowledge
+- Inductive bias
 - No-Free-Lunch Theorem
 categories:
 - 从理论到算法理解机器学习
