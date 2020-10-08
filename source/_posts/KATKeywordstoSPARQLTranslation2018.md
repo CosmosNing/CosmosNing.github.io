@@ -202,9 +202,9 @@ $rel(k_1, k_2)$ **的简要分析**
 - [ ] B 树是什么，怎么创建？
 - [ ] 怎样构建 Summary Graph ？？算法流程？？
 - [ ] top graph -> SPARQL Query ？？ 具体怎么处理？
-- [ ] 理解 backward search algorithm ：阅读更多文献 [1]， [2]， [3]
+- [ ] 理解 backward search algorithm ：阅读更多文献 [1] [^1]， [2] [^2]， [3] [^3]
 - [ ] 怎么理解文中提出了三种上下文信息规则？
 
-[1]: He, H., Wang, H., Yang, J., Yu, P.S.: BLINKS: ranked keyword searches on graphs. In: Proceedings of the 2007 ACM SIGMOD International Conference on Management of Data, pp. 305–316. ACM (2007)
-[2]: Le, W., Li, F., Kementsietsidis, A., Duan, S.: Scalable keyword search on large RDF data. IEEE Trans. Knowl. Data Eng. **26**(11), 2774–2788 (2014)
-[3]: Tran, T., Wang, H., Rudolph, S., Cimiano, P.: Top-k exploration of query candidates for efficient keyword search on graph-shaped (RDF) data. In: 2009 IEEE 25th International Conference on Data Engineering, ICDE 2009, pp. 405–416. IEEE (2009)
+[^1]:He, H., Wang, H., Yang, J., Yu, P.S.: BLINKS: ranked keyword searches on graphs. In: Proceedings of the 2007 ACM SIGMOD International Conference on Management of Data, pp. 305–316. ACM (2007)
+[^2]:Le, W., Li, F., Kementsietsidis, A., Duan, S.: Scalable keyword search on large RDF data. IEEE Trans. Knowl. Data Eng. 26(11), 2774–2788 (2014)
+[^3]:Tran, T., Wang, H., Rudolph, S., Cimiano, P.: Top-k exploration of query candidates for efficient keyword search on graph-shaped (RDF) data. In: 2009 IEEE 25th International Conference on Data Engineering, ICDE 2009, pp. 405–416. IEEE (2009)
