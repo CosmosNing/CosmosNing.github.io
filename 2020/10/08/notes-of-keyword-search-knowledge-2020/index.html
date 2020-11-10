@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="这篇文章提出了一个实用的近似算法，能够在较短的时间内获得较好的结果。该算法基于 Hub Labeling（HL），一个用来计算距离和最短路径的数据结构，这个数据结构为图中的每一个点标明了能从这个点到达的点的集合。具体的，设计了两类 HL：一个是传统静态的 HL，它采用了一种全新的启发式方法来提高 pruned landmark labeling 的效率；另一个是新颖动态的 HL，它倒排并聚集查询相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记">
+<meta property="og:url" content="https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="这篇文章提出了一个实用的近似算法，能够在较短的时间内获得较好的结果。该算法基于 Hub Labeling（HL），一个用来计算距离和最短路径的数据结构，这个数据结构为图中的每一个点标明了能从这个点到达的点的集合。具体的，设计了两类 HL：一个是传统静态的 HL，它采用了一种全新的启发式方法来提高 pruned landmark labeling 的效率；另一个是新颖动态的 HL，它倒排并聚集查询相">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo1.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo2.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo3.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/matrix-M.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/Algo4.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG">
+<meta property="article:published_time" content="2020-10-08T01:35:02.000Z">
+<meta property="article:modified_time" content="2020-11-10T13:10:12.844Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="Knowledge graph">
+<meta property="article:tag" content="Keyword search">
+<meta property="article:tag" content="Group Steiner tree">
+<meta property="article:tag" content="Hub labeling">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo1.PNG">
+
+
+<link rel="canonical" href="https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记 | CosmosNing的个人博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9fd1f40248f9db466678920736a9fa3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">67</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
+
+  </li>
+        <li class="menu-item menu-item-neo4j">
+
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#highlights"><span class="nav-number">1.</span> <span class="nav-text">Highlights</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what"><span class="nav-number">2.</span> <span class="nav-text">What？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem"><span class="nav-number">2.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contributions"><span class="nav-number">2.2.</span> <span class="nav-text">Contributions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why"><span class="nav-number">3.</span> <span class="nav-text">Why？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how"><span class="nav-number">4.</span> <span class="nav-text">How？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem-formulation"><span class="nav-number">4.1.</span> <span class="nav-text">Problem Formulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#overview-of-two-algorithm"><span class="nav-number">4.2.</span> <span class="nav-text">Overview of Two Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keykg-with-static-hl"><span class="nav-number">4.3.</span> <span class="nav-text">KeyKG With Static HL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-keykg"><span class="nav-number">4.3.1.</span> <span class="nav-text">Algorithm KeyKG</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#algorithm-explained"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">Algorithm Explained</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#running-example"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">Running Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static-hl"><span class="nav-number">4.3.2.</span> <span class="nav-text">Static HL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#why-we-need-hub-labeling"><span class="nav-number">4.3.2.1.</span> <span class="nav-text">Why we need Hub Labeling？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#basic-concept"><span class="nav-number">4.3.2.2.</span> <span class="nav-text">Basic Concept</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#supporting-for-computing-getd-but-not-getsp"><span class="nav-number">4.3.2.3.</span> <span class="nav-text">Supporting For Computing getD but not getSP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#improvement-in-construction"><span class="nav-number">4.3.2.4.</span> <span class="nav-text">Improvement in Construction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#extension-of-index-structure"><span class="nav-number">4.3.2.5.</span> <span class="nav-text">Extension of Index Structure</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#keykg-with-dynamic-hl"><span class="nav-number">4.4.</span> <span class="nav-text">KeyKG+ With Dynamic HL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dynamic-hl"><span class="nav-number">4.4.1.</span> <span class="nav-text">Dynamic HL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#features"><span class="nav-number">4.4.1.1.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#definition-and-structure"><span class="nav-number">4.4.1.2.</span> <span class="nav-text">Definition and structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example"><span class="nav-number">4.4.1.3.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#algorithm-keykg-1"><span class="nav-number">4.4.2.</span> <span class="nav-text">Algorithm KeyKG+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#algorithm-explained-1"><span class="nav-number">4.4.2.1.</span> <span class="nav-text">Algorithm Explained</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#running-example-1"><span class="nav-number">4.4.2.2.</span> <span class="nav-text">Running Example</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how-much"><span class="nav-number">5.</span> <span class="nav-text">How much？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-then"><span class="nav-number">6.</span> <span class="nav-text">What Then？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#problems-to-solve"><span class="nav-number">7.</span> <span class="nav-text">Problems to Solve</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-08 09:35:02" itemprop="dateCreated datePublished" datetime="2020-10-08T09:35:02+08:00">2020-10-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-10 21:10:12" itemprop="dateModified" datetime="2020-11-10T21:10:12+08:00">2020-11-10</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A0%94%E7%A9%B6/" itemprop="url" rel="index"><span itemprop="name">研究</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">这篇文章提出了一个实用的近似算法，能够在较短的时间内获得较好的结果。该算法基于 Hub Labeling（HL），一个用来计算距离和最短路径的数据结构，这个数据结构为图中的每一个点标明了能从这个点到达的点的集合。具体的，设计了两类 HL：一个是传统静态的 HL，它采用了一种全新的启发式方法来提高 pruned landmark labeling 的效率；另一个是新颖动态的 HL，它倒排并聚集查询相关的静态标签，使得在处理顶点集时更加高效。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="highlights">Highlights</h1>
+<h1 id="what">What？</h1>
+<h2 id="problem">Problem</h2>
+<p>一种常见的图数据上的关键词查询的方法是，将每一个关键词与图上的一个顶点匹配，并且从中抽取出包含这些匹配顶点的最小权重的树（这种树被称为 <em>minimum-weight Steiner trees</em>）。更规范地说，给定一个有权边的数据图和一个关键词查询，首先对于每一个关键词，在图中找到与之匹配的所有顶点，形成一个匹配集；然后，在图中找到一个扩展匹配集的树，该树对于每一个匹配集，至少包含其中的一个顶点，并且总边权重最小。这个优化问题叫做 <em>group Steiner tree (GST) problem</em> 。</p>
+<div class="note info"><p>数据图中的边也可以被关键词匹配。我们可以通过 <em>graph subdivision</em> 将边匹配转换为点匹配，之后使用点匹配的方式处理该匹配就行了。</p>
+</div>
+<h2 id="contributions">Contributions</h2>
+<ul>
+<li>设计了一个质量有保证的近似算法，能够在毫秒级内，从百万级大小的知识图谱中返回不错的结果。</li>
+<li>设计了动态、静态 HL，提高了总体的效率。</li>
+</ul>
+<h1 id="why">Why？</h1>
+<p>知识图谱越来越大，现存的算法太慢了。</p>
+<h1 id="how">How？</h1>
+<h2 id="problem-formulation">Problem Formulation</h2>
+<ul>
+<li><strong>知识图谱（<em>KG</em>）</strong>：规范的，知识图谱是一个简单的无向图 <span class="math inline">\(G=&lt;V,E&gt;\)</span> ，其中 <span class="math inline">\(V\)</span> 是包含 <span class="math inline">\(n\)</span> 个顶点的有限集合，用来指代实体（<em>entity</em>），而 <span class="math inline">\(E\subseteq V\times V\)</span> 是顶点无序对的有限集合，作为图的无向边，用来代表实体之间的关系（<em>relation</em>）。
+<ul>
+<li><strong>边权重</strong>：定义一个权重函数 <span class="math inline">\(\textrm{wt}:E\mapsto \mathbb{R}^{0+}\)</span> （<strong>小权重表示重要性大</strong>）。</li>
+</ul></li>
+<li><strong>图中术语</strong>
+<ul>
+<li><span class="math inline">\(\textrm{len}(p)\)</span> ：对于一条路径 <span class="math inline">\(p\)</span> ，它的<strong>长度</strong>是路径中所有边的权重之和。</li>
+<li><span class="math inline">\(\textrm{dist}(u,v)\)</span> ：在图 <span class="math inline">\(G\)</span> 中，连接 <span class="math inline">\(u\)</span> 、<span class="math inline">\(v\)</span> 的<strong>最短路径的长度</strong>。如果不存在，那么为 <span class="math inline">\(\infty\)</span> 。</li>
+</ul></li>
+<li><strong>关键词映射</strong>：定义一个获取函数 <span class="math inline">\(\textrm{hits}:\mathbb{K}\mapsto 2^V\)</span> ，它将关键词映射到顶点集 <span class="math inline">\(V\)</span> 的子集。</li>
+<li><strong>关键词查询</strong>：一个<strong>关键词查询</strong> <span class="math inline">\(Q\subseteq \mathbb{K}\)</span> 是一个关键词的有限集合。
+<ul>
+<li>给定一个含有 <span class="math inline">\(g\)</span> 个关键词的查询 <span class="math inline">\(Q=\{k_1,k_2,\dots,\ k_g\}\)</span> ，将 <span class="math inline">\(\textrm{hits}(k_i)\)</span> 简记为 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>），并称之为<strong>关键词顶点</strong>。</li>
+<li>给定一个图 <span class="math inline">\(G=&lt;V,E&gt;\)</span> ，在 <span class="math inline">\(G\)</span> 上关于 <span class="math inline">\(Q\)</span> 的结果是一个 <em>group Steiner tree (GST)</em> ，记作 <span class="math inline">\(T=&lt;V_T,E_T&gt;\)</span> ，满足以下条件
+<ul>
+<li><span class="math inline">\(V_T\subseteq V,E_T\subseteq E\)</span> ，并且 <span class="math inline">\(T\)</span> 是一棵树；</li>
+<li><span class="math inline">\(V_T\)</span> 包含来自每一个 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>）中的至少一个顶点，也就是 <span class="math inline">\(V_T\cap K_i =\emptyset\)</span> ；</li>
+<li>树的权重（定义为 <span class="math inline">\(\textrm{WT}(T)=\sum_{e\in E_T}\textrm{wt}(e)\)</span>）最小</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="overview-of-two-algorithm">Overview of Two Algorithm</h2>
+<p>第一个算法 <em>KeyKG</em> 为每一个关键词选取匹配的顶点，并且找到对应的树。对于 <span class="math inline">\(g\)</span> 个关键词，<em>KeyKG</em> 是一个 <span class="math inline">\((g-1)\)</span> - 近似算法，也就是说，一个 GST 的边权值的总和至多是最小权重的 <span class="math inline">\((g-1)\)</span> 倍。获得这样的近似效果要归功于匹配顶点集的选择和利用最短路径树的构造。为了更高效的在线计算距离和最短路径，该文章设计了一个 HL ，这个 HL 使用了一种全新的基于 <em>betweenness centrality</em> 的启发式方法改善了现存的 <em>pruned landmark labeling</em> 。传统的，这种 HL 是静态的，因为它是离线生成的，并且对查询是不变的。在巨大的知识图谱中， 使用静态 HL 的 <em>KeyKG</em> 算法至少比目前先进的算法快一个数量级，并且所得结果的质量也较高。</p>
+<p>第二个算法 <em>KeyKG+</em> 通过使用一种新颖的 HL 扩展了 <em>KeyKG</em> 算法。这里所提出的 HL 是动态的，因为它是在处理一个具体的查询时，通过倒排和聚集某些查询相关的静态标签，而动态生成的。它减少了 KeyKG 算法中的重复操作（这些重复操作是指使用传统静态 HL 计算顶点集的距离）。尽管在线生成会花费额外的时间，使用动态 HL 为总体效率带来了几个数量级的提高。</p>
+<h2 id="keykg-with-static-hl">KeyKG With Static HL</h2>
+<h3 id="algorithm-keykg">Algorithm KeyKG</h3>
+<h4 id="algorithm-explained">Algorithm Explained</h4>
+<p>如下图<strong>算法 1</strong> 所示，<em>KeyKG</em> 在知识图谱中找到一个 <em>GST</em> ，这个 <em>GST</em> 是由 <span class="math inline">\(g\)</span> 个关键词集合扩展而来。简而言之， <em>KeyKG</em> 首先贪婪地选择一组相互靠近的一组关键词顶点集合（记作 <span class="math inline">\(U_x\)</span>），这组关键词顶点集合包含了来自每一个 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>）中的一个顶点（<strong>Line 1 - 8</strong>）。然后，<em>KeyKG</em> 贪婪地找到一个由 <span class="math inline">\(U_x\)</span> 扩展而来的 <em>GST</em> （记作 <span class="math inline">\(T_{u_{min}}\)</span>），这个过程是通过迭代地扩展最短路径而得到的（<strong>Line 9 - 18</strong>）。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo1.PNG" alt="算法 1" /><figcaption>算法 1</figcaption>
+</figure>
+<p>具体的，对于每一个 <span class="math inline">\(v_1 \in K_1\)</span> （<strong>Line 1</strong>），<em>KeyKG</em> 从每一个 <span class="math inline">\(K_i\)</span> 找到一个顶点 <span class="math inline">\(v_i\)</span> ，它距离 <span class="math inline">\(v_1\)</span> 的距离最短（<strong>Line 2 - 4</strong>）。令 <span class="math inline">\(U_{v_1}\)</span> 为所有这样的顶点 <span class="math inline">\(v_i\)</span> （包括 <span class="math inline">\(v_1\)</span>）的的集合，并且令 <span class="math inline">\(W_{v_1}\)</span> 为它们到 <span class="math inline">\(v_1\)</span> 的距离之和（<strong>Line 5 - 6</strong>）。令 <span class="math inline">\(x\in K_1\)</span> 为 <span class="math inline">\(K_1\)</span> 中 <span class="math inline">\(W_{v_1}\)</span> 最小的顶点（<strong>Line 8</strong>）。</p>
+<div class="note info"><p><strong>扩展 <span class="math inline">\(U_x\)</span> 所得到的 GST 可能有较小的权重</strong></p>
+<ul>
+<li>因为 <span class="math inline">\(U_x\)</span> 包含了来自每一个 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>）中的一个顶点，并且这些顶点相对而言十分接近，所以扩展 <span class="math inline">\(U_x\)</span> 所得到的 GST 可能有较小的权重。</li>
+</ul>
+</div>
+<p><strong>算法 1</strong> 剩下的部分以每一个 <span class="math inline">\(u\in U_x\)</span> 构造一个 <em>GST</em> <span class="math inline">\(T_u\)</span> ，并且从这 <span class="math inline">\(|U_x|\)</span> 棵 <em>GST</em> 中找出权重最小的那一个。具体的，每一棵 <span class="math inline">\(T_u\)</span> 被初始化为只含有一个单一的顶点 <span class="math inline">\(u\)</span> （<strong>Line 9 - 10</strong>）。然后，不断迭代直至 <span class="math inline">\(T_u\)</span> 扩展了 <span class="math inline">\(U_x\)</span> 中的所有顶点（<strong>Line 11</strong>）：从 <span class="math inline">\(T_u\)</span> 中选取一个点 <span class="math inline">\(s_{\textrm{min}}\)</span> ，从 <span class="math inline">\(U_x-T_u\)</span> 中选一个点 <span class="math inline">\(t_{\textrm{min}}\)</span> ，它们之间的距离最短（<strong>Line 12</strong>）。接着，找到 <span class="math inline">\(s_{\textrm{min}}\)</span> 和 <span class="math inline">\(t_{\textrm{min}}\)</span> 之间的最短路径，并将路径上的顶点和边加入 <span class="math inline">\(T_u\)</span> （<strong>Line 13 -14</strong>）。令 <span class="math inline">\(u_{\textrm{min}}\in U_x\)</span> 表示一个顶点，满足它所对应的 <span class="math inline">\(T_u\)</span> 的权重最小（<strong>Line 17</strong>）。最终 <em>KeyKG</em> 将 <span class="math inline">\(T_{u_\textrm{min}}\)</span> 作为结果返回。</p>
+<div class="note default"><p><strong>算法 1 中的 <code>getD</code> 和 <code>getSP</code></strong></p>
+<ul>
+<li><code>getD</code> ：计算两个顶点之间的距离。</li>
+<li><code>getSP</code>：计算两个顶点之间的最短路径。</li>
+</ul>
+</div>
+<h4 id="running-example">Running Example</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<p>举个例子，如上图，给定一个查询 <span class="math inline">\(Q=\{k_1,k_2,k_3\}\)</span> ，则 <span class="math inline">\(K_1=\{B,F\},\;K_2=\{E\},\;K_3=\{C,D\}\)</span> 。</p>
+<ul>
+<li>对于 <span class="math inline">\(B\in K_1\)</span> ，<span class="math inline">\(E\)</span> 必选；由于 <span class="math inline">\(\textrm{dist}(B,C) = 1 &lt; 1.6 = \textrm{dist}(B,D)\)</span> ，所以选择 <span class="math inline">\(C\)</span> 。故 <span class="math inline">\(U_B = \{B,E,C\}\)</span> 。</li>
+<li>对于 <span class="math inline">\(B\in K_2\)</span> ，<span class="math inline">\(E\)</span> 必选；由于 <span class="math inline">\(\textrm{dist}(F,C) = 1.1 &lt; 1.7 = \textrm{dist}(F,D)\)</span> ，所以选择 <span class="math inline">\(C\)</span> 。故 <span class="math inline">\(U_B = \{F,E,C\}\)</span> 。</li>
+</ul>
+<p>下面计算各自的权重之和：</p>
+<ul>
+<li>对于 <span class="math inline">\(U_B\)</span> ，<span class="math inline">\(W_B=\textrm{dist}(B,E)+\textrm{dist}(B,C) = 0.8+1 = 1.8\)</span></li>
+<li>对于 <span class="math inline">\(U_F\)</span> ，<span class="math inline">\(W_B=\textrm{dist}(F,E)+\textrm{dist}(F,C) = 0.9+1.1 = 2\)</span></li>
+</ul>
+<p>由于 <span class="math inline">\(W_B &lt; W_F\)</span> ，故 <span class="math inline">\(x = B\)</span> 。</p>
+<p>接下来生成 <em>GST</em> ：</p>
+<ul>
+<li><span class="math inline">\(T_B\)</span>
+<ul>
+<li>初始化 <span class="math inline">\(T_B\)</span> 中仅有一个顶点 <span class="math inline">\(B\)</span></li>
+<li>令 <span class="math inline">\(s_{\textrm{min}} = B\)</span> ，则 <span class="math inline">\(t_{\textrm{min}} = E\)</span> ，因为 <span class="math inline">\(\textrm{dist}(B,E) &lt; \textrm{dist}(B,C)\)</span></li>
+<li>令 <span class="math inline">\(t_{\textrm{min}} = C\)</span> ，则 <span class="math inline">\(s_\textrm{min} = E\)</span> ，因为 <span class="math inline">\(dist(E,C) &lt; \textrm{dist}(B,C)\)</span></li>
+<li>再求出相关最短距离的路径，将路径上的顶点和边加入 <span class="math inline">\(T_B\)</span> ，即可得到图 <strong>KeyKG 执行的例子</strong> 中的 <span class="math inline">\(T_B\)</span></li>
+</ul></li>
+<li><span class="math inline">\(T_E\)</span> ：类似 <span class="math inline">\(T_B\)</span> 分析可得</li>
+<li><span class="math inline">\(T_C\)</span> ：类似 <span class="math inline">\(T_B\)</span> 分析可得</li>
+</ul>
+<h3 id="static-hl">Static HL</h3>
+<h4 id="why-we-need-hub-labeling">Why we need Hub Labeling？</h4>
+<p>由上述介绍可知，<em>KeyKG</em> 依赖于两个子函数 <code>getD</code> 和 <code>getSP</code> 。在巨大的知识图谱中，一种直观的在线的实现这些子函数的方法（例如 Dijkstra 算法）的执行时间太长了；另一方面，离线生成每对顶点之间的距离和最短路径的空间开销十分大。为了权衡时空开销，这篇文章使用了 Hub Labeling ，一种离线生成的索引结构。</p>
+<h4 id="basic-concept">Basic Concept</h4>
+<p>一个静态的 HL 是一个图上的离线生成的索引结构。规范的说，对于一个图 <span class="math inline">\(G=&lt;V,E&gt;\)</span> ，一个静态的 HL ，可以看作一个函数 <span class="math inline">\(L:V\mapsto 2^V\)</span> ，它将顶点映射到顶点的集合（称作 <em>hub</em>），并且满足下列条件：</p>
+<ul>
+<li><span class="math inline">\(\forall u,v\in V\)</span> ，并且 <span class="math inline">\(u，v\)</span> 在 <span class="math inline">\(G\)</span> 中是连通的，<span class="math inline">\(\exists h\in L(u)\cap L(v)\)</span> ，使得 <span class="math inline">\(h\)</span> 在 <span class="math inline">\(u,v\)</span> 之间的最短路径上</li>
+</ul>
+<div class="note info"><p>对于 <span class="math inline">\(\forall v\in V\)</span> ， <span class="math inline">\(L(v)\)</span> 称为顶点 <span class="math inline">\(v\)</span> 的<strong>标签</strong>。</p>
+</div>
+<h4 id="supporting-for-computing-getd-but-not-getsp">Supporting For Computing <code>getD</code> but not <code>getSP</code></h4>
+<p>在标准的索引结构中，每一个 <span class="math inline">\(L(v)\)</span> 是一个列表，其中包含按标识符排序的 hubs 。对于每一个 <span class="math inline">\(h\in L(v)\)</span> ，<span class="math inline">\(\textrm{dist}(v,h)\)</span> 也会预先计算出来并保存。这样我们就可以通过如下公式计算 <code>getD</code> ： <span class="math display">\[
+\textrm{getD}(u,v)=\begin{cases}
+\underset{h\in L(u)\cap L(v)}{min} \textrm{dist}(u,h) + \textrm{dist}(v,h) &amp; L(u)\cap L(v) \ne \emptyset\\
+\infty &amp; L(u)\cap L(v) = \emptyset\\
+\end{cases}
+\]</span> 其中，<span class="math inline">\(\textrm{dist}(u,h)\)</span> 和 <span class="math inline">\(\textrm{dist}(v,h)\)</span> 分别存储在 <span class="math inline">\(L(u)\)</span> 和 <span class="math inline">\(L(v)\)</span> 中。</p>
+<p>但是，无法计算 <code>getSP</code></p>
+<h4 id="improvement-in-construction">Improvement in Construction</h4>
+<p><strong>动机</strong></p>
+<p>从 <span class="math inline">\(\textrm{getD}(u,v)\)</span> 计算公式来看，当索引标签较小时，<code>getD</code> 的在线计算会更快。但是，最小化索引标签的平均大小是一个 NP-Hard 问题，并且具有对数不可近似性（<em>logarithmic inapproximability</em>）。给定一个图，有很多不同的启发式的方法能够构建合理的较小的索引标签。在其他的方法中，<em>pruned landmark labeling</em> (PLL) 是一个非常热门的实现方法，它利用了 Dijkstra 算法，并且能够高效的剪枝达到缩小索引标签大小的目的。</p>
+<p><strong>算法</strong></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo2.PNG" alt="Algorithm 2" /><figcaption>Algorithm 2</figcaption>
+</figure>
+<p>如<strong>算法 2</strong> 所示，标准的 PLL 基本流程是执行 Dijkstra 算法 <span class="math inline">\(n\)</span> 次，其中 <span class="math inline">\(n\)</span> 为顶点的个数（Line 3 - 24），并且在此过程中迭代地扩展顶点标签（Line 4，Line 12）。记 <span class="math inline">\(i\)</span> 次迭代后 <span class="math inline">\(v\)</span> 的标签为 <span class="math inline">\(L_i(v)\)</span> 。在第 <span class="math inline">\(i\)</span> 次迭代，Dijkstra 算法从一个不同的顶点 <span class="math inline">\(v_i\in V\)</span> 出发（Line 7），访问其他顶点并且计算它们与 <span class="math inline">\(v_i\)</span> 之间的距离，存储到 <span class="math inline">\(d\)</span> 中（Line 14 - 15），再将 <span class="math inline">\(v_i\)</span> 加入到它们的索引标签中。</p>
+<div class="note info"><p><strong>关于剪枝</strong></p>
+<ul>
+<li>由于一些顶点 <span class="math inline">\(u\)</span> 没有被访问到，所以它们的标签可以剪掉。</li>
+<li>当 <span class="math inline">\(u\)</span> 与 <span class="math inline">\(v_i\)</span> 的距离可由构造好的 <span class="math inline">\(L_{i-1}\)</span> 标签计算得到，也就是 Line 11 的条件为假，那么会发生剪枝。</li>
+</ul>
+</div>
+<p><strong>改进：Betweenness Centrality</strong></p>
+<p>我们的目标是能够做更多剪枝来提高整个系统的性能。具体的，我们想要迭代早期构造的索引标签能够支持计算更多对顶点之间的距离，这样在后期的迭代过程中，就可以更频繁地发生剪枝操作。直观地，这可以通过这种方式实现，即在 Dijkstra 算法迭代的早期，选择那些许多最短路径都经过的顶点作为起始顶点。为了实现这个想法，原始的 PLL 实现方式是利用一些启发式的方法，对这些起始顶点按照其度数降序排列，因为高度数的顶点更有可能出现在许多顶点对之间的最短路径上。与传统方法不同，我们基于 <em>betweenness centrality</em> 对它们降序排序。顶点 <span class="math inline">\(v\)</span> 的 <em>betweenness centrality</em> 定义如下： <span class="math display">\[
+\textrm{bc}(v)=\underset{s,\;t\in V\backslash\ \{v\}}{\sum}\frac{\sigma_{st}(v)}{\sigma_{st}}
+\]</span> 其中，<span class="math inline">\(\sigma_{st}\)</span> 表示顶点 <span class="math inline">\(s,\;t\)</span> 之间最短路径的个数，<span class="math inline">\(\sigma_{st}(v)\)</span> 表示上述路劲中经过顶点 <span class="math inline">\(v\)</span> 的。</p>
+<div class="note info"><p><strong>图上任意两个顶点之间的最短路径不止一条</strong>，因为可能存在<strong>最小权值相等但是路径不同</strong>的情况。</p>
+</div>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<div class="note default"><p>举个例子，如上图中的图。可以用 Floyd 算法计算出任意两顶点之间的最短距离和路径。之后依据这个信息和 <em>betweenness centrality</em> 的定义可得：</p>
+<ul>
+<li><span class="math inline">\(\textrm{bc}(A) = 7\)</span></li>
+<li><span class="math inline">\(\textrm{bc}(B)=4\)</span></li>
+<li><span class="math inline">\(\textrm{bc}(C)=\textrm{bc}(D)=\textrm{bc}(E)=\textrm{bc}(F)=0\)</span></li>
+</ul>
+<p>但是，论文中用了 [4] （<strong>TODO</strong>）中的近似算法来缩短计算时间。</p>
+</div>
+<p><strong>构造 Static HL 的例子</strong></p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<p>假设图的结构如上图所示。</p>
+<p>首先初始化 <span class="math inline">\(L_0(v)\)</span> ：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_0(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_0(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_0(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_0(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_0(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_0(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>接着按照 <em>betweenness centrality</em> 对顶点降序排序，顺序为 <strong>A, B, C, D, E, F</strong>；</p>
+<hr />
+<p>进入第一次循环：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(d[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>PQ 优先队列为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">A</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头（队尾）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>进入内层 while 循环，</p>
+<p>从 PQ 中弹出 <span class="math inline">\(A\)</span> 赋给 <span class="math inline">\(u\)</span> ，即 <span class="math inline">\(u=A\)</span> ；</p>
+<p>将 <span class="math inline">\(visit[u]\)</span> 置 1，则：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>利用 <span class="math inline">\(L_0\)</span> 计算 <span class="math inline">\(\textrm{getD}(v_1,u)\)</span> ，即计算 <span class="math inline">\(\textrm{getD}(A,A)\)</span> 。由于 <span class="math inline">\(L_0(A)=\emptyset\)</span> ，故 <span class="math inline">\(L_0(A)\cap L_0(A) = \emptyset\)</span>，所以 <span class="math inline">\(\textrm{getD}(A,A) = \infty\)</span> （利用 <span class="math inline">\(\textrm{getD}\)</span> 的公式可得）。</p>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[A] = 0 &lt; \textrm{getD}(v_1,u)\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>在接下来的对 <span class="math inline">\(u=A\)</span> 未被访问的邻居顶点执行操作。</p>
+<p>访问第一个邻居 <span class="math inline">\(B\)</span> 后，<span class="math inline">\(d\)</span> 变化如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(d[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>0.6</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>则有属于 <span class="math inline">\(L_1(B)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 0.6, \textrm{pred}= A)\)</span> ，同时 B 插入到 PQ 中。</p>
+<p>类似的，有</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(d[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;"><strong>0.4</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>0.3</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>属于 <span class="math inline">\(L_1(C)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></p>
+<p>属于 <span class="math inline">\(L_1(D)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 1, \textrm{pred}= A)\)</span></p>
+<p>属于 <span class="math inline">\(L_1(E)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></p>
+<p>在所有 A 的邻居访问完后，PQ 变为</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">E</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">队尾</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>然后，回到 <code>while</code> 循环。</p>
+<hr />
+<p>PQ 弹出 E，置 <span class="math inline">\(visit\)</span> 为 1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[E] = 0.3 &lt; \textrm{getD}(v_1,u) = \textrm{getD}(A,E) = \infty\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 33%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>E 未访问的邻居为 B，但由于 <span class="math inline">\(d[u]+\text{wt}((u,w)) = d[E] + \text{wt}((E,B)) = 0.3 + 0.8 = 1.1 &gt; d[B] = 0.6\)</span>，所以不更新；又由于 B 在 PQ 中，所以不加入 PQ。</p>
+<p>此时 PQ 为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">队尾</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>PQ 弹出 C，置 <span class="math inline">\(visit\)</span> 为 1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[C] = 0.4 &lt; \textrm{getD}(v_1,u) = \textrm{getD}(A,C) = \infty\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 7%" />
+<col style="width: 26%" />
+<col style="width: 7%" />
+<col style="width: 26%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>C 未访问的邻居为 F，但由于 <span class="math inline">\(d[u]+\text{wt}((u,w)) = d[C] + \text{wt}((C,F)) = 0.4 + 2 = 2.4 &lt; d[F] = \infty\)</span>，所以，更新 <span class="math inline">\(d[F]\)</span> ：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(d[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;"><strong>2.4</strong></td>
+</tr>
+</tbody>
+</table>
+<p>此时，属于 <span class="math inline">\(L_1(F)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 2.4, \textrm{pred}= C)\)</span></p>
+<p>又由于 F 不在 PQ 中，所以加入 PQ。</p>
+<p>此时 PQ 为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">队尾</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>PQ 弹出 B，置 <span class="math inline">\(visit\)</span> 为 1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[B] = 0.6 &lt; \textrm{getD}(v_1,u) = \textrm{getD}(A,B) = \infty\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 23%" />
+<col style="width: 22%" />
+<col style="width: 5%" />
+<col style="width: 22%" />
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math display">\[A(\textrm{dist} = 0.6, \textrm{pred}= A)\]</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>B 未访问的邻居为 F，但由于 <span class="math inline">\(d[u]+\text{wt}((u,w)) = d[B] + \text{wt}((B,F)) = 0.6 + 0.1 = 0.7 &lt; d[F] = 2.4\)</span>，所以，更新 <span class="math inline">\(d[F]\)</span> ：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(d[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;"><strong>0.7</strong></td>
+</tr>
+</tbody>
+</table>
+<p>此时，属于 <span class="math inline">\(L_1(F)\)</span> 的 <span class="math inline">\(A(\textrm{dist} = 0.7, \textrm{pred}= B)\)</span></p>
+<p>又由于 F 在 PQ 中，所以不加入 PQ。</p>
+<p>此时 PQ 为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">D</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头</td>
+<td style="text-align: center;">队尾</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>PQ 弹出 D，置 <span class="math inline">\(visit\)</span> 为 1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[D] = 1 &lt; \textrm{getD}(v_1,u) = \textrm{getD}(A,D) = \infty\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 20%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+<col style="width: 19%" />
+<col style="width: 5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math display">\[A(\textrm{dist} = 0.6, \textrm{pred}= A)\]</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 1, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\emptyset\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>D 没有未访问的邻居，故不更新 <span class="math inline">\(d[F]\)</span> ，也就没有顶点加入 PQ。</p>
+<p>此时 PQ 为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">F</th>
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">队头（队尾）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>PQ 弹出 F，置 <span class="math inline">\(visit\)</span> 为 1：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(visited[A]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[B]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[C]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[D]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[E]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(visited[F]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>由于 <span class="math inline">\(\textrm{d}[u] = \textrm{d}[F] = 0.7 &lt; \textrm{getD}(v_1,u) = \textrm{getD}(A,F) = \infty\)</span> ，故 Line 11 的条件满足，进入条件体。</p>
+<p><span class="math inline">\(L_i(u)\leftarrow L_{i-1}(u)\cup\{v_i\}\)</span> ，使得索引变化为：</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 17%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math display">\[A(\textrm{dist} = 0.6, \textrm{pred}= A)\]</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 1, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.7, \textrm{pred}= B)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>F 没有未访问的邻居，故不更新 <span class="math inline">\(d[F]\)</span> ，也就没有顶点加入 PQ。</p>
+<p>此时 PQ 为：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><code>NULL</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>至此，第一次 for 迭代结束，索引结果为</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(L_1(A)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(B)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(C)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(D)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(E)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(L_1(F)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.6, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.4, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 1, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.3, \textrm{pred}= A)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A(\textrm{dist} = 0.7, \textrm{pred}= B)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>类似的处理，可得下图右下角的索引。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<h4 id="extension-of-index-structure">Extension of Index Structure</h4>
+<p>为了支持计算 <code>getSP</code> ，我们需要扩展 <code>L</code> 的索引结构。在<strong>算法 2</strong> 中，对于每一个 hub <span class="math inline">\(v_i\in L(w)\)</span> ，我们不仅仅存储了 <span class="math inline">\(\textrm{dist}(w,v_i)\)</span> ，还存储了以 <span class="math inline">\(v_i\)</span> 为根节点搜索树中 <span class="math inline">\(w\)</span> 的前驱顶点，并将其记作 <span class="math inline">\(\textrm{pred}(w,v_i)\)</span> （Line 16）。</p>
+<p>有了扩展后的索引结构，<code>getSP</code> 就可以通过<strong>算法 3</strong> 计算得到。为了得到顶点 <span class="math inline">\(u,\;v\)</span> 之间的一条最短路径 <span class="math inline">\(p\)</span> ，我们首先在 <span class="math inline">\(p\)</span> 上找到它们所共有的 hub <span class="math inline">\(h_{\textrm{min}}\)</span> （Line 1），然后重复地跟随前驱顶点，构造路径 <span class="math inline">\(p\)</span> 的从 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(h_{\textrm{min}}\)</span> 的一段（Line 2-8），以及 <span class="math inline">\(v\)</span> 到 <span class="math inline">\(h_{\textrm{min}}\)</span> 的一段（Line 9-14）。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo3.PNG" alt="Algorithm 3" /><figcaption>Algorithm 3</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<p>举个例子，比如计算 <code>getSP(D, F)</code> 。</p>
+<p>首先，<code>L(D)</code> 和 <code>L(F)</code> 的公共 hub 只有一个，就是 <span class="math inline">\(A\)</span>，则 <span class="math inline">\(h_{\textrm{min}} = A\)</span> 。</p>
+<p>然后，通过 <code>pred</code> 信息找到 D-A 的路径，为 D-A ，因为 <code>L(D)</code> 中 <span class="math inline">\(A\)</span> 的 <code>pred</code> 为 <span class="math inline">\(A\)</span>。</p>
+<p>接着，同样的，找到 F-A 的路径，为 F-B-A，因为 <code>L(F)</code> 中的 A 的 <code>pred</code> 为 <span class="math inline">\(B\)</span>，L(B) 中的 <span class="math inline">\(A\)</span> 的 <code>pred</code> 为 <span class="math inline">\(A\)</span>。</p>
+<p>最后，将上面两个子路径连起来，我们就找到了路径 <span class="math inline">\(p\)</span>，为 D-A-B-F。</p>
+<h2 id="keykg-with-dynamic-hl">KeyKG+ With Dynamic HL</h2>
+<h3 id="dynamic-hl">Dynamic HL</h3>
+<h4 id="features">Features</h4>
+<ul>
+<li><strong>查询相关的</strong>（<em>query-relevant</em>）</li>
+<li><strong>在线构造的</strong>（<em>online constructed</em>）</li>
+</ul>
+<h4 id="definition-and-structure">Definition and structure</h4>
+<p>一个动态 HL 是一个 <span class="math inline">\((g-1)\times n\)</span> 的矩阵，记作 <span class="math inline">\(M\)</span> 。行对应于关键词顶点集 <span class="math inline">\(K_2,K_3,\dots,K_g\)</span> ，列对应于 hub 顶点。<span class="math inline">\(M\)</span> 的第 <span class="math inline">\((i-1)\)</span> 行（记作 <span class="math inline">\(M_{i-1}\)</span>）倒排并且聚集了 <span class="math inline">\(K_i\)</span> 中顶点的静态索引标签。<span class="math inline">\(M_{i-1}\)</span> 的第 j 个元素（记作 <span class="math inline">\(M_{i-1,j}\)</span>）是非空的，如果 <span class="math inline">\(h_j\in V\)</span> 是一个 hub，并且它在 <span class="math inline">\(K_i\)</span> 的至少一个顶点的静态索引标签中。在 <span class="math inline">\(K_i\)</span> 中的这些顶点中（这些顶点的静态索引标签包括 <span class="math inline">\(h_j\)</span>），<span class="math inline">\(M_{i-1, j}\)</span> 代表了最小化到达 <span class="math inline">\(h_j\)</span> 的距离的顶点。如果， <span class="math inline">\(h_j\)</span> 不是一个在 <span class="math inline">\(K_i\)</span> 中任意一个顶点的索引标签中的 hub，那么我们令 <span class="math inline">\(M_{i-1, j}\)</span> 为 null： <span class="math display">\[
+M_{i-1,j}=\begin{cases}
+&amp;\underset{u\in K_i\; s.t.\; h_j\in L(u)}{\textrm{argmin}}\textrm{dist}(u, h_j)&amp;h_j\in \bigcup_{u\in K_i}L(u),\\
+&amp;null&amp;h_j\not\in \bigcup_{u\in K_i}L(u),
+\end{cases}
+\]</span> 具体的，论文中使用<strong>二维数组</strong>存储矩阵 <span class="math inline">\(M\)</span> ，因此可以支持常数时间的随机访问。对于每一个不为 null 的 <span class="math inline">\(M_{i-1, j}\)</span> ，与 <span class="math inline">\(h_j\)</span> 的距离也是先计算出来，并保存到 <span class="math inline">\(M\)</span> 中。</p>
+<h4 id="example">Example</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<ul>
+<li><span class="math inline">\(i = 2\)</span> 时，<span class="math inline">\(K_2=\{E\}\)</span> ，<span class="math inline">\(L(E) = \{A,B,E\}\)</span> ，因此矩阵 <span class="math inline">\(M\)</span> <span class="math inline">\(K_2\)</span> 行只有 <span class="math inline">\(A,B,E\)</span> 不为 null，其他都为 null；由于 <span class="math inline">\(K_2\)</span> 中只有一个元素 <span class="math inline">\(E\)</span> ，故 <span class="math inline">\(K_2\)</span> 行 <span class="math inline">\(A,B,E\)</span> 列中的元素都为 <span class="math inline">\(E\)</span> 和到它的距离（从 <span class="math inline">\(L(E)\)</span> 中直接取得）。</li>
+<li><span class="math inline">\(i = 3\)</span> 时，<span class="math inline">\(K_3=\{C,D\}\)</span> ，<span class="math inline">\(L(C)\cup L(D) = \{A,C,D\}\)</span> ，因此矩阵 <span class="math inline">\(M\)</span> <span class="math inline">\(K_3\)</span> 行只有 <span class="math inline">\(A,C,D\)</span> 不为 null，其他都为 null；由于 <span class="math inline">\(K_3\)</span> 中有两个元素，故 <span class="math inline">\(K_3\)</span> 行 <span class="math inline">\(A,C,D\)</span> 列中的元素需要对比一下分别到 <span class="math inline">\(C\)</span> 和 <span class="math inline">\(D\)</span> 的距离，选择较小的存入矩阵 <span class="math inline">\(M\)</span> （比如 <span class="math inline">\(M_{K_3, A}\)</span> ，由于 <span class="math inline">\(\textrm{dist}(C,A) &lt; \textrm{dist}(D,A)\)</span>，所以将 <span class="math inline">\(C\)</span> 存入矩阵）。</li>
+</ul>
+<p>综上所示，矩阵 <span class="math inline">\(M\)</span> 如下图所示：</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/matrix-M.PNG" alt="Dynamic HL Example" /><figcaption>Dynamic HL Example</figcaption>
+</figure>
+<h3 id="algorithm-keykg-1">Algorithm KeyKG+</h3>
+<h4 id="algorithm-explained-1">Algorithm Explained</h4>
+<p>KeyKG+ 如<strong>算法 4</strong> 所示。这个算法主要构造了动态 HL，并将其使用在两个方面，提高执行的总体性能，并且对最终结果没有任何影响。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/Algo4.PNG" alt="Algorithm 4" /><figcaption>Algorithm 4</figcaption>
+</figure>
+<p>在第一部分，首先，为 <span class="math inline">\(K_2,\dots,K_g\)</span> 构造矩阵 <span class="math inline">\(M\)</span> （Line 1-3）。然后，按照如下流程利用 <span class="math inline">\(M_{i-1}\)</span> 找到 <span class="math inline">\(v_i\)</span> （Line 6）。对于每一个 hub <span class="math inline">\(h_j\in L(v_1)\)</span> ，我们从 <span class="math inline">\(L(v_1)\)</span> 中取得 <span class="math inline">\(\textrm{dist}(v_1,h_j)\)</span> ，并且从 <span class="math inline">\(M_{i-1}\)</span> 中取 <span class="math inline">\(M_{i-1, j}\)</span> 元素的 <span class="math inline">\(\textrm{dist}(M_{i-1,j},h_j)\)</span> 。如果 <span class="math inline">\(M_{i-1,j}\)</span> 非空，那么我们计算： <span class="math display">\[
+\textrm{dist}(v_1,h_j)+\textrm{dist}(M_{i-1,j},h_j)
+\]</span> 这个结果表示了 <span class="math inline">\(v_1\)</span> 到在 <span class="math inline">\(K_i\)</span> 中经过一个特定的 <span class="math inline">\(h_j\)</span> 所能到达的顶点之间的最短距离。最后， 通过如下方式，找到 <span class="math inline">\(v_i\)</span> ： <span class="math display">\[
+v_i=\underset{M_{i-1, j}\; s.t.\; h_j\in L(v_1)\; \textrm{and}\; M_{i-1, j}\ne \textrm{null}}{\textrm{argmin}} \textrm{dist}(v_1,h_j)+\textrm{dist}(M_{i-1,j},h_j)
+\]</span> KeyKG+ Line 6 计算得到的 <span class="math inline">\(v_i\)</span> 和 KeyKG Line 3 得到的 <span class="math inline">\(v_i\)</span> 等价，但是 KeyKG+ 的效率更高。</p>
+<p>第二部分，我们像为 <span class="math inline">\(K_i\)</span> 创建 <span class="math inline">\(M_{i-1}\)</span> 一样，为 <span class="math inline">\(V_{T_u}\)</span> （Line 14）创建 <span class="math inline">\(M&#39;_{u}\)</span> 。随着 <span class="math inline">\(T_u\)</span> 在每次迭代中逐渐扩展（Line 21），<span class="math inline">\(M&#39;_{u}\)</span> 通过加入到 <span class="math inline">\(T_u\)</span> 的顶点的静态索引标签得到更新（Line 22）。对于每一个 <span class="math inline">\(t_i\in(U_x\backslash V_{T_u})\)</span> ，<span class="math inline">\(M&#39;_u\)</span> 被用来找到与 <span class="math inline">\(t_i\)</span> 距离最短的顶点 <span class="math inline">\(s_i\in V_{T_u}\)</span> （Line 16-18）。我们在所有的这样的 <span class="math inline">\(&lt;s_i,t_i&gt;\)</span> 中找到最小的 <span class="math inline">\(&lt;s_{\textrm{min}},t_{\textrm{min}}&gt;\)</span> （Line 19）</p>
+<p>KeyKG+ Line 16-19 计算得到的 <span class="math inline">\(&lt;s_{\textrm{min}},t_{\textrm{min}}&gt;\)</span> 和 KeyKG Line 12 得到的 <span class="math inline">\(&lt;s_{\textrm{min}},t_{\textrm{min}}&gt;\)</span> 等价，但是 KeyKG+ 的效率更高。</p>
+<h4 id="running-example-1">Running Example</h4>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG" alt="KeyKG 执行的例子" /><figcaption>KeyKG 执行的例子</figcaption>
+</figure>
+<p>如上图，</p>
+<ul>
+<li>令 <span class="math inline">\(B\in K_1\)</span> 为 <span class="math inline">\(v_1\)</span> ，查询其 Static HL，得到 <span class="math inline">\(L(B) = \{A,B\}\)</span> ；
+<ul>
+<li>因为 <span class="math inline">\(M_{1,A} = M_{1,B} = E\)</span> ，所以令 <span class="math inline">\(E\in K_2\)</span> 为 <span class="math inline">\(v_2\)</span> ；</li>
+<li>因为 <span class="math inline">\(M_{2,A} = C, M_{2,B} = \textrm{null}\)</span> ，所以令 <span class="math inline">\(C\in K_3\)</span> 为 <span class="math inline">\(v_3\)</span> ；</li>
+<li>这样就形成了 <span class="math inline">\(U_B=\{B,E,C\}\)</span> （这与算法 KeyKG 得到的结果是一致的）</li>
+</ul></li>
+<li>令 <span class="math inline">\(F\in K_1\)</span> 为 <span class="math inline">\(v_1\)</span> ，查询其 Static HL，得到 <span class="math inline">\(L(F) = \{A,B,F\}\)</span> ；
+<ul>
+<li>因为 <span class="math inline">\(M_{1,A} = M_{1,B} = E, M_{1,F} = \textrm{null}\)</span> ，所以令 <span class="math inline">\(E\in K_2\)</span> 为 <span class="math inline">\(v_2\)</span> ；</li>
+<li>因为 <span class="math inline">\(M_{2,A} = C, M_{2,B} = M_{2,F} = \textrm{null}\)</span> ，所以令 <span class="math inline">\(C\in K_3\)</span> 为 <span class="math inline">\(v_3\)</span> ；</li>
+<li>这样就形成了 <span class="math inline">\(U_F=\{F,E,C\}\)</span> （这与算法 KeyKG 得到的结果是一致的）</li>
+</ul></li>
+</ul>
+<div class="note default"><p><strong>TODO</strong>：另一半的例子怎么解释？？？</p>
+</div>
+<h1 id="how-much">How much？</h1>
+<ul>
+<li>基于 <em>betweenness centrality</em> 的启发式方法构建的 <em>Static Hub Labelings</em> 超越了现存的方案。</li>
+<li><em>Dynamic Hub Labelings</em> 则通过倒排并聚集查询相关的静态标签，加速了总体的查询效率。</li>
+</ul>
+<h1 id="what-then">What Then？</h1>
+<ul>
+<li>寻找支持更高效地边删除（<em>edge deletion</em>）的解决方案</li>
+<li>KeyKG+ 的近似比率可以进一步得到提高</li>
+<li>现存 HL 方案无法处理巨大而稠密的图。</li>
+</ul>
+<h1 id="problems-to-solve">Problems to Solve</h1>
+<ul>
+<li><input type="checkbox" disabled="" />
+Hub Labeling<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li><input type="checkbox" disabled="" />
+pruned landmark labeling <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li><input type="checkbox" disabled="" />
+PLL<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li><input type="checkbox" disabled="" />
+between centrality？？？【10】 <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> vs 【4】<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Ittai Abraham, Daniel Delling, Andrew V. Goldberg, and Renato Fonseca F. Werneck. 2011. A Hub-Based Labeling Algorithm for Shortest Paths in Road Networks. In SEA. 230–241.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Takuya Akiba, Yoichi Iwata, and Yuichi Yoshida. 2013. Fast exact shortest-path distance queries on large networks by pruned landmark labeling. In SIGMOD. 349–360<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Takuya Akiba, Yoichi Iwata, and Yuichi Yoshida. 2013. Fast exact shortest-path distance queries on large networks by pruned landmark labeling. In SIGMOD. 349–360<a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Ulrik Brandes. 2001. A faster algorithm for betweenness centrality. J. Math. Soc. 25, 2 (2001), 163–177.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Ziyad AlGhamdi, Fuad Jamour, Spiros Skiadopoulos, and Panos Kalnis. 2017. A Benchmark for Betweenness Centrality Approximation Algorithms on Large Graphs. In SSDBM<a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></p></li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/" title="Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记">https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          
+
+  <div class="followme">
+    <span>欢迎关注我的其它发布渠道</span>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+          <div class="post-tags">
+              <a href="/tags/Knowledge-graph/" rel="tag"><i class="fa fa-tag"></i> Knowledge graph</a>
+              <a href="/tags/Keyword-search/" rel="tag"><i class="fa fa-tag"></i> Keyword search</a>
+              <a href="/tags/Group-Steiner-tree/" rel="tag"><i class="fa fa-tag"></i> Group Steiner tree</a>
+              <a href="/tags/Hub-labeling/" rel="tag"><i class="fa fa-tag"></i> Hub labeling</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/19/pac-learning-and-its-variants/" rel="prev" title="PAC 模型及其变体">
+                  <i class="fa fa-chevron-left"></i> PAC 模型及其变体
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">294k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:27</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = 'https://cdn.bootcdn.net/ajax/libs/mathjax/3.1.0/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/10/08/notes-of-keyword-search-knowledge-2020/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments('#lv-container', () => {
+  window.livereOptions = {
+    refer: "2020/10/08/notes-of-keyword-search-knowledge-2020//"
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
