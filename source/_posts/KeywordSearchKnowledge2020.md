@@ -54,7 +54,7 @@ tags:
   * 给定一个含有 $g$ 个关键词的查询 $Q=\{k_1,k_2,\dots,\ k_g\}$ ，将 $\textrm{hits}(k_i)$ 简记为 $K_i$ （$1\le i\le g$），并称之为**关键词顶点**。
   * 给定一个图 $G=<V,E>$ ，在 $G$ 上关于 $Q$ 的结果是一个 *group Steiner tree (GST)* ，记作 $T=<V_T,E_T>$ ，满足以下条件
     * $V_T\subseteq V,E_T\subseteq E$ ，并且 $T$ 是一棵树；
-    * $V_T$ 包含来自每一个 $K_i$ （$1\le i\le g$）中的至少一个顶点，也就是 $V_T\cap K_i =\emptyset$ ；
+    * $V_T$ 包含来自每一个 $K_i$ （$1\le i\le g$）中的至少一个顶点，也就是 $V_T\cap K_i \ne \emptyset$ ；
     * 树的权重（定义为 $\textrm{WT}(T)=\sum_{e\in E_T}\textrm{wt}(e)$）最小
 
 ## Overview of Two Algorithm
