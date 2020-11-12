@@ -16,7 +16,8 @@ tags:
 
 # Highlights
 
-
+* **Static Hub Labelings**
+* **Dynamic Hub Labelings**
 
 # What？
 
