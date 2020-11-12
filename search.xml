@@ -4,6 +4,10 @@
     <title>Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记</title>
     <url>/2020/10/08/notes-of-keyword-search-knowledge-2020//</url>
     <content><![CDATA[<h1 id="highlights">Highlights</h1>
+<ul>
+<li><strong>Static Hub Labelings</strong></li>
+<li><strong>Dynamic Hub Labelings</strong></li>
+</ul>
 <h1 id="what">What？</h1>
 <h2 id="problem">Problem</h2>
 <p>一种常见的图数据上的关键词查询的方法是，将每一个关键词与图上的一个顶点匹配，并且从中抽取出包含这些匹配顶点的最小权重的树（这种树被称为 <em>minimum-weight Steiner trees</em>）。更规范地说，给定一个有权边的数据图和一个关键词查询，首先对于每一个关键词，在图中找到与之匹配的所有顶点，形成一个匹配集；然后，在图中找到一个扩展匹配集的树，该树对于每一个匹配集，至少包含其中的一个顶点，并且总边权重最小。这个优化问题叫做 <em>group Steiner tree (GST) problem</em> 。</p>
