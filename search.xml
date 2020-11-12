@@ -39,7 +39,7 @@
 <li>给定一个图 <span class="math inline">\(G=&lt;V,E&gt;\)</span> ，在 <span class="math inline">\(G\)</span> 上关于 <span class="math inline">\(Q\)</span> 的结果是一个 <em>group Steiner tree (GST)</em> ，记作 <span class="math inline">\(T=&lt;V_T,E_T&gt;\)</span> ，满足以下条件
 <ul>
 <li><span class="math inline">\(V_T\subseteq V,E_T\subseteq E\)</span> ，并且 <span class="math inline">\(T\)</span> 是一棵树；</li>
-<li><span class="math inline">\(V_T\)</span> 包含来自每一个 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>）中的至少一个顶点，也就是 <span class="math inline">\(V_T\cap K_i =\emptyset\)</span> ；</li>
+<li><span class="math inline">\(V_T\)</span> 包含来自每一个 <span class="math inline">\(K_i\)</span> （<span class="math inline">\(1\le i\le g\)</span>）中的至少一个顶点，也就是 <span class="math inline">\(V_T\cap K_i \ne \emptyset\)</span> ；</li>
 <li>树的权重（定义为 <span class="math inline">\(\textrm{WT}(T)=\sum_{e\in E_T}\textrm{wt}(e)\)</span>）最小</li>
 </ul></li>
 </ul></li>
