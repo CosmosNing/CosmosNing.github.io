@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Logseq：开源优雅的知识管理工具</title>
+    <url>/2020/12/06/review-of-logseq//</url>
+    <content><![CDATA[<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg" alt="题图" /><figcaption>题图</figcaption>
+</figure>
+<h1 id="前言">前言</h1>
+<p>笔记，对于我个人来说，是一个非常重要的整理与回顾知识的工具。找到适合自己的笔记载体，将会极大地提高的效率。为追求最佳效率，我尝试过多种方式，从手写到电子，从文档到导图。它们各具特色，又难免缺失某种特性而使我最终放弃。</p>
+<h2 id="印象笔记">印象笔记</h2>
+<p>16年，新买的笔记本电脑上预装了印象笔记。当时的印象笔记还仅支持富文本编辑模式。富文本编辑意味着所见即所得，格式可以轻松地点击菜单按钮随时调整。</p>
+<p>但是对于我来说，这就意味着我将要腾出一只手握住鼠标，在需要时调整格式。这其实会降低笔记的效率，因为这种模式下，你不仅仅要关注笔记的内容，而且需时不时地分心调整格式。这与我追求高效的笔记体验背道而驰。</p>
+<p>除此以外，在富文本模式下，公式的输入非常繁琐，这也是我最终放弃印象笔记的原因之一。</p>
+<p>虽然，印象笔记在 18 年开始支持 Markdown，但其编辑、预览双屏的设计，对于追求简洁的我太过复杂，也就没有再拾起。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/yinxiang-markdown.png" alt="印象笔记 Markdown 双屏设计" /><figcaption>印象笔记 Markdown 双屏设计</figcaption>
+</figure>
+<h2 id="typora">Typora</h2>
+<p>18 年左右，经朋友推荐，了解到 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a> 这款简洁的 Markdown 编辑器，并一直使用至今。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/typora.png" alt="Typora:所见即所得" /><figcaption>Typora:所见即所得</figcaption>
+</figure>
+<p>Typora 主要令我喜爱的一点是其“<strong>所见即所得</strong>”的即时 Markdown 渲染。该软件只用一屏，既提供了 Markdown 的排版功能，又减去了编辑模式下 Markdown 中的影响阅读体验的格式符号。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/fences.png" alt="Typora 代码块" /><figcaption>Typora 代码块</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/math.png" alt="Typora 数学公式" /><figcaption>Typora 数学公式</figcaption>
+</figure>
+<p>然而，Typora 只是一个编辑器，只能记录，<strong>难以检索和回顾</strong>。因此，仅靠 Typora ，难以完成笔记的完整闭环。一种常见的工作流可以勉强解决这个问题，即 Typora（编辑）+ Hexo（生成静态博客网页）+ GitHub Pages（发布与检索）。然而，笔记的<strong>私密性</strong>和博客的<strong>开放性</strong>的矛盾无法得到有效解决，这使我陷入了两难的境地。</p>
+<h2 id="幕布">幕布</h2>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/mubu.png" alt="幕布" /><figcaption>幕布</figcaption>
+</figure>
+<p>20 年，准备考研复试的专业课时，我开始尝试幕布这个在线笔记软件。对于整理概念性的知识，幕布绝对是一个非常强大的工具。将一门课，一本书化为一个个知识点，并通过层次表达它们的关系，最后还能生成相应的思维导图，这个笔记体验真的是太美妙了。</p>
+<p>美中不足的是，幕布并<strong>不支持公式和代码块的渲染</strong>，这对于有大量公式代码笔记需求的我来说有点遗憾。</p>
+<h2 id="logseq">Logseq</h2>
+<p>最近，在 GitHub 上发现了一款开源笔记应用，<a href="https://github.com/logseq/logseq" target="_blank" rel="noopener">Logseq</a>，个人感觉比较完美的满足了我的几点需求：</p>
+<ol type="1">
+<li>支持 Markdown，并且所见即所得 ；</li>
+<li>支持公式和代码块渲染；</li>
+<li>保持笔记的私密性。</li>
+</ol>
+<p>下一部分，我将聊一聊我对 Logseq 的使用体验。</p>
+<h1 id="logseq-初体验">Logseq 初体验</h1>
+<h2 id="快速上手">快速上手</h2>
+<p>使用 Logseq 非常简单，只需要你拥有一个浏览器，一个 GitHub 账户及笔记仓库。</p>
+<div class="note info"><p>如果要保持你笔记的私密性，你可以创建一个<strong>私有</strong>的 GitHub 笔记仓库供 Logseq 存储数据文件。</p>
+</div>
+<p>当你，准备好上述要求，只需访问 <a href="https://logseq.com/" target="_blank" rel="noopener">https://logseq.com/</a> ，并使用 Github 登录授权，设置好笔记仓库，就可以开始你的笔记了。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/daily-notes.PNG" alt="Logseq默认界面" /><figcaption>Logseq默认界面</figcaption>
+</figure>
+<p>登陆后，Logseq 会默认创建一个标题为今天的文件，你可以直接在此开始笔记。如果要创建新的页面，你可以在左上的搜索框输入新页面的文件名，并选择相应的下拉选项，完成创建。</p>
+<h2 id="体验感受">体验感受</h2>
+<p>从我的使用体验来说，Logseq 的手感是十分惊艳的。主要有如下几点：</p>
+<ul>
+<li><strong>快速笔记</strong>
+<ul>
+<li>十分类似于幕布的高效的笔记手感</li>
+</ul></li>
+<li><strong>数据完全属于你</strong>
+<ul>
+<li>Logseq 不保存你的任何数据。它在运行过程中，仅仅将你的数据缓存在浏览器的本地缓存中，并与你设定的 GitHub 仓库同步。</li>
+</ul></li>
+<li><strong>强大的页面引用、块引用</strong>
+<ul>
+<li>受 <a href="https://roamresearch.com/" target="_blank" rel="noopener">Roam</a> 启发</li>
+<li>这建立了独立的笔记文件之间的联系，更利于笔记整合成知识库。</li>
+</ul></li>
+<li><strong>支持 Markdown，并且所见即所得</strong></li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/markdown-support.png" alt="Logseq 中 Markdown 支持情况" /><figcaption>Logseq 中 Markdown 支持情况</figcaption>
+</figure>
+<ul>
+<li><strong>丰富的命令</strong>
+<ul>
+<li>键入 <code>/</code> （slash 键），你会发现一个全新的大陆：可以创建待办事项、插入页面引用或者块引用，甚至还能在其中插入一个画图的页面。</li>
+</ul></li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/commands.PNG" alt="Logseq 中的命令" /><figcaption>Logseq 中的命令</figcaption>
+</figure>
+<h2 id="使用场景">使用场景</h2>
+<p>在我看来，Logseq 具有非常丰富的使用场景：</p>
+<ul>
+<li><strong>自由写作</strong>：你可以在 Logseq 写下任何你思想的火花，供日后整理。</li>
+<li><strong>待办事项</strong>：Logseq 提供了比较丰富的待办事项功能，包括创建待办事项，设置事项优先级，设定 deadline 和 schedule。</li>
+<li><strong>知识整理</strong>：这也许是 Logseq 最核心的使用方式之一。</li>
+<li>...（也许还有更多）</li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/deadline-and-schedule.png" alt="Logseq 的 deadline 和 schedule" /><figcaption>Logseq 的 deadline 和 schedule</figcaption>
+</figure>
+<h1 id="从内联到外联">从内联到外联</h1>
+<p>传统的笔记软件，通常把笔记独立为一个一个文件，关注一个文件内的内在联系，而忽视了不同笔记之间的联系。</p>
+<p>Logseq 受 Roam 启发，将不同的笔记文件通过<strong>页面引用</strong>联系起来，从而更好地构建自己的知识网络。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/KG.PNG" alt="Logseq 图谱示例" /><figcaption>Logseq 图谱示例</figcaption>
+</figure>
+<p>近期，新版的幕布也上线了 <code>@文件名</code> 引用不同的笔记，想必也是受到类似应用的启发。</p>
+<p>由此可见，笔记软件正在从内联走向外联，越来越符合对知识整理的需求。</p>
+<h1 id="不足">不足</h1>
+<p>目前来说，Logseq 还存在许多不足：</p>
+<ul>
+<li>Logseq 还处在快速迭代阶段，很多功能存在不稳定的可能；</li>
+<li>相关的文档稀少，对新手不太友好；</li>
+</ul>
+<p>但我相信，开源社区的支持会使得它更加完善。</p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记</title>
     <url>/2020/10/08/notes-of-keyword-search-knowledge-2020//</url>
     <content><![CDATA[<h1 id="highlights">Highlights</h1>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico">
+  <link rel="mask-icon" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cosmosning.github.io","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"livere","storage":true,"lazyload":false,"nav":null,"activeClass":"livere"},"motion":{"enable":true,"async":true,"transition":{"post_block":"bounceInDown","post_header":"bounceIn","post_body":"bounceInDown","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
+  </script>
+
+  <meta name="description" content="最近，我看到一款非常好用的笔记软件——Logseq，本文主要聊聊我的感受和体验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Logseq：开源优雅的知识管理工具">
+<meta property="og:url" content="https://cosmosning.github.io/2020/12/06/review-of-logseq/index.html">
+<meta property="og:site_name" content="CosmosNing的个人博客">
+<meta property="og:description" content="最近，我看到一款非常好用的笔记软件——Logseq，本文主要聊聊我的感受和体验。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/yinxiang-markdown.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/typora.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/fences.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/math.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/mubu.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/daily-notes.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/markdown-support.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/commands.PNG">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/deadline-and-schedule.png">
+<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/KG.PNG">
+<meta property="article:published_time" content="2020-12-06T06:29:14.000Z">
+<meta property="article:modified_time" content="2020-12-06T13:22:49.992Z">
+<meta property="article:author" content="CosmosNing">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg">
+
+
+<link rel="canonical" href="https://cosmosning.github.io/2020/12/06/review-of-logseq/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Logseq：开源优雅的知识管理工具 | CosmosNing的个人博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e9fd1f40248f9db466678920736a9fa3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="CosmosNing的个人博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">CosmosNing的个人博客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">探索·好奇</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">68</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
+
+  </li>
+        <li class="menu-item menu-item-neo4j">
+
+    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#印象笔记"><span class="nav-number">1.1.</span> <span class="nav-text">印象笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typora"><span class="nav-number">1.2.</span> <span class="nav-text">Typora</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#幕布"><span class="nav-number">1.3.</span> <span class="nav-text">幕布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logseq"><span class="nav-number">1.4.</span> <span class="nav-text">Logseq</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#logseq-初体验"><span class="nav-number">2.</span> <span class="nav-text">Logseq 初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速上手"><span class="nav-number">2.1.</span> <span class="nav-text">快速上手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#体验感受"><span class="nav-number">2.2.</span> <span class="nav-text">体验感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">2.3.</span> <span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从内联到外联"><span class="nav-number">3.</span> <span class="nav-text">从内联到外联</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不足"><span class="nav-number">4.</span> <span class="nav-text">不足</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CosmosNing"
+      src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+  <p class="site-author-name" itemprop="name">CosmosNing</p>
+  <div class="site-description" itemprop="description">编程·学习·生活</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/CosmosNing" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;CosmosNing" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135&#x2F;" rel="noopener" target="_blank"><i class="fab fa-linkedin fa-fw"></i>Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cosmosning@gmail.com" title="E-Mail → mailto:cosmosning@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="Rss → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>Rss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/profiles/76561198328448195/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198328448195&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/CosmosNing" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cosmosning.github.io/2020/12/06/review-of-logseq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png">
+      <meta itemprop="name" content="CosmosNing">
+      <meta itemprop="description" content="编程·学习·生活">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CosmosNing的个人博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Logseq：开源优雅的知识管理工具
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-12-06 14:29:14 / 修改时间：21:22:49" itemprop="dateCreated datePublished" datetime="2020-12-06T14:29:14+08:00">2020-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">最近，我看到一款非常好用的笔记软件——Logseq，本文主要聊聊我的感受和体验。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg" alt="题图" /><figcaption>题图</figcaption>
+</figure>
+<h1 id="前言">前言</h1>
+<p>笔记，对于我个人来说，是一个非常重要的整理与回顾知识的工具。找到适合自己的笔记载体，将会极大地提高的效率。为追求最佳效率，我尝试过多种方式，从手写到电子，从文档到导图。它们各具特色，又难免缺失某种特性而使我最终放弃。</p>
+<h2 id="印象笔记">印象笔记</h2>
+<p>16年，新买的笔记本电脑上预装了印象笔记。当时的印象笔记还仅支持富文本编辑模式。富文本编辑意味着所见即所得，格式可以轻松地点击菜单按钮随时调整。</p>
+<p>但是对于我来说，这就意味着我将要腾出一只手握住鼠标，在需要时调整格式。这其实会降低笔记的效率，因为这种模式下，你不仅仅要关注笔记的内容，而且需时不时地分心调整格式。这与我追求高效的笔记体验背道而驰。</p>
+<p>除此以外，在富文本模式下，公式的输入非常繁琐，这也是我最终放弃印象笔记的原因之一。</p>
+<p>虽然，印象笔记在 18 年开始支持 Markdown，但其编辑、预览双屏的设计，对于追求简洁的我太过复杂，也就没有再拾起。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/yinxiang-markdown.png" alt="印象笔记 Markdown 双屏设计" /><figcaption>印象笔记 Markdown 双屏设计</figcaption>
+</figure>
+<h2 id="typora">Typora</h2>
+<p>18 年左右，经朋友推荐，了解到 <a href="https://typora.io/" target="_blank" rel="noopener">Typora</a> 这款简洁的 Markdown 编辑器，并一直使用至今。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/typora.png" alt="Typora:所见即所得" /><figcaption>Typora:所见即所得</figcaption>
+</figure>
+<p>Typora 主要令我喜爱的一点是其“<strong>所见即所得</strong>”的即时 Markdown 渲染。该软件只用一屏，既提供了 Markdown 的排版功能，又减去了编辑模式下 Markdown 中的影响阅读体验的格式符号。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/fences.png" alt="Typora 代码块" /><figcaption>Typora 代码块</figcaption>
+</figure>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/math.png" alt="Typora 数学公式" /><figcaption>Typora 数学公式</figcaption>
+</figure>
+<p>然而，Typora 只是一个编辑器，只能记录，<strong>难以检索和回顾</strong>。因此，仅靠 Typora ，难以完成笔记的完整闭环。一种常见的工作流可以勉强解决这个问题，即 Typora（编辑）+ Hexo（生成静态博客网页）+ GitHub Pages（发布与检索）。然而，笔记的<strong>私密性</strong>和博客的<strong>开放性</strong>的矛盾无法得到有效解决，这使我陷入了两难的境地。</p>
+<h2 id="幕布">幕布</h2>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/mubu.png" alt="幕布" /><figcaption>幕布</figcaption>
+</figure>
+<p>20 年，准备考研复试的专业课时，我开始尝试幕布这个在线笔记软件。对于整理概念性的知识，幕布绝对是一个非常强大的工具。将一门课，一本书化为一个个知识点，并通过层次表达它们的关系，最后还能生成相应的思维导图，这个笔记体验真的是太美妙了。</p>
+<p>美中不足的是，幕布并<strong>不支持公式和代码块的渲染</strong>，这对于有大量公式代码笔记需求的我来说有点遗憾。</p>
+<h2 id="logseq">Logseq</h2>
+<p>最近，在 GitHub 上发现了一款开源笔记应用，<a href="https://github.com/logseq/logseq" target="_blank" rel="noopener">Logseq</a>，个人感觉比较完美的满足了我的几点需求：</p>
+<ol type="1">
+<li>支持 Markdown，并且所见即所得 ；</li>
+<li>支持公式和代码块渲染；</li>
+<li>保持笔记的私密性。</li>
+</ol>
+<p>下一部分，我将聊一聊我对 Logseq 的使用体验。</p>
+<h1 id="logseq-初体验">Logseq 初体验</h1>
+<h2 id="快速上手">快速上手</h2>
+<p>使用 Logseq 非常简单，只需要你拥有一个浏览器，一个 GitHub 账户及笔记仓库。</p>
+<div class="note info"><p>如果要保持你笔记的私密性，你可以创建一个<strong>私有</strong>的 GitHub 笔记仓库供 Logseq 存储数据文件。</p>
+</div>
+<p>当你，准备好上述要求，只需访问 <a href="https://logseq.com/" target="_blank" rel="noopener">https://logseq.com/</a> ，并使用 Github 登录授权，设置好笔记仓库，就可以开始你的笔记了。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/daily-notes.PNG" alt="Logseq默认界面" /><figcaption>Logseq默认界面</figcaption>
+</figure>
+<p>登陆后，Logseq 会默认创建一个标题为今天的文件，你可以直接在此开始笔记。如果要创建新的页面，你可以在左上的搜索框输入新页面的文件名，并选择相应的下拉选项，完成创建。</p>
+<h2 id="体验感受">体验感受</h2>
+<p>从我的使用体验来说，Logseq 的手感是十分惊艳的。主要有如下几点：</p>
+<ul>
+<li><strong>快速笔记</strong>
+<ul>
+<li>十分类似于幕布的高效的笔记手感</li>
+</ul></li>
+<li><strong>数据完全属于你</strong>
+<ul>
+<li>Logseq 不保存你的任何数据。它在运行过程中，仅仅将你的数据缓存在浏览器的本地缓存中，并与你设定的 GitHub 仓库同步。</li>
+</ul></li>
+<li><strong>强大的页面引用、块引用</strong>
+<ul>
+<li>受 <a href="https://roamresearch.com/" target="_blank" rel="noopener">Roam</a> 启发</li>
+<li>这建立了独立的笔记文件之间的联系，更利于笔记整合成知识库。</li>
+</ul></li>
+<li><strong>支持 Markdown，并且所见即所得</strong></li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/markdown-support.png" alt="Logseq 中 Markdown 支持情况" /><figcaption>Logseq 中 Markdown 支持情况</figcaption>
+</figure>
+<ul>
+<li><strong>丰富的命令</strong>
+<ul>
+<li>键入 <code>/</code> （slash 键），你会发现一个全新的大陆：可以创建待办事项、插入页面引用或者块引用，甚至还能在其中插入一个画图的页面。</li>
+</ul></li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/commands.PNG" alt="Logseq 中的命令" /><figcaption>Logseq 中的命令</figcaption>
+</figure>
+<h2 id="使用场景">使用场景</h2>
+<p>在我看来，Logseq 具有非常丰富的使用场景：</p>
+<ul>
+<li><strong>自由写作</strong>：你可以在 Logseq 写下任何你思想的火花，供日后整理。</li>
+<li><strong>待办事项</strong>：Logseq 提供了比较丰富的待办事项功能，包括创建待办事项，设置事项优先级，设定 deadline 和 schedule。</li>
+<li><strong>知识整理</strong>：这也许是 Logseq 最核心的使用方式之一。</li>
+<li>...（也许还有更多）</li>
+</ul>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/deadline-and-schedule.png" alt="Logseq 的 deadline 和 schedule" /><figcaption>Logseq 的 deadline 和 schedule</figcaption>
+</figure>
+<h1 id="从内联到外联">从内联到外联</h1>
+<p>传统的笔记软件，通常把笔记独立为一个一个文件，关注一个文件内的内在联系，而忽视了不同笔记之间的联系。</p>
+<p>Logseq 受 Roam 启发，将不同的笔记文件通过<strong>页面引用</strong>联系起来，从而更好地构建自己的知识网络。</p>
+<figure>
+<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/KG.PNG" alt="Logseq 图谱示例" /><figcaption>Logseq 图谱示例</figcaption>
+</figure>
+<p>近期，新版的幕布也上线了 <code>@文件名</code> 引用不同的笔记，想必也是受到类似应用的启发。</p>
+<p>由此可见，笔记软件正在从内联走向外联，越来越符合对知识整理的需求。</p>
+<h1 id="不足">不足</h1>
+<p>目前来说，Logseq 还存在许多不足：</p>
+<ul>
+<li>Logseq 还处在快速迭代阶段，很多功能存在不稳定的可能；</li>
+<li>相关的文档稀少，对新手不太友好；</li>
+</ul>
+<p>但我相信，开源社区的支持会使得它更加完善。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>CosmosNing
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://cosmosning.github.io/2020/12/06/review-of-logseq/" title="Logseq：开源优雅的知识管理工具">https://cosmosning.github.io/2020/12/06/review-of-logseq/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          
+
+  <div class="followme">
+    <span>欢迎关注我的其它发布渠道</span>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/08/notes-of-keyword-search-knowledge-2020/" rel="prev" title="Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记">
+                  <i class="fa fa-chevron-left"></i> Keyword Search over Knowledge Graphs via Static and Dynamic Hub Labelings 阅读笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTkzMi8xNjQ1OQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CosmosNing</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">296k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:29</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8a99b79a6be052" async="async"></script>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.0/anime.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/lozad.js/1.15.0/lozad.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/quicklink/2.0.0/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink.listen({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'https://cosmosning.github.io/2020/12/06/review-of-logseq/',]
+      });
+      });
+  </script>
+
+<script>
+NexT.utils.loadComments('#lv-container', () => {
+  window.livereOptions = {
+    refer: "2020/12/06/review-of-logseq//"
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
