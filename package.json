@@ -26,6 +26,6 @@
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
     "hexo-word-counter": "0.0.2",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   }
 }
