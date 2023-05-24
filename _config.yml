@@ -145,10 +145,10 @@ theme_config:
   # ---------------------------------------------------------------
 
   favicon:
-    small: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-16.ico
-    medium: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico
-    apple_touch_icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-180.png
-    safari_pinned_tab: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.svg
+    small: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar-16.ico
+    medium: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar-32.ico
+    apple_touch_icon: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar-180.png
+    safari_pinned_tab: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar.svg
     #android_manifest: /images/manifest.json
     #ms_browserconfig: /images/browserconfig.xml
 
@@ -218,7 +218,7 @@ theme_config:
   # Sidebar Avatar
   avatar:
     # Replace the default image and set the url here.
-    url: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar.png #/images/avatar.gif
+    url: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar.png #/images/avatar.gif
     # If true, the avatar will be dispalyed in circle.
     rounded: true
     # If true, the avatar will be rotated with the cursor.
@@ -287,7 +287,7 @@ theme_config:
   follow_me:
     #Twitter: https://twitter.com/username || fab fa-twitter
     #Telegram: https://t.me/channel_name || fab fa-telegram
-    WeChat: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/qrcode.jpg || fab fa-weixin
+    WeChat: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/qrcode.jpg || fab fa-weixin
     RSS: /atom.xml || fa fa-rss
 
   # ---------------------------------------------------------------
@@ -661,7 +661,7 @@ feed:
   content_limit: 
   content_limit_delim: ' '
   order_by: -date
-  icon: https://gitee.com/CosmosNing/MyPicGo/raw/master/images/avatar-32.ico # /images/avatar-32.ico
+  icon: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar-32.ico # /images/avatar-32.ico
   template: ./source/_data/custom_atom_feed.xml
 
 # hexo-permalink-pinyin config
