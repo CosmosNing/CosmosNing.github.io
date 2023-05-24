@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下数据结构基本概念和线性表的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-11T15:29:16.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -164,11 +164,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -225,7 +220,8 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构基本概念及简单的算法分析"><span class="nav-number">1.</span> <span class="nav-text">1. 数据结构基本概念及简单的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的定义特性"><span class="nav-number">1.2.</span> <span class="nav-text">算法的定义、特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的算法分析时间复杂度空间复杂度"><span class="nav-number">1.3.</span> <span class="nav-text">简单的算法分析：时间复杂度、空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性表"><span class="nav-number">2.</span> <span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的存储与基本操作"><span class="nav-number">2.1.</span> <span class="nav-text">顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表"><span class="nav-number">2.1.1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的应用"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表和链表的应用；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一元多项式的表示及相加"><span class="nav-number">2.2.1.</span> <span class="nav-text">一元多项式的表示及相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表双向链表"><span class="nav-number">2.3.</span> <span class="nav-text">循环链表；双向链表；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">2.3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">2.3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构基本概念及简单的算法分析"><span class="nav-number">1.</span> <span class="nav-text">1.
+数据结构基本概念及简单的算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构的基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的定义特性"><span class="nav-number">1.2.</span> <span class="nav-text">算法的定义、特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的算法分析时间复杂度空间复杂度"><span class="nav-number">1.3.</span> <span class="nav-text">简单的算法分析：时间复杂度、空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性表"><span class="nav-number">2.</span> <span class="nav-text">2. 线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的存储与基本操作"><span class="nav-number">2.1.</span> <span class="nav-text">顺序表和链表的存储与基本操作；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表"><span class="nav-number">2.1.1.</span> <span class="nav-text">顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.1.2.</span> <span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表和链表的应用"><span class="nav-number">2.2.</span> <span class="nav-text">顺序表和链表的应用；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一元多项式的表示及相加"><span class="nav-number">2.2.1.</span> <span class="nav-text">一元多项式的表示及相加</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表双向链表"><span class="nav-number">2.3.</span> <span class="nav-text">循环链表；双向链表；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">2.3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">2.3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -345,7 +341,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -391,11 +387,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="数据结构基本概念及简单的算法分析">1. 数据结构基本概念及简单的算法分析</h1>
+        <h1 id="数据结构基本概念及简单的算法分析">1.
+数据结构基本概念及简单的算法分析</h1>
 <h2 id="数据结构的基本概念">数据结构的基本概念</h2>
 <ol type="1">
 <li><strong>数据</strong>：数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被计算机程序识别和处理的符号的集合。</li>
-<li><strong>数据元素</strong>：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干 <em>数据项</em> 组成，数据项是构成数据元素的不可分割的最小单位。</li>
+<li><strong>数据元素</strong>：数据元素是数据的基本单位，通常作为一个整体进行思考和处理。一个数据元素可由若干
+<em>数据项</em> 组成，数据项是构成数据元素的不可分割的最小单位。</li>
 <li><strong>数据对象</strong>：数据对象是具有相同性质的数据元素的集合，是数据的一个子集。</li>
 <li><strong>数据类型</strong>：数据类型是一个值的集合和定义在此集合上的一组操作的总称。
 <ol type="1">
@@ -403,8 +401,13 @@
 <li><strong>结构类型</strong>：其值可以再分解为若干成分（分量）的数据类型</li>
 <li><strong>抽象数据类型</strong>：抽象数据组织及与之相关的操作。</li>
 </ol></li>
-<li><strong>抽象数据类型</strong>：抽象数据类型（ <strong>ADT</strong> ）是指一个数学模型及定义在该模型上的一组操作。抽象数据类型的定义仅取决于它的一组逻辑特性，而与其其在计算机内部如何表示和实现无关，即不论其内部结构如何变化，只要它的数学特性不变，都不影响其外部使用。通常用 <strong>（数据对象，数据关系，基本操作集）</strong> 这样的三元组来表示抽象数据类型。</li>
-<li>数据结构：在任何问题中，数据元素都不是孤立存在的，它们之间存在某种关系，这种数据元素相互之间的关系称为 <strong>结构</strong> 。<strong>数据结构</strong> 是相互之间存在一种或多种特定关系的数据元素的集合。数据结构包括以下三方面的内容：
+<li><strong>抽象数据类型</strong>：抽象数据类型（ <strong>ADT</strong>
+）是指一个数学模型及定义在该模型上的一组操作。抽象数据类型的定义仅取决于它的一组逻辑特性，而与其其在计算机内部如何表示和实现无关，即不论其内部结构如何变化，只要它的数学特性不变，都不影响其外部使用。通常用
+<strong>（数据对象，数据关系，基本操作集）</strong>
+这样的三元组来表示抽象数据类型。</li>
+<li>数据结构：在任何问题中，数据元素都不是孤立存在的，它们之间存在某种关系，这种数据元素相互之间的关系称为
+<strong>结构</strong> 。<strong>数据结构</strong>
+是相互之间存在一种或多种特定关系的数据元素的集合。数据结构包括以下三方面的内容：
 <ol type="1">
 <li><strong>逻辑结构</strong>
 <ul>
@@ -455,16 +458,19 @@
 <li><strong>输出</strong></li>
 </ol></li>
 </ol>
-<h2 id="简单的算法分析时间复杂度空间复杂度">简单的算法分析：时间复杂度、空间复杂度</h2>
+<h2
+id="简单的算法分析时间复杂度空间复杂度">简单的算法分析：时间复杂度、空间复杂度</h2>
 <ol type="1">
 <li>时间复杂度分析技巧
 <ul>
-<li>非递归：分析循环次数和问题规模 n 的关系，根据循环条件列出两者的不等式，取解中增长最快的一项作为时间复杂度。</li>
+<li>非递归：分析循环次数和问题规模 n
+的关系，根据循环条件列出两者的不等式，取解中增长最快的一项作为时间复杂度。</li>
 <li>递归：根据代码中的递推公式，求出通项公式，取增长最快的一项作为时间复杂度。</li>
 </ul></li>
 <li>空间复杂度
 <ul>
-<li>算法<strong>原地工作</strong>是指所需的辅助空间为<strong>常量</strong>（而非不需要），即 O(1) 。</li>
+<li>算法<strong>原地工作</strong>是指所需的辅助空间为<strong>常量</strong>（而非不需要），即
+O(1) 。</li>
 </ul></li>
 </ol>
 <h1 id="线性表">2. 线性表</h1>
@@ -472,7 +478,8 @@
 <hr />
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 2.2</span></span><br><span class="line"><span class="comment">// 已知线性表 La 和 Lb 中的数据元素按值非递减排列</span></span><br><span class="line"><span class="comment">// 归并 La 和 Lb 得到新的线性表 Lc ，Lc 的数据元素也按值非递减排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">算法流程：</span></span><br><span class="line"><span class="comment">1. 初始化 Lc</span></span><br><span class="line"><span class="comment">2. 获取 La 和 Lb 的长度</span></span><br><span class="line"><span class="comment">3. 设置循环变量 i（La）、j（Lb）、k（Lc）</span></span><br><span class="line"><span class="comment">4. 循环（while）比较 La 和 Lb 数据元素的大小，选择小的插入Lc，循环变量对应增加</span></span><br><span class="line"><span class="comment">5. 遍历 La 的剩余元素，插入到 Lc 中</span></span><br><span class="line"><span class="comment">6. 遍历 Lb 的剩余元素，插入到 Lc 中</span></span><br><span class="line"><span class="comment">P.S. 5、6 只可能执行其中一个。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MergeList</span><span class="params">(List La, List Lb, List &amp; Lc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    InitList(Lc);</span><br><span class="line">    La_Len = ListLength(La);</span><br><span class="line">    Lb_Len = ListLength(Lb);</span><br><span class="line">    </span><br><span class="line">    i = <span class="number">1</span>;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= La_Len &amp;&amp; j &lt;= Lb_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(La, i, a);</span><br><span class="line">        GetElem(Lb, j, b);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(a &lt; b)</span><br><span class="line">        &#123;</span><br><span class="line">            ListInsert(Lc, ++k, a);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            ListInsert(Lc, ++k, b);</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= La_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(La, i, a);</span><br><span class="line">        ListInsert(Lc, ++k, a);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(i &lt;= Lb_Len)</span><br><span class="line">    &#123;</span><br><span class="line">        GetElem(Lb, i, b);</span><br><span class="line">        ListInsert(Lc, ++k, b);</span><br><span class="line">        j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr />
-<h2 id="顺序表和链表的存储与基本操作">顺序表和链表的存储与基本操作；</h2>
+<h2
+id="顺序表和链表的存储与基本操作">顺序表和链表的存储与基本操作；</h2>
 <h3 id="顺序表">顺序表</h3>
 <hr />
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性表的 动态分配 存储结构定义</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_INIT_SIZE 100</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_INCREMENT 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType * elem;</span><br><span class="line">    <span class="keyword">int</span> length;     <span class="comment">// 若没有，则为静态</span></span><br><span class="line">    <span class="keyword">int</span> listsize;</span><br><span class="line">&#125;SqList;</span><br></pre></td></tr></table></figure>
@@ -526,7 +533,8 @@
 <h3 id="循环链表">循环链表</h3>
 <ul>
 <li>最后一个结点的指针域指向头节点。</li>
-<li>遍历循环结束条件是<strong>p == 头指针</strong>或者<strong>p-&gt;next == 头指针</strong></li>
+<li>遍历循环结束条件是<strong>p == 头指针</strong>或者<strong>p-&gt;next
+== 头指针</strong></li>
 <li>基本操作与线性链表类似</li>
 </ul>
 <h3 id="双向链表">双向链表</h3>
@@ -662,7 +670,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

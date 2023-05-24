@@ -30,7 +30,7 @@
 <meta property="og:description" content="本文主要介绍机器学习中一种较通用的 PAC 学习模型及其拓展形式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-19T01:30:55.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="PAC">
 <meta property="article:tag" content="Agnostic PAC">
@@ -166,11 +166,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -227,7 +222,12 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pac-learning"><span class="nav-number">1.</span> <span class="nav-text">PAC Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-more-general-learning-model"><span class="nav-number">2.</span> <span class="nav-text">A More General Learning Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#releasing-the-realizablity-assumption-agnostic-pac-learning"><span class="nav-number">2.1.</span> <span class="nav-text">Releasing the Realizablity Assumption —— Agnostic PAC Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-realistic-model-for-the-data-generating-distribution"><span class="nav-number">2.1.1.</span> <span class="nav-text">A More Realistic Model for the Data-Generating Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-empirical-and-true-error-revised"><span class="nav-number">2.1.2.</span> <span class="nav-text">The Empirical and True Error Revised</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-goal"><span class="nav-number">2.1.3.</span> <span class="nav-text">The Goal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-bayes-optimal-predictor"><span class="nav-number">2.1.4.</span> <span class="nav-text">The Bayes Optimal Predictor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-loss-function-agnostic-pac-learning-for-general-loss-function"><span class="nav-number">2.2.</span> <span class="nav-text">Generalized Loss Function —— Agnostic PAC Learning for General Loss Function</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pac-learning"><span class="nav-number">1.</span> <span class="nav-text">PAC Learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-more-general-learning-model"><span class="nav-number">2.</span> <span class="nav-text">A More General Learning
+Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#releasing-the-realizablity-assumption-agnostic-pac-learning"><span class="nav-number">2.1.</span> <span class="nav-text">Releasing
+the Realizablity Assumption —— Agnostic PAC Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-more-realistic-model-for-the-data-generating-distribution"><span class="nav-number">2.1.1.</span> <span class="nav-text">A
+More Realistic Model for the Data-Generating Distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-empirical-and-true-error-revised"><span class="nav-number">2.1.2.</span> <span class="nav-text">The Empirical and True
+Error Revised</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-goal"><span class="nav-number">2.1.3.</span> <span class="nav-text">The Goal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#the-bayes-optimal-predictor"><span class="nav-number">2.1.4.</span> <span class="nav-text">The Bayes Optimal Predictor</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#generalized-loss-function-agnostic-pac-learning-for-general-loss-function"><span class="nav-number">2.2.</span> <span class="nav-text">Generalized
+Loss Function —— Agnostic PAC Learning for General Loss Function</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -347,7 +347,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,110 +396,247 @@
         <blockquote>
 <p>本文将介绍通用的学习模型 PAC 及其变体形式。</p>
 <ul>
-<li><p>最原始的 PAC 主要需要满足<strong>可实现假设</strong>，<strong>训练样本量要大于样本复杂度函数</strong>。</p></li>
-<li><p>现实情况中，<strong>可实现假设难以满足</strong>（先验知识不一定猜得准），因此<strong>将目标标记函数改为数据-标签分布，并从中采样训练样本</strong>，就可以类似的得到 Agnostic PAC 。</p></li>
-<li><p>原始的 PAC 中，标记函数将学习问题限制在二元分类任务中。为了获得更加通用的学习模型，我们定义更加一般的损失函数。通过损失函数，可计算真实误差和经验风险：</p></li>
+<li><p>最原始的 PAC
+主要需要满足<strong>可实现假设</strong>，<strong>训练样本量要大于样本复杂度函数</strong>。</p></li>
+<li><p>现实情况中，<strong>可实现假设难以满足</strong>（先验知识不一定猜得准），因此<strong>将目标标记函数改为数据-标签分布，并从中采样训练样本</strong>，就可以类似的得到
+Agnostic PAC 。</p></li>
+<li><p>原始的 PAC
+中，标记函数将学习问题限制在二元分类任务中。为了获得更加通用的学习模型，我们定义更加一般的损失函数。通过损失函数，可计算真实误差和经验风险：</p></li>
 </ul>
 <blockquote>
 <ul>
-<li><p>在<strong>问题分布</strong>（<span class="math inline">\(\mathcal{D}\)</span>）上采样得到的误差函数的<strong>期望</strong>，作为<strong>真实误差</strong>；</p></li>
-<li><p>在<strong>训练样本</strong>（<span class="math inline">\(S\)</span>）上采样得到的误差函数的<strong>平均值</strong>，作为<strong>经验风险</strong>；</p></li>
+<li><p>在<strong>问题分布</strong>（<span
+class="math inline">\(\mathcal{D}\)</span>）上采样得到的误差函数的<strong>期望</strong>，作为<strong>真实误差</strong>；</p></li>
+<li><p>在<strong>训练样本</strong>（<span
+class="math inline">\(S\)</span>）上采样得到的误差函数的<strong>平均值</strong>，作为<strong>经验风险</strong>；</p></li>
 </ul>
 </blockquote>
 </blockquote>
 <h1 id="pac-learning">PAC Learning</h1>
-<p>在<a href="/2020/09/16/statistical-learning-framework-and-empirical-risk-minimization/">上一篇文章</a>中，我们证明了对于一个有限的假设集，<mark>如果拥有足量的训练样本（这些训练样本是从同一分布中独立采样，并被同一标记函数标记而生成的），ERM 会输出近似正确的假设</mark>。更一般的，我们定义 <em>Probably Approximately Correct Learning</em> （PAC）如下：</p>
+<p>在<a
+href="/2020/09/16/statistical-learning-framework-and-empirical-risk-minimization/">上一篇文章</a>中，我们证明了对于一个有限的假设集，<mark>如果拥有足量的训练样本（这些训练样本是从同一分布中独立采样，并被同一标记函数标记而生成的），ERM
+会输出近似正确的假设</mark>。更一般的，我们定义 <em>Probably
+Approximately Correct Learning</em> （PAC）如下：</p>
 <div class="note primary"><p><strong>Def. PAC Learnability</strong></p>
 <p>如果</p>
 <ul>
-<li>存在一个函数 <span class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow \mathbb{N}\)</span> ，</li>
+<li>存在一个函数 <span
+class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow
+\mathbb{N}\)</span> ，</li>
 <li>并且存在一个学习算法满足以下条件：
 <ul>
-<li>对于任意的 <span class="math inline">\(\epsilon, \delta\in(0,1)\)</span> ，任意的 <span class="math inline">\(\mathcal{X}\)</span> 上的分布 <span class="math inline">\(\mathcal{D}\)</span> ，任意的标记函数 <span class="math inline">\(f: \mathcal{X}\rightarrow \lbrace 0,1\rbrace\)</span> ，如果对于 <span class="math inline">\(\mathcal{H,D},f\)</span> 可实现假设（<em>realizability assumption</em> ，即 <span class="math inline">\(\exists\ h^\star\in \mathcal{H}, L_{D,f}(h^\star) = 0\)</span>）成立，那么当学习算法的训练样本量 <span class="math inline">\(m \ge m_{\mathcal{H}}(\epsilon, \delta)\)</span> 时（这些训练样本是由从 <span class="math inline">\(\mathcal{D}\)</span> 中独立采样，并被 <span class="math inline">\(f\)</span> 标记而生成的），学习算法会以至少 <span class="math inline">\(1 - \delta\)</span> 的概率返回一个假设 <span class="math inline">\(h\)</span>，并且该假设满足 <span class="math inline">\(L_{(\mathcal{D},f)}(h) \le \epsilon\)</span></li>
+<li>对于任意的 <span class="math inline">\(\epsilon,
+\delta\in(0,1)\)</span> ，任意的 <span
+class="math inline">\(\mathcal{X}\)</span> 上的分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，任意的标记函数 <span
+class="math inline">\(f: \mathcal{X}\rightarrow \lbrace
+0,1\rbrace\)</span> ，如果对于 <span
+class="math inline">\(\mathcal{H,D},f\)</span>
+可实现假设（<em>realizability assumption</em> ，即 <span
+class="math inline">\(\exists\ h^\star\in \mathcal{H}, L_{D,f}(h^\star)
+= 0\)</span>）成立，那么当学习算法的训练样本量 <span
+class="math inline">\(m \ge m_{\mathcal{H}}(\epsilon, \delta)\)</span>
+时（这些训练样本是由从 <span class="math inline">\(\mathcal{D}\)</span>
+中独立采样，并被 <span class="math inline">\(f\)</span>
+标记而生成的），学习算法会以至少 <span class="math inline">\(1 -
+\delta\)</span> 的概率返回一个假设 <span
+class="math inline">\(h\)</span>，并且该假设满足 <span
+class="math inline">\(L_{(\mathcal{D},f)}(h) \le \epsilon\)</span></li>
 </ul></li>
 </ul>
-<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span> 是 PAC 可学习的</p>
+<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span> 是 PAC
+可学习的</p>
 </div>
 <div class="note info"><p><strong>有关 PAC Learnability 的补充说明</strong></p>
 <ul>
-<li><span class="math inline">\(\epsilon\)</span> 称作<strong>精度参数</strong>（<em>accuracy parameter</em>），代表输出分类器与最优之间的误差大小（对应 PAC 中的 <strong><em>approximately correct</em></strong>）。这意味着，<span class="math inline">\(\epsilon\)</span> 允许学习算法犯一些小错误。</li>
-<li><span class="math inline">\(\delta\)</span> 称作<strong>置信参数</strong>（<em>confidence parameter</em>），代表输出分类器满足上述精度要求的可能性（对应 PAC 中的 <strong><em>probably</em></strong>）</li>
-<li><span class="math inline">\(m_{\mathcal{H}}:(0, 1) \rightarrow \mathbb{N}\)</span> 称作<strong>样本复杂度</strong>（<em>sample complexity</em>）函数，表示<strong>需要多少训练样本数据，才能够保证获得一个尽可能近似正确的答案</strong>。该函数依赖于 <span class="math inline">\(\epsilon, \delta,\mathcal{H}\)</span> 。依据 PAC Learnability 的定义，存在不止一个 <span class="math inline">\(m_{\mathcal{H}}\)</span> 满足条件。通常，我们定义 <span class="math inline">\(m_{\mathcal{H}}\)</span> 为满足条件的<strong>最小整数</strong>。</li>
+<li><span class="math inline">\(\epsilon\)</span>
+称作<strong>精度参数</strong>（<em>accuracy
+parameter</em>），代表输出分类器与最优之间的误差大小（对应 PAC 中的
+<strong><em>approximately correct</em></strong>）。这意味着，<span
+class="math inline">\(\epsilon\)</span> 允许学习算法犯一些小错误。</li>
+<li><span class="math inline">\(\delta\)</span>
+称作<strong>置信参数</strong>（<em>confidence
+parameter</em>），代表输出分类器满足上述精度要求的可能性（对应 PAC 中的
+<strong><em>probably</em></strong>）</li>
+<li><span class="math inline">\(m_{\mathcal{H}}:(0, 1) \rightarrow
+\mathbb{N}\)</span> 称作<strong>样本复杂度</strong>（<em>sample
+complexity</em>）函数，表示<strong>需要多少训练样本数据，才能够保证获得一个尽可能近似正确的答案</strong>。该函数依赖于
+<span class="math inline">\(\epsilon, \delta,\mathcal{H}\)</span> 。依据
+PAC Learnability 的定义，存在不止一个 <span
+class="math inline">\(m_{\mathcal{H}}\)</span> 满足条件。通常，我们定义
+<span class="math inline">\(m_{\mathcal{H}}\)</span>
+为满足条件的<strong>最小整数</strong>。</li>
 </ul>
 </div>
 <p>对上一篇文章中获得的结论，我们换一种表达，则有下面的推论</p>
 <div class="note default"><p><strong>PAC 可学习的样本复杂度条件</strong></p>
-<p>每一个有限假设类都是 PAC 可学习的，只要它的样本复杂度满足： <span class="math display">\[
-m_{\mathcal{H}} \le \lceil \frac{log(\frac{\mathcal{H}}{\delta})}{\epsilon} \rceil
+<p>每一个有限假设类都是 PAC 可学习的，只要它的样本复杂度满足： <span
+class="math display">\[
+m_{\mathcal{H}} \le \lceil
+\frac{log(\frac{\mathcal{H}}{\delta})}{\epsilon} \rceil
 \]</span></p>
 </div>
-<h1 id="a-more-general-learning-model">A More General Learning Model</h1>
+<h1 id="a-more-general-learning-model">A More General Learning
+Model</h1>
 <p>对于大多数任务，可实现假设很难得到满足，而且上述定义只适用于二元分类问题，因此通用性不佳。为了得到更加通用的学习模型，我们对上述模型从以下两个方面进行拓展：</p>
 <ol type="1">
-<li>去除可实现假设。引入 <strong>Agnostic PAC</strong> 解决这个问题。</li>
+<li>去除可实现假设。引入 <strong>Agnostic PAC</strong>
+解决这个问题。</li>
 <li>学习比二元分类问题更加广泛的任务。通过对<strong>损失函数的一般化</strong>来支持这种拓展。</li>
 </ol>
-<h2 id="releasing-the-realizablity-assumption-agnostic-pac-learning">Releasing the Realizablity Assumption —— Agnostic PAC Learning</h2>
-<h3 id="a-more-realistic-model-for-the-data-generating-distribution">A More Realistic Model for the Data-Generating Distribution</h3>
-<p>简单来说，我们可以将 “目标标记函数” 替换为<strong>数据-标签</strong>生成分布。</p>
-<p>规范地，设 <span class="math inline">\(\mathcal{D}\)</span> 为 <span class="math inline">\(\mathcal{X} \times \mathcal{Y}\)</span> 上的概率分布，其中 <span class="math inline">\(\mathcal{X}\)</span> 为领域集，<span class="math inline">\(\mathcal{Y}\)</span> 为标签集。也就是说，<span class="math inline">\(\mathcal{D}\)</span> 为在领域点和标签上的联合分布。我们可以将 <span class="math inline">\(\mathcal{D}\)</span> 看作由两个部分组成：一个在未被标记的领域点上的分布 <span class="math inline">\(\mathcal{D}_x\)</span> （有时候，也称作<strong>边缘分布</strong>） ，另一个为每一个领域点的标签上的<strong>条件概率</strong> <span class="math inline">\(\mathcal{D}((x,y)|x)\)</span> 。</p>
+<h2
+id="releasing-the-realizablity-assumption-agnostic-pac-learning">Releasing
+the Realizablity Assumption —— Agnostic PAC Learning</h2>
+<h3 id="a-more-realistic-model-for-the-data-generating-distribution">A
+More Realistic Model for the Data-Generating Distribution</h3>
+<p>简单来说，我们可以将 “目标标记函数”
+替换为<strong>数据-标签</strong>生成分布。</p>
+<p>规范地，设 <span class="math inline">\(\mathcal{D}\)</span> 为 <span
+class="math inline">\(\mathcal{X} \times \mathcal{Y}\)</span>
+上的概率分布，其中 <span class="math inline">\(\mathcal{X}\)</span>
+为领域集，<span class="math inline">\(\mathcal{Y}\)</span>
+为标签集。也就是说，<span class="math inline">\(\mathcal{D}\)</span>
+为在领域点和标签上的联合分布。我们可以将 <span
+class="math inline">\(\mathcal{D}\)</span>
+看作由两个部分组成：一个在未被标记的领域点上的分布 <span
+class="math inline">\(\mathcal{D}_x\)</span>
+（有时候，也称作<strong>边缘分布</strong>）
+，另一个为每一个领域点的标签上的<strong>条件概率</strong> <span
+class="math inline">\(\mathcal{D}((x,y)|x)\)</span> 。</p>
 <div class="note info"><p><strong>如何理解条件概率？</strong></p>
 <ul>
-<li>很多事情无法精确刻画，因此可用一个条件分布来描述。随着某一变量的变化，对应事件的概率也会发生变化。例如，<span class="math inline">\(\mathcal{D}(y|x)\)</span> 事件 <span class="math inline">\(y\)</span> 的概率会随着 <span class="math inline">\(x\)</span> 的变化而变化；此外，在 <span class="math inline">\(\mathcal{D}(y|x)\)</span> 中，<span class="math inline">\(\mathcal{D}(y|x)\)</span> 是关于 <span class="math inline">\(y\)</span> 的函数，而 <span class="math inline">\(x\)</span> 是作为函数的参数（如果要确定关于 <span class="math inline">\(y\)</span> 的函数关系，<span class="math inline">\(x\)</span> 要事先指定）。</li>
+<li>很多事情无法精确刻画，因此可用一个条件分布来描述。随着某一变量的变化，对应事件的概率也会发生变化。例如，<span
+class="math inline">\(\mathcal{D}(y|x)\)</span> 事件 <span
+class="math inline">\(y\)</span> 的概率会随着 <span
+class="math inline">\(x\)</span> 的变化而变化；此外，在 <span
+class="math inline">\(\mathcal{D}(y|x)\)</span> 中，<span
+class="math inline">\(\mathcal{D}(y|x)\)</span> 是关于 <span
+class="math inline">\(y\)</span> 的函数，而 <span
+class="math inline">\(x\)</span> 是作为函数的参数（如果要确定关于 <span
+class="math inline">\(y\)</span> 的函数关系，<span
+class="math inline">\(x\)</span> 要事先指定）。</li>
 </ul>
 </div>
-<h3 id="the-empirical-and-true-error-revised">The Empirical and True Error Revised</h3>
-<p>与分布的改变相对应，我们定义预测规则 <span class="math inline">\(h\)</span> <strong>真实误差</strong>（或者叫做<strong>风险</strong>）如下： <span class="math display">\[
-L_{\mathcal{D}}\overset{def}{=}\underset{(x,y)\sim \mathcal{D}}{\mathbb{P}}[h(x)\ne y] \overset{def}{=}\mathcal{D}(\lbrace (x,y): h(x) \ne y \rbrace) \tag{3.1}
+<h3 id="the-empirical-and-true-error-revised">The Empirical and True
+Error Revised</h3>
+<p>与分布的改变相对应，我们定义预测规则 <span
+class="math inline">\(h\)</span>
+<strong>真实误差</strong>（或者叫做<strong>风险</strong>）如下： <span
+class="math display">\[
+L_{\mathcal{D}}\overset{def}{=}\underset{(x,y)\sim
+\mathcal{D}}{\mathbb{P}}[h(x)\ne y] \overset{def}{=}\mathcal{D}(\lbrace
+(x,y): h(x) \ne y \rbrace) \tag{3.1}
 \]</span> 而经验风险并没有改变，依然是： <span class="math display">\[
-L_{S}(h)\overset{def}{=}\frac{|\lbrace i\in[m] : h(x_i) \ne y_i \rbrace|}{m}
+L_{S}(h)\overset{def}{=}\frac{|\lbrace i\in[m] : h(x_i) \ne y_i
+\rbrace|}{m}
 \]</span></p>
 <h3 id="the-goal">The Goal</h3>
-<p>学习算法的目标是寻找一些假设，<span class="math inline">\(h:\mathcal{X}\rightarrow \mathcal{Y}\)</span> ，尽可能近似最小化真实风险，<span class="math inline">\(L_{\mathcal{D}}(h)\)</span></p>
+<p>学习算法的目标是寻找一些假设，<span
+class="math inline">\(h:\mathcal{X}\rightarrow \mathcal{Y}\)</span>
+，尽可能近似最小化真实风险，<span
+class="math inline">\(L_{\mathcal{D}}(h)\)</span></p>
 <h3 id="the-bayes-optimal-predictor">The Bayes Optimal Predictor</h3>
-<p>给定任意的在 <span class="math inline">\(\mathcal{X} \times \lbrace 0,1\rbrace\)</span> 上的概率分布，从 <span class="math inline">\(\mathcal{X}\)</span> 到 <span class="math inline">\(\lbrace 0, 1 \rbrace\)</span> 的最佳标记函数为 <span class="math display">\[
-f_{\mathcal{D}}(x) = \begin{cases} 1 &amp;if\ \mathbb{P}[y=1|x]\ge \frac{1}{2}\\ 0 &amp; otherwise\end{cases}
-\]</span> 这也就是说，对于任意的二元分类器 <span class="math inline">\(g: \mathcal{X}\rightarrow \lbrace 0, 1\rbrace\)</span>，<span class="math inline">\(L_{\mathcal{D}}(f_{\mathcal{D}}) \le L_{\mathcal{D}}(g)\)</span></p>
+<p>给定任意的在 <span class="math inline">\(\mathcal{X} \times \lbrace
+0,1\rbrace\)</span> 上的概率分布，从 <span
+class="math inline">\(\mathcal{X}\)</span> 到 <span
+class="math inline">\(\lbrace 0, 1 \rbrace\)</span> 的最佳标记函数为
+<span class="math display">\[
+f_{\mathcal{D}}(x) = \begin{cases} 1 &amp;if\ \mathbb{P}[y=1|x]\ge
+\frac{1}{2}\\ 0 &amp; otherwise\end{cases}
+\]</span> 这也就是说，对于任意的二元分类器 <span
+class="math inline">\(g: \mathcal{X}\rightarrow \lbrace 0,
+1\rbrace\)</span>，<span
+class="math inline">\(L_{\mathcal{D}}(f_{\mathcal{D}}) \le
+L_{\mathcal{D}}(g)\)</span></p>
 <div class="note info"><p><strong>证明 The Bayes Optimal Predictor</strong>（TODO）</p>
 </div>
-<p>一旦我们对数据生成分布不做任何预先假设，那么将没有算法将保证找到一个预测器，媲美 Bayes Optimal Predictor 的效果。因此，我们需要学习算法找到一个预测器，在给定某些假设类的基准测试时，<strong>它的误差并不会比可能的最佳的预测器的误差大太多</strong>。因此，我们有如下的 <strong>Agnostic PAC Learnability</strong>：</p>
+<p>一旦我们对数据生成分布不做任何预先假设，那么将没有算法将保证找到一个预测器，媲美
+Bayes Optimal Predictor
+的效果。因此，我们需要学习算法找到一个预测器，在给定某些假设类的基准测试时，<strong>它的误差并不会比可能的最佳的预测器的误差大太多</strong>。因此，我们有如下的
+<strong>Agnostic PAC Learnability</strong>：</p>
 <div class="note primary"><p><strong>Def. Agnostic PAC Learnability</strong></p>
 <p>如果</p>
 <ul>
-<li><p>存在一个函数 <span class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow \mathbb{N}\)</span> ，</p></li>
+<li><p>存在一个函数 <span
+class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow
+\mathbb{N}\)</span> ，</p></li>
 <li><p>并且存在一个学习算法满足以下条件：</p>
 <ul>
-<li>对于任意的 <span class="math inline">\(\epsilon, \delta\in(0,1)\)</span> ，任意的 <span class="math inline">\(\mathcal{X} \times\mathcal{Y}\)</span> 上的分布 <span class="math inline">\(\mathcal{D}\)</span> ，当学习算法的训练样本量 <span class="math inline">\(m \ge m_{\mathcal{H}}(\epsilon, \delta)\)</span> 时（这些训练样本是由从 <span class="math inline">\(\mathcal{D}\)</span> 中独立采样而生成的），学习算法会以至少 <span class="math inline">\(1 - \delta\)</span> 的概率返回一个假设 <span class="math inline">\(h\)</span>，并且该假设满足： <span class="math display">\[
-L_{\mathcal{D}}(h) \le \underset{h&#39;\in\mathcal{H}}{min}L_D(h&#39;) + \epsilon
+<li>对于任意的 <span class="math inline">\(\epsilon,
+\delta\in(0,1)\)</span> ，任意的 <span class="math inline">\(\mathcal{X}
+\times\mathcal{Y}\)</span> 上的分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，当学习算法的训练样本量
+<span class="math inline">\(m \ge m_{\mathcal{H}}(\epsilon,
+\delta)\)</span> 时（这些训练样本是由从 <span
+class="math inline">\(\mathcal{D}\)</span>
+中独立采样而生成的），学习算法会以至少 <span class="math inline">\(1 -
+\delta\)</span> 的概率返回一个假设 <span
+class="math inline">\(h\)</span>，并且该假设满足： <span
+class="math display">\[
+L_{\mathcal{D}}(h) \le \underset{h&#39;\in\mathcal{H}}{min}L_D(h&#39;) +
+\epsilon
 \]</span></li>
 </ul></li>
 </ul>
-<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span> 是 Agnostic PAC 可学习的</p>
+<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span> 是
+Agnostic PAC 可学习的</p>
 </div>
-<h2 id="generalized-loss-function-agnostic-pac-learning-for-general-loss-function">Generalized Loss Function —— Agnostic PAC Learning for General Loss Function</h2>
+<h2
+id="generalized-loss-function-agnostic-pac-learning-for-general-loss-function">Generalized
+Loss Function —— Agnostic PAC Learning for General Loss Function</h2>
 <p>为了适应不同的任务，我们接下来定义通用的损失函数。</p>
-<p>给定任意的集合 <span class="math inline">\(\mathcal{H}\)</span> 和领域集 <span class="math inline">\(Z\)</span> ，设 <span class="math inline">\(l\)</span> 为任意 <span class="math inline">\(\mathcal{H}\times Z\)</span> 到非负实数的函数， <span class="math inline">\(l: \mathcal{H} \times Z \rightarrow \mathbb{R}_+\)</span> ，我们称 <span class="math inline">\(l\)</span> 为<strong>损失函数</strong>。</p>
+<p>给定任意的集合 <span class="math inline">\(\mathcal{H}\)</span>
+和领域集 <span class="math inline">\(Z\)</span> ，设 <span
+class="math inline">\(l\)</span> 为任意 <span
+class="math inline">\(\mathcal{H}\times Z\)</span> 到非负实数的函数，
+<span class="math inline">\(l: \mathcal{H} \times Z \rightarrow
+\mathbb{R}_+\)</span> ，我们称 <span class="math inline">\(l\)</span>
+为<strong>损失函数</strong>。</p>
 <p>下面用分类器误差的期望来定义<strong>风险函数</strong>。</p>
-<p>给定一个 <span class="math inline">\(h\in \mathcal{H}\)</span> ，关于在 <span class="math inline">\(Z\)</span> 上的概率分布 <span class="math inline">\(\mathcal{D}\)</span> ，对应的风险函数为： <span class="math display">\[
-L_{\mathcal{D}}(h)\overset{def}{=}\underset{z\sim \mathcal{D}}{\mathbb{E}}[l(h,z)]\tag{3.3}
-\]</span> 相似的，经验风险函数为对采样样本 <span class="math inline">\(S=(z_1,\dots,z_m)\in Z^m\)</span> 上的损失的期望： <span class="math display">\[
+<p>给定一个 <span class="math inline">\(h\in \mathcal{H}\)</span>
+，关于在 <span class="math inline">\(Z\)</span> 上的概率分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，对应的风险函数为： <span
+class="math display">\[
+L_{\mathcal{D}}(h)\overset{def}{=}\underset{z\sim
+\mathcal{D}}{\mathbb{E}}[l(h,z)]\tag{3.3}
+\]</span> 相似的，经验风险函数为对采样样本 <span
+class="math inline">\(S=(z_1,\dots,z_m)\in Z^m\)</span> 上的损失的期望：
+<span class="math display">\[
 L_S(h)\overset{def}{=}\frac{1}{m}\sum_{i=1}^{m}l(h,z_i)\tag{3.4}
 \]</span> 综上所述，有如下更加通用的 Agnostic PAC 的定义：</p>
-<div class="note primary"><p><strong>Def. Agnostic PAC Learning for General Loss Function</strong></p>
+<div class="note primary"><p><strong>Def. Agnostic PAC Learning for General Loss
+Function</strong></p>
 <p>如果</p>
 <ul>
-<li><p>存在一个函数 <span class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow \mathbb{N}\)</span> ，</p></li>
+<li><p>存在一个函数 <span
+class="math inline">\(m_{\mathcal{H}}:(0,1)^2\rightarrow
+\mathbb{N}\)</span> ，</p></li>
 <li><p>并且存在一个学习算法满足以下条件：</p>
 <ul>
-<li>对于任意的 <span class="math inline">\(\epsilon, \delta\in(0,1)\)</span> ，任意的 <span class="math inline">\(Z\)</span> 上的分布 <span class="math inline">\(\mathcal{D}\)</span> ，当学习算法的训练样本量 <span class="math inline">\(m \ge m_{\mathcal{H}}(\epsilon, \delta)\)</span> 时（这些训练样本是由从 <span class="math inline">\(\mathcal{D}\)</span> 中独立采样而生成的），学习算法会以至少 <span class="math inline">\(1 - \delta\)</span> 的概率返回一个假设 <span class="math inline">\(h\in \mathcal{H}\)</span>，并且该假设满足 <span class="math display">\[
-L_{\mathcal{D}}(h) \le \underset{h&#39;\in\mathcal{H}}{min}L_{\mathcal{D}}(h&#39;)+ \epsilon
-\]</span> 其中 <span class="math inline">\(L_{\mathcal{D}}(h) = \mathbb{E}_{z\sim D}[l(h, z)]\)</span></li>
+<li>对于任意的 <span class="math inline">\(\epsilon,
+\delta\in(0,1)\)</span> ，任意的 <span class="math inline">\(Z\)</span>
+上的分布 <span class="math inline">\(\mathcal{D}\)</span>
+，当学习算法的训练样本量 <span class="math inline">\(m \ge
+m_{\mathcal{H}}(\epsilon, \delta)\)</span> 时（这些训练样本是由从 <span
+class="math inline">\(\mathcal{D}\)</span>
+中独立采样而生成的），学习算法会以至少 <span class="math inline">\(1 -
+\delta\)</span> 的概率返回一个假设 <span class="math inline">\(h\in
+\mathcal{H}\)</span>，并且该假设满足 <span class="math display">\[
+L_{\mathcal{D}}(h) \le
+\underset{h&#39;\in\mathcal{H}}{min}L_{\mathcal{D}}(h&#39;)+ \epsilon
+\]</span> 其中 <span class="math inline">\(L_{\mathcal{D}}(h) =
+\mathbb{E}_{z\sim D}[l(h, z)]\)</span></li>
 </ul></li>
 </ul>
-<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span> 关于一个集合 <span class="math inline">\(Z\)</span> 和 损失函数 <span class="math inline">\(l:\mathcal{H}\times Z\rightarrow \mathbb{R}_+\)</span> 是 Agnostic PAC 可学习的</p>
+<p>则一个假设类 <span class="math inline">\(\mathcal{H}\)</span>
+关于一个集合 <span class="math inline">\(Z\)</span> 和 损失函数 <span
+class="math inline">\(l:\mathcal{H}\times Z\rightarrow
+\mathbb{R}_+\)</span> 是 Agnostic PAC 可学习的</p>
 </div>
 <h1 id="reference">Reference</h1>
-<p>Shai Shalev-Shwartz, Shai Ben-David. <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html" target="_blank" rel="noopener">Understanding Machine Learning: From Theory to Algorithms</a></p>
+<p>Shai Shalev-Shwartz, Shai Ben-David. <a
+href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html">Understanding
+Machine Learning: From Theory to Algorithms</a></p>
 
     </div>
 
@@ -623,7 +760,7 @@ L_{\mathcal{D}}(h) \le \underset{h&#39;\in\mathcal{H}}{min}L_{\mathcal{D}}(h&#39
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

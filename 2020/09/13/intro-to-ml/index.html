@@ -30,7 +30,7 @@
 <meta property="og:description" content="学习是什么？什么情况下我们需要机器学习？学习分为哪几种？机器学习和其他领域有什么样的关系？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-13T06:51:46.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="Learning">
 <meta property="article:tag" content="Generalization">
@@ -170,11 +170,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -231,7 +226,11 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what-is-learning"><span class="nav-number">1.</span> <span class="nav-text">What Is Learning？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#when-we-need-machine-learning"><span class="nav-number">2.</span> <span class="nav-text">When We Need Machine Learning？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tasks-that-are-to-complex-to-program"><span class="nav-number">2.1.</span> <span class="nav-text">Tasks That Are to Complex to Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adaptivity"><span class="nav-number">2.2.</span> <span class="nav-text">Adaptivity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#types-of-learning"><span class="nav-number">3.</span> <span class="nav-text">Types of Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#supervised-versus-unsupervised"><span class="nav-number">3.1.</span> <span class="nav-text">Supervised versus Unsupervised</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#active-versus-passive"><span class="nav-number">3.2.</span> <span class="nav-text">Active versus Passive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#helpful-of-the-teacher"><span class="nav-number">3.3.</span> <span class="nav-text">Helpful of the Teacher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#online-versus-batch-learning-protocol"><span class="nav-number">3.4.</span> <span class="nav-text">Online versus Batch Learning Protocol</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#relations-to-other-fields"><span class="nav-number">4.</span> <span class="nav-text">Relations to Other Fields</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#with-ai"><span class="nav-number">4.1.</span> <span class="nav-text">With AI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with-statistics"><span class="nav-number">4.2.</span> <span class="nav-text">With Statistics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#what-is-learning"><span class="nav-number">1.</span> <span class="nav-text">What Is Learning？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#when-we-need-machine-learning"><span class="nav-number">2.</span> <span class="nav-text">When We Need Machine
+Learning？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tasks-that-are-to-complex-to-program"><span class="nav-number">2.1.</span> <span class="nav-text">Tasks That Are to Complex
+to Program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adaptivity"><span class="nav-number">2.2.</span> <span class="nav-text">Adaptivity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#types-of-learning"><span class="nav-number">3.</span> <span class="nav-text">Types of Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#supervised-versus-unsupervised"><span class="nav-number">3.1.</span> <span class="nav-text">Supervised versus
+Unsupervised</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#active-versus-passive"><span class="nav-number">3.2.</span> <span class="nav-text">Active versus Passive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#helpful-of-the-teacher"><span class="nav-number">3.3.</span> <span class="nav-text">Helpful of the Teacher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#online-versus-batch-learning-protocol"><span class="nav-number">3.4.</span> <span class="nav-text">Online versus Batch
+Learning Protocol</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#relations-to-other-fields"><span class="nav-number">4.</span> <span class="nav-text">Relations to Other Fields</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#with-ai"><span class="nav-number">4.1.</span> <span class="nav-text">With AI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#with-statistics"><span class="nav-number">4.2.</span> <span class="nav-text">With Statistics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -351,7 +350,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -398,28 +397,41 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>最近上了一门课，叫做“智能信息检索”。老师推荐了一本教材 《Understanding Machine Learning: From Theory to Algorithms》（文末提供官方下载链接），来解释<strong>智能</strong>的含义。本文基于我对教材的理解，对其引言部分做了一些要点概括，供读者参考。</p>
+<p>最近上了一门课，叫做“智能信息检索”。老师推荐了一本教材
+《Understanding Machine Learning: From Theory to
+Algorithms》（文末提供官方下载链接），来解释<strong>智能</strong>的含义。本文基于我对教材的理解，对其引言部分做了一些要点概括，供读者参考。</p>
 </blockquote>
 <h1 id="what-is-learning">What Is Learning？</h1>
 <p>粗略地讲，<strong>学习是一个将经历（<em>experience</em>）转换为技能（<em>expertise</em>）或知识（<em>knowledge</em>）的过程</strong>。一般地，一个学习算法的<strong>输入</strong>是<strong>训练数据</strong>（代表经历），<strong>输出</strong>是<strong>技能</strong>。</p>
-<p>一种常见的学习方法是 “记忆学习”（<em>learning by memorization</em>）。类似人类学习的“死记硬背”，这种学习方法有时候十分有效，但是它却缺失了学习系统中一个十分重要的能力，即<strong>泛化能力</strong>（<em>generalization</em>）。换句话讲，一个成功的学习系统理应能够依据已知知识，正确处理未知的情况。</p>
-<div class="note info"><p><strong>泛化能力</strong> （<em>generalization</em>） 有时也被称作<strong>归纳推理</strong> （<em>inductive reasoning / inductive inference</em>）</p>
+<p>一种常见的学习方法是 “记忆学习”（<em>learning by
+memorization</em>）。类似人类学习的“死记硬背”，这种学习方法有时候十分有效，但是它却缺失了学习系统中一个十分重要的能力，即<strong>泛化能力</strong>（<em>generalization</em>）。换句话讲，一个成功的学习系统理应能够依据已知知识，正确处理未知的情况。</p>
+<div class="note info"><p><strong>泛化能力</strong> （<em>generalization</em>）
+有时也被称作<strong>归纳推理</strong> （<em>inductive reasoning /
+inductive inference</em>）</p>
 </div>
 <p>然而，<strong>归纳推理可能会导致错误结论</strong>。那么怎样才能减少犯错呢？</p>
-<p>答案是：在学习系统中<strong>引入先验知识</strong>（<em>prior knowledge</em>）！</p>
-<div class="note info"><p><strong>先验知识</strong>（<em>prior knowledge</em>） 有时也被称作<strong>归纳偏好</strong> （<em>inductive bias</em>）</p>
+<p>答案是：在学习系统中<strong>引入先验知识</strong>（<em>prior
+knowledge</em>）！</p>
+<div class="note info"><p><strong>先验知识</strong>（<em>prior knowledge</em>）
+有时也被称作<strong>归纳偏好</strong> （<em>inductive bias</em>）</p>
 </div>
-<p>从书中举得几个例子来看，<strong>引入先验知识，使整个学习过程带有偏好，是一个成功的学习算法必然发生的事情</strong>（这种现象是 <strong>No-Free-Lunch Theorem</strong> 的具体表现）。粗略来说，学习算法开始训练时所引入的先验知识越强，从训练样本中学习就越简单。但是，先验知识越强，学习的灵活性也就越低，因为整个学习过程被这些预定假设束缚住了。</p>
-<h1 id="when-we-need-machine-learning">When We Need Machine Learning？</h1>
+<p>从书中举得几个例子来看，<strong>引入先验知识，使整个学习过程带有偏好，是一个成功的学习算法必然发生的事情</strong>（这种现象是
+<strong>No-Free-Lunch Theorem</strong>
+的具体表现）。粗略来说，学习算法开始训练时所引入的先验知识越强，从训练样本中学习就越简单。但是，先验知识越强，学习的灵活性也就越低，因为整个学习过程被这些预定假设束缚住了。</p>
+<h1 id="when-we-need-machine-learning">When We Need Machine
+Learning？</h1>
 <p>那么，在哪些情况下，我们需要利用机器学习解决问题呢？主要有以下两个方面：</p>
 <ul>
 <li>问题的复杂性（<em>complexity</em>）</li>
 <li>任务的适应性需求（<em>adaptivity</em>）</li>
 </ul>
-<h2 id="tasks-that-are-to-complex-to-program">Tasks That Are to Complex to Program</h2>
+<h2 id="tasks-that-are-to-complex-to-program">Tasks That Are to Complex
+to Program</h2>
 <ul>
-<li><em>Tasks Performed by Animals / Humans</em>：我们暂时无法理解一些我们能够处理的日常任务，例如驾驶汽车、语音识别、图像理解。以现有的知识，难以抽象出一个良好的程序去执行这些任务。然而，先进的机器学习程序，只要接受足够的训练样本训练，就可以从中学习经验，并在这些任务中达到不错的效果。</li>
-<li><em>Tasks beyond Human Capabilities</em>：另一类适合用机器学习解决的问题是对巨大的且复杂的数据（例如宇宙空间数据、医疗数据、天气数据等）进行分析。这些数据的处理和分析通常超越了我们自身的分析能力。使用机器学习，可以充分利用计算机的能力，找到数据中有价值的信息。</li>
+<li><em>Tasks Performed by Animals /
+Humans</em>：我们暂时无法理解一些我们能够处理的日常任务，例如驾驶汽车、语音识别、图像理解。以现有的知识，难以抽象出一个良好的程序去执行这些任务。然而，先进的机器学习程序，只要接受足够的训练样本训练，就可以从中学习经验，并在这些任务中达到不错的效果。</li>
+<li><em>Tasks beyond Human
+Capabilities</em>：另一类适合用机器学习解决的问题是对巨大的且复杂的数据（例如宇宙空间数据、医疗数据、天气数据等）进行分析。这些数据的处理和分析通常超越了我们自身的分析能力。使用机器学习，可以充分利用计算机的能力，找到数据中有价值的信息。</li>
 </ul>
 <h2 id="adaptivity">Adaptivity</h2>
 <ul>
@@ -427,10 +439,12 @@
 <li>而机器学习（其天生可以适应不同的输入数据）提供了一种解决此类任务的方案。</li>
 </ul>
 <h1 id="types-of-learning">Types of Learning</h1>
-<h2 id="supervised-versus-unsupervised">Supervised versus Unsupervised</h2>
+<h2 id="supervised-versus-unsupervised">Supervised versus
+Unsupervised</h2>
 <p>如果将学习看作是一个“利用经历来获取技能”的过程，那么监督学习和非监督学习可以描述如下：</p>
 <ul>
-<li><strong>监督（<em>Supervised</em>）学习</strong>：在该场景中，“经历”（亦可称作训练样本）包含了十分重要的信息；而这些信息却在测试样本中丢失了。从监督学习中学习到的技能的目标是，预测测试数据中的确实信息。这就好像环境作为一名老师通过提供额外的信息（通常称作<strong>“标签”</strong> <em>label</em>）"监督"学生（学习算法）的学习。</li>
+<li><strong>监督（<em>Supervised</em>）学习</strong>：在该场景中，“经历”（亦可称作训练样本）包含了十分重要的信息；而这些信息却在测试样本中丢失了。从监督学习中学习到的技能的目标是，预测测试数据中的确实信息。这就好像环境作为一名老师通过提供额外的信息（通常称作<strong>“标签”</strong>
+<em>label</em>）"监督"学生（学习算法）的学习。</li>
 <li><strong>非监督（<em>Unsupervised</em>）学习</strong>：对于非监督学习来说，训练数据和测试数据几乎没什么区别。通常，这种学习方法通过处理输入数据，来达到<strong>总结数据</strong>、<strong>压缩数据</strong>的目标。<strong>聚类</strong>——将一个数据集分成几个子集，同一子集具有相似性——是非监督学习中一个典型的例子。</li>
 <li>在监督与非监督之间，还存在一种不同的方法——<strong>强化学习</strong>。</li>
 </ul>
@@ -454,13 +468,18 @@
 </ul></li>
 <li>被动提供信息
 <ul>
-<li><strong>统计学习（<em>Statistical Learning</em>）</strong>：有时候，信息并不是他人主动提供的。例如科学家在认识自然时，环境，作为一位老师，并不会根据学生的需求主动的提供信息，因此是被动的提供信息。这种情况下，输入数据常常被认为是由某种随机过程（<em>random process</em>）产生。这样，就可以使用统计学习解决问题</li>
+<li><strong>统计学习（<em>Statistical
+Learning</em>）</strong>：有时候，信息并不是他人主动提供的。例如科学家在认识自然时，环境，作为一位老师，并不会根据学生的需求主动的提供信息，因此是被动的提供信息。这种情况下，输入数据常常被认为是由某种随机过程（<em>random
+process</em>）产生。这样，就可以使用统计学习解决问题</li>
 </ul></li>
 </ul>
-<h2 id="online-versus-batch-learning-protocol">Online versus Batch Learning Protocol</h2>
+<h2 id="online-versus-batch-learning-protocol">Online versus Batch
+Learning Protocol</h2>
 <ul>
-<li><strong>在线学习（<em>Online Learning</em>）</strong>：学习算法必须在训练过程中，在线反馈。例如，股票交易员需要基于目前位置积累的经验，做出每日决策。虽说随着时间推移，他会称为一名专家，但是也可能在此过程中犯下代价高昂的错误。</li>
-<li><strong>批处理学习（<em>Batch Learning</em>）</strong>：只有在处理大量的数据后，该算法才能获得所需的技能。在数据挖掘场景下，数据挖掘算法会处理大量的数据之后，才会得出相关的结论。</li>
+<li><strong>在线学习（<em>Online
+Learning</em>）</strong>：学习算法必须在训练过程中，在线反馈。例如，股票交易员需要基于目前位置积累的经验，做出每日决策。虽说随着时间推移，他会称为一名专家，但是也可能在此过程中犯下代价高昂的错误。</li>
+<li><strong>批处理学习（<em>Batch
+Learning</em>）</strong>：只有在处理大量的数据后，该算法才能获得所需的技能。在数据挖掘场景下，数据挖掘算法会处理大量的数据之后，才会得出相关的结论。</li>
 </ul>
 <h1 id="relations-to-other-fields">Relations to Other Fields</h1>
 <h2 id="with-ai">With AI</h2>
@@ -471,14 +490,18 @@
 </ul>
 <h2 id="with-statistics">With Statistics</h2>
 <ul>
-<li>统计学：提出假设（专业人员） <span class="math inline">\(\rightarrow\)</span> <strong>验证假设</strong>（统计学）</li>
+<li>统计学：提出假设（专业人员） <span
+class="math inline">\(\rightarrow\)</span>
+<strong>验证假设</strong>（统计学）</li>
 <li>机器学习：利用数据，<strong>挖掘规律</strong>，解释原因。</li>
 <li>机器学习对<strong>算法</strong>层面的考虑更多</li>
 <li>统计学常常关注数据的<strong>渐进性</strong>（<strong>无穷</strong>情况下的特性），机器学习则关注<strong>有限</strong>的样本空间</li>
 <li>统计学通常<strong>预先假设数据分布</strong>，而机器学习是<strong>分布无关</strong>的（<em>distribution-free</em>）</li>
 </ul>
 <h1 id="reference">Reference</h1>
-<p>Shai Shalev-Shwartz, Shai Ben-David. <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html" target="_blank" rel="noopener">Understanding Machine Learning: From Theory to Algorithms</a></p>
+<p>Shai Shalev-Shwartz, Shai Ben-David. <a
+href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html">Understanding
+Machine Learning: From Theory to Algorithms</a></p>
 
     </div>
 
@@ -606,7 +629,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

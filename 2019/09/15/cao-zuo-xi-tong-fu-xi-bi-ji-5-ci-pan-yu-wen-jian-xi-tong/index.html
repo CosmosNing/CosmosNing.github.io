@@ -29,16 +29,11 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下操作系统中设备管理的知识">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Continuous.png?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Linked.png?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Index.png?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Count-Of-File-Sharing.png?raw=true">
 <meta property="article:published_time" content="2019-09-15T15:17:15.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Continuous.png?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2019/09/15/cao-zuo-xi-tong-fu-xi-bi-ji-5-ci-pan-yu-wen-jian-xi-tong/">
@@ -167,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -350,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -411,19 +401,26 @@
 <h2 id="磁盘的调度">磁盘的调度（★★★★★）</h2>
 <h3 id="存取时间的计算">存取时间的计算</h3>
 <ul>
-<li>寻找时间 <span class="math inline">\(T_s\)</span> ：磁头移动到指定磁道的时间（下式中，<em>m</em> 是和磁盘驱动器速度相关的常数，移动跨越 <em>n</em> 条磁道，<em>s</em> 为磁臂启动时间）</li>
+<li>寻找时间 <span class="math inline">\(T_s\)</span>
+：磁头移动到指定磁道的时间（下式中，<em>m</em>
+是和磁盘驱动器速度相关的常数，移动跨越 <em>n</em> 条磁道，<em>s</em>
+为磁臂启动时间）</li>
 </ul>
 <p><span class="math display">\[
 T_s=m\times n + s
 \]</span></p>
 <ul>
-<li>延迟时间 <span class="math inline">\(T_r\)</span> ：磁头定位到某一磁道的扇区所需要的时间（下式中 <em>r</em> 为磁盘转速）</li>
+<li>延迟时间 <span class="math inline">\(T_r\)</span>
+：磁头定位到某一磁道的扇区所需要的时间（下式中 <em>r</em>
+为磁盘转速）</li>
 </ul>
 <p><span class="math display">\[
 T_r=\frac{1}{2r}
 \]</span></p>
 <ul>
-<li>传输时间 <span class="math inline">\(T_t\)</span> ：磁盘读出或写入数据经历的时间（下式中 <em>b</em> 为每次读/写的字节数， <em>N</em> 为一个磁道上的字节数）</li>
+<li>传输时间 <span class="math inline">\(T_t\)</span>
+：磁盘读出或写入数据经历的时间（下式中 <em>b</em> 为每次读/写的字节数，
+<em>N</em> 为一个磁道上的字节数）</li>
 </ul>
 <p><span class="math display">\[
 T_{t}=\frac{b}{rN}
@@ -459,19 +456,23 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 </tr>
 <tr class="even">
 <td style="text-align: center;">最短寻找时间优先（SSTF）</td>
-<td style="text-align: center;">选择<strong>距离当前磁头位置最短</strong>的请求</td>
+<td
+style="text-align: center;">选择<strong>距离当前磁头位置最短</strong>的请求</td>
 <td style="text-align: center;">性能比FCFS好</td>
-<td style="text-align: center;">不能保证平均寻道时间最短，可能出现<strong>“饥饿”</strong></td>
+<td
+style="text-align: center;">不能保证平均寻道时间最短，可能出现<strong>“饥饿”</strong></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">扫描算法（SCAN，电梯调度）</td>
-<td style="text-align: center;">选择<strong>当前磁头运动方向上</strong>且<strong>距离当前磁头位置最短</strong>的请求</td>
+<td
+style="text-align: center;">选择<strong>当前磁头运动方向上</strong>且<strong>距离当前磁头位置最短</strong>的请求</td>
 <td style="text-align: center;">寻道性能好，可避免“饥饿”</td>
 <td style="text-align: center;">不利于远离磁头一端的请求</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">循环扫描算法（C-SCAN）</td>
-<td style="text-align: center;">类似 SCAN 算法，但是当一个方向上处理完成后回返时，直接移动到起始端，不响应途中的任何请求。到达起始端后，才继续响应</td>
+<td style="text-align: center;">类似 SCAN
+算法，但是当一个方向上处理完成后回返时，直接移动到起始端，不响应途中的任何请求。到达起始端后，才继续响应</td>
 <td style="text-align: center;">消除了对两端磁道请求的不公平性</td>
 <td style="text-align: center;">--------</td>
 </tr>
@@ -485,21 +486,30 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <li>每个文件在磁盘上占有一组<strong>连续</strong>的块</li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Continuous.png?raw=true" alt="连续分配" /><figcaption>连续分配</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/15/Continuous.png?raw=true"
+alt="连续分配" />
+<figcaption aria-hidden="true">连续分配</figcaption>
 </figure>
 <h3 id="链接分配">链接分配</h3>
 <ul>
 <li>每个文件散落在磁盘的各个碎片区域，每一块都存有指向下一块的指针</li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Linked.png?raw=true" alt="链接分配" /><figcaption>链接分配</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/15/Linked.png?raw=true"
+alt="链接分配" />
+<figcaption aria-hidden="true">链接分配</figcaption>
 </figure>
 <h3 id="索引分配">索引分配</h3>
 <ul>
 <li>单独使用一块来存储文件各块存储位置，构成索引块</li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Index.png?raw=true" alt="索引分配" /><figcaption>索引分配</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/15/Index.png?raw=true"
+alt="索引分配" />
+<figcaption aria-hidden="true">索引分配</figcaption>
 </figure>
 <h2 id="文件存储空间的管理">文件存储空间的管理</h2>
 <h3 id="空闲表法">空闲表法</h3>
@@ -513,17 +523,24 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 </ul>
 <h3 id="位示图法">位示图法（★）</h3>
 <ul>
-<li>用二进制的一位来表示某一盘块的使用情况： <em>1</em> 表示已分配， <em>0</em> 表示未分配（空闲）</li>
+<li>用二进制的一位来表示某一盘块的使用情况： <em>1</em> 表示已分配，
+<em>0</em> 表示未分配（空闲）</li>
 <li>盘块的分配算法（行列号从 <em>1</em> 开始）
 <ol type="1">
 <li>找到合适的 “0” 的二进制位</li>
-<li>计算盘块号 <em>b</em> ：<span class="math inline">\(b = (i-1)n+j\)</span> （其中 <em>i</em> 代表行数，<em>j</em> 代表列数，<em>n</em> 代表每行位数）</li>
-<li>修改位示图矩阵：<span class="math inline">\(map[i,j] = 1\)</span></li>
+<li>计算盘块号 <em>b</em> ：<span class="math inline">\(b =
+(i-1)n+j\)</span> （其中 <em>i</em> 代表行数，<em>j</em>
+代表列数，<em>n</em> 代表每行位数）</li>
+<li>修改位示图矩阵：<span class="math inline">\(map[i,j] =
+1\)</span></li>
 </ol></li>
 <li>盘块的回收算法
 <ol type="1">
-<li>块号 <em>b</em> 转换为行 <em>i</em> 列 <em>j</em> 号<span class="math inline">\(i = (b-1)\ DIV\ n + 1,j=(b-1)\ MOD\ n + 1\)</span></li>
-<li>修改位示图矩阵：<span class="math inline">\(map[i,j] = 0\)</span></li>
+<li>块号 <em>b</em> 转换为行 <em>i</em> 列 <em>j</em> 号<span
+class="math inline">\(i = (b-1)\ DIV\ n + 1,j=(b-1)\ MOD\ n +
+1\)</span></li>
+<li>修改位示图矩阵：<span class="math inline">\(map[i,j] =
+0\)</span></li>
 </ol></li>
 </ul>
 <h3 id="成组链接法">成组链接法</h3>
@@ -555,10 +572,13 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <ul>
 <li>为每个文件建立索引表，将记录分组，只为<strong>每组的第一条记录建立索引表项</strong></li>
 <li>可以有<strong>一级、二级、多级</strong>索引顺序文件</li>
-<li>查找效率比较（假设文件所含有的记录数为 <em>N</em> ，为检索到指定含有关键字的记录）
+<li>查找效率比较（假设文件所含有的记录数为 <em>N</em>
+，为检索到指定含有关键字的记录）
 <ul>
-<li>顺序文件：<strong>平均需要查找 <span class="math inline">\(\frac{N}{2}\)</span></strong></li>
-<li>索引顺序文件：<strong>平均需要查找 <span class="math inline">\(\sqrt{N}\)</span> </strong></li>
+<li>顺序文件：<strong>平均需要查找 <span
+class="math inline">\(\frac{N}{2}\)</span></strong></li>
+<li>索引顺序文件：<strong>平均需要查找 <span
+class="math inline">\(\sqrt{N}\)</span> </strong></li>
 </ul></li>
 </ul>
 <h4 id="直接文件散列文件">直接文件（散列文件）</h4>
@@ -599,12 +619,17 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <li>使用信息：创建时间、修改时间</li>
 </ul></li>
 <li>从而实现了<strong>“按名存取”</strong></li>
-<li>FCB 的有序集合成为<strong>文件目录</strong>，一个 FCB 就是一个<strong>文件目录表项</strong></li>
+<li>FCB 的有序集合成为<strong>文件目录</strong>，一个 FCB
+就是一个<strong>文件目录表项</strong></li>
 <li>创建新文件时，也会创建一个对应的 FCB</li>
 </ul>
 <h3 id="索引结点">索引结点</h3>
 <ul>
-<li>为加快按文件名检索目录文件而引入。（无索引时，需依次检索 FCB，但是 FCB 中很多信息对于检索目录是多余的，因此把需要的信息抽出，形成索引【通常包括 <strong>文件名</strong> 、<strong>索引结点编号</strong> 】，从而可以加快检索速度）</li>
+<li>为加快按文件名检索目录文件而引入。（无索引时，需依次检索 FCB，但是
+FCB
+中很多信息对于检索目录是多余的，因此把需要的信息抽出，形成索引【通常包括
+<strong>文件名</strong> 、<strong>索引结点编号</strong>
+】，从而可以加快检索速度）</li>
 <li>根据索引结点所处位置不同，分为
 <ul>
 <li>磁盘索引结点</li>
@@ -655,14 +680,16 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 </ul></li>
 <li>树形目录情况
 <ul>
-<li>读入第一个文件分量（文件分量即文件路径中被 “/” 分隔的字符串），在第一级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
+<li>读入第一个文件分量（文件分量即文件路径中被 “/”
+分隔的字符串），在第一级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
 <li>读入下一个文件分量，在对应级目录表中，顺序查找，找到匹配，得到下一级目录表的块号</li>
 <li>以此类推，直至目录中所有文件分量都已处理完毕或者是未找到退出</li>
 </ul></li>
 </ul>
 <h5 id="hash-方法">Hash 方法</h5>
 <ul>
-<li>利用 Hash 函数完成从<strong>文件名</strong>到<strong>索引值</strong>的映射，之后再用得到的索引值找到目录</li>
+<li>利用 Hash
+函数完成从<strong>文件名</strong>到<strong>索引值</strong>的映射，之后再用得到的索引值找到目录</li>
 </ul>
 <h2 id="文件共享和保护">文件共享和保护</h2>
 <h3 id="文件共享">文件共享</h3>
@@ -672,13 +699,18 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <ul>
 <li>在用户目录表中，其表项只包括<strong>文件名</strong>和<strong>指向索引结点的指针</strong>，其他的相关信息放在索引结点中</li>
 </ul>
-<h4 id="不同用户对共享文件创建删除操作中的链接计数">不同用户对共享文件创建、删除操作中的链接计数</h4>
+<h4
+id="不同用户对共享文件创建删除操作中的链接计数">不同用户对共享文件创建、删除操作中的链接计数</h4>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/15/Count-Of-File-Sharing.png?raw=true" alt="索引分配" /><figcaption>索引分配</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/15/Count-Of-File-Sharing.png?raw=true"
+alt="索引分配" />
+<figcaption aria-hidden="true">索引分配</figcaption>
 </figure>
 <h4 id="利用符号链接软链接">利用符号链接（软链接）（★★★）</h4>
 <ul>
-<li>共享时，会新建一个 LINK 文件，这个 LINK 文件中<strong>只含有被链接文件的路径</strong></li>
+<li>共享时，会新建一个 LINK 文件，这个 LINK
+文件中<strong>只含有被链接文件的路径</strong></li>
 </ul>
 <p><strong>硬链接查找较快</strong></p>
 <h3 id="文件保护">文件保护</h3>
@@ -714,8 +746,11 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 </ul></li>
 <li>例题（2009·408统考）
 <ul>
-<li>F1 引用计数为 1 ，建立符号链接（软链接）F2 ，再建立硬链接 F3 ，删除 F1 ，则此时 F2 、F3 引用计数为</li>
-<li>解答：建立 F2 ，由于是软链接，引用计数直接复制，为 1 ；再建立 F3 ，F1 和 F3 的引用计数都加一，为 2；删除 F1，不影响 F2 但影响 F3 ，故 F2 仍为 1 ，F3 要减掉一为 1</li>
+<li>F1 引用计数为 1 ，建立符号链接（软链接）F2 ，再建立硬链接 F3 ，删除
+F1 ，则此时 F2 、F3 引用计数为</li>
+<li>解答：建立 F2 ，由于是软链接，引用计数直接复制，为 1 ；再建立 F3
+，F1 和 F3 的引用计数都加一，为 2；删除 F1，不影响 F2 但影响 F3 ，故 F2
+仍为 1 ，F3 要减掉一为 1</li>
 </ul></li>
 </ul></li>
 <li>混合索引中的计算
@@ -726,22 +761,30 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <ul>
 <li><strong>直接地址</strong>：此地址<strong>直接指向磁盘数据块</strong>。
 <ul>
-<li>所以<span class="math inline">\(磁盘数据块的块数 = 文件索引结点中含有直接地址项的项数\)</span></li>
+<li>所以<span class="math inline">\(磁盘数据块的块数 =
+文件索引结点中含有直接地址项的项数\)</span></li>
 </ul></li>
 <li><strong>一级间接地址索引</strong>：顶级索引节点（在这里便是<strong>文件索引结点</strong>）存放索引，通过这个索引找第二张表，才能找到指向磁盘数据块的地址
 <ul>
-<li>因此<span class="math inline">\(磁盘数据块的块数 = 磁盘索引块地址项的项数=\frac{磁盘索引块大小}{地址项大小}\)</span></li>
+<li>因此<span class="math inline">\(磁盘数据块的块数 =
+磁盘索引块地址项的项数=\frac{磁盘索引块大小}{地址项大小}\)</span></li>
 </ul></li>
 <li><strong>二级间接地址索引</strong>：顶级索引节点存放一级索引，通过这个索引找第二张表；找到二级索引，通过这个索引查第三张表才能找到指向磁盘数据块的地址
 <ul>
-<li>故<span class="math inline">\(磁盘数据块的块数 = 磁盘索引块地址项的项数^2=(\frac{磁盘索引块大小}{地址项大小})^2\)</span></li>
+<li>故<span class="math inline">\(磁盘数据块的块数 =
+磁盘索引块地址项的项数^2=(\frac{磁盘索引块大小}{地址项大小})^2\)</span></li>
 </ul></li>
-<li><strong>n 级间接地址索引</strong>，以此类推有<span class="math inline">\(磁盘数据块的块数 = 磁盘索引块地址项的项数^n=(\frac{磁盘索引块大小}{地址项大小})^n\)</span></li>
+<li><strong>n 级间接地址索引</strong>，以此类推有<span
+class="math inline">\(磁盘数据块的块数 =
+磁盘索引块地址项的项数^n=(\frac{磁盘索引块大小}{地址项大小})^n\)</span></li>
 </ul></li>
 </ul></li>
 <li>典型例题
 <ul>
-<li>（2010·408）文件索引结点 7 个地址项，其中 4 个直接地址、2个一级间接地址索引、 1 个 2 级间接地址索引，每个地址项大小为 4 B，磁盘索引块和磁盘数据块大小均为 256 B，则可表示的单个文件最大长度是
+<li>（2010·408）文件索引结点 7 个地址项，其中 4
+个直接地址、2个一级间接地址索引、 1 个 2
+级间接地址索引，每个地址项大小为 4 B，磁盘索引块和磁盘数据块大小均为 256
+B，则可表示的单个文件最大长度是
 <ul>
 <li>分析：
 <ul>
@@ -751,7 +794,8 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <li>总计：上述三项之和</li>
 </ul></li>
 </ul></li>
-<li>文件系统二级索引分配，磁盘块大小 1KB，每个盘块号占 4B，单个文件最大长度为
+<li>文件系统二级索引分配，磁盘块大小 1KB，每个盘块号占
+4B，单个文件最大长度为
 <ul>
 <li>分析：
 <ul>
@@ -762,12 +806,16 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <ul>
 <li>（公式补充）
 <ul>
-<li><span class="math inline">\(索引项个数 =\frac{磁盘块大小}{盘块号大小}\)</span></li>
-<li><span class="math inline">\(文件长度= 索引项个数^{索引级数}\times 磁盘块大小\)</span></li>
+<li><span class="math inline">\(索引项个数
+=\frac{磁盘块大小}{盘块号大小}\)</span></li>
+<li><span class="math inline">\(文件长度= 索引项个数^{索引级数}\times
+磁盘块大小\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li>文件系统中， FCB 占 64 B，一个盘块大小为 1 KB，一级目录，设文件目录中有 3200 个目录项，则查找一个文件平均需要访问几次磁盘
+<li>文件系统中， FCB 占 64 B，一个盘块大小为 1
+KB，一级目录，设文件目录中有 3200
+个目录项，则查找一个文件平均需要访问几次磁盘
 <ul>
 <li>分析
 <ul>
@@ -778,45 +826,66 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <ul>
 <li>（公式补充）
 <ul>
-<li><span class="math inline">\(目录项盘块数 = \frac{目录项项数\times FCB大小}​\)</span></li>
-<li>一级目录：<span class="math inline">\(平均访问磁盘次数=\frac{目录项盘块数}{2}\)</span>（类似文件的顺序查找）</li>
+<li><span class="math inline">\(目录项盘块数 = \frac{目录项项数\times
+FCB大小}​\)</span></li>
+<li>一级目录：<span
+class="math inline">\(平均访问磁盘次数=\frac{目录项盘块数}{2}\)</span>（类似文件的顺序查找）</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li>（2015·408）文件索引结点中，10 个 直接、1个一级、1个二级，磁盘块大小 1 KB，索引指针大小 4 B 。若文件索引结点已经读入内存，则把该文件偏移量（按字节编址）为 1234 和 307400 处所在的磁盘块读入内存，需访问的盘块数分别是
+<li>（2015·408）文件索引结点中，10 个 直接、1个一级、1个二级，磁盘块大小
+1 KB，索引指针大小 4 B
+。若文件索引结点已经读入内存，则把该文件偏移量（按字节编址）为 1234 和
+307400 处所在的磁盘块读入内存，需访问的盘块数分别是
 <ul>
 <li>分析
 <ul>
 <li>10 个 直接地址：10 × 1 KB = 10 KB</li>
 <li>1 个一级间接：1 × ( 1 KB / 4 B ) × 1 KB = 256 KB</li>
-<li>1 个二级间接：1 × ( 1 KB / 4 B ) × ( 1 KB / 4 B ) × 1 KB = 64 KB</li>
-<li>1234 B &lt; 10 KB，地址可以直接得到，只需再访问 1 次磁盘，获取该地址的数据即可</li>
-<li>10 KB + 256 KB &lt; 1234 B &lt; 64 MB，可知该文件内容在二级索引指针所指向的某个磁盘块中。访问 2 次磁盘，获得地址；再依此地址访问 1 次磁盘，获得数据。共需要 3 次</li>
+<li>1 个二级间接：1 × ( 1 KB / 4 B ) × ( 1 KB / 4 B ) × 1 KB = 64
+KB</li>
+<li>1234 B &lt; 10 KB，地址可以直接得到，只需再访问 1
+次磁盘，获取该地址的数据即可</li>
+<li>10 KB + 256 KB &lt; 1234 B &lt; 64
+MB，可知该文件内容在二级索引指针所指向的某个磁盘块中。访问 2
+次磁盘，获得地址；再依此地址访问 1 次磁盘，获得数据。共需要 3 次</li>
 </ul></li>
 <li>总结
 <ul>
-<li><strong>磁盘访问次数 = 索引级数</strong>（为了找到地址。P.S.直接地址当作 0 级）<strong>+ 1</strong>（为了找到数据：依地址，取数据）</li>
+<li><strong>磁盘访问次数 =
+索引级数</strong>（为了找到地址。P.S.直接地址当作 0 级）<strong>+
+1</strong>（为了找到数据：依地址，取数据）</li>
 </ul></li>
 </ul></li>
-<li>设有一记录文件，采用链接分配方式，逻辑记录的固定长度为 100 B，在磁盘上存储时采用记录成组分解技术，盘块长度 为 512 B。若该文件的目录项已经读入内存，则对 22 个 逻辑记录完成修改后，共启动磁盘多少次
+<li>设有一记录文件，采用链接分配方式，逻辑记录的固定长度为 100
+B，在磁盘上存储时采用记录成组分解技术，盘块长度 为 512
+B。若该文件的目录项已经读入内存，则对 22 个
+逻辑记录完成修改后，共启动磁盘多少次
 <ul>
 <li>分析
 <ul>
 <li>第 22 条记录 的地址为 22 × 100 B = 2200 B</li>
 <li>2200 B / 512 B = 4 还有剩余，故在第 5 个盘快上。</li>
-<li>链接分配，要找到第五个盘块的地址，需要从第一个开始，依次寻找，需要 5 次此盘启动，才能拿到 第 22 个 逻辑记录的物理地址。之后依据这个物理地址，访存修改，还需要启动 1 次磁盘。所以共需 6 次</li>
+<li>链接分配，要找到第五个盘块的地址，需要从第一个开始，依次寻找，需要 5
+次此盘启动，才能拿到 第 22 个
+逻辑记录的物理地址。之后依据这个物理地址，访存修改，还需要启动 1
+次磁盘。所以共需 6 次</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 <li>位示图相关
 <ul>
-<li>（2015·408）文件系统中用位示图，位图位于 32 ~ 127 号块中，每个盘块占 1024 B，盘块和块内字节均从 0 号开始编号。假设要释放 盘块号为 409612 ，则位图中要修改的位所在的盘块号和块内字节序号分别是
+<li>（2015·408）文件系统中用位示图，位图位于 32 ~ 127 号块中，每个盘块占
+1024 B，盘块和块内字节均从 0 号开始编号。假设要释放 盘块号为 409612
+，则位图中要修改的位所在的盘块号和块内字节序号分别是
 <ul>
 <li>分析：
 <ul>
-<li><span class="math inline">\(盘块号=起始块号+\lfloor\frac{盘块号}{盘块大小\times 8}\rfloor​\)</span></li>
-<li>$块内字节号 =盘块号 mod (盘块大小8)/8$</li>
+<li><span
+class="math inline">\(盘块号=起始块号+\lfloor\frac{盘块号}{盘块大小\times
+8}\rfloor​\)</span></li>
+<li>$块内字节号 =盘块号 mod (盘块大小)/8$</li>
 <li>数据带入公式，即可</li>
 </ul></li>
 </ul></li>
@@ -948,7 +1017,7 @@ T_a=T_s+\frac{1}{2r}+\frac{b}{rN}
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

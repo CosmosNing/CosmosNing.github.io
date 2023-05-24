@@ -29,19 +29,13 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="这篇文章解决了一个关键字到 SPARQL 查询（keyword-to-SPARQL）的问题，提出了一个叫做 “KAT” 的解决方案。KAT 考虑了输入关键字的上下文关系，并且通过在 RDF 数据上构建含有关键字类别（class）信息的关键字索引（keyword index），减少了输入关键字的模糊性。为了高效地探索 RDF 数据图，KAT 也构建了一个图索引（graph index）。此外，这篇文">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/overview-of-kat.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/hybird-index.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/summary-graph.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/subgraph.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/algorithm-1.PNG">
 <meta property="article:published_time" content="2020-09-12T00:04:23.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.603Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="Keywords-to-SPARQL">
 <meta property="article:tag" content="Two-facet index">
 <meta property="article:tag" content="Context aware">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/overview-of-kat.PNG">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2020/09/12/notes-of-kat-keywords-to-sparql-translation-2018/">
@@ -172,11 +166,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -233,7 +222,10 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#highlights"><span class="nav-number">1.</span> <span class="nav-text">Highlights</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what"><span class="nav-number">2.</span> <span class="nav-text">What？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem"><span class="nav-number">2.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contributions"><span class="nav-number">2.2.</span> <span class="nav-text">Contributions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why"><span class="nav-number">3.</span> <span class="nav-text">Why？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#necessity-for-a-keyword-query-system-in-rdf-data"><span class="nav-number">3.1.</span> <span class="nav-text">Necessity for a Keyword Query System in RDF Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disadvantages-of-existing-approaches"><span class="nav-number">3.2.</span> <span class="nav-text">Disadvantages of Existing Approaches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#advantages-of-proposed-method"><span class="nav-number">3.3.</span> <span class="nav-text">Advantages of Proposed Method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how"><span class="nav-number">4.</span> <span class="nav-text">How？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">4.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#two-facet-indexing"><span class="nav-number">4.2.</span> <span class="nav-text">Two-Facet Indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyword-indexing"><span class="nav-number">4.2.1.</span> <span class="nav-text">Keyword Indexing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#graph-indexing"><span class="nav-number">4.2.2.</span> <span class="nav-text">Graph Indexing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#context-aware-ranking"><span class="nav-number">4.3.</span> <span class="nav-text">Context Aware Ranking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how-much"><span class="nav-number">5.</span> <span class="nav-text">How much？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-then"><span class="nav-number">6.</span> <span class="nav-text">What Then？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#problems-to-solve"><span class="nav-number">7.</span> <span class="nav-text">Problems to Solve</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#highlights"><span class="nav-number">1.</span> <span class="nav-text">Highlights</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what"><span class="nav-number">2.</span> <span class="nav-text">What？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem"><span class="nav-number">2.1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contributions"><span class="nav-number">2.2.</span> <span class="nav-text">Contributions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why"><span class="nav-number">3.</span> <span class="nav-text">Why？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#necessity-for-a-keyword-query-system-in-rdf-data"><span class="nav-number">3.1.</span> <span class="nav-text">Necessity for
+a Keyword Query System in RDF Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#disadvantages-of-existing-approaches"><span class="nav-number">3.2.</span> <span class="nav-text">Disadvantages of Existing
+Approaches</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#advantages-of-proposed-method"><span class="nav-number">3.3.</span> <span class="nav-text">Advantages of Proposed
+Method</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how"><span class="nav-number">4.</span> <span class="nav-text">How？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">4.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#two-facet-indexing"><span class="nav-number">4.2.</span> <span class="nav-text">Two-Facet Indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyword-indexing"><span class="nav-number">4.2.1.</span> <span class="nav-text">Keyword Indexing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#graph-indexing"><span class="nav-number">4.2.2.</span> <span class="nav-text">Graph Indexing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#context-aware-ranking"><span class="nav-number">4.3.</span> <span class="nav-text">Context Aware Ranking</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#how-much"><span class="nav-number">5.</span> <span class="nav-text">How much？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#what-then"><span class="nav-number">6.</span> <span class="nav-text">What Then？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#problems-to-solve"><span class="nav-number">7.</span> <span class="nav-text">Problems to Solve</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -353,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -401,75 +393,130 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="highlights">Highlights</h1>
 <ul>
-<li><strong>Two-Facet Indexing</strong>：这篇文章的关键词索引和图索引看上去比较简单，而且十分高效。</li>
-<li><strong>Context Aware Ranking</strong>：充分利用关键词的上下文信息和 RDF 模式的信息，构建了一种十分有效的排序方法。</li>
+<li><strong>Two-Facet
+Indexing</strong>：这篇文章的关键词索引和图索引看上去比较简单，而且十分高效。</li>
+<li><strong>Context Aware Ranking</strong>：充分利用关键词的上下文信息和
+RDF 模式的信息，构建了一种十分有效的排序方法。</li>
 </ul>
 <h1 id="what">What？</h1>
 <h2 id="problem">Problem</h2>
-<p>将关键词查询高效的转换为 SPARQL 查询（<em>keyword-to-SPARQL</em>）</p>
+<p>将关键词查询高效的转换为 SPARQL
+查询（<em>keyword-to-SPARQL</em>）</p>
 <h2 id="contributions">Contributions</h2>
-<p>本文主要构建了一个关键词查询系统 <code>KAT</code> ，它能够将<strong>关键词查询转换为 SPARQL 查询</strong>。与现存方法不同的是，它考虑了上下文（<em>context</em>）信息和模式（<em>schema</em>）信息。主要的贡献如下：</p>
+<p>本文主要构建了一个关键词查询系统 <code>KAT</code>
+，它能够将<strong>关键词查询转换为 SPARQL
+查询</strong>。与现存方法不同的是，它考虑了上下文（<em>context</em>）信息和模式（<em>schema</em>）信息。主要的贡献如下：</p>
 <ol type="1">
-<li>提出了一种新颖的关键词到 SPARQL 转换（<em>keywords-to-SPARQL</em>）方法（叫做 <code>KAT</code>）。</li>
-<li>构建了两个索引。一个为关键词索引（<strong>keyword index</strong>），另一个为图索引（<strong>graph index</strong>）。</li>
-<li>实验表明了 <code>KAT</code> 的<strong>有效性</strong>和<strong>高效性</strong>。</li>
+<li>提出了一种新颖的关键词到 SPARQL
+转换（<em>keywords-to-SPARQL</em>）方法（叫做 <code>KAT</code>）。</li>
+<li>构建了两个索引。一个为关键词索引（<strong>keyword
+index</strong>），另一个为图索引（<strong>graph index</strong>）。</li>
+<li>实验表明了 <code>KAT</code>
+的<strong>有效性</strong>和<strong>高效性</strong>。</li>
 </ol>
 <h1 id="why">Why？</h1>
-<h2 id="necessity-for-a-keyword-query-system-in-rdf-data">Necessity for a Keyword Query System in RDF Data</h2>
+<h2 id="necessity-for-a-keyword-query-system-in-rdf-data">Necessity for
+a Keyword Query System in RDF Data</h2>
 <ul>
 <li>RDF 提供了一种灵活的方式表示知识</li>
-<li>SPARQL 是 RDF 的结构化查询语言。但是对于普通用户，尤其是不了解 RDF 内在模式（<em>schema</em>）或者是 SPARQL 语法的用户，使用 SPARQL 查询 RDF 数据将会极度困难。</li>
-<li>Keyword-to-SPARQL 通过自动地将关键词转换为 SPARQL 查询语句，使得用户可以更加简单地探索 RDF 数据。</li>
+<li>SPARQL 是 RDF 的结构化查询语言。但是对于普通用户，尤其是不了解 RDF
+内在模式（<em>schema</em>）或者是 SPARQL 语法的用户，使用 SPARQL 查询
+RDF 数据将会极度困难。</li>
+<li>Keyword-to-SPARQL 通过自动地将关键词转换为 SPARQL
+查询语句，使得用户可以更加简单地探索 RDF 数据。</li>
 </ul>
-<h2 id="disadvantages-of-existing-approaches">Disadvantages of Existing Approaches</h2>
+<h2 id="disadvantages-of-existing-approaches">Disadvantages of Existing
+Approaches</h2>
 <p>现存的解决方案无法有效并且高效地返回关键词查询的结果，主要原因如下：</p>
 <ul>
 <li>没有考虑输入关键词的上下文信息</li>
 <li>没有利用 RDF 图的模式信息（例如与某个关键词相关的 RDF 类）</li>
 </ul>
-<h2 id="advantages-of-proposed-method">Advantages of Proposed Method</h2>
+<h2 id="advantages-of-proposed-method">Advantages of Proposed
+Method</h2>
 <ul>
-<li><code>KAT</code> 利用了关键字之间的上下文关系，提高了查询结果的相关性。</li>
-<li>含有 RDF 类（<em>class</em>）信息的关键词索引（<strong>keyword index</strong>）将会解决关键词语义的模糊性问题（<em>disambiguation</em>），而图索引（<strong>graph index</strong>）将会加速图的探索过程（<em>graph exploration</em>）。</li>
+<li><code>KAT</code>
+利用了关键字之间的上下文关系，提高了查询结果的相关性。</li>
+<li>含有 RDF 类（<em>class</em>）信息的关键词索引（<strong>keyword
+index</strong>）将会解决关键词语义的模糊性问题（<em>disambiguation</em>），而图索引（<strong>graph
+index</strong>）将会加速图的探索过程（<em>graph
+exploration</em>）。</li>
 <li>实验表明 <code>KAT</code> 处理更快，并且结果质量更好</li>
 </ul>
 <h1 id="how">How？</h1>
-<p>Keyword-to-SPARQL 方法的<strong>关键</strong>是在 RDF 数据中找到一个<strong>子图</strong>，这个子图<strong>包含输入的关键词</strong>并且<strong>满足用户的需求</strong>。</p>
+<p>Keyword-to-SPARQL 方法的<strong>关键</strong>是在 RDF
+数据中找到一个<strong>子图</strong>，这个子图<strong>包含输入的关键词</strong>并且<strong>满足用户的需求</strong>。</p>
 <h2 id="overview">Overview</h2>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/overview-of-kat.PNG" alt="Overview of KAT. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" /><figcaption>Overview of KAT. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/overview-of-kat.PNG"
+alt="Overview of KAT. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" />
+<figcaption aria-hidden="true">Overview of KAT. Source: "KAT:
+Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
 </figure>
 <ul>
-<li><strong>离线创建索引</strong>（<em>Offline Two-Facet Indexing</em>）：在离线处理流程中，系统将会创建两个索引，包括<strong>关键词索引</strong>和<strong>图索引</strong>。</li>
-<li><strong>创建关键词-元素映射</strong>（<em>Keyword-to-Element Mapping</em>）：当用户提交了一个关键词查询任务后，KAT 通过离线生成的关键词索引，将关键词映射到与之相关的顶点和边（这些顶点和边被称为 <em>keyword elements</em>）。</li>
-<li><strong>图探索</strong>（<em>Graph Exploration</em>）：然后，基于图索引进行图探索阶段，以找到含有关键词的子图。</li>
+<li><strong>离线创建索引</strong>（<em>Offline Two-Facet
+Indexing</em>）：在离线处理流程中，系统将会创建两个索引，包括<strong>关键词索引</strong>和<strong>图索引</strong>。</li>
+<li><strong>创建关键词-元素映射</strong>（<em>Keyword-to-Element
+Mapping</em>）：当用户提交了一个关键词查询任务后，KAT
+通过离线生成的关键词索引，将关键词映射到与之相关的顶点和边（这些顶点和边被称为
+<em>keyword elements</em>）。</li>
+<li><strong>图探索</strong>（<em>Graph
+Exploration</em>）：然后，基于图索引进行图探索阶段，以找到含有关键词的子图。</li>
 <li><strong>排序</strong>（<em>Ranking</em>）：使用考虑上下文关系的评价方法，将子图从大到小排序。</li>
-<li><strong>翻译</strong>（<em>Translation</em>）：将排序前几名的子图翻译成 SPARQL 查询语句。</li>
+<li><strong>翻译</strong>（<em>Translation</em>）：将排序前几名的子图翻译成
+SPARQL 查询语句。</li>
 </ul>
 <h2 id="two-facet-indexing">Two-Facet Indexing</h2>
 <h3 id="keyword-indexing">Keyword Indexing</h3>
 <p><strong>功能</strong></p>
 <p>将关键词映射到与之相关的元素。</p>
 <p><strong>现存方案的不足</strong></p>
-<p>现有方案中，关键词索引仅仅是一个简单的倒排索引（<em>inverted index</em>）。因此，在构建映射关系时，<strong>所有包含关键词的元素都被当作候选结果，这其中包括大量的无用元素</strong>。为什么会这样呢？这是由于自然语言关键词的<strong>二义性</strong>（<em>ambiguity</em>）导致的。例如，用户输入这样一个查询，<code>{person, movie, lila}</code> 。其查询意图为，找到在 “Lila Says” 中演出的演员。但是 “lila” 却是一个模棱两可的关键词，她可能是一个人名，也可能是一张专辑名，甚至是一个地铁名。</p>
+<p>现有方案中，关键词索引仅仅是一个简单的倒排索引（<em>inverted
+index</em>）。因此，在构建映射关系时，<strong>所有包含关键词的元素都被当作候选结果，这其中包括大量的无用元素</strong>。为什么会这样呢？这是由于自然语言关键词的<strong>二义性</strong>（<em>ambiguity</em>）导致的。例如，用户输入这样一个查询，<code>{person, movie, lila}</code>
+。其查询意图为，找到在 “Lila Says” 中演出的演员。但是 “lila”
+却是一个模棱两可的关键词，她可能是一个人名，也可能是一张专辑名，甚至是一个地铁名。</p>
 <p><strong>解决方案</strong></p>
-<p>为了减少关键词的二义性，这篇文章提出了一种混合索引，作为关键词索引。这个索引<strong>包含了</strong> RDF 数据中各个术语（<em>terms</em>）的<strong>类别信息</strong>。其具体结构如下图所示：</p>
+<p>为了减少关键词的二义性，这篇文章提出了一种混合索引，作为关键词索引。这个索引<strong>包含了</strong>
+RDF
+数据中各个术语（<em>terms</em>）的<strong>类别信息</strong>。其具体结构如下图所示：</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/hybird-index.PNG" alt="Hybird Index. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" /><figcaption>Hybird Index. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/hybird-index.PNG"
+alt="Hybird Index. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" />
+<figcaption aria-hidden="true">Hybird Index. Source: "KAT:
+Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
 </figure>
 <ul>
-<li>每一个术语（<em>term</em>）都指向一个由与之相关的所有可能的 RDF 类构成的 B 树。</li>
-<li>包含术语的元素用 <span class="math inline">\((v_C,\ l_A,\ v_L)\)</span> 表示，并且赋给 B 树上的对应结点，其中 <span class="math inline">\(v_C\in V_C,\ l_A\in L_A,\ v_L\in V_L\)</span> 。
+<li>每一个术语（<em>term</em>）都指向一个由与之相关的所有可能的 RDF
+类构成的 B 树。</li>
+<li>包含术语的元素用 <span class="math inline">\((v_C,\ l_A,\
+v_L)\)</span> 表示，并且赋给 B 树上的对应结点，其中 <span
+class="math inline">\(v_C\in V_C,\ l_A\in L_A,\ v_L\in V_L\)</span> 。
 <ul>
-<li><span class="math inline">\(V_C\)</span> 表示 RDF 图中的<strong>类顶点</strong>（<em>class vertices</em>）<strong>集合</strong>。</li>
-<li><span class="math inline">\(L_A\)</span> 表示 RDF 图中的<strong>实体-字面量边标签</strong>（<em>entity-literal edge labels</em>）<strong>集合</strong>。</li>
-<li><span class="math inline">\(V_L\)</span> 表示 RDF 图中的<strong>字面量顶点</strong>（<em>literal vertices</em>）<strong>集合</strong>。</li>
+<li><span class="math inline">\(V_C\)</span> 表示 RDF
+图中的<strong>类顶点</strong>（<em>class
+vertices</em>）<strong>集合</strong>。</li>
+<li><span class="math inline">\(L_A\)</span> 表示 RDF
+图中的<strong>实体-字面量边标签</strong>（<em>entity-literal edge
+labels</em>）<strong>集合</strong>。</li>
+<li><span class="math inline">\(V_L\)</span> 表示 RDF
+图中的<strong>字面量顶点</strong>（<em>literal
+vertices</em>）<strong>集合</strong>。</li>
 </ul></li>
 </ul>
-<p>此外，设关键词 <span class="math inline">\(w\)</span> 的关键词映射为 <span class="math inline">\(f:(w,C)\rightarrow K\)</span> ，其中 <span class="math inline">\(C\)</span> 为关键词 <span class="math inline">\(w\)</span> 可能对应的 RDF 类别（<em>class</em>）集合，<span class="math inline">\(K\)</span> 是关键词元素集合。特别的，集合 <span class="math inline">\(C\)</span> 由以下类（<em>class</em>）组成：</p>
+<p>此外，设关键词 <span class="math inline">\(w\)</span> 的关键词映射为
+<span class="math inline">\(f:(w,C)\rightarrow K\)</span> ，其中 <span
+class="math inline">\(C\)</span> 为关键词 <span
+class="math inline">\(w\)</span> 可能对应的 RDF
+类别（<em>class</em>）集合，<span class="math inline">\(K\)</span>
+是关键词元素集合。特别的，集合 <span class="math inline">\(C\)</span>
+由以下类（<em>class</em>）组成：</p>
 <ul>
-<li><strong>无二义性</strong>关键词中提及的类（<em>class</em>）（例如 <code>person</code> 、<code>movie</code>）。</li>
-<li>在 <strong>summary graph</strong> 中能在 n 跳之内到达上述类的类。</li>
+<li><strong>无二义性</strong>关键词中提及的类（<em>class</em>）（例如
+<code>person</code> 、<code>movie</code>）。</li>
+<li>在 <strong>summary graph</strong> 中能在 n
+跳之内到达上述类的类。</li>
 </ul>
 <p><strong>预期效果</strong></p>
 <p>这样，关键词就被映射到一个<strong>较小</strong>的并且<strong>高质量</strong>的关键词元素的集合上了。</p>
@@ -477,14 +524,25 @@
 <p><strong>功能</strong></p>
 <p>为了更加高效地在图上探索。</p>
 <p><strong>方案</strong></p>
-<p>捕捉<strong>实体类别中的关系</strong>形成一个较小的 summary graph，并将其当作图索引。一个例子如下图所示：</p>
+<p>捕捉<strong>实体类别中的关系</strong>形成一个较小的 summary
+graph，并将其当作图索引。一个例子如下图所示：</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/summary-graph.PNG" alt="Summary graph. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" /><figcaption>Summary graph. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/summary-graph.PNG"
+alt="Summary graph. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" />
+<figcaption aria-hidden="true">Summary graph. Source: "KAT:
+Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
 </figure>
 <p><strong>图探索基本过程</strong></p>
-<p>进行图探索常用的方法是后向搜索算法（<em>backward search algorithm</em>）。它在图索引上搜索符合条件的子图。该算法从关键词元素开始，然后沿着边进行迭代遍历，直到找到所有的连接点（<em>connecting vertices</em>）。一个例子如下图所示：</p>
+<p>进行图探索常用的方法是后向搜索算法（<em>backward search
+algorithm</em>）。它在图索引上搜索符合条件的子图。该算法从关键词元素开始，然后沿着边进行迭代遍历，直到找到所有的连接点（<em>connecting
+vertices</em>）。一个例子如下图所示：</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/subgraph.PNG" alt="Subgraphs. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" /><figcaption>Subgraphs. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/subgraph.PNG"
+alt="Subgraphs. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" />
+<figcaption aria-hidden="true">Subgraphs. Source: "KAT:
+Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
 </figure>
 <h2 id="context-aware-ranking">Context Aware Ranking</h2>
 <p><strong>现有标准方法及其不足</strong></p>
@@ -492,55 +550,97 @@
 <p><strong>Context Aware 方案</strong></p>
 <p>为了克服这个缺陷，这篇文章提出了一种利用上下文信息的排名方法。通过这种方法可以<strong>计算子图和用户查找意图的相关性</strong>。具体的，该方法考虑了三种上下文信息：</p>
 <ul>
-<li>the relevance of a keyword element <span class="math inline">\((v_C,\ l_A,\ v_L)\)</span> referring to a <strong>literal vertex</strong> increases if there is a keyword referring to a <code>class</code> <strong>semantically similar</strong> to <span class="math inline">\(v_C\)</span> .</li>
-<li>the relevance of a keyword element <span class="math inline">\((v_C,\ l_A,\ null)\)</span> referring to an <strong>entity-literal edge</strong> increases if there is a keyword referring to a <code>class</code> <strong>semantically similar</strong> to <span class="math inline">\(v_C\)</span> .</li>
-<li>the relevance of a keyword element <span class="math inline">\((v_C,\ l_A,\ v_L)\)</span> referring to a <strong>literal vertex</strong> increases if there is a keyword referring to an <code>entity-literal edge</code> <span class="math inline">\(l_A\)</span> whose related class is <strong>semantically similar</strong> to <span class="math inline">\(v_C\)</span> .</li>
+<li>the relevance of a keyword element <span
+class="math inline">\((v_C,\ l_A,\ v_L)\)</span> referring to a
+<strong>literal vertex</strong> increases if there is a keyword
+referring to a <code>class</code> <strong>semantically similar</strong>
+to <span class="math inline">\(v_C\)</span> .</li>
+<li>the relevance of a keyword element <span
+class="math inline">\((v_C,\ l_A,\ null)\)</span> referring to an
+<strong>entity-literal edge</strong> increases if there is a keyword
+referring to a <code>class</code> <strong>semantically similar</strong>
+to <span class="math inline">\(v_C\)</span> .</li>
+<li>the relevance of a keyword element <span
+class="math inline">\((v_C,\ l_A,\ v_L)\)</span> referring to a
+<strong>literal vertex</strong> increases if there is a keyword
+referring to an <code>entity-literal edge</code> <span
+class="math inline">\(l_A\)</span> whose related class is
+<strong>semantically similar</strong> to <span
+class="math inline">\(v_C\)</span> .</li>
 </ul>
 <p><strong>关键词元素打分算法</strong></p>
 <p>下图算法 1 描述了关键词元素打分的流程：</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/algorithm-1.PNG" alt="Algorithm 1. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" /><figcaption>Algorithm 1. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/algorithm-1.PNG"
+alt="Algorithm 1. Source: &quot;KAT: Keywords-to-SPARQL Translation Over RDF Graphs&quot;" />
+<figcaption aria-hidden="true">Algorithm 1. Source: "KAT:
+Keywords-to-SPARQL Translation Over RDF Graphs"</figcaption>
 </figure>
-<p>每个元素的分数都初始化为 <strong>0</strong> ，并且基于上述三条规则递增。第 3 - 7 行遵循了第 1、2 条规则，第 8 - 12 行遵循了第 3 条规则。下式给出了计算 <span class="math inline">\(c_1\)</span> 类和 <span class="math inline">\(c_2\)</span> 类的 semantic similarity 的方法： <span class="math display">\[
-sim(c_1,\ c_2)=\frac{|S(c_1,\ O)\ \cap S(c_2,\ O)|}{|S(c_1,\ O)\ \cup S(c_2,\ O)|}\tag{1}
-\]</span> 其中，<span class="math inline">\(S(c,\ O)\)</span> 是指在 ontology <span class="math inline">\(O\)</span> 中 <span class="math inline">\(c\)</span> 的父类集合。</p>
+<p>每个元素的分数都初始化为 <strong>0</strong>
+，并且基于上述三条规则递增。第 3 - 7 行遵循了第 1、2 条规则，第 8 - 12
+行遵循了第 3 条规则。下式给出了计算 <span
+class="math inline">\(c_1\)</span> 类和 <span
+class="math inline">\(c_2\)</span> 类的 semantic similarity 的方法：
+<span class="math display">\[
+sim(c_1,\ c_2)=\frac{|S(c_1,\ O)\ \cap S(c_2,\ O)|}{|S(c_1,\ O)\ \cup
+S(c_2,\ O)|}\tag{1}
+\]</span> 其中，<span class="math inline">\(S(c,\ O)\)</span> 是指在
+ontology <span class="math inline">\(O\)</span> 中 <span
+class="math inline">\(c\)</span> 的父类集合。</p>
 <div class="note info"><p><strong>为什么这样计算类之间的 semantic similarity？</strong></p>
 <ul>
 <li><p>这是因为，<code>如果两个类拥有更多相同的父类，那么这两个类往往是相似的</code>。</p></li>
 <li><p>式（1）中<strong>分子</strong>表示两个类的父类的交集的元素个数（也就是<strong>两者共有的父类个数</strong>），<strong>分母</strong>表示两个类的父类的并集的元素个数（也就是<strong>两者一共有多少不重复的父类</strong>）。</p></li>
-<li><p>当分子越大，分母越小时，两者的 semantic similarity 就越大，这与上述原因是一致的。</p></li>
+<li><p>当分子越大，分母越小时，两者的 semantic similarity
+就越大，这与上述原因是一致的。</p></li>
 </ul>
 </div>
-<p>给出两个关键词元素 <span class="math inline">\(k_1\)</span> 和 <span class="math inline">\(k_2\)</span> ，依据 <span class="math inline">\(k_1\)</span> ，<span class="math inline">\(k_2\)</span> 的相关度增量（<em>relevance increment</em>）可由下式得到： <span class="math display">\[
-rel(k_1,\ k_2) = \frac{sim(k_1.v_C,\ k_2.v_C)}{|pos(k_1) - pos(k_2)|}\tag{2}
-\]</span> 其中 <span class="math inline">\(pos(k)\)</span> 表示与 <span class="math inline">\(k\)</span> 对应的关键词在关键词查询序列中的位置。</p>
-<div class="note info"><p><span class="math inline">\(rel(k_1, k_2)\)</span> <strong>的简要分析</strong></p>
+<p>给出两个关键词元素 <span class="math inline">\(k_1\)</span> 和 <span
+class="math inline">\(k_2\)</span> ，依据 <span
+class="math inline">\(k_1\)</span> ，<span
+class="math inline">\(k_2\)</span> 的相关度增量（<em>relevance
+increment</em>）可由下式得到： <span class="math display">\[
+rel(k_1,\ k_2) = \frac{sim(k_1.v_C,\ k_2.v_C)}{|pos(k_1) -
+pos(k_2)|}\tag{2}
+\]</span> 其中 <span class="math inline">\(pos(k)\)</span> 表示与 <span
+class="math inline">\(k\)</span>
+对应的关键词在关键词查询序列中的位置。</p>
+<div class="note info"><p><span class="math inline">\(rel(k_1, k_2)\)</span>
+<strong>的简要分析</strong></p>
 <ul>
 <li><p>式（2）<strong>分子</strong>表示关键词元素的<strong>类别之间的相似度</strong>，<strong>分母</strong>表示两个关键词元素所对应的<strong>关键词在关键词查询序列中的距离</strong>。</p></li>
-<li><p>相似度越高，关键词距离越短，相应的 <span class="math inline">\(rel\)</span> 就越大。这个公式就巧妙地利用了 <code>graph schema</code> 和 <code>关键词 的 context</code>。</p></li>
+<li><p>相似度越高，关键词距离越短，相应的 <span
+class="math inline">\(rel\)</span> 就越大。这个公式就巧妙地利用了
+<code>graph schema</code> 和 <code>关键词 的 context</code>。</p></li>
 </ul>
 </div>
 <p><strong>后续计算流程</strong></p>
 <ul>
-<li><p><strong>子图分数的计算</strong>：将与子图相关的关键词元素的分数相加，并且除以子图中边的个数。即 <span class="math display">\[
-Score_{subgraph} = \frac{\sum{Score_{relvant-keyword-elements}}}{|E_{relevant-in-subgraph}|}
+<li><p><strong>子图分数的计算</strong>：将与子图相关的关键词元素的分数相加，并且除以子图中边的个数。即
+<span class="math display">\[
+Score_{subgraph} =
+\frac{\sum{Score_{relvant-keyword-elements}}}{|E_{relevant-in-subgraph}|}
 \]</span></p></li>
 <li><p><strong>排序</strong></p></li>
 <li><p><strong>翻译</strong></p></li>
 </ul>
 <h1 id="how-much">How much？</h1>
 <ul>
-<li><p>由于 KAT <strong>减少了关键词的模糊性</strong>，并且能够找到<strong>高度相关</strong>的子图，所以 KAT 的效果相较于传统方法更好。</p></li>
+<li><p>由于 KAT
+<strong>减少了关键词的模糊性</strong>，并且能够找到<strong>高度相关</strong>的子图，所以
+KAT 的效果相较于传统方法更好。</p></li>
 <li><p>虽然混合索引的空间占用更大，生成索引时间更长，但是却能够<strong>更快、更好</strong>地返回关键词查询结果。</p></li>
 </ul>
 <h1 id="what-then">What Then？</h1>
 <ul>
-<li>挖掘更多关键词中的<strong>模式信息</strong>（<em>semantical information</em>），来改进此方法。</li>
+<li>挖掘更多关键词中的<strong>模式信息</strong>（<em>semantical
+information</em>），来改进此方法。</li>
 <li>可能存在某些方缩短<strong>图探索</strong>阶段的时间。</li>
 </ul>
 <h1 id="problems-to-solve">Problems to Solve</h1>
 <p>阅读这篇文章产生了以下问题，需要未来花时间解决：</p>
-<ul>
+<ul class="task-list">
 <li><input type="checkbox" disabled="" />
 倒排索引是什么？？</li>
 <li><input type="checkbox" disabled="" />
@@ -550,16 +650,33 @@ B 树是什么，怎么创建？</li>
 <li><input type="checkbox" disabled="" />
 top graph -&gt; SPARQL Query ？？ 具体怎么处理？</li>
 <li><input type="checkbox" disabled="" />
-理解 backward search algorithm ：阅读更多文献 [1] <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>， [2] <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>， [3] <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+理解 backward search algorithm ：阅读更多文献 [1] <a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>，
+[2] <a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>， [3] <a href="#fn3"
+class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a></li>
 <li><input type="checkbox" disabled="" />
 怎么理解文中提出了三种上下文信息规则？</li>
 </ul>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>He, H., Wang, H., Yang, J., Yu, P.S.: BLINKS: ranked keyword searches on graphs. In: Proceedings of the 2007 ACM SIGMOD International Conference on Management of Data, pp. 305–316. ACM (2007)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Le, W., Li, F., Kementsietsidis, A., Duan, S.: Scalable keyword search on large RDF data. IEEE Trans. Knowl. Data Eng. 26(11), 2774–2788 (2014)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn3" role="doc-endnote"><p>Tran, T., Wang, H., Rudolph, S., Cimiano, P.: Top-k exploration of query candidates for efficient keyword search on graph-shaped (RDF) data. In: 2009 IEEE 25th International Conference on Data Engineering, ICDE 2009, pp. 405–416. IEEE (2009)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p>He, H., Wang, H., Yang, J., Yu, P.S.:
+BLINKS: ranked keyword searches on graphs. In: Proceedings of the 2007
+ACM SIGMOD International Conference on Management of Data, pp. 305–316.
+ACM (2007)<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Le, W., Li, F., Kementsietsidis, A.,
+Duan, S.: Scalable keyword search on large RDF data. IEEE Trans. Knowl.
+Data Eng. 26(11), 2774–2788 (2014)<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Tran, T., Wang, H., Rudolph, S.,
+Cimiano, P.: Top-k exploration of query candidates for efficient keyword
+search on graph-shaped (RDF) data. In: 2009 IEEE 25th International
+Conference on Data Engineering, ICDE 2009, pp. 405–416. IEEE (2009)<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -685,7 +802,7 @@ top graph -&gt; SPARQL Query ？？ 具体怎么处理？</li>
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

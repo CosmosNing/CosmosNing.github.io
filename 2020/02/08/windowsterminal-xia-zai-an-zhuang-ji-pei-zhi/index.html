@@ -30,7 +30,7 @@
 <meta property="og:description" content="Windows Terminal 带来了类 Linux 的终端体验，本篇文章介绍它的安装与配置">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-08T13:28:59.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.603Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="工具">
 <meta property="article:tag" content="Terminal">
@@ -166,11 +166,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -227,7 +222,8 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.</span> <span class="nav-text">下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#microsoft-store"><span class="nav-number">1.1.</span> <span class="nav-text">Microsoft Store</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#release-pre-buildrecommended"><span class="nav-number">1.2.</span> <span class="nav-text">Release pre-build（Recommended）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-from-source"><span class="nav-number">1.3.</span> <span class="nav-text">Build from source</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#美化配置"><span class="nav-number">2.</span> <span class="nav-text">美化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-fira-字体"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Fira 字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-oh-my-posh-前置"><span class="nav-number">2.2.</span> <span class="nav-text">安装 oh-my-posh 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-oh-my-posh"><span class="nav-number">2.3.</span> <span class="nav-text">安装 oh-my-posh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义主题颜色"><span class="nav-number">2.4.</span> <span class="nav-text">自定义主题颜色</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载与安装"><span class="nav-number">1.</span> <span class="nav-text">下载与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#microsoft-store"><span class="nav-number">1.1.</span> <span class="nav-text">Microsoft Store</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#release-pre-buildrecommended"><span class="nav-number">1.2.</span> <span class="nav-text">Release
+pre-build（Recommended）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-from-source"><span class="nav-number">1.3.</span> <span class="nav-text">Build from source</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#美化配置"><span class="nav-number">2.</span> <span class="nav-text">美化配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-fira-字体"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Fira 字体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-oh-my-posh-前置"><span class="nav-number">2.2.</span> <span class="nav-text">安装 oh-my-posh 前置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-oh-my-posh"><span class="nav-number">2.3.</span> <span class="nav-text">安装 oh-my-posh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义主题颜色"><span class="nav-number">2.4.</span> <span class="nav-text">自定义主题颜色</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -347,7 +343,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -402,31 +398,44 @@
 <li>等待下载安装完成即可</li>
 </ul>
 <p>P.S. 此版本比较老旧，如果想用最新版，推荐下面的方式安装</p>
-<h2 id="release-pre-buildrecommended">Release pre-build（Recommended）</h2>
+<h2 id="release-pre-buildrecommended">Release
+pre-build（Recommended）</h2>
 <ul>
 <li>打开网址：https://github.com/microsoft/terminal/releases</li>
-<li>选择最新 release 的 Assets 中的Microsoft.WindowsTerminal_XXXXXX_8wekyb3d8bbwe.msixbundle（其中，<code>XXXXXX</code> 为版本号）下载（建议在科学上网的条件下下载，否则容易下载失败）</li>
+<li>选择最新 release 的 Assets
+中的Microsoft.WindowsTerminal_XXXXXX_8wekyb3d8bbwe.msixbundle（其中，<code>XXXXXX</code>
+为版本号）下载（建议在科学上网的条件下下载，否则容易下载失败）</li>
 <li>下载完成后，双击该文件，按提示安装</li>
 </ul>
 <h2 id="build-from-source">Build from source</h2>
-<p>P.S.这个配置较为复杂，暂且请参考<a href="https://github.com/microsoft/terminal#developer-guidance" target="_blank" rel="noopener">官方文档</a></p>
+<p>P.S.这个配置较为复杂，暂且请参考<a
+href="https://github.com/microsoft/terminal#developer-guidance">官方文档</a></p>
 <h1 id="美化配置">美化配置</h1>
 <p>P.S. 安装配置前推荐准备好科学上网</p>
 <h2 id="安装-fira-字体">安装 Fira 字体</h2>
-<p>参见 <a href="https://www.misiyu.cn/article/134.html" target="_blank" rel="noopener">博客教程</a></p>
+<p>参见 <a
+href="https://www.misiyu.cn/article/134.html">博客教程</a></p>
 <h2 id="安装-oh-my-posh-前置">安装 oh-my-posh 前置</h2>
-<p>照着这个<a href="https://www.misiyu.cn/article/134.html" target="_blank" rel="noopener">博客教程</a> Fira code字体的安装，但是<strong>安装oh-my-posh主题</strong>时，<em>choco 安装终端模拟器 - ConEmu</em> 这一步总会出错。</p>
-<p>在 <a href="https://github.com/JanDeDobbeleer/oh-my-posh#prerequisites" target="_blank" rel="noopener">oh-my-posh 仓库</a>中，找到了替代方案，即采用 Scoop 安装 ConEmu。</p>
+<p>照着这个<a href="https://www.misiyu.cn/article/134.html" target="_blank" rel="noopener">博客教程</a>
+Fira
+code字体的安装，但是<strong>安装oh-my-posh主题</strong>时，<em>choco
+安装终端模拟器 - ConEmu</em> 这一步总会出错。</p>
+<p>在 <a
+href="https://github.com/JanDeDobbeleer/oh-my-posh#prerequisites">oh-my-posh
+仓库</a>中，找到了替代方案，即采用 Scoop 安装 ConEmu。</p>
 <p>在此之前要先安装 Scoop，具体命令如下：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载安装 Scoop</span></span><br><span class="line"><span class="variable">$</span> <span class="built_in">set-executionpolicy</span> remotesigned <span class="literal">-scope</span> currentuser</span><br><span class="line">iex (<span class="built_in">new-object</span> net.webclient).downloadstring(<span class="string">'https://get.scoop.sh'</span>)</span><br><span class="line"><span class="comment"># 搜索 conemu</span></span><br><span class="line"><span class="variable">$</span> scoop search conemu</span><br></pre></td></tr></table></figure>
 <p>此时返回结果</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回结果</span></span><br><span class="line">Results from other known buckets...</span><br><span class="line">(add them using <span class="string">'scoop bucket add &lt;name&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    bucket/conemu-color-themes</span><br><span class="line">    bucket/conemu</span><br></pre></td></tr></table></figure>
-<p>在安装前，要运行如下命令（感觉是第一次，需要初始化）（<a href="https://github.com/lukesampson/scoop/wiki/Buckets#installing-from-other-buckets" target="_blank" rel="noopener">参考</a>）</p>
+<p>在安装前，要运行如下命令（感觉是第一次，需要初始化）（<a
+href="https://github.com/lukesampson/scoop/wiki/Buckets#installing-from-other-buckets">参考</a>）</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> scoop bucket add extras</span><br></pre></td></tr></table></figure>
 <p>再安装</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> scoop install conemu</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>P.S. 如果安装过程中有错误，需要手动运行命令卸载未安装成功的包。命令如下： <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="variable">$</span> scoop uninstall &lt;包名&gt;</span><br></pre></td></tr></table></figure> 卸载后再重新安装</p>
+<p>P.S.
+如果安装过程中有错误，需要手动运行命令卸载未安装成功的包。命令如下：
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="variable">$</span> scoop uninstall &lt;包名&gt;</span><br></pre></td></tr></table></figure> 卸载后再重新安装</p>
 </blockquote>
 <h2 id="安装-oh-my-posh">安装 oh-my-posh</h2>
 <p>运行如下命令安装。如果有选项，输入 <strong>Y</strong> 即可</p>
@@ -440,7 +449,8 @@
 <p>将配置刷新到终端</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将用户名部分改为你电脑的用户名即可</span></span><br><span class="line"><span class="variable">$</span> C:\Users\&lt;用户名&gt;\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1</span><br></pre></td></tr></table></figure>
 <h2 id="自定义主题颜色">自定义主题颜色</h2>
-<p>参考<a href="https://dev.to/teckert/roll-your-own-color-scheme-in-windows-terminal-466b" target="_blank" rel="noopener">这篇博文</a></p>
+<p>参考<a
+href="https://dev.to/teckert/roll-your-own-color-scheme-in-windows-terminal-466b">这篇博文</a></p>
 
     </div>
 
@@ -564,7 +574,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下计算机组成原理中中央处理器的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-11T14:22:27.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -162,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -345,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -409,6 +404,11 @@
 <li>数据流</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 58%" />
+<col style="width: 37%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">序号</th>
@@ -419,22 +419,33 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">PC <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow\)</span> 地址总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td style="text-align: center;">PC <span
+class="math inline">\(\rightarrow\)</span> MAR <span
+class="math inline">\(\rightarrow\)</span> 地址总线 <span
+class="math inline">\(\rightarrow\)</span> 主存</td>
 <td style="text-align: center;">PC 中的地址送入主存</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">CU发出控制信号 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td style="text-align: center;">CU发出控制信号 <span
+class="math inline">\(\rightarrow\)</span> 控制总线 <span
+class="math inline">\(\rightarrow\)</span> 主存</td>
 <td style="text-align: center;">CU 向主存发出控制信号</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">主存 <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> MDR <span class="math inline">\(\rightarrow\)</span> IR</td>
-<td style="text-align: center;">主存将指定地址的<strong>指令</strong>送入 IR 寄存器</td>
+<td style="text-align: center;">主存 <span
+class="math inline">\(\rightarrow\)</span> 数据总线 <span
+class="math inline">\(\rightarrow\)</span> MDR <span
+class="math inline">\(\rightarrow\)</span> IR</td>
+<td
+style="text-align: center;">主存将指定地址的<strong>指令</strong>送入 IR
+寄存器</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">CU发出读命令 <span class="math inline">\(\rightarrow\)</span> PC 内容加 1</td>
+<td style="text-align: center;">CU发出读命令 <span
+class="math inline">\(\rightarrow\)</span> PC 内容加 1</td>
 <td style="text-align: center;">PC 自增</td>
 </tr>
 </tbody>
@@ -453,37 +464,44 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">PC <span class="math inline">\(\rightarrow\)</span> MAR</td>
+<td style="text-align: center;">PC <span
+class="math inline">\(\rightarrow\)</span> MAR</td>
 <td style="text-align: center;">将现行指令地址送入 MAR</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">2</td>
-<td style="text-align: center;">1 <span class="math inline">\(\rightarrow\)</span> R</td>
+<td style="text-align: center;">1 <span
+class="math inline">\(\rightarrow\)</span> R</td>
 <td style="text-align: center;">命令存储器读</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">M( MAR ) <span class="math inline">\(\rightarrow\)</span> MDR</td>
+<td style="text-align: center;">M( MAR ) <span
+class="math inline">\(\rightarrow\)</span> MDR</td>
 <td style="text-align: center;">现行指令从存储器中读至 MDR</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">MDR <span class="math inline">\(\rightarrow\)</span> IR</td>
+<td style="text-align: center;">MDR <span
+class="math inline">\(\rightarrow\)</span> IR</td>
 <td style="text-align: center;">现行<strong>指令</strong>送入 IR</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">OP( IR ) <span class="math inline">\(\rightarrow\)</span> CU</td>
+<td style="text-align: center;">OP( IR ) <span
+class="math inline">\(\rightarrow\)</span> CU</td>
 <td style="text-align: center;">指令操作码送入 CU 译码</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">( PC ) + 1 <span class="math inline">\(\rightarrow\)</span> PC</td>
+<td style="text-align: center;">( PC ) + 1 <span
+class="math inline">\(\rightarrow\)</span> PC</td>
 <td style="text-align: center;">形成下一条指令的地址</td>
 </tr>
 </tbody>
 </table>
-<p>（★）小总结：主存 和 CPU 的数据交互总是经过<strong>总线</strong>和<strong>相应的寄存器</strong></p>
+<p>（★）小总结：主存 和 CPU
+的数据交互总是经过<strong>总线</strong>和<strong>相应的寄存器</strong></p>
 <h4 id="间址周期">间址周期</h4>
 <ul>
 <li>数据流</li>
@@ -504,17 +522,21 @@
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>Ad( IR ) <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow​\)</span> 地址总线 <span class="math inline">\(\rightarrow​\)</span> 主存</td>
+<td>Ad( IR ) <span class="math inline">\(\rightarrow\)</span> MAR <span
+class="math inline">\(\rightarrow​\)</span> 地址总线 <span
+class="math inline">\(\rightarrow​\)</span> 主存</td>
 <td>IR 中指令的地址码部分送入主存</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>CU发出读命令 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td>CU发出读命令 <span class="math inline">\(\rightarrow\)</span>
+控制总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>CU 向主存发出控制信号</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>主存 <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> MDR</td>
+<td>主存 <span class="math inline">\(\rightarrow\)</span> 数据总线 <span
+class="math inline">\(\rightarrow\)</span> MDR</td>
 <td>主存将指定地址的<strong>有效地址</strong>送入 MDR 寄存器</td>
 </tr>
 </tbody>
@@ -523,6 +545,11 @@
 <li>微操作</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 37%" />
+<col style="width: 57%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>序号</th>
@@ -558,6 +585,11 @@
 <li>数据流</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 63%" />
+<col style="width: 32%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>序号</th>
@@ -568,22 +600,28 @@
 <tbody>
 <tr class="odd">
 <td>1</td>
-<td>CU 控制将 SP 减 1 <span class="math inline">\(\rightarrow\)</span> MAR <span class="math inline">\(\rightarrow\)</span> 地址总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td>CU 控制将 SP 减 1 <span class="math inline">\(\rightarrow\)</span>
+MAR <span class="math inline">\(\rightarrow\)</span> 地址总线 <span
+class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>将栈顶指针送入主存</td>
 </tr>
 <tr class="even">
 <td>2</td>
-<td>CU发出写命令 <span class="math inline">\(\rightarrow\)</span> 控制总线 <span class="math inline">\(\rightarrow​\)</span> 主存</td>
+<td>CU发出写命令 <span class="math inline">\(\rightarrow\)</span>
+控制总线 <span class="math inline">\(\rightarrow​\)</span> 主存</td>
 <td>CU 向主存发出控制信号</td>
 </tr>
 <tr class="odd">
 <td>3</td>
-<td>PC <span class="math inline">\(\rightarrow\)</span> MDR <span class="math inline">\(\rightarrow\)</span> 数据总线 <span class="math inline">\(\rightarrow\)</span> 主存</td>
+<td>PC <span class="math inline">\(\rightarrow\)</span> MDR <span
+class="math inline">\(\rightarrow\)</span> 数据总线 <span
+class="math inline">\(\rightarrow\)</span> 主存</td>
 <td>保存断点到主存</td>
 </tr>
 <tr class="even">
 <td>4</td>
-<td>CU ( 中断服务程序的入口地址 )<span class="math inline">\(\rightarrow\)</span> PC</td>
+<td>CU ( 中断服务程序的入口地址 )<span
+class="math inline">\(\rightarrow\)</span> PC</td>
 <td>将中断服务程序的入口地址送入 PC</td>
 </tr>
 </tbody>
@@ -600,7 +638,9 @@
 <li>微程序由<strong>多条</strong>微指令</li>
 <li>每条微指令中又有<strong>多条</strong>微操作</li>
 </ul></li>
-<li>若指令系统中，具有 <strong>n</strong> 种机器指令，则控制存储器中的微程序数量至少为 <strong>n + 2</strong> （ 2 的含义：1 条公共取指，1 条处理中断）</li>
+<li>若指令系统中，具有 <strong>n</strong>
+种机器指令，则控制存储器中的微程序数量至少为 <strong>n + 2</strong> （ 2
+的含义：1 条公共取指，1 条处理中断）</li>
 <li>指令流水线中的计算
 <ul>
 <li>吞吐率
@@ -609,14 +649,17 @@
 <ul>
 <li><span class="math inline">\(TP=\frac{n}{T_k}\)</span> ，
 <ul>
-<li><span class="math inline">\(n\)</span> 为任务数，<span class="math inline">\(T_k\)</span> 是完成 <span class="math inline">\(n\)</span> 个任务所花费的时间</li>
+<li><span class="math inline">\(n\)</span> 为任务数，<span
+class="math inline">\(T_k\)</span> 是完成 <span
+class="math inline">\(n\)</span> 个任务所花费的时间</li>
 </ul></li>
 </ul></li>
 <li>当流水线各段处理时间相等时，进一步有
 <ul>
 <li><span class="math inline">\(TP=\frac{n}{(k+n-1)\Delta t}​\)</span>
 <ul>
-<li>k 级流水线，<span class="math inline">\(\Delta t\)</span> 为时钟周期</li>
+<li>k 级流水线，<span class="math inline">\(\Delta t\)</span>
+为时钟周期</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -628,22 +671,28 @@
 </ul></li>
 <li>当流水线各段处理时间相等时，进一步有
 <ul>
-<li><span class="math inline">\(S=\frac{kn\Delta t}{(k+n-1)\Delta t}=\frac{kn}{k+n-1}\)</span></li>
+<li><span class="math inline">\(S=\frac{kn\Delta t}{(k+n-1)\Delta
+t}=\frac{kn}{k+n-1}\)</span></li>
 </ul></li>
 </ul></li>
 <li>流水线效率
 <ul>
 <li><span class="math inline">\(E=\frac{T_0}{kT_k}\)</span>
 <ul>
-<li><span class="math inline">\(T_0\)</span> 为顺序执行 <span class="math inline">\(n\)</span> 个任务所用的总时间</li>
+<li><span class="math inline">\(T_0\)</span> 为顺序执行 <span
+class="math inline">\(n\)</span> 个任务所用的总时间</li>
 </ul></li>
 </ul></li>
 </ul></li>
 <li>依据各段指令的时间，确定时钟周期：选各段指令的时间<strong>最大的</strong></li>
-<li>超标量流水线的含义：指的是 CPU 中存在<strong>一条以上</strong>的流水线，在<strong>每个时钟周期</strong>内可以完成<strong>一条以上</strong>的指令（空间换时间）</li>
-<li>单流水线处理机（度为 1 ）和超标量流水线（度为 d）的多条指令连续执行的时间计算问题
+<li>超标量流水线的含义：指的是 CPU
+中存在<strong>一条以上</strong>的流水线，在<strong>每个时钟周期</strong>内可以完成<strong>一条以上</strong>的指令（空间换时间）</li>
+<li>单流水线处理机（度为 1 ）和超标量流水线（度为
+d）的多条指令连续执行的时间计算问题
 <ul>
-<li>利用公式 <span class="math inline">\(T_k=(k+n-1)\Delta t\)</span> ，其中 k 级流水线，n 为指令条数， <span class="math inline">\(\Delta t\)</span> 为时钟周期</li>
+<li>利用公式 <span class="math inline">\(T_k=(k+n-1)\Delta t\)</span>
+，其中 k 级流水线，n 为指令条数， <span class="math inline">\(\Delta
+t\)</span> 为时钟周期</li>
 <li>注意：超标量中<strong>指令条数要除以度数</strong>，再带入公式计算</li>
 </ul></li>
 <li>影响流水线的因素
@@ -804,7 +853,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

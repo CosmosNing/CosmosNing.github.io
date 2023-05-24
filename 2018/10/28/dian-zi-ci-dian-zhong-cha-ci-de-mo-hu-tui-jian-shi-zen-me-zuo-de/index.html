@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="电子词典是依据什么标准为你提供查词时的模糊推荐呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/28/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-10-28T02:24:30.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/28/cover.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2018/10/28/dian-zi-ci-dian-zhong-cha-ci-de-mo-hu-tui-jian-shi-zen-me-zuo-de/">
@@ -167,11 +165,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -228,7 +221,11 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单词相似度"><span class="nav-number">2.</span> <span class="nav-text">单词相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子串longest-common-substring"><span class="nav-number">3.</span> <span class="nav-text">最长公共子串（Longest common substring）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义"><span class="nav-number">3.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述"><span class="nav-number">3.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子列longest-common-subsequence"><span class="nav-number">4.</span> <span class="nav-text">最长公共子列（Longest common subsequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义-1"><span class="nav-number">4.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述-1"><span class="nav-number">4.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">4.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划dynamic-programming"><span class="nav-number">5.</span> <span class="nav-text">动态规划（Dynamic programming）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述"><span class="nav-number">5.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-vs-贪心算法-vs-分治算法-vs-遍历搜索"><span class="nav-number">5.2.</span> <span class="nav-text">动态规划 VS 贪心算法 VS 分治算法 VS 遍历搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-number">6.</span> <span class="nav-text">其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单词相似度"><span class="nav-number">2.</span> <span class="nav-text">单词相似度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子串longest-common-substring"><span class="nav-number">3.</span> <span class="nav-text">最长公共子串（Longest
+common substring）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义"><span class="nav-number">3.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述"><span class="nav-number">3.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最长公共子列longest-common-subsequence"><span class="nav-number">4.</span> <span class="nav-text">最长公共子列（Longest
+common subsequence）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单词相似度的定义-1"><span class="nav-number">4.1.</span> <span class="nav-text">单词相似度的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法简述-1"><span class="nav-number">4.2.</span> <span class="nav-text">算法简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-1"><span class="nav-number">4.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划dynamic-programming"><span class="nav-number">5.</span> <span class="nav-text">动态规划（Dynamic
+programming）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简述"><span class="nav-number">5.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-vs-贪心算法-vs-分治算法-vs-遍历搜索"><span class="nav-number">5.2.</span> <span class="nav-text">动态规划 VS
+贪心算法 VS 分治算法 VS 遍历搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他方法"><span class="nav-number">6.</span> <span class="nav-text">其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -348,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,7 +393,10 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="引入">引入</h2>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/28/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/10/28/cover.jpg?raw=true"
+alt="cover" />
+<figcaption aria-hidden="true">cover</figcaption>
 </figure>
 <p>大家在学习英语的时候经常会用到电子词典，当你在查询一个英语单词的时候，搜索框下方通常会依据你的输入给出词条的模糊推荐。即使你不小心输错了，电子词典也会给你一个看似模糊实则精准的推荐。这个功能大大提升了用户了单词查阅的效率，带给用户非常好的体验。那么，问题来了，这种模糊推荐到底是怎么做的呢？今天，我们就来一起探讨一下其中的算法。</p>
 <h2 id="单词相似度">单词相似度</h2>
@@ -406,19 +406,25 @@
 <li>最长公共子串（<em>Longest common substring</em>）</li>
 <li>最长公共子列（<em>Longest common subsequence</em>）</li>
 </ol>
-<h2 id="最长公共子串longest-common-substring">最长公共子串（<em>Longest common substring</em>）</h2>
+<h2 id="最长公共子串longest-common-substring">最长公共子串（<em>Longest
+common substring</em>）</h2>
 <h3 id="单词相似度的定义">单词相似度的定义</h3>
 <p>正如名称所述，该算法将单词的相似度定义为两个单词中共同含有的最长子串（这个子串在原字符串中是<strong>连续</strong>的）的长度大小。</p>
 <h3 id="算法简述">算法简述</h3>
-<p>为了找到两个单词（一个设为 <em>S</em> ，另一个设为 <em>T</em> ）之间的最长公共子串，我们可以这样处理。</p>
-<p>首先定义一个二维表 <em>L</em> （大小为 <em>r</em> × <em>n</em>，其中 <em>r</em> 为 <em>S</em> 的长度， <em>n</em> 为 <em>T</em> 的长度），用于存储算法处理的中间结果。</p>
-<p>然后，循环比较每一组从两个单词中取出的字母。比较结果无非两种情况，一种不同，一种相同。不同的情况下，给二维表 L 对应的位置赋值为 0 ，表示在该位置最长公共子串的长度为0；相同的情况下，找到当前位置的前一个位置上存储的长度，将它加一，保存在当前位置即可。可以用公式描述如下：</p>
+<p>为了找到两个单词（一个设为 <em>S</em> ，另一个设为 <em>T</em>
+）之间的最长公共子串，我们可以这样处理。</p>
+<p>首先定义一个二维表 <em>L</em> （大小为 <em>r</em> × <em>n</em>，其中
+<em>r</em> 为 <em>S</em> 的长度， <em>n</em> 为 <em>T</em>
+的长度），用于存储算法处理的中间结果。</p>
+<p>然后，循环比较每一组从两个单词中取出的字母。比较结果无非两种情况，一种不同，一种相同。不同的情况下，给二维表
+L 对应的位置赋值为 0
+，表示在该位置最长公共子串的长度为0；相同的情况下，找到当前位置的前一个位置上存储的长度，将它加一，保存在当前位置即可。可以用公式描述如下：</p>
 <p><span class="math display">\[
 L(i, j) =
 \left \{
 \begin{aligned}
- &amp;  L(i-1, j-1)+1, &amp; if\ S[i] = T[j]\\
- &amp; 0,                     &amp; otherwise\\
+&amp;  L(i-1, j-1)+1, &amp; if\ S[i] = T[j]\\
+&amp; 0,                     &amp; otherwise\\
 \end{aligned}
 \right.
 \]</span></p>
@@ -426,9 +432,13 @@ L(i, j) =
 <p><span class="math display">\[
 \underset{ i\in [ 0, r ), j\in [ 0, n ) }{ max } L( i, j )
 \]</span></p>
-<p>因而，为了求出两个字符串的最长公共子串，维基百科给出了如下的伪码描述<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>：</p>
+<p>因而，为了求出两个字符串的最长公共子串，维基百科给出了如下的伪码描述<a
+href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function LCSubstr(S[1..r], T[1..n])</span><br><span class="line">    L :&#x3D; array(1..r, 1..n)</span><br><span class="line">    z :&#x3D; 0</span><br><span class="line">    ret :&#x3D; &#123;&#125;</span><br><span class="line">    for i :&#x3D; 1..r</span><br><span class="line">        for j :&#x3D; 1..n</span><br><span class="line">            if S[i] &#x3D;&#x3D; T[j]</span><br><span class="line">                if i &#x3D;&#x3D; 1 or j &#x3D;&#x3D; 1</span><br><span class="line">                    L[i,j] :&#x3D; 1</span><br><span class="line">                else</span><br><span class="line">                    L[i,j] :&#x3D; L[i-1,j-1] + 1</span><br><span class="line">                if L[i,j] &gt; z</span><br><span class="line">                    z :&#x3D; L[i,j]</span><br><span class="line">                    ret :&#x3D; &#123;S[i-z+1..i]&#125;</span><br><span class="line">                else</span><br><span class="line">                if L[i,j] &#x3D;&#x3D; z</span><br><span class="line">                    ret :&#x3D; ret ∪ &#123;S[i-z+1..i]&#125;</span><br><span class="line">            else</span><br><span class="line">                L[i,j] :&#x3D; 0</span><br><span class="line">    return ret</span><br></pre></td></tr></table></figure>
-<p>为了方便阐释，我们可以举一个例子帮助理解。假设要找到 <em>process</em> 和 <em>progress</em> 两个单词的最长公共子串。那么二维表 L 的最终状态如下：</p>
+<p>为了方便阐释，我们可以举一个例子帮助理解。假设要找到 <em>process</em>
+和 <em>progress</em> 两个单词的最长公共子串。那么二维表 L
+的最终状态如下：</p>
 <table>
 <thead>
 <tr class="header">
@@ -525,15 +535,24 @@ L(i, j) =
 </tr>
 </tbody>
 </table>
-<p>由上图可知， <em>process</em> 和 <em>progress</em> 两个单词的最长公共子串为 <em>pro</em> 和 <em>ess</em> ，最长长度为 3 。</p>
+<p>由上图可知， <em>process</em> 和 <em>progress</em>
+两个单词的最长公共子串为 <em>pro</em> 和 <em>ess</em> ，最长长度为 3
+。</p>
 <h3 id="实现">实现</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCSubstr</span><span class="params">(S, T)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    寻找两个字符串S、T的最长相同子串</span></span><br><span class="line"><span class="string">    :param S: ( str ) 字符串1</span></span><br><span class="line"><span class="string">    :param T: ( str ) 字符串2</span></span><br><span class="line"><span class="string">    :return: ( list ) 符合条件的子串集合</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    r = len(S)</span><br><span class="line">    n = len(T)</span><br><span class="line">    L = np.zeros((r + <span class="number">1</span>, n + <span class="number">1</span>))  <span class="comment"># 初始化大小为 ( r + 1 ) × ( n + 1 ) 并且值全为 0 的数组。将 r 和 n 都加 1 是为了方便后续的计算</span></span><br><span class="line">    z = <span class="number">0</span>  <span class="comment"># 保存当前找到的最长相同子串的长度</span></span><br><span class="line">    ret = []  <span class="comment"># 保存符合条件的子串集合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, r + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> S[i - <span class="number">1</span>] == T[j - <span class="number">1</span>]:  <span class="comment"># 如果字母相同，那么L[i][j] = L[i - 1][j - 1] + 1</span></span><br><span class="line">                L[i][j] = L[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> L[i][j] &gt; z:  <span class="comment"># 如果找到更大的，更新 z 和 ret 集合</span></span><br><span class="line">                    z = int(L[i][j])</span><br><span class="line">                    ret.clear()</span><br><span class="line">                    ret.append(S[i - z:i])</span><br><span class="line">                <span class="keyword">elif</span> L[i][j] == z:  <span class="comment"># 如果找到与当前最长的长度一样，将该子串加入 ret 集合</span></span><br><span class="line">                    ret.append(S[i - z:i])</span><br><span class="line">    <span class="keyword">return</span> ret  <span class="comment"># 返回结果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print(LCSubstr(<span class="string">"progress"</span>, <span class="string">"process"</span>))</span><br><span class="line">    print(LCSubstr(<span class="string">"BABA"</span>, <span class="string">"ABAB"</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">['pro', 'ess']</span></span><br><span class="line"><span class="string">['BAB', 'ABA']</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h2 id="最长公共子列longest-common-subsequence">最长公共子列（<em>Longest common subsequence</em>）</h2>
+<h2
+id="最长公共子列longest-common-subsequence">最长公共子列（<em>Longest
+common subsequence</em>）</h2>
 <h3 id="单词相似度的定义-1">单词相似度的定义</h3>
-<p>上面的子串要求其在原字符串中是连续的，那不连续的又会怎样？这就诞生了 <strong>最长公共子列</strong> 。最长公共子列将单词相似度定义为两个单词的最长公共子列（这个子列不要求在原字符串中是连续的，但要求<strong>保持原序</strong>）的长度大小。</p>
+<p>上面的子串要求其在原字符串中是连续的，那不连续的又会怎样？这就诞生了
+<strong>最长公共子列</strong>
+。最长公共子列将单词相似度定义为两个单词的最长公共子列（这个子列不要求在原字符串中是连续的，但要求<strong>保持原序</strong>）的长度大小。</p>
 <h3 id="算法简述-1">算法简述</h3>
-<p>受求最长公共子串的启发，对于两个单词 <em>X</em> 和 <em>Y</em>，同样的，我们可以定义一个二维表 <em>C</em> ，用于存储算法处理的中间结果。</p>
-<p>那么对应的循环过程中，怎样去改变 <em>C</em> ，从而满足题目的需要呢？</p>
+<p>受求最长公共子串的启发，对于两个单词 <em>X</em> 和
+<em>Y</em>，同样的，我们可以定义一个二维表 <em>C</em>
+，用于存储算法处理的中间结果。</p>
+<p>那么对应的循环过程中，怎样去改变 <em>C</em>
+，从而满足题目的需要呢？</p>
 <p>在字母相同的情况下，我们依旧可以用和求最长公共子串相同的方法，即当前位置的前一个位置的存储的长度加一；而字母不同的情况下，连续子串到此结束，因而不能简单的使用上一个位置存储的长度。那么决定当前位置的值，还剩下以下两种情况。</p>
 <ol type="1">
 <li>（ <em>X</em> 当前位置， <em>Y</em> 上一个位置）</li>
@@ -544,32 +563,47 @@ L(i, j) =
 C(i, j) =
 \left \{
 \begin{aligned}
- &amp;  C(i-1, j-1)+1, &amp; if\ X[i] = Y[j]\\
- &amp; max(C(i, j-1), C(i-1, j)),                     &amp; otherwise\\
+&amp;  C(i-1, j-1)+1, &amp; if\ X[i] = Y[j]\\
+&amp; max(C(i, j-1), C(i-1, j)),                     &amp; otherwise\\
 \end{aligned}
 \right.
 \]</span></p>
-<p>而其中的最大长度，会在二维表 <em>C</em> 的末尾出现（如果两个单词的长度分别为 <em>m</em> 和 <em>n</em> , 那么 C[m][n] 即为最长公共子列）</p>
+<p>而其中的最大长度，会在二维表 <em>C</em>
+的末尾出现（如果两个单词的长度分别为 <em>m</em> 和 <em>n</em> , 那么
+C[m][n] 即为最长公共子列）</p>
 <h3 id="实现-1">实现</h3>
-<p>对于求最长公共子列的长度，维基百科中给出如下的伪码描述<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>对于求最长公共子列的长度，维基百科中给出如下的伪码描述<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function LCSLength(X[1..m], Y[1..n])</span><br><span class="line">    C &#x3D; array(0..m, 0..n)</span><br><span class="line">    for i :&#x3D; 0..m</span><br><span class="line">       C[i,0] &#x3D; 0</span><br><span class="line">    for j :&#x3D; 0..n</span><br><span class="line">       C[0,j] &#x3D; 0</span><br><span class="line">    for i :&#x3D; 1..m</span><br><span class="line">        for j :&#x3D; 1..n</span><br><span class="line">            if X[i] &#x3D; Y[j]</span><br><span class="line">                C[i,j] :&#x3D; C[i-1,j-1] + 1</span><br><span class="line">            else</span><br><span class="line">                C[i,j] :&#x3D; max(C[i,j-1], C[i-1,j])</span><br><span class="line">    return C[m,n]</span><br></pre></td></tr></table></figure>
 <p>基于此，我给出 <em>Python</em> 实现如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LCSLength</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    计算两个字符串最长公共子列的长度</span></span><br><span class="line"><span class="string">    :param X: （str）字符串1</span></span><br><span class="line"><span class="string">    :param Y: （str）字符串2</span></span><br><span class="line"><span class="string">    :return: （int）两个字符串最长公共子列的长度</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    m = len(X)</span><br><span class="line">    n = len(Y)</span><br><span class="line">    C = np.zeros((m+<span class="number">1</span>, n+<span class="number">1</span>), np.int)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, m+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> X[i<span class="number">-1</span>] == Y[j<span class="number">-1</span>]:</span><br><span class="line">                C[i, j] = C[i<span class="number">-1</span>, j<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                C[i, j] = max(C[i, j<span class="number">-1</span>], C[i<span class="number">-1</span>, j])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> C[m, n]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    print(LCSLength(<span class="string">"progress"</span>, <span class="string">"process"</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果</span></span><br><span class="line"><span class="string">6</span></span><br><span class="line"><span class="string">P.S.也就是proess的长度</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h2 id="动态规划dynamic-programming">动态规划（<em>Dynamic programming</em>）</h2>
+<h2 id="动态规划dynamic-programming">动态规划（<em>Dynamic
+programming</em>）</h2>
 <h3 id="简述">简述</h3>
-<p>仔细观察上面两种算法，其共同之处都是将原问题分解为较小的子问题，并将子问题的解进行保存，依据子问题由递推公式得到原问题的解，这种方法通常叫做 <strong>”动态规划“</strong> 。</p>
+<p>仔细观察上面两种算法，其共同之处都是将原问题分解为较小的子问题，并将子问题的解进行保存，依据子问题由递推公式得到原问题的解，这种方法通常叫做
+<strong>”动态规划“</strong> 。</p>
 <p>那么，什么样的问题适合用动态规划来解决呢？</p>
-<p>有人在博客中给出了如下的解释<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>有人在博客中给出了如下的解释<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <blockquote>
 <p>适合采用动态规划方法的最优化问题中的两个要素：最优子结构和重叠子问题。</p>
 <p>最优子结构：如果问题的一个最优解中包含了子问题的最优解，则该问题具有最优子结构。</p>
 <p>重叠子问题：适用于动态规划求解的最优化问题必须具有的第二个要素是子问题的空间要很小，也就是用来求解原问题的递归算法课反复地解同样的子问题，而不是总在产生新的子问题。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则它们是重叠的。</p>
 </blockquote>
 <p>说到这里，你应该会想到之前的文章中提到的贪心算法和分治算法，它们的思想和动态规划很类似，那么他们之间的区别又在那里呢？</p>
-<h3 id="动态规划-vs-贪心算法-vs-分治算法-vs-遍历搜索">动态规划 VS 贪心算法 VS 分治算法 VS 遍历搜索</h3>
-<p>在维基百科中，有人对比了贪心算法，动态规划和遍历搜索。其原文如下<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>：</p>
+<h3 id="动态规划-vs-贪心算法-vs-分治算法-vs-遍历搜索">动态规划 VS
+贪心算法 VS 分治算法 VS 遍历搜索</h3>
+<p>在维基百科中，有人对比了贪心算法，动态规划和遍历搜索。其原文如下<a
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a>：</p>
 <blockquote>
-<p>Typically, a greedy algorithm is used to solve a problem with optimal substructure if it can be proven by induction that this is optimal at each step. Otherwise, provided the problem exhibits overlapping subproblems as well, dynamic programming is used. If there are no appropriate greedy algorithms and the problem fails to exhibit overlapping subproblems, often a lengthy but straightforward search of the solution space is the best alternative.</p>
+<p>Typically, a greedy algorithm is used to solve a problem with optimal
+substructure if it can be proven by induction that this is optimal at
+each step. Otherwise, provided the problem exhibits overlapping
+subproblems as well, dynamic programming is used. If there are no
+appropriate greedy algorithms and the problem fails to exhibit
+overlapping subproblems, often a lengthy but straightforward search of
+the solution space is the best alternative.</p>
 </blockquote>
 <p>也就是说，如果一个问题具有最优子结构并且可以证明其每一步选择都是最优的，那么选用贪心算法。如果该问题除了含有最优子结构，其子问题又是相互重叠的，那么选用动态规划。如果这两种方法都不成功，那么就进行简单的暴力搜索，遍历所有情况。</p>
 <p>那么分治呢？分治也是将问题分解为子问题，但是这些子问题是互相独立的，同时它们之间的计算结果不共享。如果将分治法用于子问题相互重叠的问题，那么分治法会做很多重复的计算。这时候，动态规划的优势就显现出来，因为它将子问题的解存储起来，避免了重复计算。</p>
@@ -577,22 +611,37 @@ C(i, j) =
 <p>现在，让我们回到最初的问题。电子词典中查词的模糊推荐以单词之间的相似度为标准，还有其他的方法吗？</p>
 <p>当然有。比如基于用户的历史查询记录，分析查词词频，依据词频来做推荐。限于篇幅，这里不做讨论，有兴趣请自行查阅资料。</p>
 <h2 id="总结">总结</h2>
-<p>今天，我和你一起了解到两种计算不同字符串相似度的算法，一个是 <strong>最长公共子串</strong> ，另一个是 <strong>最长公共子列</strong> ，并由此引出 <strong>动态规划</strong> 这种算法思想。最后我将本文要点总结如下：</p>
+<p>今天，我和你一起了解到两种计算不同字符串相似度的算法，一个是
+<strong>最长公共子串</strong> ，另一个是 <strong>最长公共子列</strong>
+，并由此引出 <strong>动态规划</strong>
+这种算法思想。最后我将本文要点总结如下：</p>
 <ol type="1">
 <li><strong>最长公共子串要求子串在原字符串中是连续的</strong></li>
 <li><strong>最长公共子列不要求子列在原字符串中是连续的，但要求保持原序</strong></li>
-<li><strong>求最长公共子串和最长公共子列的时间复杂度为 <span class="math inline">\(O(M\cdot N)\)</span> ，其中 <em>M</em> 和 <em>N</em> 为两个字符串的长度。（这个我在原文中没有写，很容易分析得到）</strong></li>
-<li><strong>适合采用动态规划方法的最优化问题中的两个要素：最优子结构和重叠子问题。 </strong></li>
+<li><strong>求最长公共子串和最长公共子列的时间复杂度为 <span
+class="math inline">\(O(M\cdot N)\)</span> ，其中 <em>M</em> 和
+<em>N</em>
+为两个字符串的长度。（这个我在原文中没有写，很容易分析得到）</strong></li>
+<li><strong>适合采用动态规划方法的最优化问题中的两个要素：最优子结构和重叠子问题。
+</strong></li>
 <li><strong>如果一个问题具有最优子结构并且可以证明其每一步选择都是最优的，那么选用贪心算法。如果该问题除了含有最优子结构，其子问题又是相互重叠的，那么选用动态规划。如果这两种方法都不成功，那么就进行简单的暴力搜索，遍历所有情况。</strong></li>
 <li><strong>动态规划利用存储子问题的解，避免了子问题中的重复计算，有时候会比分治算法快很多。</strong></li>
 </ol>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>https://en.wikipedia.org/wiki/Longest_common_substring_problem#Pseudocode<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn2" role="doc-endnote"><p>https://en.wikipedia.org/wiki/Longest_common_subsequence_problem#Computing_the_length_of_the_LCS<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn3" role="doc-endnote"><p>http://hxrs.iteye.com/blog/1055478<a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></p></li>
-<li id="fn4" role="doc-endnote"><p>https://en.wikipedia.org/wiki/Optimal_substructure<a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"
+role="doc-endnote"><p>https://en.wikipedia.org/wiki/Longest_common_substring_problem#Pseudocode<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"
+role="doc-endnote"><p>https://en.wikipedia.org/wiki/Longest_common_subsequence_problem#Computing_the_length_of_the_LCS<a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>http://hxrs.iteye.com/blog/1055478<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"
+role="doc-endnote"><p>https://en.wikipedia.org/wiki/Optimal_substructure<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -717,7 +766,7 @@ C(i, j) =
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

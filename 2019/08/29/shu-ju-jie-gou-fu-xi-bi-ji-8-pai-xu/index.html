@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下排序的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-08-29T15:11:14.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -162,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -345,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -469,26 +464,38 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">直接插入</td>
-<td style="text-align: center;"><span class="math inline">\(O(n)\)</span>（待排序序列为<strong>正序</strong>）</td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span>（待排序序列为<strong>逆序</strong>）</td>
-<td style="text-align: center;"><span class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n)\)</span>（待排序序列为<strong>正序</strong>）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span>（待排序序列为<strong>逆序</strong>）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
 <td style="text-align: center;">是</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">冒泡</td>
-<td style="text-align: center;"><span class="math inline">\(O(n)\)</span>（待排序序列为<strong>正序</strong>）</td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span>（待排序序列为<strong>逆序</strong>）</td>
-<td style="text-align: center;"><span class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n)\)</span>（待排序序列为<strong>正序</strong>）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span>（待排序序列为<strong>逆序</strong>）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
 <td style="text-align: center;">是</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">简单选择</td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
 <td style="text-align: center;">否</td>
 </tr>
 <tr class="even">
@@ -496,39 +503,56 @@
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><span class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
 <td style="text-align: center;">否</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">快排</td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span>（每次的枢轴划分把表等分为<strong>长度相近</strong>的两个子表）</td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n^2)\)</span>（待排序序列<strong>有序</strong>或<strong>基本有序</strong>）</td>
-<td style="text-align: center;"><span class="math inline">\(O(log_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span>（每次的枢轴划分把表等分为<strong>长度相近</strong>的两个子表）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span>（待排序序列<strong>有序</strong>或<strong>基本有序</strong>）</td>
+<td style="text-align: center;"><span
+class="math inline">\(O(log_2n)\)</span></td>
 <td style="text-align: center;">否</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">堆排序</td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
 <td style="text-align: center;">否</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">2 路归并</td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(nlog_2n)\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(nlog_2n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n)\)</span></td>
 <td style="text-align: center;">是</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">基数</td>
-<td style="text-align: center;"><span class="math inline">\(O(d(n+r))\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(d(n+r))\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(d(n+r))\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(O(r)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(d(n+r))\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(d(n+r))\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(d(n+r))\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(r)\)</span></td>
 <td style="text-align: center;">是</td>
 </tr>
 </tbody>
@@ -598,14 +622,20 @@
 <li>从堆的<strong>最后一个结点</strong>（即完全二叉树的最后一个叶子结点）开始循环，依次进行如下操作：
 <ul>
 <li>找到其父亲结点（设为 <em>P</em> ）</li>
-<li>比较 <em>P</em> 和其两个孩子结点的大小关系（下述流程和<strong>向下调整</strong>（父和子比较，父向下调整）类似）
+<li>比较 <em>P</em>
+和其两个孩子结点的大小关系（下述流程和<strong>向下调整</strong>（父和子比较，父向下调整）类似）
 <ul>
-<li>如果满足堆的定义，则进行下一轮迭代（在向下调整中，此步直接 break，即对结点 <em>P</em> 的调整结束）</li>
+<li>如果满足堆的定义，则进行下一轮迭代（在向下调整中，此步直接
+break，即对结点 <em>P</em> 的调整结束）</li>
 <li>如果不满足
 <ul>
-<li>小根堆情况：选择 key 值<strong>较小</strong>的孩子（设为 <em>C</em> ），与父亲<em>P</em> 交换</li>
-<li>大根堆情况：选择 key 值<strong>较大</strong>的孩子（设为 <em>C</em> ），与父亲<em>P</em> 交换</li>
-<li>（！！！）注意事项：经过此次交换，可能引起交换后父亲结点所在的那个结点（也就是交换前的孩子结点，即为 C ）所在子树不满足堆的定义。此时，要进一步检查 <em>P</em> 和其左右子树的关系，依据条件进行交换操作，直至检查到叶子结点。</li>
+<li>小根堆情况：选择 key 值<strong>较小</strong>的孩子（设为 <em>C</em>
+），与父亲<em>P</em> 交换</li>
+<li>大根堆情况：选择 key 值<strong>较大</strong>的孩子（设为 <em>C</em>
+），与父亲<em>P</em> 交换</li>
+<li>（！！！）注意事项：经过此次交换，可能引起交换后父亲结点所在的那个结点（也就是交换前的孩子结点，即为
+C ）所在子树不满足堆的定义。此时，要进一步检查 <em>P</em>
+和其左右子树的关系，依据条件进行交换操作，直至检查到叶子结点。</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -625,7 +655,9 @@
 <h4 id="堆的删除利用堆的向下调整">堆的删除（利用堆的向下调整）</h4>
 <ul>
 <li>交换<strong>堆顶元素</strong>（即是完全二叉树的根）和<strong>堆的最后一个元素</strong>（及完全二叉树的最后一个叶子结点）（或者是删除堆顶的元素，用堆的最后一个元素补位）</li>
-<li>对当前堆（除最后一个元素）进行向下调整（类似堆的建立，但是开始结点和调整范围不同，这里的向下调整的结点范围是从 1 到 n - 1，即是<strong>从头向后</strong>，进行调整），使满足堆的定义</li>
+<li>对当前堆（除最后一个元素）进行向下调整（类似堆的建立，但是开始结点和调整范围不同，这里的向下调整的结点范围是从
+1 到 n -
+1，即是<strong>从头向后</strong>，进行调整），使满足堆的定义</li>
 </ul>
 <h4 id="利用堆的建立删除理解堆排序">利用堆的建立、删除理解堆排序</h4>
 <ul>
@@ -646,20 +678,31 @@
 <ul>
 <li>已知希尔排序某一趟排序后的序列，如何确定本次使用的增量？
 <ul>
-<li>抓住<strong>组内有序（从小到大或者从大到小）</strong>这个关键点，从间隔为 1 开始依次验证，直至找到满足的最小间隔，即为本趟希尔排序使用的增量。</li>
+<li>抓住<strong>组内有序（从小到大或者从大到小）</strong>这个关键点，从间隔为
+1
+开始依次验证，直至找到满足的最小间隔，即为本趟希尔排序使用的增量。</li>
 </ul></li>
 <li>快排的重要性质
 <ul>
-<li>第 <em>i</em> 趟排序完成时，会有 <em>i</em> 个以上的数<strong>出现在它最终将要出现的位置</strong>（这个位置就是排序<strong>最终结果的位置</strong>），即<strong>它左边的数都比它小，它右边的数都比它大</strong>。（可用于判定某一序列是否是某趟快排后的序列）</li>
+<li>第 <em>i</em> 趟排序完成时，会有 <em>i</em>
+个以上的数<strong>出现在它最终将要出现的位置</strong>（这个位置就是排序<strong>最终结果的位置</strong>），即<strong>它左边的数都比它小，它右边的数都比它大</strong>。（可用于判定某一序列是否是某趟快排后的序列）</li>
 </ul></li>
-<li>在含有 <em>n</em> 个关键字的<strong>小根堆</strong>中，关键字<strong>最大</strong>的记录可能存储在什么位置？
+<li>在含有 <em>n</em>
+个关键字的<strong>小根堆</strong>中，关键字<strong>最大</strong>的记录可能存储在什么位置？
 <ul>
-<li>小根堆 + 关键字最大的条件意味着，该记录在堆的<strong>叶子节点</strong>。</li>
-<li>而堆是一棵<strong>完全二叉树</strong>，其叶子结点位置范围为 <span class="math inline">\([\lfloor\frac{n}{2}\rfloor+1, n]\)</span></li>
+<li>小根堆 +
+关键字最大的条件意味着，该记录在堆的<strong>叶子节点</strong>。</li>
+<li>而堆是一棵<strong>完全二叉树</strong>，其叶子结点位置范围为 <span
+class="math inline">\([\lfloor\frac{n}{2}\rfloor+1, n]\)</span></li>
 <li>在叶子结点位置范围中的点都可能</li>
 </ul></li>
-<li>向一个具有 <em>n</em> 个结点的堆中插入一个新元素的时间复杂度为 <span class="math inline">\(O(log_2n)\)</span> ，删除一个元素的时间复杂度为 <span class="math inline">\(O(log_2n)\)</span></li>
-<li>构建 <em>n</em> 个记录的初始堆，时间复杂度为 <span class="math inline">\(O(n)\)</span> （<strong>对比上条</strong>）；对 <em>n</em> 个记录进行堆排序，最坏情况下其时间复杂度为 <span class="math inline">\(O(nlog_2n)\)</span></li>
+<li>向一个具有 <em>n</em> 个结点的堆中插入一个新元素的时间复杂度为 <span
+class="math inline">\(O(log_2n)\)</span> ，删除一个元素的时间复杂度为
+<span class="math inline">\(O(log_2n)\)</span></li>
+<li>构建 <em>n</em> 个记录的初始堆，时间复杂度为 <span
+class="math inline">\(O(n)\)</span> （<strong>对比上条</strong>）；对
+<em>n</em> 个记录进行堆排序，最坏情况下其时间复杂度为 <span
+class="math inline">\(O(nlog_2n)\)</span></li>
 <li>初始序列<strong>基本有序</strong>时，<strong>插入排序</strong>比较次数较少。</li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
@@ -788,7 +831,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -29,15 +29,11 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下操作系统中设备管理的知识">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true">
 <meta property="article:published_time" content="2019-09-14T14:50:53.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2019/09/14/cao-zuo-xi-tong-fu-xi-bi-ji-4-she-bei-guan-li/">
@@ -166,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -349,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -399,7 +390,8 @@
 <h2 id="io体系结构">I/O体系结构</h2>
 <p>从上至下依次为</p>
 <ul>
-<li><strong>用户层软件</strong>：产生 I/O 请求、格式化 I/O、Spooling</li>
+<li><strong>用户层软件</strong>：产生 I/O 请求、格式化
+I/O、Spooling</li>
 <li><strong>设备独立性软件</strong>：映射、保护、分块、缓冲、分配</li>
 <li><strong>设备驱动程序</strong>：设置设备寄存器、检查状态</li>
 <li><strong>中断处理程序</strong></li>
@@ -407,41 +399,63 @@
 </ul>
 <h2 id="io控制方法">I/O控制方法</h2>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/IO-Control.png?raw=true" alt="IO控制流程对比" /><figcaption>IO控制流程对比</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/14/IO-Control.png?raw=true"
+alt="IO控制流程对比" />
+<figcaption aria-hidden="true">IO控制流程对比</figcaption>
 </figure>
 <ul>
 <li>采用<strong>轮询</strong>的可编程 I/O 方式
 <ul>
-<li>易于实现，但 CPU 和 I/O 设备只能串行工作，<strong>CPU效率较低</strong></li>
+<li>易于实现，但 CPU 和 I/O
+设备只能串行工作，<strong>CPU效率较低</strong></li>
 </ul></li>
 <li>采用<strong>中断</strong>的可编程 I/O 方式
 <ul>
-<li>比上一种方法有优势，但数据中的每一个字在存储器与 I/O 控制器之间的传输都要经过 CPU ，这就导致这种方式仍会<strong>消耗较多的 CPU 时间</strong></li>
+<li>比上一种方法有优势，但数据中的每一个字在存储器与 I/O
+控制器之间的传输都要经过 CPU ，这就导致这种方式仍会<strong>消耗较多的
+CPU 时间</strong></li>
 </ul></li>
 <li><strong>直接存储器访问（DMA）</strong>方式
 <ul>
-<li>DMA 控制时，传输基本单位是<strong>数据块</strong>，只有<strong>传送开始和结束时</strong>才需要 CPU 的参与，CPU 利用率较高</li>
+<li>DMA
+控制时，传输基本单位是<strong>数据块</strong>，只有<strong>传送开始和结束时</strong>才需要
+CPU 的参与，CPU 利用率较高</li>
 </ul></li>
-<li>I/O <strong>通道</strong>方式（通道是一种特殊的<strong>硬件</strong>）
+<li>I/O
+<strong>通道</strong>方式（通道是一种特殊的<strong>硬件</strong>）
 <ul>
-<li>I/O 通道传送基本单位是<strong>一组数据块</strong>，有更高的自主权，CPU 利用率更高</li>
+<li>I/O
+通道传送基本单位是<strong>一组数据块</strong>，有更高的自主权，CPU
+利用率更高</li>
 </ul></li>
 </ul>
-<p>总结：整个 I/O 控制方法的发展，总的来说就是四个字——“简政放权”：减轻 CPU 对所有操作控制的压力，让合适的“人”（如其他专门硬件）去处理合适的“事”（如这里的 I/O 操作）。</p>
+<p>总结：整个 I/O 控制方法的发展，总的来说就是四个字——“简政放权”：减轻
+CPU
+对所有操作控制的压力，让合适的“人”（如其他专门硬件）去处理合适的“事”（如这里的
+I/O 操作）。</p>
 <h2 id="io分配中的数据结构和分配方法">I/O分配中的数据结构和分配方法</h2>
 <h3 id="设备分配中的数据结构">设备分配中的数据结构</h3>
 <h4 id="设备控制表-dct">设备控制表 （DCT）</h4>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/DCT.png?raw=true" alt="DCT" /><figcaption>DCT</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/14/DCT.png?raw=true"
+alt="DCT" />
+<figcaption aria-hidden="true">DCT</figcaption>
 </figure>
-<h4 id="控制器控制表coct通道控制表chct系统设备控制表sdt">控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4>
+<h4
+id="控制器控制表coct通道控制表chct系统设备控制表sdt">控制器控制表（COCT）、通道控制表（CHCT）、系统设备控制表（SDT）</h4>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true" alt="COCT-CHCT-SDT" /><figcaption>COCT-CHCT-SDT</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/09/14/COCT-CHCT-SDT.png?raw=true"
+alt="COCT-CHCT-SDT" />
+<figcaption aria-hidden="true">COCT-CHCT-SDT</figcaption>
 </figure>
 <h4 id="上述几种数据结构之间的关系">上述几种数据结构之间的关系</h4>
 <ul>
 <li>DCT 与 COCT <strong>一一对应</strong></li>
-<li>CHCT 与 COCT <strong>一对多</strong>（一个通道可谓多个设备控制器服务）</li>
+<li>CHCT 与 COCT
+<strong>一对多</strong>（一个通道可谓多个设备控制器服务）</li>
 <li>SDT 整个系统只有 <strong>一张</strong></li>
 </ul>
 <h3 id="分配方法">分配方法</h3>
@@ -455,11 +469,16 @@
 <li>通道程序由一系列通道指令构成。</li>
 <li>通道指令构成如下
 <ul>
-<li>操作码：包括 <strong>读</strong> <strong>写</strong> <strong>控制</strong> 等操作</li>
+<li>操作码：包括 <strong>读</strong> <strong>写</strong>
+<strong>控制</strong> 等操作</li>
 <li>内存地址：操作数据的<strong>内存首址</strong></li>
-<li>计数：操作数据的<strong>字节数</strong>（与上一项 内存地址 相加，即可获得操作数据的内存范围）</li>
-<li>通道程序结束位 <em>P</em> ：<em>P</em> = 1 表示本条指令是通道程序的最后一条指令</li>
-<li>记录结束标志 <em>R</em> ：<em>R</em> = 0 表示本条指令和下一条指令处理的数据是<strong>同一条记录</strong>；<em>R</em> = 1 表示这是处理某条记录的最后一条指令</li>
+<li>计数：操作数据的<strong>字节数</strong>（与上一项 内存地址
+相加，即可获得操作数据的内存范围）</li>
+<li>通道程序结束位 <em>P</em> ：<em>P</em> = 1
+表示本条指令是通道程序的最后一条指令</li>
+<li>记录结束标志 <em>R</em> ：<em>R</em> = 0
+表示本条指令和下一条指令处理的数据是<strong>同一条记录</strong>；<em>R</em>
+= 1 表示这是处理某条记录的最后一条指令</li>
 </ul></li>
 </ul>
 <h2 id="设备独立性及其实现方法">设备独立性及其实现方法</h2>
@@ -508,7 +527,8 @@
 <li>max(<em>C+M</em>, <em>T</em>)</li>
 </ul></li>
 </ul>
-<p>时间计算小结：能并行的放在 max 内取大的，再和只能串行的任务时间相加</p>
+<p>时间计算小结：能并行的放在 max
+内取大的，再和只能串行的任务时间相加</p>
 <h3 id="环形缓冲">环形缓冲</h3>
 <p>（具体见教材）</p>
 <h3 id="缓冲池">缓冲池</h3>
@@ -643,7 +663,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

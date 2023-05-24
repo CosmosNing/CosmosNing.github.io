@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="哈希表是一个十分高效的数据结构，它到底高效在哪里呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/07/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-09-07T13:34:53.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.611Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/07/cover.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2018/09/07/gao-xiao-de-shu-ju-jie-gou-ha-xi-biao/">
@@ -165,11 +163,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -348,7 +341,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,23 +388,40 @@
     
     <div class="post-body" itemprop="articleBody">
         <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/09/07/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/09/07/cover.jpg?raw=true"
+alt="cover" />
+<figcaption aria-hidden="true">cover</figcaption>
 </figure>
 <h2 id="引入">引入</h2>
 <p>在编程过程中，我们经常会遇到多组一一对应的数据（比如，通讯录中的姓名和电话号码），如何存储这些数据，同时能获得较高的数据操作效率呢？</p>
 <p>下面，我们以通讯录中的存储为例进行简单的讨论。</p>
 <p>首先，我们会想到利用数组来存储这些数据，一个数组用于存储姓名，另一个数组用于存储电话号码。单单两个数组并不能完成数据中一一对应的要求，因而需要我们自己书写其中的对应关系。</p>
-<p>一一对应的关系可以由这样一个映射关系 <span class="math inline">\(f\)</span> 来描述：<span class="math inline">\(f : a → b\)</span> 。这个映射关系意味着一个确定的 <span class="math inline">\(a\)</span> 的值，能够找到与之对应的 <span class="math inline">\(b\)</span> 。在这里，我们通常把 <span class="math inline">\(a\)</span> 称作“关键字”（ <span class="math inline">\(Key\)</span> ），而与之对应的 <span class="math inline">\(b\)</span> 称作“值”（ <span class="math inline">\(Value\)</span> ）。对于我们的通讯录例子，因为我们经常需要按人名查找其电话号码，所以我们可以将姓名当作关键词，将电话号码当作值。</p>
-<p>数组利用整数作为下标来取用任意位置元素的值，类似的，我们也希望上面所描述的对应关系能够利用关键字来取用对应的值。这种想法怎样实现呢？基于数组这种结构，我们可以对它进行简单的扩展，来实现这种想法。数组下标是整数，而关键字通常是字符串，所以我们要写一个转换函数，它能够将一个字符串映射到自然数域中。举个例子，比如有一个叫做“小明”的人，我利用这个转换函数将“小明”转换成数字 1 ，此时将小明的姓名和电话号码存储在各自数组下标为 1 的位置即可。这种存储方式，就是一种简单的哈希表，其中的字符串转换为数字函数称为哈希函数。</p>
+<p>一一对应的关系可以由这样一个映射关系 <span
+class="math inline">\(f\)</span> 来描述：<span class="math inline">\(f :
+a → b\)</span> 。这个映射关系意味着一个确定的 <span
+class="math inline">\(a\)</span> 的值，能够找到与之对应的 <span
+class="math inline">\(b\)</span> 。在这里，我们通常把 <span
+class="math inline">\(a\)</span> 称作“关键字”（ <span
+class="math inline">\(Key\)</span> ），而与之对应的 <span
+class="math inline">\(b\)</span> 称作“值”（ <span
+class="math inline">\(Value\)</span>
+）。对于我们的通讯录例子，因为我们经常需要按人名查找其电话号码，所以我们可以将姓名当作关键词，将电话号码当作值。</p>
+<p>数组利用整数作为下标来取用任意位置元素的值，类似的，我们也希望上面所描述的对应关系能够利用关键字来取用对应的值。这种想法怎样实现呢？基于数组这种结构，我们可以对它进行简单的扩展，来实现这种想法。数组下标是整数，而关键字通常是字符串，所以我们要写一个转换函数，它能够将一个字符串映射到自然数域中。举个例子，比如有一个叫做“小明”的人，我利用这个转换函数将“小明”转换成数字
+1 ，此时将小明的姓名和电话号码存储在各自数组下标为 1
+的位置即可。这种存储方式，就是一种简单的哈希表，其中的字符串转换为数字函数称为哈希函数。</p>
 <p>很多高级语言本身内置了类似哈希表的数据类型，可以直接使用。比如Python中，字典（Dict）就是哈希表。哈希表在每种语言中的使用在各类语言教程中已经有了很好的示例，这里不再介绍。而我们要探讨的便是分析一下哈希表中存在的问题、它的性能和一些典型应用。</p>
 <h2 id="哈希冲突">哈希冲突</h2>
 <p>经过上述的一些讨论，我们可以发现，哈希表有两个集合和一个函数组成。两个集合分别是关键字集合和值集合，而一个函数则为哈希函数（用于维护关键字到值存储位置的关系）。两个集合的存储可以很容易利用数组实现，从而问题的关键便转向了哈希函数的设计。</p>
-<p>构造一个从字符串映射到数字的函数很简单，但是随手设计的哈希函数有时却会产生问题。我们来看一个典型的例子。比如我把哈希函数定义为取字符串的长度，并以此输出结果作为信息存储位置。同时，我有待存储的信息：<em>（小明，12345678910）</em>、<em>（小刚，01987654321）</em>。首先，存储小明的信息。假设一个汉字的字符长度为1，那么“小明”字符长度为2，应该存储在下标为2的位置上。接着存储小刚的信息，此时我们发现，根据给定的哈希函数，小刚的信息也应该存储的在下标为 2 的位置。这种情况下，存储位置就产生了冲突。在哈希表中，这种冲突称作“哈希冲突”。</p>
+<p>构造一个从字符串映射到数字的函数很简单，但是随手设计的哈希函数有时却会产生问题。我们来看一个典型的例子。比如我把哈希函数定义为取字符串的长度，并以此输出结果作为信息存储位置。同时，我有待存储的信息：<em>（小明，12345678910）</em>、<em>（小刚，01987654321）</em>。首先，存储小明的信息。假设一个汉字的字符长度为1，那么“小明”字符长度为2，应该存储在下标为2的位置上。接着存储小刚的信息，此时我们发现，根据给定的哈希函数，小刚的信息也应该存储的在下标为
+2
+的位置。这种情况下，存储位置就产生了冲突。在哈希表中，这种冲突称作“哈希冲突”。</p>
 <p>那么，如何解决哈希冲突呢？一种做法在原有的存储结构上修改：比如在数组对应位置新串接一个链表，存储新的数据；此外，也可以在冲突位置的附近数据为空的位置存储新的信息。二是重新设计哈希函数，使它出现冲突的情况尽可能得少。</p>
 <p>要构造一个较好的哈希函数，首先它必须满足以下基本的三个条件：</p>
 <p>第一点， 一致性。相同的字符串输入，能够获得相同的数字输出；</p>
 <p>第二点， 互异性。不同的字符串输入，获得的数字输出尽量不同；</p>
-<p>第三点， 合理性。哈希函数的输出值大小必须在表存储容量的范围之内，保证得到的下标的合理性。比如容量为10的哈希表，对应的哈希函数不能返回100这样的数值。</p>
+<p>第三点，
+合理性。哈希函数的输出值大小必须在表存储容量的范围之内，保证得到的下标的合理性。比如容量为10的哈希表，对应的哈希函数不能返回100这样的数值。</p>
 <p>哈希函数构造方法有很多，大家可以自己去看看，我这里就不过多阐述了。</p>
 <h2 id="性能分析">性能分析</h2>
 <p>哈希表继承了数组高效获取任意元素的特质，在常数时间内即可完成对任意元素的访问。同时在增添和删除也有十分好的表现。由于哈希表的信息存储并不是像数组一样按照顺序依次存储，而是依据哈希函数确定存储位置，所以增添和删除元素不需要做十分耗费时间的移动操作，因而在哈希表中，增添和删除操作也可以在常数时间内完成。</p>
@@ -552,7 +562,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

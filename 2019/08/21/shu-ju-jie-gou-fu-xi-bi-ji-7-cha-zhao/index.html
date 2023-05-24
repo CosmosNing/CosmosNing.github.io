@@ -29,22 +29,11 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下查找的知识">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RightEmpty.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LeftEmpty.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/NotNULL.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LL.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RR.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LR.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RL.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Divide.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Merge.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/EndPoint.jpg?raw=true">
 <meta property="article:published_time" content="2019-08-21T14:17:09.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RightEmpty.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2019/08/21/shu-ju-jie-gou-fu-xi-bi-ji-7-cha-zhao/">
@@ -173,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -356,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -403,7 +387,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="查找">8．查找</h1>
-<h2 id="顺序表查找有序表查找索引顺序表查找">顺序表查找；有序表查找；索引顺序表查找</h2>
+<h2
+id="顺序表查找有序表查找索引顺序表查找">顺序表查找；有序表查找；索引顺序表查找</h2>
 <h3 id="顺序表查找">顺序表查找</h3>
 <hr />
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 算法 9.1</span></span><br><span class="line"><span class="comment">// 在顺序表 ST 中顺序查找其关键字等于 key 的数据元素。若找到，</span></span><br><span class="line"><span class="comment">// 则函数值为该元素在表中的位置，否则为 0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Search_Seq</span><span class="params">(SSTable ST, KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ST.elem[<span class="number">0</span>].key = key;      <span class="comment">// “哨兵”</span></span><br><span class="line">                               <span class="comment">// 从后往前找</span></span><br><span class="line">    <span class="keyword">for</span>(i - ST.length; !EQ(ST.elem[i].key, key); --i);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> i;                  <span class="comment">// 找不到时， i 为 0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -451,13 +436,22 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DeleteBST</span><span class="params">(BiTree *T,KeyType key)</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">/* 若二叉排序树T中存在关键字等于key的数据元素时，则删除该数据元素结点， */</span></span><br><span class="line">    <span class="comment">/* 并返回TRUE；否则返回FALSE。算法9.7 */</span></span><br><span class="line">    <span class="keyword">if</span>(!*T) <span class="comment">/* 不存在关键字等于key的数据元素 */</span></span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> EQ(key,(*T)-&gt;data.key) <span class="comment">/* 找到关键字等于key的数据元素 */</span></span><br><span class="line">            Delete(T);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> LT(key,(*T)-&gt;data.key)</span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;lchild,key);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            DeleteBST(&amp;(*T)-&gt;rchild,key);</span><br><span class="line">        <span class="keyword">return</span> TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr />
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RightEmpty.jpg?raw=true" alt="右子树空" /><figcaption>右子树空</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/RightEmpty.jpg?raw=true"
+alt="右子树空" />
+<figcaption aria-hidden="true">右子树空</figcaption>
 </figure>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LeftEmpty.jpg?raw=true" alt="左子树空" /><figcaption>左子树空</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/LeftEmpty.jpg?raw=true"
+alt="左子树空" />
+<figcaption aria-hidden="true">左子树空</figcaption>
 </figure>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/NotNULL.jpg?raw=true" alt="左右均不空" /><figcaption>左右均不空</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/NotNULL.jpg?raw=true"
+alt="左右均不空" />
+<figcaption aria-hidden="true">左右均不空</figcaption>
 </figure>
 <h3 id="平衡二叉树avl">平衡二叉树（AVL）</h3>
 <h4 id="定义-1">定义</h4>
@@ -471,29 +465,44 @@
 <li>LL 平衡旋转</li>
 </ol>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LL.jpg?raw=true" alt="LL平衡旋转" /><figcaption>LL平衡旋转</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/LL.jpg?raw=true"
+alt="LL平衡旋转" />
+<figcaption aria-hidden="true">LL平衡旋转</figcaption>
 </figure>
 <ol start="2" type="1">
 <li><p>RR 平衡旋转</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RR.jpg?raw=true" alt="RR平衡旋转" /><figcaption>RR平衡旋转</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/RR.jpg?raw=true"
+alt="RR平衡旋转" />
+<figcaption aria-hidden="true">RR平衡旋转</figcaption>
 </figure></li>
 <li><p>LR 平衡旋转</p></li>
 </ol>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/LR.jpg?raw=true" alt="LR平衡旋转" /><figcaption>LR平衡旋转</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/LR.jpg?raw=true"
+alt="LR平衡旋转" />
+<figcaption aria-hidden="true">LR平衡旋转</figcaption>
 </figure>
 <ol start="4" type="1">
 <li>RL 平衡旋转</li>
 </ol>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/RL.jpg?raw=true" alt="RL平衡旋转" /><figcaption>RL平衡旋转</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/RL.jpg?raw=true"
+alt="RL平衡旋转" />
+<figcaption aria-hidden="true">RL平衡旋转</figcaption>
 </figure></li>
 </ul>
 <h4 id="查找-2">查找</h4>
 <ul>
 <li>查找过程与排序查找树类似</li>
-<li>（★★★★★）重要结论 1 ：假设以 <span class="math inline">\(n_h\)</span> 表示深度为 <span class="math inline">\(h\)</span> 的平衡树中含有的<strong>最少结点数</strong>，则有</li>
+<li>（★★★★★）重要结论 1 ：假设以 <span
+class="math inline">\(n_h\)</span> 表示深度为 <span
+class="math inline">\(h\)</span>
+的平衡树中含有的<strong>最少结点数</strong>，则有</li>
 </ul>
 <p><span class="math display">\[
 n_0 = 0,n_1 = 1,n_2 =2
@@ -502,31 +511,57 @@ n_0 = 0,n_1 = 1,n_2 =2
 n_h=n_{h-1}+n_{h-2}+1
 \]</span></p>
 <ul>
-<li>（★★★★★）重要结论 2 ：含有 <span class="math inline">\(n\)</span> 个结点的平衡二叉树的最大深度为 <span class="math inline">\(O(log_2n)\)</span></li>
+<li>（★★★★★）重要结论 2 ：含有 <span class="math inline">\(n\)</span>
+个结点的平衡二叉树的最大深度为 <span
+class="math inline">\(O(log_2n)\)</span></li>
 </ul>
 <h3 id="b-树部分书上写成-b-树">B-树（部分书上写成 B 树）</h3>
 <h4 id="定义-2">定义</h4>
 <ul>
 <li>一棵 m 阶 B 树或为空树，或为满足如下特性的 m 叉树
 <ol type="1">
-<li>树的每个结点至多有 m 棵子树（即<strong>至多有 m-1 个关键字</strong>）</li>
-<li>若<strong>根</strong>结点不是终端结点，则<strong>至少有两棵子树</strong>（即<strong>至少有 1 个关键字</strong>）</li>
-<li>除<strong>根结点</strong>外的所有非叶子结点至少有 <span class="math inline">\(\lceil \frac{m}{2}\rceil\)</span> 棵子树（即<strong>至少有 <span class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span> 个关键字</strong>）</li>
+<li>树的每个结点至多有 m 棵子树（即<strong>至多有 m-1
+个关键字</strong>）</li>
+<li>若<strong>根</strong>结点不是终端结点，则<strong>至少有两棵子树</strong>（即<strong>至少有
+1 个关键字</strong>）</li>
+<li>除<strong>根结点</strong>外的所有非叶子结点至少有 <span
+class="math inline">\(\lceil \frac{m}{2}\rceil\)</span>
+棵子树（即<strong>至少有 <span class="math inline">\(\lceil
+\frac{m}{2}\rceil -1\)</span> 个关键字</strong>）</li>
 <li>所有非叶子结点结构如下：</li>
 </ol></li>
 </ul>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
+<col style="width: 16%" />
+<col style="width: 6%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">n</th>
-<th style="text-align: center;"><span class="math inline">\(P_0\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(K_1\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(P_1\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(K_2\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(P_2\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\cdots\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(P_n\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(K_n\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(P_0\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(K_1\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(P_1\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(K_2\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(P_2\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(\cdots\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(P_n\)</span></th>
+<th style="text-align: center;"><span
+class="math inline">\(K_n\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -544,9 +579,14 @@ n_h=n_{h-1}+n_{h-2}+1
 </tbody>
 </table>
 <p>其中 <span class="math inline">\(K_i&lt;K_j, 当i&lt;j​\)</span></p>
-<p><span class="math inline">\(P_{i-1}\)</span> 所指子树中的所有结点的关键字均<strong>小于</strong> <span class="math inline">\(K_i\)</span></p>
-<p><span class="math inline">\(P_i​\)</span> 所指子树中的所有结点的关键字均<strong>大于</strong> <span class="math inline">\(K_i​\)</span></p>
-<p>（★★★★★）<span class="math inline">\(\lceil \frac{m}{2}\rceil -1\le n\le m-1​\)</span></p>
+<p><span class="math inline">\(P_{i-1}\)</span>
+所指子树中的所有结点的关键字均<strong>小于</strong> <span
+class="math inline">\(K_i\)</span></p>
+<p><span class="math inline">\(P_i​\)</span>
+所指子树中的所有结点的关键字均<strong>大于</strong> <span
+class="math inline">\(K_i​\)</span></p>
+<p>（★★★★★）<span class="math inline">\(\lceil \frac{m}{2}\rceil -1\le
+n\le m-1​\)</span></p>
 <h4 id="高度">高度</h4>
 <ul>
 <li><strong>不包括</strong>最后的不带任何信息的叶结点所处的那一层</li>
@@ -567,11 +607,14 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 <li>插入
 <ul>
 <li>若插入后<strong>结点关键字个数 &lt; m</strong>，可直接插入</li>
-<li>若插入后<strong>结点关键字个数 &gt; m - 1</strong>，则需<strong>分裂</strong>
+<li>若插入后<strong>结点关键字个数 &gt; m -
+1</strong>，则需<strong>分裂</strong>
 <ul>
 <li>（★★★★★）分裂方法
 <ul>
-<li>在插入位置处新建一个兄弟节点，从中间位置(<span class="math inline">\(\lceil \frac{m}{2}\rceil\)</span>) 将关键字分为左右部分</li>
+<li>在插入位置处新建一个兄弟节点，从中间位置(<span
+class="math inline">\(\lceil \frac{m}{2}\rceil\)</span>)
+将关键字分为左右部分</li>
 <li>左部分放在原结点，右部分放在新结点，中间的结点放在父结点</li>
 <li>若此时使得父结点关键字也超过了上限，那么以此类推，直至传到根结点。</li>
 </ul></li>
@@ -580,30 +623,51 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 </ul></li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Divide.jpg?raw=true" alt="分裂" /><figcaption>分裂</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/Divide.jpg?raw=true"
+alt="分裂" />
+<figcaption aria-hidden="true">分裂</figcaption>
 </figure>
 <h4 id="删除-1">（★★★★★）删除</h4>
 <ul>
-<li>当所删除的关键字 <em>k</em> 不在终端结点（这里的终端结点指最底层非叶子结点，下同）
+<li>当所删除的关键字 <em>k</em>
+不在终端结点（这里的终端结点指最底层非叶子结点，下同）
 <ol type="1">
-<li>若<strong>小于</strong> <em>k</em> 的子树中关键字个数 &gt; <span class="math inline">\(\lceil \frac{m}{2}\rceil -1​\)</span> ，则找出（中序）<strong>前驱值</strong> <em>k'</em> ，并用 <em>k'</em> 取代 <em>k</em> ，再递归地删除 <em>k'</em> 即可</li>
-<li>若<strong>大于</strong> <em>k</em> 的子树中关键字个数 &gt; <span class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span> ，则找出（中序）<strong>后继值</strong> <em>k'</em> ，并用 <em>k'</em> 取代 <em>k</em> ，再递归地删除 <em>k'</em> 即可（前两点貌似与二叉排序树中的删除类似）</li>
-<li>若前后两个子树中关键字个数 均为 <span class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span> ，则直接将两个子结点合并，再直接删除 <em>k</em> 即可（如下图）</li>
+<li>若<strong>小于</strong> <em>k</em> 的子树中关键字个数 &gt; <span
+class="math inline">\(\lceil \frac{m}{2}\rceil -1​\)</span>
+，则找出（中序）<strong>前驱值</strong> <em>k'</em> ，并用 <em>k'</em>
+取代 <em>k</em> ，再递归地删除 <em>k'</em> 即可</li>
+<li>若<strong>大于</strong> <em>k</em> 的子树中关键字个数 &gt; <span
+class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span>
+，则找出（中序）<strong>后继值</strong> <em>k'</em> ，并用 <em>k'</em>
+取代 <em>k</em> ，再递归地删除 <em>k'</em>
+即可（前两点貌似与二叉排序树中的删除类似）</li>
+<li>若前后两个子树中关键字个数 均为 <span class="math inline">\(\lceil
+\frac{m}{2}\rceil -1\)</span> ，则直接将两个子结点合并，再直接删除
+<em>k</em> 即可（如下图）</li>
 </ol></li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/Merge.jpg?raw=true" alt="非终端合并" /><figcaption>非终端合并</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/Merge.jpg?raw=true"
+alt="非终端合并" />
+<figcaption aria-hidden="true">非终端合并</figcaption>
 </figure>
 <ul>
 <li>当所删除的关键字 <em>k</em> 在终端结点
 <ol type="1">
-<li>若被删除关键字所在结点的关键字个数 &gt; <span class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span> ，则直接删除</li>
+<li>若被删除关键字所在结点的关键字个数 &gt; <span
+class="math inline">\(\lceil \frac{m}{2}\rceil -1\)</span>
+，则直接删除</li>
 <li>兄弟够借（如下图）</li>
 <li>兄弟不够借（如下图）</li>
 </ol></li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/21/EndPoint.jpg?raw=true" alt="终端兄弟借" /><figcaption>终端兄弟借</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/21/EndPoint.jpg?raw=true"
+alt="终端兄弟借" />
+<figcaption aria-hidden="true">终端兄弟借</figcaption>
 </figure>
 <h2 id="哈希表的构造和冲突处理方法">哈希表的构造和冲突处理方法</h2>
 <h3 id="哈希表的构造">哈希表的构造</h3>
@@ -611,21 +675,30 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 <li>这里的构造通常指哈希函数的构造。下面是几种构造方法
 <ol type="1">
 <li><strong>直接定址法</strong>：取关键字或关键字的某个线性函数值为哈希地址</li>
-<li><strong>数字分析法</strong>：设关键字是 <em>r</em> 进制数，而 <em>r</em> 个数码在各位上出现的频率不一定相同。此时应该选取数码<strong>分布较为均匀的若干位</strong>作为散列地址。此法适用于<strong>已知关键字集合</strong>的情况。若换了关键字，则需重新构造散列函数</li>
+<li><strong>数字分析法</strong>：设关键字是 <em>r</em> 进制数，而
+<em>r</em>
+个数码在各位上出现的频率不一定相同。此时应该选取数码<strong>分布较为均匀的若干位</strong>作为散列地址。此法适用于<strong>已知关键字集合</strong>的情况。若换了关键字，则需重新构造散列函数</li>
 <li><strong>平方取中法</strong>：取关键字<strong>平方后的中间几位</strong>为哈希地址</li>
 <li><strong>折叠法</strong>：将关键字分割成位数相同的几部分，然后取这几个部分的叠加和（舍去进位）作为哈希地址。这种方法适用于<strong>关键字位数很多、而且关键字中每一位上数字分布大致均匀</strong>的情况</li>
-<li><strong>除留余数法</strong>：取<strong>关键字被某个不大于哈希表长的 p 除后所得余数</strong>作为哈希地址</li>
+<li><strong>除留余数法</strong>：取<strong>关键字被某个不大于哈希表长的
+p 除后所得余数</strong>作为哈希地址</li>
 <li><strong>随机数法</strong></li>
 </ol></li>
 </ul>
 <h3 id="哈希冲突处理方法">哈希冲突处理方法</h3>
 <ol type="1">
-<li><strong>开放定址法</strong> <span class="math inline">\(H_i=(H(key)+d_i)%m\)</span>
+<li><strong>开放定址法</strong> <span
+class="math inline">\(H_i=(H(key)+d_i)%m\)</span>
 <ol type="1">
-<li><span class="math inline">\(d_i=0，1，2，\cdots\)</span>时，称为<strong>线性探测法</strong></li>
-<li><span class="math inline">\(d_i=0^2,1^2,-1^2,2^2,-2^2，\cdots\)</span>时，称为<strong>平方探测法</strong></li>
-<li><span class="math inline">\(d_i=Hash_2(key)\)</span> 时，称为<strong>再散列</strong>，此时 <span class="math inline">\(H_i=(H(key)+i\times Hash_2(key )%m\)</span></li>
-<li><span class="math inline">\(d_i\)</span> 为伪随机数序列时，称为<strong>伪随机序列法</strong></li>
+<li><span
+class="math inline">\(d_i=0，1，2，\cdots\)</span>时，称为<strong>线性探测法</strong></li>
+<li><span
+class="math inline">\(d_i=0^2,1^2,-1^2,2^2,-2^2，\cdots\)</span>时，称为<strong>平方探测法</strong></li>
+<li><span class="math inline">\(d_i=Hash_2(key)\)</span>
+时，称为<strong>再散列</strong>，此时 <span
+class="math inline">\(H_i=(H(key)+i\times Hash_2(key )%m\)</span></li>
+<li><span class="math inline">\(d_i\)</span>
+为伪随机数序列时，称为<strong>伪随机序列法</strong></li>
 </ol></li>
 <li><strong>拉链法</strong>
 <ul>
@@ -634,26 +707,32 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 </ol>
 <h1 id="解题技巧小结及结论补充">解题技巧小结及结论补充</h1>
 <ul>
-<li>折半查找<strong>在查找不成功</strong>和<strong>给定值进行关键字的比较次数最多</strong>这两种情况，都是在求<strong>树的高度</strong>，即<span class="math inline">\(\lceil log_2(n+1)\rceil\)</span></li>
+<li>折半查找<strong>在查找不成功</strong>和<strong>给定值进行关键字的比较次数最多</strong>这两种情况，都是在求<strong>树的高度</strong>，即<span
+class="math inline">\(\lceil log_2(n+1)\rceil\)</span></li>
 <li>折半查找中平局查找长度的计算（画<strong>判定树</strong>求解）
 <ul>
 <li>查找<strong>成功</strong>的平均查找长度
 <ul>
-<li><span class="math inline">\(ASL=\frac{\sum每层结点数\times 当前层数(从1取)}{总判定树结点数}​\)</span></li>
+<li><span class="math inline">\(ASL=\frac{\sum每层结点数\times
+当前层数(从1取)}{总判定树结点数}​\)</span></li>
 </ul></li>
 <li>查找<strong>失败</strong>的平均查找长度
 <ul>
-<li><span class="math inline">\(ASL=\frac{\sum 判定失败的结点数\times 当前层数}{总判定失败结点数}​\)</span></li>
+<li><span class="math inline">\(ASL=\frac{\sum 判定失败的结点数\times
+当前层数}{总判定失败结点数}​\)</span></li>
 </ul></li>
 </ul></li>
 <li>（★★★★★）顺序查找<strong>成功</strong>的平均查找长度公式
 <ul>
-<li><span class="math inline">\(ASL=\frac{n+1}{2}\)</span> ，其中 <em>n</em> 为元素个数</li>
+<li><span class="math inline">\(ASL=\frac{n+1}{2}\)</span> ，其中
+<em>n</em> 为元素个数</li>
 </ul></li>
-<li><em>n</em> 个记录的索引顺序表最理想的块长为 <span class="math inline">\(\sqrt{n}\)</span></li>
+<li><em>n</em> 个记录的索引顺序表最理想的块长为 <span
+class="math inline">\(\sqrt{n}\)</span></li>
 <li>索引顺序表的平均查找长度的计算
 <ul>
-<li><span class="math inline">\(ASL= 块间顺序查找+快内顺序查找\)</span></li>
+<li><span class="math inline">\(ASL=
+块间顺序查找+快内顺序查找\)</span></li>
 <li>根据上述公式，将对应部分的元素个数带入公式即可</li>
 </ul></li>
 <li>如何判定序列满足<strong>折半查找</strong>或者<strong>二叉排序树</strong>序列？
@@ -664,11 +743,19 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 </ul></li>
 <li>对 <em>B-</em> 树的正确理解
 <ul>
-<li>5 阶 <em>B-</em> 树中各个结点包含的关键字为 2 时，也满足要求（不要误以为要至少存在一个含关键字 4 [ <span class="math inline">\(5-1\)</span> ] 个的结点才满足）。也就是每个结点的个数在 <span class="math inline">\(\lceil \frac{m}{2}\rceil -1\le n\le m-1\)</span> 范围内即可（其中，<em>m</em> 为阶数）</li>
+<li>5 阶 <em>B-</em> 树中各个结点包含的关键字为 2
+时，也满足要求（不要误以为要至少存在一个含关键字 4 [ <span
+class="math inline">\(5-1\)</span> ]
+个的结点才满足）。也就是每个结点的个数在 <span
+class="math inline">\(\lceil \frac{m}{2}\rceil -1\le n\le m-1\)</span>
+范围内即可（其中，<em>m</em> 为阶数）</li>
 </ul></li>
 <li>在开址法中散列到同一地址二引起的“堆积”问题是由于<strong>同义词之间或非同义词之间发生冲突</strong>引起的（<strong>非同义词</strong>！！！）</li>
 <li>在开放定址法解决冲突的散列表查找中，发生聚集的原因主要是<strong>解决冲突的方法选择不当</strong></li>
-<li>在散列表中，<strong>平局查找长度</strong>与<strong>装填因子</strong> <span class="math inline">\(\alpha\)</span> 直接相关，不依赖于已有表项数或表长。若散列表中存放的都是某个地址的同义词，则平均查找长度为 <span class="math inline">\(O(n)\)</span></li>
+<li>在散列表中，<strong>平局查找长度</strong>与<strong>装填因子</strong>
+<span class="math inline">\(\alpha\)</span>
+直接相关，不依赖于已有表项数或表长。若散列表中存放的都是某个地址的同义词，则平均查找长度为
+<span class="math inline">\(O(n)\)</span></li>
 <li>用逐点法插入构造二叉树时，若先后插入的关键字<strong>有序</strong>，则二叉排序树<strong>深度最大</strong>。</li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
@@ -797,7 +884,7 @@ log_m(n+1)\le h \le log_{\lceil \frac{m}{2}\rceil}(\frac{n+1}{2})+1
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

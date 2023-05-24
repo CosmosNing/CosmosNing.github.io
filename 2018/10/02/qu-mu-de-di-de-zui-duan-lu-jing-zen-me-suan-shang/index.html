@@ -29,15 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="介绍一些求最短路径的算法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/cover.jpg?raw=true">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E9%80%9A%E7%BD%91%E7%A4%BA%E4%BE%8B.png?raw=true">
 <meta property="article:published_time" content="2018-10-02T02:44:12.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/cover.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2018/10/02/qu-mu-de-di-de-zui-duan-lu-jing-zen-me-suan-shang/">
@@ -166,11 +163,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -349,7 +341,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -397,14 +389,18 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="引入">引入</h2>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/10/02/cover.jpg?raw=true"
+alt="cover" />
+<figcaption aria-hidden="true">cover</figcaption>
 </figure>
 <p>上两篇文章中，我们具体讨论了“去目的地的最少中转方案”这个问题，并给出算法过程以及它的实现。在实际生活中，我们对于出行方案的需求除了“最少中转”，还有“最短路径”。今天，我们一起来思考一下如何计算出去目的地的最短路径。</p>
 <h2 id="问题分析">问题分析</h2>
 <p>在地图中，从某一位置到达另一个位置通常有很多条路径。其中，总路径长度最短的，叫做“最短路径”。</p>
 <p>“最短路径”是这个问题的输出，也是这个问题的目标。为了达到这个目标，第一步就需要我们搞清楚它的输入是什么（或者我们能提供什么样的原始信息【通常是可测量的】），在这个基础之上我们才能运用或者设计合适的算法，给出符合期望的结果。</p>
 <p>在前两篇文章中，我们一起了解到，图这种数据结构，天生地可以表示多个点之间多对多的关系。因而，在这个问题中，我们通过图存储信息。与之前的图略有不同的是，这里的图还存储有两个相邻点之间路径的代价（在这个问题中，就是该道路的长度）。这样的图，在每一条边上都有对应的值（称作“权值”），也被称作为<strong>“网”</strong>。这个由各个道路长度、各个顶点和边构成的交通网以及用户给定的起点、终点信息，作为我们的输入。</p>
-<p>那么，如何利用这个输入信息得到我们希望的结果呢？这里就要用到 <em>Dijkstra</em> 算法。</p>
+<p>那么，如何利用这个输入信息得到我们希望的结果呢？这里就要用到
+<em>Dijkstra</em> 算法。</p>
 <h2 id="dijkstra-算法">Dijkstra 算法</h2>
 <p><em>Dijkstra</em> 算法描述如下：</p>
 <blockquote>
@@ -418,10 +414,14 @@
 <p>上面的算法描述太过抽象，我们看一个例子来体会一下这个算法的过程。</p>
 <p>假设，一个简单的交通网如下所示：</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/02/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E9%80%9A%E7%BD%91%E7%A4%BA%E4%BE%8B.png?raw=true" alt="简单的交通网示例" /><figcaption>简单的交通网示例</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/10/02/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%A4%E9%80%9A%E7%BD%91%E7%A4%BA%E4%BE%8B.png?raw=true"
+alt="简单的交通网示例" />
+<figcaption aria-hidden="true">简单的交通网示例</figcaption>
 </figure>
 <p>比如，用户想要从 <em>A</em> 到 <em>D</em> 的最短路径。</p>
-<p>在利用 <em>Dijkstra</em> 算法之前，首先要对相关数据初始化。初始时，我们有如下表格：</p>
+<p>在利用 <em>Dijkstra</em>
+算法之前，首先要对相关数据初始化。初始时，我们有如下表格：</p>
 <table>
 <thead>
 <tr class="header">
@@ -432,11 +432,13 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A（已处理）</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">B</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">C</td>
@@ -444,16 +446,19 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">D</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>第一步，找到符合要求的顶点 <em>C</em> 。</p>
-<p>第二步，更新 <em>C</em> 邻居顶点的的代价（也就是B、E【A是起点，不参与更新】）。从而有以下表格：</p>
+<p>第二步，更新 <em>C</em>
+邻居顶点的的代价（也就是B、E【A是起点，不参与更新】）。从而有以下表格：</p>
 <table>
 <thead>
 <tr class="header">
@@ -464,11 +469,14 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A（已处理）</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">B</td>
-<td style="text-align: center;"><span class="math inline">\(3 + 5 = 8\)</span> （由于<span class="math inline">\(3 + 5 = 8 &lt; \infty\)</span> ，所以更新）</td>
+<td style="text-align: center;"><span class="math inline">\(3 + 5 =
+8\)</span> （由于<span class="math inline">\(3 + 5 = 8 &lt;
+\infty\)</span> ，所以更新）</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">C（已处理）</td>
@@ -476,16 +484,20 @@
 </tr>
 <tr class="even">
 <td style="text-align: center;">D</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E</td>
-<td style="text-align: center;"><span class="math inline">\(3 + 5 = 8\)</span>（由于<span class="math inline">\(3 + 5 = 8 &lt; \infty\)</span> ，所以更新）</td>
+<td style="text-align: center;"><span class="math inline">\(3 + 5 =
+8\)</span>（由于<span class="math inline">\(3 + 5 = 8 &lt;
+\infty\)</span> ，所以更新）</td>
 </tr>
 </tbody>
 </table>
 <p>重复第一步，找到符合要求的顶点 <em>B</em> 。</p>
-<p>又是第二步，更新 <em>B</em> 邻居顶点的代价（也就是 <em>C</em> 和 <em>D</em> ）。从而有以下表格：</p>
+<p>又是第二步，更新 <em>B</em> 邻居顶点的代价（也就是 <em>C</em> 和
+<em>D</em> ）。从而有以下表格：</p>
 <table>
 <thead>
 <tr class="header">
@@ -496,7 +508,8 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A（已处理）</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">B（已处理）</td>
@@ -504,11 +517,14 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">C（已处理）</td>
-<td style="text-align: center;">3（由于<span class="math inline">\(8 + 5 &gt; 3\)</span> ，所以不更新）</td>
+<td style="text-align: center;">3（由于<span class="math inline">\(8 + 5
+&gt; 3\)</span> ，所以不更新）</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">D</td>
-<td style="text-align: center;"><span class="math inline">\(8 + 2 = 10\)</span>（由于<span class="math inline">\(8 + 2 = 10 &lt; \infty\)</span> ，所以更新）</td>
+<td style="text-align: center;"><span class="math inline">\(8 + 2 =
+10\)</span>（由于<span class="math inline">\(8 + 2 = 10 &lt;
+\infty\)</span> ，所以更新）</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E</td>
@@ -517,7 +533,8 @@
 </tbody>
 </table>
 <p>重复第一步，找到符合要求的顶点 <em>E</em> 。</p>
-<p>又是第二步，更新 <em>E</em> 邻居顶点的代价（也就是 <em>C</em> 和 <em>D</em> ）。从而有以下表格：</p>
+<p>又是第二步，更新 <em>E</em> 邻居顶点的代价（也就是 <em>C</em> 和
+<em>D</em> ）。从而有以下表格：</p>
 <table>
 <thead>
 <tr class="header">
@@ -528,7 +545,8 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A（已处理）</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">B（已处理）</td>
@@ -536,11 +554,13 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">C（已处理）</td>
-<td style="text-align: center;">3（由于<span class="math inline">\(8 + 5 &gt; 3\)</span> ，所以不更新）</td>
+<td style="text-align: center;">3（由于<span class="math inline">\(8 + 5
+&gt; 3\)</span> ，所以不更新）</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">D</td>
-<td style="text-align: center;">10（由于 <span class="math inline">\(8 + 4 &gt; 10\)</span> ，所以不更新）</td>
+<td style="text-align: center;">10（由于 <span class="math inline">\(8 +
+4 &gt; 10\)</span> ，所以不更新）</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E（已处理）</td>
@@ -548,7 +568,8 @@
 </tr>
 </tbody>
 </table>
-<p>最后一个满足要求的点为 <em>D</em> ，经过算法处理完的表格结果如下：</p>
+<p>最后一个满足要求的点为 <em>D</em>
+，经过算法处理完的表格结果如下：</p>
 <table>
 <thead>
 <tr class="header">
@@ -559,11 +580,13 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">A（已处理）</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">B（已处理）</td>
-<td style="text-align: center;">8（由于 <span class="math inline">\(10 + 2 &gt; 8\)</span> ，所以不更新）</td>
+<td style="text-align: center;">8（由于 <span class="math inline">\(10 +
+2 &gt; 8\)</span> ，所以不更新）</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">C（已处理）</td>
@@ -575,23 +598,32 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">E（已处理）</td>
-<td style="text-align: center;">8（由于<span class="math inline">\(10 + 4 &gt; 8\)</span> ，所以不更新）</td>
+<td style="text-align: center;">8（由于<span class="math inline">\(10 +
+4 &gt; 8\)</span> ，所以不更新）</td>
 </tr>
 </tbody>
 </table>
-<p>到此为止，我们可以在表给中找到，从 <em>A</em> 到 <em>D</em> 的最短路径长度为 10 。简单地检验一下，这个结果是正确的。除了给出最短路径长度，我们还需要给出路径方案。靠上述中的表格信息远远不够。</p>
-<p>那么如何计算出最短路径方案呢？还记得上一篇文章中我们是如何给出最少中转方案的吗？通过引入名为 <code>parents</code> 的哈希表，将当前路径点和上一个顶点联系起来。 在算法处理过程中，更新这个哈希表。算法处理完后，从终点开始，一个个寻找它的上一个顶点，直至到达起点。最后将这些路径点按照从起点到终点的顺序排列，存储起来或者直接输出。</p>
-<p>至此，想必大家对 <em>Dijkstra</em> 算法执行的过程有所了解，下面便是代码实现环节。</p>
+<p>到此为止，我们可以在表给中找到，从 <em>A</em> 到 <em>D</em>
+的最短路径长度为 10
+。简单地检验一下，这个结果是正确的。除了给出最短路径长度，我们还需要给出路径方案。靠上述中的表格信息远远不够。</p>
+<p>那么如何计算出最短路径方案呢？还记得上一篇文章中我们是如何给出最少中转方案的吗？通过引入名为
+<code>parents</code> 的哈希表，将当前路径点和上一个顶点联系起来。
+在算法处理过程中，更新这个哈希表。算法处理完后，从终点开始，一个个寻找它的上一个顶点，直至到达起点。最后将这些路径点按照从起点到终点的顺序排列，存储起来或者直接输出。</p>
+<p>至此，想必大家对 <em>Dijkstra</em>
+算法执行的过程有所了解，下面便是代码实现环节。</p>
 <h2 id="实现">实现</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立图</span></span><br><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">'A'</span>] = &#123;<span class="string">'C'</span>: <span class="number">3</span>&#125;</span><br><span class="line">graph[<span class="string">'B'</span>] = &#123;<span class="string">'C'</span>: <span class="number">5</span>, <span class="string">'D'</span>: <span class="number">2</span>&#125;</span><br><span class="line">graph[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="number">3</span>, <span class="string">'B'</span>: <span class="number">5</span>, <span class="string">'E'</span>: <span class="number">5</span>&#125;</span><br><span class="line">graph[<span class="string">'D'</span>] = &#123;<span class="string">'B'</span>: <span class="number">2</span>, <span class="string">'E'</span>: <span class="number">4</span>&#125;</span><br><span class="line">graph[<span class="string">'E'</span>] = &#123;<span class="string">'C'</span>: <span class="number">5</span>, <span class="string">'D'</span>: <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建parents哈希表，将当前路径点和上一个顶点联系起来</span></span><br><span class="line">parents = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储图上的点是否被访问过。</span></span><br><span class="line"><span class="comment"># 如果某点在searched集合中，那么该点在之前已经被访问过；</span></span><br><span class="line"><span class="comment"># 否则，没有</span></span><br><span class="line">searched = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义常量：无穷大</span></span><br><span class="line">infinity = float(<span class="string">'inf'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建costs哈希表，记录每一个顶点和从起点到达该顶点的最短路径长度</span></span><br><span class="line">costs = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_lowest_cost_node</span><span class="params">(m_costs)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在m_cost中寻找未被搜索过并且所花代价最小的结点</span></span><br><span class="line"><span class="string">    :param m_costs: 道路代价集合</span></span><br><span class="line"><span class="string">    :return: 符合要求的结点</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lowest_cost = float(<span class="string">'inf'</span>)</span><br><span class="line">    lowest_cost_node = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> m_costs:</span><br><span class="line">        cost = m_costs[node]</span><br><span class="line">        <span class="keyword">if</span> cost &lt; lowest_cost <span class="keyword">and</span> node <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">            lowest_cost = cost</span><br><span class="line">            lowest_cost_node = node</span><br><span class="line">    <span class="keyword">return</span> lowest_cost_node</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dijkstra</span><span class="params">(src, des)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    利用dijkstra算法，寻找图中从src点到des点的最短路径</span></span><br><span class="line"><span class="string">    :param src: 起点</span></span><br><span class="line"><span class="string">    :param des: 终点</span></span><br><span class="line"><span class="string">    :return: 路径方案(list), 最短路径长度</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 根据起点信息，更新parents和costs</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> graph.keys():</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> graph[src].keys():</span><br><span class="line">            parents[key] = src</span><br><span class="line">            costs[key] = graph[src][key]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            parents[key] = <span class="literal">None</span></span><br><span class="line">            costs[key] = infinity</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 寻找所花代价最小的结点，分情况更新parents和costs</span></span><br><span class="line">    node = find_lowest_cost_node(costs)</span><br><span class="line">    <span class="keyword">while</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        cost = costs[node]</span><br><span class="line">        neighbors = graph[node]</span><br><span class="line">        <span class="keyword">for</span> n <span class="keyword">in</span> neighbors.keys():</span><br><span class="line">            new_cost = cost + neighbors[n]</span><br><span class="line">            <span class="keyword">if</span> costs[n] &gt; new_cost:</span><br><span class="line">                costs[n] = new_cost</span><br><span class="line">                parents[n] = node</span><br><span class="line">        searched.append(node)</span><br><span class="line">        node = find_lowest_cost_node(costs)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据parents信息和起点信息找出最短路径。</span></span><br><span class="line">    stack = []</span><br><span class="line">    road = []</span><br><span class="line">    stack.append(des)</span><br><span class="line">    child = des</span><br><span class="line">    <span class="keyword">while</span> parents[child] != src:</span><br><span class="line">        stack.append(parents[child])</span><br><span class="line">        child = parents[child]</span><br><span class="line">    stack.append(src)</span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        road.append(stack.pop())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回路径方案和最短路径长度。</span></span><br><span class="line">    <span class="keyword">return</span> road, costs[des]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试例程</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    r, c = dijkstra(<span class="string">'A'</span>, <span class="string">'D'</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"最短路径："</span>)</span><br><span class="line">    print(<span class="string">"-&gt;"</span>.join(r))</span><br><span class="line">    print(<span class="string">"路径长度："</span>)</span><br><span class="line">    print(c)</span><br></pre></td></tr></table></figure>
 <h2 id="总结">总结</h2>
-<p>今天，我和你一起通过计算最短路径这个问题，探讨了 <em>Dijkstra</em> 算法的执行流程和算法实现。我将这篇文章的要点总结如下：</p>
+<p>今天，我和你一起通过计算最短路径这个问题，探讨了 <em>Dijkstra</em>
+算法的执行流程和算法实现。我将这篇文章的要点总结如下：</p>
 <ol type="1">
 <li><p><strong>对于边有权值的图，我们通常将其称作"网"。一个“网”的实例就是地图中的交通网络</strong></p></li>
-<li><p><em>Dijkstra</em> <strong>算法可以用来计算“网”中从某一点到另一点所花代价最小的方案。在地图中，就是用来计算两个点之间的最短路径方案</strong></p></li>
+<li><p><em>Dijkstra</em>
+<strong>算法可以用来计算“网”中从某一点到另一点所花代价最小的方案。在地图中，就是用来计算两个点之间的最短路径方案</strong></p></li>
 </ol>
 <h2 id="思考">思考</h2>
-<p><em>Dijkstra</em> 算法可以处理所有情况下的最短路径问题吗？这个问题留给你思考，欢迎你留言与我一起讨论。</p>
+<p><em>Dijkstra</em>
+算法可以处理所有情况下的最短路径问题吗？这个问题留给你思考，欢迎你留言与我一起讨论。</p>
 
     </div>
 
@@ -714,7 +746,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

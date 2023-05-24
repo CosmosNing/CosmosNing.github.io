@@ -29,20 +29,13 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="介绍 Vim 的常见命令及其用法">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png">
 <meta property="article:published_time" content="2020-06-15T04:07:06.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.603Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="Vim">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="命令">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2020/06/15/vim-jian-yi-ru-men/">
@@ -171,11 +164,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -354,7 +342,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -401,51 +389,96 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>最近，笔者在学习 Linux 中的常见命令。其中 Vim 作为文本编辑命令，是十分基础又非常强大的工具。然而，许多开发者因其命令繁琐，上手难度大，并没有完全发挥出 Vim 的潜力。因此，本文将介绍 Vim 的常见命令及其用法，供读者参考。通过本文，你将获得：</p>
+<p>最近，笔者在学习 Linux 中的常见命令。其中 Vim
+作为文本编辑命令，是十分基础又非常强大的工具。然而，许多开发者因其命令繁琐，上手难度大，并没有完全发挥出
+Vim 的潜力。因此，本文将介绍 Vim
+的常见命令及其用法，供读者参考。通过本文，你将获得：</p>
 <ol type="1">
 <li>了解 Vim 的四种模式。</li>
 <li>掌握 Vim 常见文本编辑命令。</li>
 </ol>
 </blockquote>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg" alt="题图" /><figcaption>题图</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg"
+alt="题图" />
+<figcaption aria-hidden="true">题图</figcaption>
 </figure>
-<p>Photo by <a href="https://unsplash.com/@kdwk?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener">Kdwk Leung</a> on <a href="https://unsplash.com/t/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a></p>
+<p>Photo by <a
+href="https://unsplash.com/@kdwk?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kdwk
+Leung</a> on <a
+href="https://unsplash.com/t/nature?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
 <h1 id="什么是-vim">什么是 Vim？</h1>
-<p>Vim 是 <strong>Vi</strong> I<strong>M</strong>proved 的缩写。它是由 Bram Moolenaar 开发的开源免费文本编辑器。顾名思义，Vim 基于 Vi（另一个早期的文本编辑器） 但又不止于 Vi。由于其强大的文本处理功能，在很多类 Unix 系统中，Vim 都成了默认的文本编辑器。尤其在无图形化界面的服务器上，Vim 成为了绝大部分运维人员线上运维的选择。</p>
-<p>很多 Linux 发行版都内置了 Vim 命令，只需打开终端，输入如下命令，即可使用 Vim。</p>
+<p>Vim 是 <strong>Vi</strong> I<strong>M</strong>proved 的缩写。它是由
+Bram Moolenaar 开发的开源免费文本编辑器。顾名思义，Vim 基于
+Vi（另一个早期的文本编辑器） 但又不止于
+Vi。由于其强大的文本处理功能，在很多类 Unix 系统中，Vim
+都成了默认的文本编辑器。尤其在无图形化界面的服务器上，Vim
+成为了绝大部分运维人员线上运维的选择。</p>
+<p>很多 Linux 发行版都内置了 Vim
+命令，只需打开终端，输入如下命令，即可使用 Vim。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim</span><br></pre></td></tr></table></figure>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG" alt="Vim" /><figcaption>Vim</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/vim.PNG"
+alt="Vim" />
+<figcaption aria-hidden="true">Vim</figcaption>
 </figure>
 <h1 id="vim-的四种模式">Vim 的四种模式</h1>
-<p>Vim 中的四种模式是 Vim 的核心设计理念之一。以四种模式为基础，理解和使用 Vim 的文本编辑命令就会容易许多。</p>
+<p>Vim 中的四种模式是 Vim
+的核心设计理念之一。以四种模式为基础，理解和使用 Vim
+的文本编辑命令就会容易许多。</p>
 <h2 id="总览">总览</h2>
 <p>Vim 中有四种模式，分别是：</p>
 <ul>
-<li>正常模式（Normal Mode）：用于查看文本和执行复制、粘贴等文本操作命令。</li>
+<li>正常模式（Normal
+Mode）：用于查看文本和执行复制、粘贴等文本操作命令。</li>
 <li>插入模式（Insert Mode）：用于编辑文本。</li>
 <li>命令模式（Command Mode）：用于执行指定命令。</li>
 <li>可视模式（Visual Mode）：用于选中文本。</li>
 </ul>
 <h2 id="正常模式normal-mode">正常模式（Normal Mode）</h2>
-<p>在 Vim 打开文件或者新建文件时，默认进入的模式是正常模式。在正常模式下，使用键盘直接输入字母或者数字，可能不会出现类似编辑文本时的结果。也就是说，该模式下，文本无法直接编辑。然而，通过某些特定的指令，可以完成一些常见的文本操作命令。</p>
+<p>在 Vim
+打开文件或者新建文件时，默认进入的模式是正常模式。在正常模式下，使用键盘直接输入字母或者数字，可能不会出现类似编辑文本时的结果。也就是说，该模式下，文本无法直接编辑。然而，通过某些特定的指令，可以完成一些常见的文本操作命令。</p>
 <h3 id="移动光标">移动光标</h3>
-<p>光标的位置将决定复制、粘贴等操作的位置，因此光标的操作于文本操作十分重要。不同于当前拥有图形界面的文字处理软件，Vim 中无法使用鼠标指定光标位置，而是使用键盘指令，完成光标的移动。这一设计，使得 Vim 无需鼠标，即可完成文本编辑的任务。这大大提高了文本编辑的效率。</p>
-<p>Vim 的光标移动又可以分为两类。分别是<strong>小范围移动</strong>、<strong>大范围移动</strong>。</p>
-<p>在<strong>小范围移动</strong>中，只涉及到四个字母 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>，分别代表<strong>左、下、上、右</strong>（相当于键盘上的光标键）</p>
+<p>光标的位置将决定复制、粘贴等操作的位置，因此光标的操作于文本操作十分重要。不同于当前拥有图形界面的文字处理软件，Vim
+中无法使用鼠标指定光标位置，而是使用键盘指令，完成光标的移动。这一设计，使得
+Vim 无需鼠标，即可完成文本编辑的任务。这大大提高了文本编辑的效率。</p>
+<p>Vim
+的光标移动又可以分为两类。分别是<strong>小范围移动</strong>、<strong>大范围移动</strong>。</p>
+<p>在<strong>小范围移动</strong>中，只涉及到四个字母
+<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>，分别代表<strong>左、下、上、右</strong>（相当于键盘上的光标键）</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png" alt="小范围移动光标" /><figcaption>小范围移动光标</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/cursorSD.png"
+alt="小范围移动光标" />
+<figcaption aria-hidden="true">小范围移动光标</figcaption>
 </figure>
-<div class="note info"><p>部分 Vim 版本支持<strong>光标键</strong>移动光标，但仍有部分 Vim 不支持（由于相关操作系统会将光标键解释为其他字符），推荐熟练掌握 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code> 指令，完成小范围移动光标的任务。</p>
+<div class="note info"><p>部分 Vim 版本支持<strong>光标键</strong>移动光标，但仍有部分 Vim
+不支持（由于相关操作系统会将光标键解释为其他字符），推荐熟练掌握
+<code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>
+指令，完成小范围移动光标的任务。</p>
 </div>
-<p>在<strong>大范围移动</strong>中，可以通过 <code>g</code>、<code>G</code> 快速跳转到<strong>第一行</strong>和<strong>最后一行</strong>；在 <code>G</code> 前加上数字，就可以跳转到指定行；<code>^</code>、<code>$</code> 则可以跳转到光标所在行的行首和行尾。这些移动方式将会极大地提高光标移动效率。</p>
+<p>在<strong>大范围移动</strong>中，可以通过
+<code>g</code>、<code>G</code>
+快速跳转到<strong>第一行</strong>和<strong>最后一行</strong>；在
+<code>G</code>
+前加上数字，就可以跳转到指定行；<code>^</code>、<code>$</code>
+则可以跳转到光标所在行的行首和行尾。这些移动方式将会极大地提高光标移动效率。</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png" alt="大范围移动光标" /><figcaption>大范围移动光标</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/cursorLD.png"
+alt="大范围移动光标" />
+<figcaption aria-hidden="true">大范围移动光标</figcaption>
 </figure>
 <h3 id="常见文本操作">常见文本操作</h3>
 <p>在正常模式下，除了可以移动光标，也可以执行一些简单的文本操作命令。具体的如下表所示：</p>
 <table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 25%" />
+<col style="width: 58%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">功能</th>
@@ -462,12 +495,14 @@
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><code>&lt;数字&gt;yy</code></td>
-<td style="text-align: center;">复制当前光标所在行开始，连续<数字>行的文本</td>
+<td
+style="text-align: center;">复制当前光标所在行开始，连续<数字>行的文本</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><code>y$</code>（y +shift +4）</td>
-<td style="text-align: center;">复制从当前光标所在字符开始，到本行末尾的文本</td>
+<td
+style="text-align: center;">复制从当前光标所在字符开始，到本行末尾的文本</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">粘贴</td>
@@ -482,7 +517,8 @@
 <tr class="even">
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><code>d$</code></td>
-<td style="text-align: center;">剪切从当前光标所在字符开始，到本行末尾的文本</td>
+<td
+style="text-align: center;">剪切从当前光标所在字符开始，到本行末尾的文本</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">撤销</td>
@@ -521,7 +557,8 @@
 <td style="text-align: center;">光标会在原位</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">按 <code>I</code>（大写 i：shift + i）进入</td>
+<td style="text-align: center;">按 <code>I</code>（大写 i：shift +
+i）进入</td>
 <td style="text-align: center;">光标会在本行开头</td>
 </tr>
 <tr class="odd">
@@ -542,9 +579,12 @@
 </tr>
 </tbody>
 </table>
-<p>进入插入模式之后，就可以直接编辑文本了。编辑完成后，可以按 <code>ESC</code> 键返回正常模式。</p>
+<p>进入插入模式之后，就可以直接编辑文本了。编辑完成后，可以按
+<code>ESC</code> 键返回正常模式。</p>
 <h2 id="命令模式command-mode">命令模式（Command Mode）</h2>
-<p>当处于正常模式时，按 <code>:</code> 键可进入命令模式。在命令模式下，可执行更多丰富的命令。这些命令大致可分为两类，一类命令用于设置 Vim 编辑器的属性，另一类则用来完成文件、文本操作任务。</p>
+<p>当处于正常模式时，按 <code>:</code>
+键可进入命令模式。在命令模式下，可执行更多丰富的命令。这些命令大致可分为两类，一类命令用于设置
+Vim 编辑器的属性，另一类则用来完成文件、文本操作任务。</p>
 <h3 id="vim-设置">Vim 设置</h3>
 <p>vim 设置的一般格式如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: <span class="built_in">set</span> &lt;设置项&gt;</span><br></pre></td></tr></table></figure>
@@ -552,12 +592,22 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: <span class="built_in">set</span> nu</span><br></pre></td></tr></table></figure>
 <p>可显示行号。</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG" alt="Vim 显示行号" /><figcaption>Vim 显示行号</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/setnu.PNG"
+alt="Vim 显示行号" />
+<figcaption aria-hidden="true">Vim 显示行号</figcaption>
 </figure>
-<p>然而，上述设置方式仅对当前编辑文本进程有效，如需永久生效，则要修改 <code>/etc/vimrc</code> 文件。</p>
+<p>然而，上述设置方式仅对当前编辑文本进程有效，如需永久生效，则要修改
+<code>/etc/vimrc</code> 文件。</p>
 <h3 id="文件文本操作">文件、文本操作</h3>
-<p>在命令模式下，Vim 可以执行一些文件操作命令，如保存、退出等；亦可执行更加复杂的文本操作命令，如查找、替换等。</p>
+<p>在命令模式下，Vim
+可以执行一些文件操作命令，如保存、退出等；亦可执行更加复杂的文本操作命令，如查找、替换等。</p>
 <table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 50%" />
+<col style="width: 38%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">功能</th>
@@ -594,33 +644,44 @@
 <tr class="even">
 <td style="text-align: center;">查找操作</td>
 <td style="text-align: center;"><code>: /&lt;正则表达式&gt;</code></td>
-<td style="text-align: center;">按 <code>n</code> 查找下一个，<code>shift + n</code> 查找上一个</td>
+<td style="text-align: center;">按 <code>n</code>
+查找下一个，<code>shift + n</code> 查找上一个</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">替换操作</td>
-<td style="text-align: center;"><code>: s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
+<td
+style="text-align: center;"><code>: s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
 <td style="text-align: center;">针对当前光标所在行的字符进行替换</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
+<td
+style="text-align: center;"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;</code></td>
 <td style="text-align: center;">全文搜索替换一处</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
+<td
+style="text-align: center;"><code>: %s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
 <td style="text-align: center;">全文搜索、全部替换</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><code>: m,n s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
-<td style="text-align: center;">指定行范围内替换，其中 m，n 为正整数</td>
+<td
+style="text-align: center;"><code>: m,n s/&lt;旧字符或正则表达式&gt;/&lt;新字符或正则表达式&gt;/g</code></td>
+<td style="text-align: center;">指定行范围内替换，其中 m，n
+为正整数</td>
 </tr>
 </tbody>
 </table>
 <h2 id="可视模式visual-mode">可视模式（Visual Mode）</h2>
-<p>在复制等文本操作命令时，常常需要选中相关文本。这就需要进入 Vim 的可视模式。进入可视模式的方式比较常见的有 3 种，具体如下表所示：</p>
+<p>在复制等文本操作命令时，常常需要选中相关文本。这就需要进入 Vim
+的可视模式。进入可视模式的方式比较常见的有 3 种，具体如下表所示：</p>
 <table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 76%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">进入命令</th>
@@ -630,27 +691,38 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">按 <code>v</code> 进入</td>
-<td style="text-align: center;">字符可视模式，按行序以<strong>单个字符</strong>为单位进行选中操作</td>
+<td
+style="text-align: center;">字符可视模式，按行序以<strong>单个字符</strong>为单位进行选中操作</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">按 <code>V</code> 进入</td>
-<td style="text-align: center;">行可视模式，按行序以<strong>单行</strong>为单位进行选中操作</td>
+<td
+style="text-align: center;">行可视模式，按行序以<strong>单行</strong>为单位进行选中操作</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">按 <code>ctrl + v</code> 进入</td>
-<td style="text-align: center;">块可视模式，以光标所在位置为顶点，自定义矩形块中的字符全部选定</td>
+<td
+style="text-align: center;">块可视模式，以光标所在位置为顶点，自定义矩形块中的字符全部选定</td>
 </tr>
 </tbody>
 </table>
 <p>按 <code>ESC</code> 键返回正常模式。</p>
 <h1 id="总结">总结</h1>
-<p>本文主要介绍了 Vim 的四种模式和四种模式下的文本编辑及操作命令，希望对读者有所帮助。</p>
+<p>本文主要介绍了 Vim
+的四种模式和四种模式下的文本编辑及操作命令，希望对读者有所帮助。</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png" alt="Vim 四种模式" /><figcaption>Vim 四种模式</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/Vim-Four-Modes.png"
+alt="Vim 四种模式" />
+<figcaption aria-hidden="true">Vim 四种模式</figcaption>
 </figure>
 <h1 id="拓展阅读">拓展阅读</h1>
-<p><a href="https://www.bilibili.com/video/BV1Yt411X7mu" target="_blank" rel="noopener">【视频·中文】vim入门教程（共3讲） by 正月点灯笼</a></p>
-<p><a href="https://www.tutorialspoint.com/vim/vim_quick_guide.htm" target="_blank" rel="noopener">【文本·英文】Vim - Quick Guide from tutorialspoint</a></p>
+<p><a
+href="https://www.bilibili.com/video/BV1Yt411X7mu">【视频·中文】vim入门教程（共3讲）
+by 正月点灯笼</a></p>
+<p><a
+href="https://www.tutorialspoint.com/vim/vim_quick_guide.htm">【文本·英文】Vim
+- Quick Guide from tutorialspoint</a></p>
 
     </div>
 
@@ -774,7 +846,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下栈和队列的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-14T07:54:41.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -162,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -345,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -395,7 +390,8 @@
 <h2 id="栈和队列的定义">栈和队列的定义；</h2>
 <h3 id="栈">栈</h3>
 <ul>
-<li>限定<strong>仅在表尾</strong>进行<strong>插入</strong> 或<strong>删除</strong>操作的线性表。表尾称为<strong>栈顶</strong>，表头称为<strong>栈底</strong>。</li>
+<li>限定<strong>仅在表尾</strong>进行<strong>插入</strong>
+或<strong>删除</strong>操作的线性表。表尾称为<strong>栈顶</strong>，表头称为<strong>栈底</strong>。</li>
 <li><strong>后进先出</strong></li>
 </ul>
 <h3 id="队列">队列</h3>
@@ -513,7 +509,9 @@
 <h3 id="共享栈">共享栈</h3>
 <ul>
 <li>两个顺序栈共享一个一维数据空间，将两个栈的栈底分别设置在共享空间的两端，两个栈顶向共享空间的中间延伸。</li>
-<li>共享空间为从左到右，下标从 <code>0</code> 到 <code>MaxSize - 1</code> 的一维数组。0 号栈从 <code>0</code> 向中间延伸，1 号栈从 <code>MaxSize - 1</code> 向中间延伸。</li>
+<li>共享空间为从左到右，下标从 <code>0</code> 到
+<code>MaxSize - 1</code> 的一维数组。0 号栈从 <code>0</code>
+向中间延伸，1 号栈从 <code>MaxSize - 1</code> 向中间延伸。</li>
 <li>判空条件
 <ul>
 <li>0 号栈：<code>top0 = -1</code></li>
@@ -668,7 +666,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="本篇文章带来有关 &quot;LeetCode-11-container-with-most-water&quot; 我的求解过程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-13T14:03:05.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.603Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数组">
 <meta property="article:tag" content="双指针">
@@ -164,11 +164,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -347,7 +342,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,7 +389,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="刷题标记">刷题标记</h1>
-<ul>
+<ul class="task-list">
 <li><input type="checkbox" disabled="" checked="" />
 第一遍</li>
 <li><input type="checkbox" disabled="" />
@@ -408,19 +403,27 @@
 </ul>
 <h1 id="求解过程">求解过程</h1>
 <blockquote>
-<p>给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>给定 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai)
+。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i,
+0)。找出其中的两条线，使得它们与 x
+轴共同构成的容器可以容纳最多的水。</p>
 <p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
-<p>图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p>
+<p>图中垂直线代表输入数组
+[1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为
+49。</p>
 <p>示例:</p>
 <p>输入: [1,8,6,2,5,4,8,3,7] 输出: 49</p>
-<p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/container-with-most-water 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/container-with-most-water
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <p>编写 <code>public int maxArea(int[] height)</code> 函数</p>
 </blockquote>
 <h2 id="思路暴力解法">思路：暴力解法</h2>
 <p>很自然的一种暴力思路就是枚举每一种可能，计算题意中的面积；并且，在枚举过程中，不断比较，得到最大值。</p>
 <h2 id="java-实现">Java 实现</h2>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 思路：二重循环</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; height.length; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> minIndex = height[i] &gt; height[j] ? j : i;</span><br><span class="line">            <span class="keyword">int</span> area = height[minIndex] * (j - i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (area &gt; result) &#123;</span><br><span class="line">                result = area;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由代码可知，程序包含二重循环，因而<strong>时间复杂度</strong>为 <span class="math inline">\(O(n^2)\)</span></p>
+<p>由代码可知，程序包含二重循环，因而<strong>时间复杂度</strong>为 <span
+class="math inline">\(O(n^2)\)</span></p>
 <h1 id="高手方案">高手方案</h1>
 <p>上述方案比较费时，来看一看高手的解法。</p>
 <h3 id="思路">思路</h3>
@@ -429,10 +432,12 @@
 <li>依题意，计算所围的面积</li>
 <li>将<strong>高度较短</strong>的指针向中心移动，然后回到第 2 步</li>
 </ul>
-<p>P.S. 为什么是移动高度较短的指针？因为移动较高的指针，只会使得面积变小；而移动较低指针，可能会遇到较高指针（基于此假设，面积可能会变大）。</p>
+<p>P.S.
+为什么是移动高度较短的指针？因为移动较高的指针，只会使得面积变小；而移动较低指针，可能会遇到较高指针（基于此假设，面积可能会变大）。</p>
 <h3 id="java-实现-1">Java 实现</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 作者：LeetCode</span></span><br><span class="line">    <span class="comment">// 链接：https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-zui-duo-shui-de-rong-qi-by-leetcode/</span></span><br><span class="line">    <span class="keyword">int</span> maxarea = <span class="number">0</span>, l = <span class="number">0</span>, r = height.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        maxarea = Math.max(maxarea, Math.min(height[l], height[r]) * (r - l));</span><br><span class="line">        <span class="keyword">if</span> (height[l] &lt; height[r])</span><br><span class="line">            l++;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxarea;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由代码可知，<strong>时间复杂度</strong>为 <span class="math inline">\(O(n)\)</span> ，这是一个极大的优化</p>
+<p>由代码可知，<strong>时间复杂度</strong>为 <span
+class="math inline">\(O(n)\)</span> ，这是一个极大的优化</p>
 <h1 id="总结">总结</h1>
 <ul>
 <li>解题小套路
@@ -568,7 +573,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

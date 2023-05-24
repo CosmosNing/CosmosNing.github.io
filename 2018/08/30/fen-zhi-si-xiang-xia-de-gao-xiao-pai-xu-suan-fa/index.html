@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="什么是分治？分治思想下的排序效率究竟有多高？快来和我一探究竟！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-08-30T03:35:35.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2018/08/30/fen-zhi-si-xiang-xia-de-gao-xiao-pai-xu-suan-fa/">
@@ -165,11 +163,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -347,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,27 +387,36 @@
     
     <div class="post-body" itemprop="articleBody">
         <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/30/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/30/cover.jpg?raw=true"
+alt="cover" />
+<figcaption aria-hidden="true">cover</figcaption>
 </figure>
 <p>什么是分治？这是一种解决问题的方法。别看它名字高大上，其实我们在日常生活学习中经常用到它。我相信，你看完下面的例子后就可以明白分治的内涵了。</p>
 <p>还记得你小学是如何计算多个数连续相加吗？我想，一般的解决办法应该是这样的：</p>
 <p>从左到右，让第一个数和第二个数相加，所得的结果和后续的式子相加构成新的式子。此时，新得到的式子比原式更简单，更容易解决（因为要相加的数的个数变少了）。接着，让新的式子中的第一个数和第二个数相加，所得结果和后续剩下的式子构成另一个新的式子···如此进行下去，原式会不断的被化简，最终只剩下一个数，而这个数，正是原式的结果。</p>
 <p>这里用来化简多个数相加的方法其实就是“分治”的实际应用。仔细观察上述过程，我们可以总结概括利用分治解决问题的两大步骤：</p>
-<p>第一， 化简原问题。我们要找到能够将原问题化简为相似的、更小的、更易解决的子问题的方法。在上述连续的加法计算中，不断地将式子中第一个数字和第二个数字相加，所得结果和剩下的式子构成新式子，供下一步化简使用。这个过程便是不断化简问题的过程。</p>
-<p>第二， 找到答案显而易见的基础案例。我们要找到一个非常简单的一个案例和该案例发生时的条件（这个案例要尽可能地简单，从而通过常识即可给出案例对应的答案）。这也指明了化简的终点。对应上面加法的例子，它的基础案例便是当化简到一个数时，化简终止。</p>
+<p>第一，
+化简原问题。我们要找到能够将原问题化简为相似的、更小的、更易解决的子问题的方法。在上述连续的加法计算中，不断地将式子中第一个数字和第二个数字相加，所得结果和剩下的式子构成新式子，供下一步化简使用。这个过程便是不断化简问题的过程。</p>
+<p>第二，
+找到答案显而易见的基础案例。我们要找到一个非常简单的一个案例和该案例发生时的条件（这个案例要尽可能地简单，从而通过常识即可给出案例对应的答案）。这也指明了化简的终点。对应上面加法的例子，它的基础案例便是当化简到一个数时，化简终止。</p>
 <p>上述对于分治方法的描述是不是有些熟悉？对了！它解决问题的过程和递归十分相似。基于这一点特质，我们可以利用递归程序来实现分治。</p>
 <p>分治思想在算法中有很多应用，要说其中最基础的、最实用的，我想应该是以下要介绍的两种高效排序算法：一是归并排序，二是快速排序。</p>
 <p>下面，我们来看一看这两个高效的排序算法是如何工作的。</p>
 <p>首先是归并排序。它的算法流程描述如下：</p>
-<p>假设待排序的数据序列中有n个数据， 可以先将序列看成是由n个长度为1 的有序子序列组成</p>
-<p>n 然后再两两子序列合并， 得到一个n/2个长度为2或1 （当序列中数据为奇数时会有一个子序列长度为1 ） 的有序子序列，</p>
+<p>假设待排序的数据序列中有n个数据， 可以先将序列看成是由n个长度为1
+的有序子序列组成</p>
+<p>n 然后再两两子序列合并， 得到一个n/2个长度为2或1
+（当序列中数据为奇数时会有一个子序列长度为1 ） 的有序子序列，</p>
 <p>n 再两两子序列合并， 如此重复， 直到得到一个长度为n的有序序列为止</p>
 <p>为了更清晰地理解归并排序的流程，我们来看一个例子。</p>
 <p>我们来看看利用归并排序算法排序83，84，87，88，61，50，70，60，80，99这10个数的流程：（注：以下分号分割每一组数据，逗号分割组内数据）</p>
-<p>首先，进行2个数合并排序，得到：83，84 ；87，88；50，61；60，70；80，99；</p>
+<p>首先，进行2个数合并排序，得到：83，84
+；87，88；50，61；60，70；80，99；</p>
 <p>其次，进行4个数合并排序，得到：83，84，87，88；50，60，61，70；80，99；</p>
 <p>接着，进行8个数合并排序，得到：50，60，61，70，83，84，87，88；80，99；</p>
-<p>最后，将剩下的2个子序列合并排序，得到：50, 60, 61, 70, 80, 83, 84, 87, 88, 99。</p>
+<p>最后，将剩下的2个子序列合并排序，得到：50, 60, 61, 70, 80, 83, 84,
+87, 88, 99。</p>
 <p>那么，这样的排序流程如何用代码来实现呢？</p>
 <p>这个过程与递归相似，但不完全一致，所以需要通过一定的转化，才能利用递归实现归并排序算法。</p>
 <p>递归程序，无非要找两个东西。一是初始条件，二是能够将原问题化为更小子问题的递推公式。在归并排序中，这两个东西对应着什么呢？</p>
@@ -425,24 +427,58 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(lst1,lst2)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge:</span></span><br><span class="line"><span class="string">     对于内部已经从小到大排序的两个列表，把它们合并成一个从小到大排序的列表</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst1：内部已经从小到大排序的数据列表1</span></span><br><span class="line"><span class="string">     lst2：内部已经从小到大排序的数据列表2</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     两个列表的合并结果（结果从小到大排序）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    lst = lst1<span class="comment">#合并后的lst</span></span><br><span class="line">    <span class="keyword">while</span> len(lst2) != <span class="number">0</span>:</span><br><span class="line">        a = lst2.pop(<span class="number">0</span>)<span class="comment">#取出lst2中第一个元素，并且将它从lst2中删除</span></span><br><span class="line">        place = len(lst)<span class="comment">#记录元素a插入结果lst的位置</span></span><br><span class="line">        lst.append(a)<span class="comment">#将a插入到lst末尾</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(lst1)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):<span class="comment">#寻找大小顺序合适的位置插入元素a，保证lst从小到大排列</span></span><br><span class="line">            <span class="keyword">if</span> a &lt; lst[i]:</span><br><span class="line">                lst[i+<span class="number">1</span>] = lst[i]</span><br><span class="line">                place = i</span><br><span class="line">        lst[place] = a</span><br><span class="line">    <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    merge_sort:</span></span><br><span class="line"><span class="string">     利用归并排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span>:<span class="comment">#当数据列表中只有一个元素时，这个列表已经有序，直接返回该列表</span></span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment">#分解子问题，对原lst排序，相当于对当前lst的左一半和右一半做排序</span></span><br><span class="line">        lst1 = merge_sort(lst[:len(lst)//<span class="number">2</span>])<span class="comment">#左一半的有序数据列表</span></span><br><span class="line">        lst2 = merge_sort(lst[len(lst)//<span class="number">2</span>:])<span class="comment">#右一半的有序数据列表</span></span><br><span class="line">        <span class="keyword">return</span> merge(lst1,lst2)<span class="comment">#将两个有序列表合并</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(merge_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 <p>接着，我们来看一看快速排序。</p>
 <p>快速排序的中的分治思想也是将原数据序列做划分，但是它在排序过程中又与归并排序有些不同。归并排序首先让每一个子序列内部有序，但外部整体无序；然后再通过合并子序列，使得整体有序。快速排序则是首先让数据外部整体有序，但内部无序；之后利用同样的方法使得子序列内部有序，再将它们按照外部整体有序时的顺序合并即可。</p>
-<p>那么快速排序算法是怎样实现外部整体有序的呢？快速排序每次选择一个枢轴（ <span class="math inline">\(pivot\)</span> ）元素，将当前数据序列中剩下的所有比枢轴元素小的组成一个新的数据序列（假设名字为 <span class="math inline">\(l\)</span> ）、所有比枢轴元素大的组成一个新的数据序列（假设名字为 <span class="math inline">\(g\)</span> ），那么 <span class="math inline">\(l\)</span> ， <span class="math inline">\(pivot\)</span> ， <span class="math inline">\(g\)</span> 三个子序列在外部便已经有序。如何解决 <span class="math inline">\(l\)</span> 、 <span class="math inline">\(g\)</span> 两个子序列内部无序的的问题呢？对子序列利用快速排序的思想即可。比如在 <span class="math inline">\(l\)</span> 中选择枢轴元素，将 <span class="math inline">\(l\)</span> 划分成 <span class="math inline">\(ll\)</span> （比 <span class="math inline">\(ppivot\)</span> 小的）、 <span class="math inline">\(ppivot\)</span> （枢轴元素）、 <span class="math inline">\(gg\)</span> （比 <span class="math inline">\(ppivot\)</span> 大的）三部分···经过不断的划分，最终我们会使得序列中的元素个数小于2个，这也就是我们划分的终点。</p>
+<p>那么快速排序算法是怎样实现外部整体有序的呢？快速排序每次选择一个枢轴（
+<span class="math inline">\(pivot\)</span>
+）元素，将当前数据序列中剩下的所有比枢轴元素小的组成一个新的数据序列（假设名字为
+<span class="math inline">\(l\)</span>
+）、所有比枢轴元素大的组成一个新的数据序列（假设名字为 <span
+class="math inline">\(g\)</span> ），那么 <span
+class="math inline">\(l\)</span> ， <span
+class="math inline">\(pivot\)</span> ， <span
+class="math inline">\(g\)</span> 三个子序列在外部便已经有序。如何解决
+<span class="math inline">\(l\)</span> 、 <span
+class="math inline">\(g\)</span>
+两个子序列内部无序的的问题呢？对子序列利用快速排序的思想即可。比如在
+<span class="math inline">\(l\)</span> 中选择枢轴元素，将 <span
+class="math inline">\(l\)</span> 划分成 <span
+class="math inline">\(ll\)</span> （比 <span
+class="math inline">\(ppivot\)</span> 小的）、 <span
+class="math inline">\(ppivot\)</span> （枢轴元素）、 <span
+class="math inline">\(gg\)</span> （比 <span
+class="math inline">\(ppivot\)</span>
+大的）三部分···经过不断的划分，最终我们会使得序列中的元素个数小于2个，这也就是我们划分的终点。</p>
 <p>有了上述的讨论，我想下面的代码也会很容易理解吧。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(lst)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    quick_sort:</span></span><br><span class="line"><span class="string">     利用快速排序使得列表中的数据从小到大排列</span></span><br><span class="line"><span class="string">    参数：</span></span><br><span class="line"><span class="string">     lst：待排序的数据列表</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">     从小到大排序的数据列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#如果列表元素只有1个或者没有，</span></span><br><span class="line">    <span class="comment">#那么其本身已经有序，不需要任何额外操作，</span></span><br><span class="line">    <span class="comment">#直接返回即可</span></span><br><span class="line">    <span class="keyword">if</span> len(lst) == <span class="number">1</span> <span class="keyword">or</span> len(lst) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        pivot = lst[<span class="number">0</span>]<span class="comment">#选定当前lst的第一个元素为枢轴元素（基准）</span></span><br><span class="line">        lst_l = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &lt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素小的元素构成列表lst_l</span></span><br><span class="line">        lst_g = [i <span class="keyword">for</span> i <span class="keyword">in</span> lst[<span class="number">1</span>:] <span class="keyword">if</span> i &gt; pivot]<span class="comment">#在lst中抽取所有比枢轴元素大的元素构成列表lst_g</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#lst_l、pivot、lst_g已经相对有序，但是lst_l、lst_g内部无序，</span></span><br><span class="line">        <span class="comment">#所以需要分别对lst_l、lst_g执行快速排序，使其有序</span></span><br><span class="line">        <span class="comment">#最后将结果合并即可</span></span><br><span class="line">        <span class="keyword">return</span> quick_sort(lst_l) + [pivot] + quick_sort(lst_g)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试用例</span></span><br><span class="line">print(quick_sort([<span class="number">83</span>,<span class="number">84</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">61</span>,<span class="number">50</span>,<span class="number">70</span>,<span class="number">60</span>,<span class="number">80</span>,<span class="number">99</span>]))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输出结果:</span></span><br><span class="line"><span class="string">[50, 60, 61, 70, 80, 83, 84, 87, 88, 99]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 <p>归并排序和快速排序在排序算法中是比较高效的算法。它们究竟有多快呢？我们来一起分析一下他们呢的时间复杂度。</p>
-<p>首先假设问题规模为 <span class="math inline">\(N\)</span> ，所需要的执行步骤为 <span class="math inline">\(T ( N )\)</span> 。在归并排序中，程序第36行和37行将问题分解为左右一半，第38行的合并相当于将两个子序列都遍历了一遍（每个子列的规模为 <span class="math inline">\(\frac{N}{2}\)</span> ），所以有如下递推公式：</p>
+<p>首先假设问题规模为 <span class="math inline">\(N\)</span>
+，所需要的执行步骤为 <span class="math inline">\(T ( N )\)</span>
+。在归并排序中，程序第36行和37行将问题分解为左右一半，第38行的合并相当于将两个子序列都遍历了一遍（每个子列的规模为
+<span class="math inline">\(\frac{N}{2}\)</span>
+），所以有如下递推公式：</p>
 <p><span class="math display">\[
 \begin{aligned}
 T(N) &amp;= 2T(N/2) + N / 2 + N / 2\\
          &amp;=2T(N/2) + N
 \end{aligned}
 \]</span></p>
-<p>进一步递推可得， <span class="math inline">\(T(N) = N\cdot T(1) + k\cdot N\)</span> ，其中 <span class="math inline">\(k = log_{2}(N)\)</span> 。当数据规模为1时，解决问题的步骤显然只需一步，所以 <span class="math inline">\(T(N) = N + N\cdot log_{2}(N)\)</span>，所以归并排序的时间复杂度为 <span class="math inline">\(O( N\cdot log( N ) )\)</span> 。</p>
-<p>快速排序中，子序列的划分并不像归并排序那么确定（因为枢轴元素的选取会影响快速排序中子列的划分），同时快速排序的时间复杂度也有多种情况。最好的情况，枢轴元素恰巧是该序列的中数（也就是排序后，该数的位置在序列的中间），第一层快速排序会使得枢轴元素两端的子序列的个数相差不大。这种情况就相当于把原序列对半划分，和归并排序十分类似。分析一下，这种情况下快速排序的时间复杂度和归并排序一样，为 <span class="math inline">\(O( N\cdot log( N ) )\)</span> ；最坏的情况，枢轴元素是原序列中最小的元素或者是最大的元素，他将原序列划分为两个十分不平衡的子序列，一边没有元素，而另一边含有所有剩下的元素。对于这种情况，我们有如下递推公式：</p>
+<p>进一步递推可得， <span class="math inline">\(T(N) = N\cdot T(1) +
+k\cdot N\)</span> ，其中 <span class="math inline">\(k =
+log_{2}(N)\)</span> 。当数据规模为1时，解决问题的步骤显然只需一步，所以
+<span class="math inline">\(T(N) = N + N\cdot
+log_{2}(N)\)</span>，所以归并排序的时间复杂度为 <span
+class="math inline">\(O( N\cdot log( N ) )\)</span> 。</p>
+<p>快速排序中，子序列的划分并不像归并排序那么确定（因为枢轴元素的选取会影响快速排序中子列的划分），同时快速排序的时间复杂度也有多种情况。最好的情况，枢轴元素恰巧是该序列的中数（也就是排序后，该数的位置在序列的中间），第一层快速排序会使得枢轴元素两端的子序列的个数相差不大。这种情况就相当于把原序列对半划分，和归并排序十分类似。分析一下，这种情况下快速排序的时间复杂度和归并排序一样，为
+<span class="math inline">\(O( N\cdot log( N ) )\)</span>
+；最坏的情况，枢轴元素是原序列中最小的元素或者是最大的元素，他将原序列划分为两个十分不平衡的子序列，一边没有元素，而另一边含有所有剩下的元素。对于这种情况，我们有如下递推公式：</p>
 <p><span class="math display">\[
 T(N) = T(N-1) + N\\
 其中,T(N-1)为解决子问题的时间，N为合并时间
 \]</span></p>
-<p>递推下去，可得 <span class="math inline">\(T(N) = T(1) + N\times N = N^{2} + 1\)</span> ，所以时间复杂度为 <span class="math inline">\(O( N^{2} )\)</span> 。平均情况下，枢轴元素的选取不会总是最坏情况，大多数情况下都是 <span class="math inline">\(O( N\cdot log( N ) )\)</span> 。</p>
+<p>递推下去，可得 <span class="math inline">\(T(N) = T(1) + N\times N =
+N^{2} + 1\)</span> ，所以时间复杂度为 <span class="math inline">\(O(
+N^{2} )\)</span>
+。平均情况下，枢轴元素的选取不会总是最坏情况，大多数情况下都是 <span
+class="math inline">\(O( N\cdot log( N ) )\)</span> 。</p>
 <p>文章的最后，我们简单总结一下本文的内容：</p>
 <ol type="1">
 <li><strong>分治是一种解决问题的方法，他通过不断将原问题分解成相似的、更小的、更以解决的子问题，并通过可以直接看出结果的子问题的答案，逐层回代解决原问题。</strong></li>
@@ -451,8 +487,12 @@ T(N) = T(N-1) + N\\
 <li><strong>分治思想下有两种十分高效的排序算法：一是归并排序，二是快速排序。</strong></li>
 <li><strong>归并排序的流程：将原序列不断对半划分，直至其中元素只剩1个返回，然后逐层将左右子序列合并即可。</strong></li>
 <li><strong>快速排序的流程：将原序列利用枢轴元素划分，比枢轴元素小的为一个子序列，比枢轴元素大的为另一个子序列，直至其中元素只剩1个返回，然后将这些子序列逐层合并即可。</strong></li>
-<li><strong>归并排序的时间复杂度为 <span class="math inline">\(O( N\cdot log( N ) )\)</span> 。</strong></li>
-<li><strong>快速排序的最好时间复杂度为 <span class="math inline">\(O( N\cdot log( N ) )\)</span> ，最坏时间复杂度为 <span class="math inline">\(O( N^{2} )\)</span> ，平均时间复杂度为 <span class="math inline">\(O( N\cdot log( N ) )\)</span> 。</strong></li>
+<li><strong>归并排序的时间复杂度为 <span class="math inline">\(O( N\cdot
+log( N ) )\)</span> 。</strong></li>
+<li><strong>快速排序的最好时间复杂度为 <span class="math inline">\(O(
+N\cdot log( N ) )\)</span> ，最坏时间复杂度为 <span
+class="math inline">\(O( N^{2} )\)</span> ，平均时间复杂度为 <span
+class="math inline">\(O( N\cdot log( N ) )\)</span> 。</strong></li>
 </ol>
 
     </div>
@@ -576,7 +616,7 @@ T(N) = T(N-1) + N\\
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

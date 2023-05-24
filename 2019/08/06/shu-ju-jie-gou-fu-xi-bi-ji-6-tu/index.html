@@ -29,13 +29,11 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="整理一下图的知识">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/06/2016.png?raw=true">
 <meta property="article:published_time" content="2019-08-06T15:30:42.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/06/2016.png?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2019/08/06/shu-ju-jie-gou-fu-xi-bi-ji-6-tu/">
@@ -164,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -347,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,7 +387,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="图">7．图</h1>
-<h2 id="图的基本概念图的存储表示邻接矩阵邻接表">图的基本概念；图的存储表示：邻接矩阵、邻接表</h2>
+<h2
+id="图的基本概念图的存储表示邻接矩阵邻接表">图的基本概念；图的存储表示：邻接矩阵、邻接表</h2>
 <h3 id="基本概念">基本概念</h3>
 <p>详细见教材 7.1 节</p>
 <h3 id="存储表示">存储表示</h3>
@@ -412,19 +406,23 @@
 <li>无向图：</li>
 </ul>
 <p><span class="math display">\[
-TD(v_i) = \sum^{n-1}_{j=0}{A[i][j]},n = MAX\_VERTEX\_NUM（即第 i 行元素之和）
+TD(v_i) = \sum^{n-1}_{j=0}{A[i][j]},n = MAX\_VERTEX\_NUM（即第 i
+行元素之和）
 \]</span></p>
 <ul>
 <li>有向图</li>
 </ul>
 <p><span class="math display">\[
-OD(v_i) = \sum^{n-1}_{j=0}{A[i][j]},n = MAX\_VERTEX\_NUM（即第 i 行元素之和）
+OD(v_i) = \sum^{n-1}_{j=0}{A[i][j]},n = MAX\_VERTEX\_NUM（即第 i
+行元素之和）
 \]</span></p>
 <p><span class="math display">\[
-ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之和）
+ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j
+列元素之和）
 \]</span></p>
 <ul>
-<li>对于<strong>网</strong>，对应度的大小，便是数对应位置的的<strong>非 <span class="math inline">\(\infty\)</span> 的个数</strong></li>
+<li>对于<strong>网</strong>，对应度的大小，便是数对应位置的的<strong>非
+<span class="math inline">\(\infty\)</span> 的个数</strong></li>
 </ul></li>
 </ul>
 <h4 id="邻接表">邻接表</h4>
@@ -435,8 +433,11 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <li>更适合存储<strong>稀疏图</strong>，容易寻找任意一个顶点的第一个邻接点和下一个邻接点。</li>
 <li>顶点度的计算
 <ul>
-<li>无向图：顶点 <span class="math inline">\(v_i​\)</span> 的度为第 <span class="math inline">\(i​\)</span> 个链表中的结点数（头节点本身不算）</li>
-<li>有向图：顶点 <span class="math inline">\(v_i\)</span> 的<strong>出度</strong>为第 <span class="math inline">\(i\)</span> 个链表中的结点数（头节点本身不算）；<strong>入度</strong>则要遍历整个图</li>
+<li>无向图：顶点 <span class="math inline">\(v_i​\)</span> 的度为第 <span
+class="math inline">\(i​\)</span> 个链表中的结点数（头节点本身不算）</li>
+<li>有向图：顶点 <span class="math inline">\(v_i\)</span>
+的<strong>出度</strong>为第 <span class="math inline">\(i\)</span>
+个链表中的结点数（头节点本身不算）；<strong>入度</strong>则要遍历整个图</li>
 <li>对于<strong>网</strong>，与上述方法对应相同</li>
 </ul></li>
 </ul>
@@ -451,11 +452,13 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <ul>
 <li>性能分析
 <ul>
-<li>空间复杂度：<span class="math inline">\(O( |V| )​\)</span>，其中$ |V|​$ 为顶点数，下同</li>
+<li>空间复杂度：<span class="math inline">\(O( |V| )​\)</span>，其中$
+|V|​$ 为顶点数，下同</li>
 <li>时间复杂度
 <ul>
 <li>邻接矩阵存储：<span class="math inline">\(O( |V|^2 )\)</span></li>
-<li>邻接表存储：<span class="math inline">\(O(|V|+|E|)\)</span> ，其中 <span class="math inline">\(|E|​\)</span> 为边数</li>
+<li>邻接表存储：<span class="math inline">\(O(|V|+|E|)\)</span> ，其中
+<span class="math inline">\(|E|​\)</span> 为边数</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -486,8 +489,18 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <ul>
 <li>流程简述
 <ul>
-<li>初始化：向空树 <span class="math inline">\(T=(V_T,E_T)\)</span> 中添加图 <span class="math inline">\(G=(V,E)\)</span> 的任一顶点 <span class="math inline">\(u_0\)</span> ，使 <span class="math inline">\(V_T = \{u_0\}\)</span> ， <span class="math inline">\(E_T=\varnothing​\)</span></li>
-<li>循环（重复下列操作至 <span class="math inline">\(V_T=V\)</span>）：从图 <span class="math inline">\(G\)</span> 中选择满足 <span class="math inline">\(\{(u,v)|u\in V_T, v\in V-V_T\}\)</span> 且具有最小权值的边 <span class="math inline">\((u,v)\)</span> ，并置 <span class="math inline">\(V_T=V_T\cup \{v\}\)</span> ， <span class="math inline">\(E_T=E_T\cup \{(u,v)\}​\)</span></li>
+<li>初始化：向空树 <span class="math inline">\(T=(V_T,E_T)\)</span>
+中添加图 <span class="math inline">\(G=(V,E)\)</span> 的任一顶点 <span
+class="math inline">\(u_0\)</span> ，使 <span class="math inline">\(V_T
+= \{u_0\}\)</span> ， <span
+class="math inline">\(E_T=\varnothing​\)</span></li>
+<li>循环（重复下列操作至 <span
+class="math inline">\(V_T=V\)</span>）：从图 <span
+class="math inline">\(G\)</span> 中选择满足 <span
+class="math inline">\(\{(u,v)|u\in V_T, v\in V-V_T\}\)</span>
+且具有最小权值的边 <span class="math inline">\((u,v)\)</span> ，并置
+<span class="math inline">\(V_T=V_T\cup \{v\}\)</span> ， <span
+class="math inline">\(E_T=E_T\cup \{(u,v)\}​\)</span></li>
 </ul></li>
 </ul>
 <hr />
@@ -504,8 +517,18 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <ul>
 <li>流程简述
 <ul>
-<li>初始化： <span class="math inline">\(V_T = V ​\)</span> ， <span class="math inline">\(E_T=\varnothing​\)</span> 。即每个顶点构成一颗独立的树， <span class="math inline">\(T​\)</span> 此时是一个仅含 <span class="math inline">\(|V|​\)</span> 个顶点的森林</li>
-<li>循环（重复下列操作至 <span class="math inline">\(T\)</span> 是一棵树）：按 <span class="math inline">\(G\)</span> 的边权值递增的顺序依次从 <span class="math inline">\(E-E_T\)</span> 中选择一条边，若这条边加入 <span class="math inline">\(T\)</span> 后不构成回路，则将其加入 <span class="math inline">\(E_T\)</span> ，否则舍弃，直到 <span class="math inline">\(E_T\)</span> 中含有 <span class="math inline">\(n-1\)</span> 条边</li>
+<li>初始化： <span class="math inline">\(V_T = V ​\)</span> ， <span
+class="math inline">\(E_T=\varnothing​\)</span>
+。即每个顶点构成一颗独立的树， <span class="math inline">\(T​\)</span>
+此时是一个仅含 <span class="math inline">\(|V|​\)</span>
+个顶点的森林</li>
+<li>循环（重复下列操作至 <span class="math inline">\(T\)</span>
+是一棵树）：按 <span class="math inline">\(G\)</span>
+的边权值递增的顺序依次从 <span class="math inline">\(E-E_T\)</span>
+中选择一条边，若这条边加入 <span class="math inline">\(T\)</span>
+后不构成回路，则将其加入 <span class="math inline">\(E_T\)</span>
+，否则舍弃，直到 <span class="math inline">\(E_T\)</span> 中含有 <span
+class="math inline">\(n-1\)</span> 条边</li>
 </ul></li>
 </ul>
 <hr />
@@ -574,25 +597,43 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <ul>
 <li>集合定义
 <ul>
-<li><span class="math inline">\(V_T\)</span> ：最小生成树中间结果的点集（初始化，任取一点，或题设给出）；</li>
-<li><span class="math inline">\(V-V_T\)</span> ：还未归入最小生成树的点集</li>
+<li><span class="math inline">\(V_T\)</span>
+：最小生成树中间结果的点集（初始化，任取一点，或题设给出）；</li>
+<li><span class="math inline">\(V-V_T\)</span>
+：还未归入最小生成树的点集</li>
 </ul></li>
 <li>循环（直到 <span class="math inline">\(V_T = V\)</span>）
 <ul>
-<li><span class="math inline">\(V_T\)</span> 中取一点 <span class="math inline">\(u\)</span> ， <span class="math inline">\(V-V_T\)</span> 中取一点 <span class="math inline">\(v\)</span> ，使得 <span class="math inline">\((u,v)\)</span> 权值最小。</li>
-<li>将 <span class="math inline">\(v\)</span> 并入集合 <span class="math inline">\(V_T\)</span></li>
+<li><span class="math inline">\(V_T\)</span> 中取一点 <span
+class="math inline">\(u\)</span> ， <span
+class="math inline">\(V-V_T\)</span> 中取一点 <span
+class="math inline">\(v\)</span> ，使得 <span
+class="math inline">\((u,v)\)</span> 权值最小。</li>
+<li>将 <span class="math inline">\(v\)</span> 并入集合 <span
+class="math inline">\(V_T\)</span></li>
 </ul></li>
 </ul>
 <h4 id="kruskal-算法">Kruskal 算法</h4>
 <ul>
 <li>集合定义
 <ul>
-<li><span class="math inline">\(V_T\)</span> ：最小生成树的点集（初始化为 <span class="math inline">\(V\)</span> ，即包含所有图中的点）</li>
-<li><span class="math inline">\(E_T\)</span> ：存储最小生成树生成过程中边的集合（初始化为 <span class="math inline">\(\varnothing\)</span>）</li>
+<li><span class="math inline">\(V_T\)</span>
+：最小生成树的点集（初始化为 <span class="math inline">\(V\)</span>
+，即包含所有图中的点）</li>
+<li><span class="math inline">\(E_T\)</span>
+：存储最小生成树生成过程中边的集合（初始化为 <span
+class="math inline">\(\varnothing\)</span>）</li>
 </ul></li>
 <li>循环（直至 <span class="math inline">\(T​\)</span> 是一棵树）
 <ul>
-<li>按 <span class="math inline">\(G\)</span> 的边<strong>权值递增</strong>的顺序依次从 <span class="math inline">\(E-E_T\)</span> 中选择一条边，若这条边加入 <span class="math inline">\(T\)</span> 后<strong>不构成回路</strong>，则将其加入 <span class="math inline">\(E_T\)</span> ，否则舍弃，直到 <span class="math inline">\(E_T\)</span> 中含有 <span class="math inline">\(n-1\)</span> 条边</li>
+<li>按 <span class="math inline">\(G\)</span>
+的边<strong>权值递增</strong>的顺序依次从 <span
+class="math inline">\(E-E_T\)</span> 中选择一条边，若这条边加入 <span
+class="math inline">\(T\)</span>
+后<strong>不构成回路</strong>，则将其加入 <span
+class="math inline">\(E_T\)</span> ，否则舍弃，直到 <span
+class="math inline">\(E_T\)</span> 中含有 <span
+class="math inline">\(n-1\)</span> 条边</li>
 </ul></li>
 </ul>
 <h3 id="最短路径-1">最短路径</h3>
@@ -601,20 +642,35 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 <li>利用表格法求解</li>
 </ul>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2019/08/06/2016.png?raw=true" alt="2016统考真题" /><figcaption>2016统考真题</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2019/08/06/2016.png?raw=true"
+alt="2016统考真题" />
+<figcaption aria-hidden="true">2016统考真题</figcaption>
 </figure>
 <ul>
 <li>画下面的表格
 <ul>
 <li>起点直接能到达的结点在表格中的位置处填入，路径和对应长度。</li>
 <li>不能直接到达的填正无穷。</li>
-<li>将这一列的路径使得路径长度最短的结点（该路径此时的终点），并入集合 S 中（起点默认已经并入）</li>
-<li>基于上一步得到的路径，看其终点有没有与其他点（这里的其他点 <span class="math inline">\(\in V-S\)</span>）之间相连。有的话，计算这个新的路径长度，并与上一个（对应行的左边一个）比较：若更小，则更新；否则照抄。</li>
-<li>由此得到新的一列，继续比较路径大小。然后，选择最小的，将对应的结点并入 S 。</li>
+<li>将这一列的路径使得路径长度最短的结点（该路径此时的终点），并入集合 S
+中（起点默认已经并入）</li>
+<li>基于上一步得到的路径，看其终点有没有与其他点（这里的其他点 <span
+class="math inline">\(\in
+V-S\)</span>）之间相连。有的话，计算这个新的路径长度，并与上一个（对应行的左边一个）比较：若更小，则更新；否则照抄。</li>
+<li>由此得到新的一列，继续比较路径大小。然后，选择最小的，将对应的结点并入
+S 。</li>
 <li>以此类推，得到以下表格：</li>
 </ul></li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 18%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -644,15 +700,19 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 </tr>
 <tr class="odd">
 <td style="text-align: center;">3</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
-<td style="text-align: center;"><strong>（1，2，3）、7（小）</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
+<td
+style="text-align: center;"><strong>（1，2，3）、7（小）</strong></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">4</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 <td style="text-align: center;">（1，5，4）、11</td>
 <td style="text-align: center;">（1，5，4）、11</td>
 <td style="text-align: center;">（1，5，4）、11</td>
@@ -668,10 +728,12 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 </tr>
 <tr class="even">
 <td style="text-align: center;">6</td>
-<td style="text-align: center;"><span class="math inline">\(\infty\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\infty\)</span></td>
 <td style="text-align: center;">（1，5，6）、9</td>
 <td style="text-align: center;">（1，5，6）、9</td>
-<td style="text-align: center;"><strong>（1，5，6）、9（小）</strong></td>
+<td
+style="text-align: center;"><strong>（1，5，6）、9（小）</strong></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
@@ -686,21 +748,29 @@ ID(v_j) = \sum_{i=0}^{n-1}A[i][j],n = MAX\_VERTEX\_NUM（即第 j 列元素之�
 </table>
 <h4 id="floyd-算法">Floyd 算法</h4>
 <ul>
-<li>初始化 <span class="math inline">\(dis^{(-1)}\)</span> 为图的邻接矩阵</li>
-<li>循环（邻接矩阵有 n 阶，外层就循环 n 次【从 0 到 n - 1】，主要是为了取将要加入以下路径点的点，设为 <span class="math inline">\(V_{intermediate}\)</span>）</li>
+<li>初始化 <span class="math inline">\(dis^{(-1)}\)</span>
+为图的邻接矩阵</li>
+<li>循环（邻接矩阵有 n 阶，外层就循环 n 次【从 0 到 n -
+1】，主要是为了取将要加入以下路径点的点，设为 <span
+class="math inline">\(V_{intermediate}\)</span>）</li>
 <li>内部再套两个循环（主要是为了取任意两个点的组合，设这两个点为</li>
 </ul>
 <p><span class="math display">\[
 V_{source}和V_{end}
 \]</span></p>
 <p>​ ）比较 <span class="math display">\[
-(1)\ Weight(V_{source},V_{intermediate})+Weight(V_{intermediate}, V_{end})
+(1)\ Weight(V_{source},V_{intermediate})+Weight(V_{intermediate},
+V_{end})
 \]</span></p>
 <p>​ 和 <span class="math display">\[
 (2)\ Weight(V_{source},V_{end})
-\]</span> ​ 大小，若（1）式更小，则更新对应 <span class="math inline">\(dis^{i}​\)</span> （<em>i</em> 代表循环变量【从 0 开始】）的</p>
-<p>​ <span class="math inline">\(V_{source}\)</span>所在<strong>行</strong>，</p>
-<p>​ <span class="math inline">\(V_{end}\)</span>所在<strong>列</strong>处的值</p>
+\]</span> ​ 大小，若（1）式更小，则更新对应 <span
+class="math inline">\(dis^{i}​\)</span> （<em>i</em> 代表循环变量【从 0
+开始】）的</p>
+<p>​ <span
+class="math inline">\(V_{source}\)</span>所在<strong>行</strong>，</p>
+<p>​ <span
+class="math inline">\(V_{end}\)</span>所在<strong>列</strong>处的值</p>
 <p>​ 为 （1）式子的结果。</p>
 <h3 id="拓扑排序-1">拓扑排序</h3>
 <ul>
@@ -712,12 +782,14 @@ V_{source}和V_{end}
 <ul>
 <li>顶点相关
 <ul>
-<li>事件 <span class="math inline">\(v_k​\)</span> 最早发生的时间 <span class="math inline">\(v_e(k)​\)</span>
+<li>事件 <span class="math inline">\(v_k​\)</span> 最早发生的时间 <span
+class="math inline">\(v_e(k)​\)</span>
 <ul>
 <li><strong>从前往后</strong>算，计算从源点到当前点最长的路径长度。</li>
 <li><strong>入度＞1 要注意</strong>，要取<strong>和最大</strong></li>
 </ul></li>
-<li>事件 <span class="math inline">\(v_k\)</span> 最迟发生的时间<span class="math inline">\(v_l(k)\)</span>
+<li>事件 <span class="math inline">\(v_k\)</span> 最迟发生的时间<span
+class="math inline">\(v_l(k)\)</span>
 <ul>
 <li><strong>从后往前算</strong>（通常是后一个结点的最迟时间，减去这两点之间的权值）</li>
 <li><strong>出度＞1 要注意</strong>，要取<strong>差最小</strong></li>
@@ -725,18 +797,29 @@ V_{source}和V_{end}
 </ul></li>
 <li>弧相关
 <ul>
-<li>活动 <span class="math inline">\(a_i\)</span> 最早开始时间 <span class="math inline">\(e(i)\)</span>
+<li>活动 <span class="math inline">\(a_i\)</span> 最早开始时间 <span
+class="math inline">\(e(i)\)</span>
 <ul>
-<li>设 <span class="math inline">\(a_i\)</span> 夹在两个顶点 <span class="math inline">\(v_k,v_j\)</span> 之间，且 <span class="math inline">\(v_k\)</span> 在前，则<span class="math inline">\(e(i) = v_e(k)​\)</span> （即<strong>前一个顶点最早发生时间</strong>）</li>
+<li>设 <span class="math inline">\(a_i\)</span> 夹在两个顶点 <span
+class="math inline">\(v_k,v_j\)</span> 之间，且 <span
+class="math inline">\(v_k\)</span> 在前，则<span
+class="math inline">\(e(i) = v_e(k)​\)</span>
+（即<strong>前一个顶点最早发生时间</strong>）</li>
 </ul></li>
-<li>活动 <span class="math inline">\(a_i\)</span> 最迟开始时间 <span class="math inline">\(l(i)\)</span>
+<li>活动 <span class="math inline">\(a_i\)</span> 最迟开始时间 <span
+class="math inline">\(l(i)\)</span>
 <ul>
-<li>设 <span class="math inline">\(a_i\)</span> 夹在两个顶点 <span class="math inline">\(v_k,v_j\)</span> 之间，且 <span class="math inline">\(v_k\)</span> 在前，则<span class="math inline">\(l(i) = v_l(k)-Weight(v_k,v_j)\)</span> （即<strong>后一个顶点最迟发生时间【减去】两点之间的权值</strong>）</li>
+<li>设 <span class="math inline">\(a_i\)</span> 夹在两个顶点 <span
+class="math inline">\(v_k,v_j\)</span> 之间，且 <span
+class="math inline">\(v_k\)</span> 在前，则<span
+class="math inline">\(l(i) = v_l(k)-Weight(v_k,v_j)\)</span>
+（即<strong>后一个顶点最迟发生时间【减去】两点之间的权值</strong>）</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
-<h2 id="图的重要概念辨析及相关重要结论">图的重要概念辨析及相关重要结论</h2>
+<h2
+id="图的重要概念辨析及相关重要结论">图的重要概念辨析及相关重要结论</h2>
 <h3 id="重要概念辨析">重要概念辨析</h3>
 <h4 id="无向完全图-vs-有向完全图">无向完全图 VS 有向完全图</h4>
 <ul>
@@ -745,8 +828,12 @@ V_{source}和V_{end}
 </ul>
 <h4 id="强连通图-vs-连通图">强连通图 VS 连通图</h4>
 <ul>
-<li><strong>强连通图</strong>：（针对<strong>有向图</strong>）任意一对顶点都是<strong>强连通的</strong>（若从顶点 <em>v</em> 到 <em>w</em> 和 <em>w</em> 到<em>v</em> 都有路径，则这两个顶点是<strong>强连通的</strong>）</li>
-<li><strong>连通图</strong>：（针对<strong>无向图</strong>）任意两个顶点都是<strong>连通的</strong>（若从顶点 <em>v</em> 到 <em>w</em> 有路径，则这两个顶点是<strong>连通的</strong>）</li>
+<li><strong>强连通图</strong>：（针对<strong>有向图</strong>）任意一对顶点都是<strong>强连通的</strong>（若从顶点
+<em>v</em> 到 <em>w</em> 和 <em>w</em> 到<em>v</em>
+都有路径，则这两个顶点是<strong>强连通的</strong>）</li>
+<li><strong>连通图</strong>：（针对<strong>无向图</strong>）任意两个顶点都是<strong>连通的</strong>（若从顶点
+<em>v</em> 到 <em>w</em>
+有路径，则这两个顶点是<strong>连通的</strong>）</li>
 </ul>
 <h4 id="强连通分量-vs-连通分量">强连通分量 VS 连通分量</h4>
 <ul>
@@ -755,7 +842,8 @@ V_{source}和V_{end}
 </ul>
 <h3 id="重要结论">重要结论</h3>
 <ul>
-<li>非连通图的判定：<span class="math inline">\(|V| = n\ 且\ |E| &lt;n-1\)</span></li>
+<li>非连通图的判定：<span class="math inline">\(|V| = n\ 且\ |E|
+&lt;n-1\)</span></li>
 <li>无向图顶点的度:</li>
 </ul>
 <p><span class="math display">\[
@@ -794,12 +882,23 @@ V_{source}和V_{end}
 <li><strong>权值和唯一</strong></li>
 <li>（★★★）<strong>边数 = 顶点数 - 1</strong></li>
 </ul></li>
-<li>单源最短路径，使用 <strong>Dijkstra</strong> ；每对顶点的的最短路径，使用 <strong>Floyd</strong></li>
-<li><strong>Dijkstra</strong> 不适用于带<strong>负权值</strong>；<strong>Floyd</strong> 不适用于包含<strong>带负权值的边组成回路</strong></li>
-<li><em>n</em> 个顶点、<em>e</em> 条弧有向图采用邻接表存储，拓扑排序时间复杂度<strong>O(n+e)</strong>（排序过程中，先找入度为 0 的点，再删除，非嵌套！<strong>另一角度，拓扑排序即是最终删除所有顶点和边，有 <em>n</em> 个顶点，<em>e</em> 条边，故总时间复杂度为 O(n+e)</strong>）</li>
+<li>单源最短路径，使用 <strong>Dijkstra</strong>
+；每对顶点的的最短路径，使用 <strong>Floyd</strong></li>
+<li><strong>Dijkstra</strong>
+不适用于带<strong>负权值</strong>；<strong>Floyd</strong>
+不适用于包含<strong>带负权值的边组成回路</strong></li>
+<li><em>n</em> 个顶点、<em>e</em>
+条弧有向图采用邻接表存储，拓扑排序时间复杂度<strong>O(n+e)</strong>（排序过程中，先找入度为
+0
+的点，再删除，非嵌套！<strong>另一角度，拓扑排序即是最终删除所有顶点和边，有
+<em>n</em> 个顶点，<em>e</em> 条边，故总时间复杂度为
+O(n+e)</strong>）</li>
 <li>若一有向图<strong>不能排成一个拓扑序列</strong>，则该图有<strong>环</strong></li>
-<li>要<strong>缩短工期</strong>，则<strong>所有关键路径</strong>上的点（<strong>每个</strong>关键路径上<strong>至少挑选一个</strong>进行时间压缩）<strong>都要同时减少</strong>（步骤：①找关键结点，得到其路径长度【设为 <em>L</em>】；②找所有路径长度为 <em>L</em> 的路径；③找到几个点，他们能覆盖到所有关键路径）</li>
-<li>若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为 0 。则该图的拓扑排序<strong>存在，但不唯一</strong>（ 2012 统考）</li>
+<li>要<strong>缩短工期</strong>，则<strong>所有关键路径</strong>上的点（<strong>每个</strong>关键路径上<strong>至少挑选一个</strong>进行时间压缩）<strong>都要同时减少</strong>（步骤：①找关键结点，得到其路径长度【设为
+<em>L</em>】；②找所有路径长度为 <em>L</em>
+的路径；③找到几个点，他们能覆盖到所有关键路径）</li>
+<li>若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为 0
+。则该图的拓扑排序<strong>存在，但不唯一</strong>（ 2012 统考）</li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
 <ol type="1">
@@ -927,7 +1026,7 @@ V_{source}和V_{end}
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

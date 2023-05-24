@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下数组和广义表的知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-07-22T06:57:45.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -162,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -345,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -413,14 +408,19 @@
 <hr />
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给指定下标的元素赋值</span></span><br><span class="line"><span class="comment">// A 是 n 维数组，e 为元素变量，随后是 n 个下标值</span></span><br><span class="line"><span class="comment">// 若各下标不越界，则将 e 赋给所指定 A 的元素值，并返回 OK</span></span><br><span class="line"></span><br><span class="line"><span class="function">Status <span class="title">Assign</span><span class="params">(Array &amp; A, Elemtype e, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    va_start(ap, e);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>((result = Locate(A, ap, off)) &lt;= <span class="number">0</span>)	<span class="keyword">return</span> result;</span><br><span class="line">    </span><br><span class="line">    *(A.base + off) = e;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr />
-<h2 id="矩阵的压缩存储特殊矩阵稀疏矩阵">矩阵的压缩存储：特殊矩阵、稀疏矩阵</h2>
+<h2
+id="矩阵的压缩存储特殊矩阵稀疏矩阵">矩阵的压缩存储：特殊矩阵、稀疏矩阵</h2>
 <h3 id="特殊矩阵">特殊矩阵</h3>
 <p>（以下推导请见王道 3.4.3 节）</p>
-<p><strong>注意下标</strong>（以下推导基于矩阵元素 a 从 <strong>(1, 1)</strong> 开始，但存储从 <strong>0</strong> 号开始）（题目会以此设置陷阱）</p>
+<p><strong>注意下标</strong>（以下推导基于矩阵元素 a 从 <strong>(1,
+1)</strong> 开始，但存储从 <strong>0</strong>
+号开始）（题目会以此设置陷阱）</p>
 <h4 id="对称矩阵">对称矩阵</h4>
 <ul>
-<li><p>存储结构：一维数组 <code>sa[n*(n+1)/2]</code>，（行序为主序，仅仅存储下三角）</p></li>
-<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code> 的关系 <span class="math display">\[
+<li><p>存储结构：一维数组
+<code>sa[n*(n+1)/2]</code>，（行序为主序，仅仅存储下三角）</p></li>
+<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code> 的关系
+<span class="math display">\[
 k =
 \left \{
 \begin{aligned}
@@ -432,37 +432,48 @@ k =
 </ul>
 <h4 id="下三角矩阵">下三角矩阵</h4>
 <ul>
-<li><p>存储结构：一维数组 <code>sa[n*(n+1)/2 + 1]</code>，（行序为主序，存储下三角及上三角的常量【存储在数组最后一个位置】）</p></li>
-<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code> 的关系</p></li>
+<li><p>存储结构：一维数组
+<code>sa[n*(n+1)/2 + 1]</code>，（行序为主序，存储下三角及上三角的常量【存储在数组最后一个位置】）</p></li>
+<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code>
+的关系</p></li>
 </ul>
 <p><span class="math display">\[
 k =
 \left \{
 \begin{aligned}
-             &amp;  \frac{i(i-1)}{2}+j-1, &amp;i \ge j &amp;(存储下三角和主对角线)\\
-             &amp;  \frac{n(n+1)}{2}, &amp;i &lt; j      &amp;(存储常量的位置)\\
+             &amp;  \frac{i(i-1)}{2}+j-1, &amp;i \ge j
+&amp;(存储下三角和主对角线)\\
+             &amp;  \frac{n(n+1)}{2}, &amp;i &lt;
+j      &amp;(存储常量的位置)\\
 \end{aligned}
 \right.
 \]</span></p>
 <h4 id="上三角矩阵">上三角矩阵</h4>
 <ul>
-<li><p>存储结构：一维数组 <code>sa[n*(n+1)/2 + 1]</code>，（行序为主序，存储上三角及下三角的常量【存储在数组最后一个位置】）</p></li>
-<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code> 的关系</p></li>
+<li><p>存储结构：一维数组
+<code>sa[n*(n+1)/2 + 1]</code>，（行序为主序，存储上三角及下三角的常量【存储在数组最后一个位置】）</p></li>
+<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code>
+的关系</p></li>
 </ul>
 <p><span class="math display">\[
 k =
 \left \{
 \begin{aligned}
-             &amp;  \frac{(i-1)(2n-i+2)}{2}+j-i, &amp;i \le j &amp;(存储上三角和主对角线)\\
-             &amp;  \frac{n(n+1)}{2}, &amp;i &gt; j      &amp;(存储常量的位置)\\
+             &amp;  \frac{(i-1)(2n-i+2)}{2}+j-i, &amp;i \le j
+&amp;(存储上三角和主对角线)\\
+             &amp;  \frac{n(n+1)}{2}, &amp;i &gt;
+j      &amp;(存储常量的位置)\\
 \end{aligned}
 \right.
 \]</span></p>
 <h4 id="三对角矩阵">三对角矩阵</h4>
 <ul>
-<li><p>描述：所有非 0 元素都集中在以主对角线为中心的 3 条对角线区域，其余元素为 0</p></li>
-<li><p>存储结构：一维数组 <code>sa[3n-2]</code>，（按行优先，依次存入一维数组中）</p></li>
-<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code> 的关系</p></li>
+<li><p>描述：所有非 0 元素都集中在以主对角线为中心的 3
+条对角线区域，其余元素为 0</p></li>
+<li><p>存储结构：一维数组
+<code>sa[3n-2]</code>，（按行优先，依次存入一维数组中）</p></li>
+<li><p>存储下标 <code>k</code> 与矩阵逻辑位置 <code>(i, j)</code>
+的关系</p></li>
 </ul>
 <p><span class="math display">\[
 k = 2i + j -3
@@ -663,7 +674,7 @@ k = 2i + j -3
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -30,7 +30,7 @@
 <meta property="og:description" content="整理一下计算机组成原理中概述知识">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-09-24T14:47:03.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -162,11 +162,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -345,7 +340,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -398,7 +393,8 @@
 <h3 id="冯诺依曼计算机结构的特点">冯·诺依曼计算机结构的特点</h3>
 <ul>
 <li><strong>“存储程序”</strong>工作方式</li>
-<li>由<strong>运算器、控制器、存储器、输入设备、输出设备</strong> 5 个基本部件组成</li>
+<li>由<strong>运算器、控制器、存储器、输入设备、输出设备</strong> 5
+个基本部件组成</li>
 <li>指令和数据存储在存储器内；控制器能控制指令自动执行；运算器可以算术运算、逻辑运算；操作人员通过输入输出设备使用计算机</li>
 <li>计算机内部用<strong>二进制表示</strong>指令和数据；每条指令由<strong>操作码</strong>（指名操作类型）和<strong>地址码</strong>（指出操作数所在地址）组成；<strong>一组指令组成程序</strong></li>
 </ul>
@@ -414,7 +410,8 @@
 <li>外部设备</li>
 <li>总线</li>
 </ul>
-<h3 id="计算机系统的组成硬件软件及其层次结构">计算机系统的组成（硬件+软件）及其层次结构</h3>
+<h3
+id="计算机系统的组成硬件软件及其层次结构">计算机系统的组成（硬件+软件）及其层次结构</h3>
 <ul>
 <li>应用（问题）</li>
 <li>算法</li>
@@ -435,7 +432,8 @@
 <li>用于程序执行的时间，包括
 <ul>
 <li>用户 CPU 时间：用于运行用户程序代码的时间</li>
-<li>系统 CPU 时间：为了执行用户程序而需要 CPU 运行操作系统程序的时间</li>
+<li>系统 CPU 时间：为了执行用户程序而需要 CPU
+运行操作系统程序的时间</li>
 </ul></li>
 </ul>
 <h3 id="cpi">CPI（★★★★）</h3>
@@ -443,11 +441,24 @@
 <li>执行一条指令所需要的时钟周期</li>
 <li>一些公式
 <ul>
-<li><span class="math inline">\(CPU执行时间 = \frac{程序所含时钟周期数}{时钟频率}=程序所含时钟周期数\times 时钟周期\)</span></li>
-<li><span class="math inline">\(程序的总时钟周期数=程序所含指令条数\times CPI\)</span> （这里的 <em>CPI</em> 是综合 <em>CPI</em> ）</li>
-<li><span class="math inline">\(程序总时钟周期数=\sum_{i=1}^{n}(CPI_i\times C_i)\)</span> （有 <em>n</em> 种不同的指令，第 <em>i</em> 种指令条数和 <em>CPI</em> 分别是 <span class="math inline">\(C_i\)</span> 和 <span class="math inline">\(CPI_i\)</span> ）</li>
-<li><span class="math inline">\(CPI = \sum_{i=1}^{n}(CPI_i\times F_i) =程序总时钟周期数\div程序所含指令条数\)</span> ，其中 <span class="math inline">\(F_i\)</span> 为第 <em>i</em> 种指令在程序中所占的比例</li>
-<li><span class="math inline">\(CPU执行时间 = CPI\times 程序总指令数\times时钟周期=\frac{(指令条数\times CPI)}{主频}\)</span></li>
+<li><span class="math inline">\(CPU执行时间 =
+\frac{程序所含时钟周期数}{时钟频率}=程序所含时钟周期数\times
+时钟周期\)</span></li>
+<li><span
+class="math inline">\(程序的总时钟周期数=程序所含指令条数\times
+CPI\)</span> （这里的 <em>CPI</em> 是综合 <em>CPI</em> ）</li>
+<li><span
+class="math inline">\(程序总时钟周期数=\sum_{i=1}^{n}(CPI_i\times
+C_i)\)</span> （有 <em>n</em> 种不同的指令，第 <em>i</em> 种指令条数和
+<em>CPI</em> 分别是 <span class="math inline">\(C_i\)</span> 和 <span
+class="math inline">\(CPI_i\)</span> ）</li>
+<li><span class="math inline">\(CPI = \sum_{i=1}^{n}(CPI_i\times F_i)
+=程序总时钟周期数\div程序所含指令条数\)</span> ，其中 <span
+class="math inline">\(F_i\)</span> 为第 <em>i</em>
+种指令在程序中所占的比例</li>
+<li><span class="math inline">\(CPU执行时间 = CPI\times
+程序总指令数\times时钟周期=\frac{(指令条数\times
+CPI)}{主频}\)</span></li>
 </ul></li>
 </ul>
 <h3 id="时钟周期-t">时钟周期 T</h3>
@@ -463,7 +474,8 @@
 <li>每秒执行多少百万条指令</li>
 <li>公式
 <ul>
-<li><span class="math inline">\(MIPS=\frac{指令条数}{执行时间\times 10^6} = \frac{主频（注意以MHz为单位）}{CPI}\)</span></li>
+<li><span class="math inline">\(MIPS=\frac{指令条数}{执行时间\times
+10^6} = \frac{主频（注意以MHz为单位）}{CPI}\)</span></li>
 </ul></li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
@@ -592,7 +604,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

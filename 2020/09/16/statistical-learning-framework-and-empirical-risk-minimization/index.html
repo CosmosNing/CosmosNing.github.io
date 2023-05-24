@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="机器学习中有一个形式化的模型——统计学习框架，它是如何定义的？经验风险最小化（ERM）是一个十分基础的学习范式，它的学习目标是什么？为什么它是有效的？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/example-of-overfitting.PNG">
 <meta property="article:published_time" content="2020-09-16T01:02:33.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.500Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="Statistical learning framework">
 <meta property="article:tag" content="Empirical risk minimization">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/example-of-overfitting.PNG">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2020/09/16/statistical-learning-framework-and-empirical-risk-minimization/">
@@ -167,11 +165,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
-
-  </li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -228,7 +221,14 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#a-formal-model-the-statistical-learning-framework"><span class="nav-number">1.</span> <span class="nav-text">A Formal Model —— The Statistical Learning Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-learners-input"><span class="nav-number">1.1.</span> <span class="nav-text">The Learner&#39;s Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-learners-output"><span class="nav-number">1.2.</span> <span class="nav-text">The Learner&#39;s Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-simple-data-generation-model"><span class="nav-number">1.3.</span> <span class="nav-text">A Simple Data-generation Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#measures-of-success"><span class="nav-number">1.4.</span> <span class="nav-text">Measures of Success</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-note-about-the-information-available-to-the-learner"><span class="nav-number">1.5.</span> <span class="nav-text">A Note about The Information Available to The Learner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">1.6.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#empirical-risk-minimization-erm"><span class="nav-number">2.</span> <span class="nav-text">Empirical Risk Minimization （ERM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#empirical-error"><span class="nav-number">2.1.</span> <span class="nav-text">Empirical Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#erm"><span class="nav-number">2.2.</span> <span class="nav-text">ERM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-problem-of-erm-overfitting"><span class="nav-number">2.3.</span> <span class="nav-text">The problem of ERM —— Overfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#empirical-risk-minimization-with-inductive-bias"><span class="nav-number">2.4.</span> <span class="nav-text">Empirical Risk Minimization with Inductive Bias</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#applying-erm-over-a-restricted-search-space"><span class="nav-number">2.4.1.</span> <span class="nav-text">Applying ERM over a Restricted Search Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finite-hypothesis-classes"><span class="nav-number">2.4.2.</span> <span class="nav-text">Finite Hypothesis Classes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#a-formal-model-the-statistical-learning-framework"><span class="nav-number">1.</span> <span class="nav-text">A Formal
+Model —— The Statistical Learning Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#the-learners-input"><span class="nav-number">1.1.</span> <span class="nav-text">The Learner&#39;s Input</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-learners-output"><span class="nav-number">1.2.</span> <span class="nav-text">The Learner&#39;s Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-simple-data-generation-model"><span class="nav-number">1.3.</span> <span class="nav-text">A Simple Data-generation
+Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#measures-of-success"><span class="nav-number">1.4.</span> <span class="nav-text">Measures of Success</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-note-about-the-information-available-to-the-learner"><span class="nav-number">1.5.</span> <span class="nav-text">A Note
+about The Information Available to The Learner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">1.6.</span> <span class="nav-text">Summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#empirical-risk-minimization-erm"><span class="nav-number">2.</span> <span class="nav-text">Empirical Risk Minimization
+（ERM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#empirical-error"><span class="nav-number">2.1.</span> <span class="nav-text">Empirical Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#erm"><span class="nav-number">2.2.</span> <span class="nav-text">ERM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-problem-of-erm-overfitting"><span class="nav-number">2.3.</span> <span class="nav-text">The problem of ERM ——
+Overfitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#empirical-risk-minimization-with-inductive-bias"><span class="nav-number">2.4.</span> <span class="nav-text">Empirical Risk
+Minimization with Inductive Bias</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#applying-erm-over-a-restricted-search-space"><span class="nav-number">2.4.1.</span> <span class="nav-text">Applying ERM over a
+Restricted Search Space</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finite-hypothesis-classes"><span class="nav-number">2.4.2.</span> <span class="nav-text">Finite Hypothesis Classes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -348,7 +348,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -398,187 +398,397 @@
 <p>本文主要介绍两个内容：</p>
 <ol type="1">
 <li><strong>统计学习框架</strong>。这是一个十分通用的框架，指明了学习的<strong>输入</strong>、<strong>输出</strong>和<strong>学习目标</strong>。</li>
-<li><strong>经验风险最小化</strong>（<strong>ERM</strong>）的学习方法。引入<strong>经验风险</strong>，从而可以<strong>从训练数据中管中窥豹</strong>，归纳出一般规律。但是 ERM <strong>会产生过拟合</strong>现象。一种常见的解决方案是<strong>引入归纳偏好</strong>（或者是先验知识）。具体来说，确定一个有<strong>限的假设类</strong>集合，供学习算法学习。这样是否是有效的？通过证明发现，<strong>只要有足够的训练样本，就可以达到比较好的效果</strong>。</li>
+<li><strong>经验风险最小化</strong>（<strong>ERM</strong>）的学习方法。引入<strong>经验风险</strong>，从而可以<strong>从训练数据中管中窥豹</strong>，归纳出一般规律。但是
+ERM
+<strong>会产生过拟合</strong>现象。一种常见的解决方案是<strong>引入归纳偏好</strong>（或者是先验知识）。具体来说，确定一个有<strong>限的假设类</strong>集合，供学习算法学习。这样是否是有效的？通过证明发现，<strong>只要有足够的训练样本，就可以达到比较好的效果</strong>。</li>
 </ol>
 </blockquote>
-<h1 id="a-formal-model-the-statistical-learning-framework">A Formal Model —— The Statistical Learning Framework</h1>
+<h1 id="a-formal-model-the-statistical-learning-framework">A Formal
+Model —— The Statistical Learning Framework</h1>
 <h2 id="the-learners-input">The Learner's Input</h2>
 <ul>
-<li><strong>领域集（<em>Domain set</em>）</strong>：这是我们<strong>希望标记的事物的集合</strong>，记作 <span class="math inline">\(\mathcal{X}\)</span> 。通常情况下，人们会用一个特性向量（vector of <em>features</em>）表示这些领域点（<em>domain points</em>）。</li>
+<li><strong>领域集（<em>Domain
+set</em>）</strong>：这是我们<strong>希望标记的事物的集合</strong>，记作
+<span class="math inline">\(\mathcal{X}\)</span>
+。通常情况下，人们会用一个特性向量（vector of
+<em>features</em>）表示这些领域点（<em>domain points</em>）。</li>
 </ul>
 <div class="note info"><ul>
-<li>领域集（<em>domain set</em>）又称作实例空间（<em>instance space</em>）</li>
-<li>领域点（<em>domain points</em>）又称作实例（<em>instances</em>）</li>
+<li>领域集（<em>domain set</em>）又称作实例空间（<em>instance
+space</em>）</li>
+<li>领域点（<em>domain
+points</em>）又称作实例（<em>instances</em>）</li>
 </ul>
 </div>
 <ul>
-<li><strong>标签集（<em>Label set</em>）</strong>：这是<strong>可能的标签的集合</strong>，记作 <span class="math inline">\(\mathcal{Y}\)</span> 。</li>
-<li><strong>训练数据（<em>Training data</em>）</strong>：这是一系列已经被标记的领域点，常常表示为 <span class="math inline">\(S=((x_1,\ y_1)\dots(x_m,\ y_m))\)</span> （这是在 <span class="math inline">\(\mathcal{X}\times \mathcal{Y}\)</span> 中的<strong>有限</strong>的数对序列）</li>
+<li><strong>标签集（<em>Label
+set</em>）</strong>：这是<strong>可能的标签的集合</strong>，记作 <span
+class="math inline">\(\mathcal{Y}\)</span> 。</li>
+<li><strong>训练数据（<em>Training
+data</em>）</strong>：这是一系列已经被标记的领域点，常常表示为 <span
+class="math inline">\(S=((x_1,\ y_1)\dots(x_m,\ y_m))\)</span> （这是在
+<span class="math inline">\(\mathcal{X}\times \mathcal{Y}\)</span>
+中的<strong>有限</strong>的数对序列）</li>
 </ul>
 <div class="note info"><ul>
-<li>训练数据（<em>training data</em>）又称作 <strong><em>training examples</em></strong>，或者 <strong><em>training set</em></strong></li>
+<li>训练数据（<em>training data</em>）又称作 <strong><em>training
+examples</em></strong>，或者 <strong><em>training set</em></strong></li>
 </ul>
 </div>
 <h2 id="the-learners-output">The Learner's Output</h2>
-<p>人们希望学习器输出一个<strong>预测规则</strong>（<em>prediction rule</em>）：<span class="math inline">\(h:\mathcal{X} \rightarrow \mathcal{Y}\)</span> 。这个函数又称作为<strong>预测器</strong>（<em>predictor</em>）、<strong>假设</strong>（<em>hypothesis</em>）或者是<strong>分类器</strong>（<em>classifier</em>）。此外，我们记一个学习算法 <span class="math inline">\(A\)</span> ，接受训练数据 <span class="math inline">\(S\)</span> 为输入，返回对应假设为 <span class="math inline">\(A(S)\)</span> 。</p>
-<h2 id="a-simple-data-generation-model">A Simple Data-generation Model</h2>
+<p>人们希望学习器输出一个<strong>预测规则</strong>（<em>prediction
+rule</em>）：<span class="math inline">\(h:\mathcal{X} \rightarrow
+\mathcal{Y}\)</span>
+。这个函数又称作为<strong>预测器</strong>（<em>predictor</em>）、<strong>假设</strong>（<em>hypothesis</em>）或者是<strong>分类器</strong>（<em>classifier</em>）。此外，我们记一个学习算法
+<span class="math inline">\(A\)</span> ，接受训练数据 <span
+class="math inline">\(S\)</span> 为输入，返回对应假设为 <span
+class="math inline">\(A(S)\)</span> 。</p>
+<h2 id="a-simple-data-generation-model">A Simple Data-generation
+Model</h2>
 <p>训练数据是如何生成的？这里给出两个假设。</p>
 <ul>
-<li>假设所有的实例都由一个概率分布生成，记这个在 <span class="math inline">\(\mathcal{X}\)</span> 上的概率分布为 <span class="math inline">\(\mathcal{D}\)</span> 。</li>
-<li>假设存在一个“完全正确”的标记函数 <span class="math inline">\(f:\mathcal{X}\rightarrow \mathcal{Y}\)</span> ，显然，对于任意的 <span class="math inline">\(i\)</span> ，有 <span class="math inline">\(y_i=f(x_i)\)</span></li>
+<li>假设所有的实例都由一个概率分布生成，记这个在 <span
+class="math inline">\(\mathcal{X}\)</span> 上的概率分布为 <span
+class="math inline">\(\mathcal{D}\)</span> 。</li>
+<li>假设存在一个“完全正确”的标记函数 <span
+class="math inline">\(f:\mathcal{X}\rightarrow \mathcal{Y}\)</span>
+，显然，对于任意的 <span class="math inline">\(i\)</span> ，有 <span
+class="math inline">\(y_i=f(x_i)\)</span></li>
 </ul>
 <p>总的来说，在训练数据中的每一个数对，都由以下方式生成：</p>
 <ol type="1">
-<li>先从概率分布 <span class="math inline">\(\mathcal{D}\)</span> 采样得到一个点 <span class="math inline">\(x_i\)</span> ；</li>
-<li>再利用标记函数 <span class="math inline">\(f\)</span> 为 <span class="math inline">\(x_i\)</span> 打上标签。</li>
+<li>先从概率分布 <span class="math inline">\(\mathcal{D}\)</span>
+采样得到一个点 <span class="math inline">\(x_i\)</span> ；</li>
+<li>再利用标记函数 <span class="math inline">\(f\)</span> 为 <span
+class="math inline">\(x_i\)</span> 打上标签。</li>
 </ol>
 <h2 id="measures-of-success">Measures of Success</h2>
-<p>如何衡量算法学习是否成功？这里可以定义一个<strong>分类器的误差</strong>（<em>error of a classifier</em>），即学习算法没有正确预测随机数据（这些随机数据，是由前面提到的对于学习算法隐含的概率分布所生成的）的标签的概率。也就是说，<span class="math inline">\(h\)</span> 的误差是<strong>从分布 <span class="math inline">\(\mathcal{D}\)</span> 随机中取出一个 <span class="math inline">\(x\)</span> ，而 <span class="math inline">\(h(x)\)</span> 不等于 <span class="math inline">\(f(x)\)</span> 的概率</strong>。</p>
-<p>规范的来讲，给定一个领域子集（<em>domain subset</em>），<span class="math inline">\(A\subset \mathcal{X}\)</span> ，概率分布 <span class="math inline">\(\mathcal{D}\)</span> ，定义一个数 <span class="math inline">\(\mathcal{D}(A)\)</span> ，其中 <span class="math inline">\(\mathcal{D}(A)\)</span> 表示学习算法在 <span class="math inline">\(\mathcal{D}\)</span> 中观察到一个点 <span class="math inline">\(x\in A\)</span> 的可能性。我们定义预测规则（<em>prediction rule</em>）的误差如下： <span class="math display">\[
-L_{\mathcal{D},f}(h)\overset{def}{=}\underset{x\sim\mathcal{D}}{\mathbb{P}}[h(x)\ne f(x)]\overset{def}{=}\mathcal{D}(\lbrace x:h(x)\ne f(x)\rbrace)\tag{2.1}
-\]</span> <div class="note info"><p><strong>有关 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(\mathcal{D}(A)\)</span> 的补充说明</strong></p>
+<p>如何衡量算法学习是否成功？这里可以定义一个<strong>分类器的误差</strong>（<em>error
+of a
+classifier</em>），即学习算法没有正确预测随机数据（这些随机数据，是由前面提到的对于学习算法隐含的概率分布所生成的）的标签的概率。也就是说，<span
+class="math inline">\(h\)</span> 的误差是<strong>从分布 <span
+class="math inline">\(\mathcal{D}\)</span> 随机中取出一个 <span
+class="math inline">\(x\)</span> ，而 <span
+class="math inline">\(h(x)\)</span> 不等于 <span
+class="math inline">\(f(x)\)</span> 的概率</strong>。</p>
+<p>规范的来讲，给定一个领域子集（<em>domain subset</em>），<span
+class="math inline">\(A\subset \mathcal{X}\)</span> ，概率分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，定义一个数 <span
+class="math inline">\(\mathcal{D}(A)\)</span> ，其中 <span
+class="math inline">\(\mathcal{D}(A)\)</span> 表示学习算法在 <span
+class="math inline">\(\mathcal{D}\)</span> 中观察到一个点 <span
+class="math inline">\(x\in A\)</span>
+的可能性。我们定义预测规则（<em>prediction rule</em>）的误差如下： <span
+class="math display">\[
+L_{\mathcal{D},f}(h)\overset{def}{=}\underset{x\sim\mathcal{D}}{\mathbb{P}}[h(x)\ne
+f(x)]\overset{def}{=}\mathcal{D}(\lbrace x:h(x)\ne f(x)\rbrace)\tag{2.1}
+\]</span> <div class="note info"><p><strong>有关 <span class="math inline">\(A\)</span> 与 <span
+class="math inline">\(\mathcal{D}(A)\)</span> 的补充说明</strong></p>
 <ul>
-<li>在许多情况下，我们将 <span class="math inline">\(A\)</span> 称作一个事件（<em>event</em>）</li>
-<li>二元分类问题中，我们定义 <span class="math inline">\(A\)</span> 为 <span class="math inline">\(\pi :\mathcal{X}\rightarrow \lbrace0,1\rbrace\)</span> ，也就有 <span class="math inline">\(A = \lbrace x\in\mathcal{X}: \pi(x) = 1\rbrace\)</span> 。在这种情况下，我们也使用 <span class="math inline">\(\mathbb{P}_{x\sim \mathcal{D}}[\pi(x)]\)</span> 来表达 <span class="math inline">\(\mathcal{D}(A)\)</span> 。</li>
+<li>在许多情况下，我们将 <span class="math inline">\(A\)</span>
+称作一个事件（<em>event</em>）</li>
+<li>二元分类问题中，我们定义 <span class="math inline">\(A\)</span> 为
+<span class="math inline">\(\pi :\mathcal{X}\rightarrow
+\lbrace0,1\rbrace\)</span> ，也就有 <span class="math inline">\(A =
+\lbrace x\in\mathcal{X}: \pi(x) = 1\rbrace\)</span>
+。在这种情况下，我们也使用 <span class="math inline">\(\mathbb{P}_{x\sim
+\mathcal{D}}[\pi(x)]\)</span> 来表达 <span
+class="math inline">\(\mathcal{D}(A)\)</span> 。</li>
 </ul>
 </div></p>
-<div class="note info"><p><strong><span class="math inline">\(L_{\mathcal{D},f}\)</span> 的别称</strong></p>
-<p><span class="math inline">\(L_{\mathcal{D},f}\)</span> 又称作<strong>泛化误差</strong>（<strong><em>generalization error</em></strong>），<strong>风险</strong>（<strong><em>risk</em></strong>），<strong><span class="math inline">\(h\)</span> 的真正误差</strong>（<strong><em>true error</em> of h</strong>）</p>
+<div class="note info"><p><strong><span class="math inline">\(L_{\mathcal{D},f}\)</span>
+的别称</strong></p>
+<p><span class="math inline">\(L_{\mathcal{D},f}\)</span>
+又称作<strong>泛化误差</strong>（<strong><em>generalization
+error</em></strong>），<strong>风险</strong>（<strong><em>risk</em></strong>），<strong><span
+class="math inline">\(h\)</span> 的真正误差</strong>（<strong><em>true
+error</em> of h</strong>）</p>
 </div>
-<h2 id="a-note-about-the-information-available-to-the-learner">A Note about The Information Available to The Learner</h2>
-<p>要注意的是，<strong>学习器本身并不知晓隐含的概率分布 <span class="math inline">\(\mathcal{D}\)</span> 和 “完全正确” 的标记函数 <span class="math inline">\(f\)</span></strong> 。因此，学习器只能通过观察训练数据集，和环境交互，才能发现规律。</p>
+<h2 id="a-note-about-the-information-available-to-the-learner">A Note
+about The Information Available to The Learner</h2>
+<p>要注意的是，<strong>学习器本身并不知晓隐含的概率分布 <span
+class="math inline">\(\mathcal{D}\)</span> 和 “完全正确” 的标记函数
+<span class="math inline">\(f\)</span></strong>
+。因此，学习器只能通过观察训练数据集，和环境交互，才能发现规律。</p>
 <div class="note info"><h2 id="summary">Summary</h2>
 <ul>
-<li><strong>学习算法的输入和输出</strong>：一个学习算法接受一个<strong>训练集</strong> <span class="math inline">\(S\)</span> 作为<strong>输入</strong>，并且<strong>输出</strong>一个<strong>预测器</strong>（<em>predictor</em>） <span class="math inline">\(h_S: \mathcal{X} \rightarrow \mathcal{Y}\)</span> 。其中，训练集 <span class="math inline">\(S\)</span> 通过以下过程生成：首先从一个未知分布 <span class="math inline">\(D\)</span> 中采样，然后使用目标函数（<em>target function</em>） <span class="math inline">\(f\)</span> 标记。此外，预测器 <span class="math inline">\(h_S\)</span> 的下标 <span class="math inline">\(S\)</span> 强调了输出的 <span class="math inline">\(h_S\)</span> 是依赖于 <span class="math inline">\(S\)</span> 的。</li>
-<li><strong>学习算法的目标</strong>：学习算法的目标是找到一个 <span class="math inline">\(h_S\)</span> ，关于未知分布 <span class="math inline">\(\mathcal{D}\)</span> 和标记函数 <span class="math inline">\(f\)</span> ，它能最小化误差。</li>
+<li><strong>学习算法的输入和输出</strong>：一个学习算法接受一个<strong>训练集</strong>
+<span class="math inline">\(S\)</span>
+作为<strong>输入</strong>，并且<strong>输出</strong>一个<strong>预测器</strong>（<em>predictor</em>）
+<span class="math inline">\(h_S: \mathcal{X} \rightarrow
+\mathcal{Y}\)</span> 。其中，训练集 <span
+class="math inline">\(S\)</span> 通过以下过程生成：首先从一个未知分布
+<span class="math inline">\(D\)</span>
+中采样，然后使用目标函数（<em>target function</em>） <span
+class="math inline">\(f\)</span> 标记。此外，预测器 <span
+class="math inline">\(h_S\)</span> 的下标 <span
+class="math inline">\(S\)</span> 强调了输出的 <span
+class="math inline">\(h_S\)</span> 是依赖于 <span
+class="math inline">\(S\)</span> 的。</li>
+<li><strong>学习算法的目标</strong>：学习算法的目标是找到一个 <span
+class="math inline">\(h_S\)</span> ，关于未知分布 <span
+class="math inline">\(\mathcal{D}\)</span> 和标记函数 <span
+class="math inline">\(f\)</span> ，它能最小化误差。</li>
 </ul>
 </div>
-<h1 id="empirical-risk-minimization-erm">Empirical Risk Minimization （ERM）</h1>
+<h1 id="empirical-risk-minimization-erm">Empirical Risk Minimization
+（ERM）</h1>
 <h2 id="empirical-error">Empirical Error</h2>
-<p>由于学习器并不知道 <span class="math inline">\(\mathcal{D}\)</span> 和 <span class="math inline">\(f\)</span> ，因此，式（2.1）无法直接计算。学习器能够计算的是<strong>训练误差</strong>（<em>training error</em>），即分类器在训练数据上产生的误差，其定义如下： <span class="math display">\[
-L_S(h)\overset{def}{=}\frac{|\lbrace i\in[m]:h(x_i)\ne y_i \rbrace|}{m}\tag{2.2}
+<p>由于学习器并不知道 <span class="math inline">\(\mathcal{D}\)</span>
+和 <span class="math inline">\(f\)</span>
+，因此，式（2.1）无法直接计算。学习器能够计算的是<strong>训练误差</strong>（<em>training
+error</em>），即分类器在训练数据上产生的误差，其定义如下： <span
+class="math display">\[
+L_S(h)\overset{def}{=}\frac{|\lbrace i\in[m]:h(x_i)\ne y_i
+\rbrace|}{m}\tag{2.2}
 \]</span></p>
-<p>其中 <span class="math inline">\([m]=\lbrace 1,\dots ,m\rbrace\)</span> 。</p>
-<div class="note info"><p><strong>训练误差</strong>（<em>training error</em>）有时又称作<strong>经验误差</strong>（<strong><em>empirical error</em></strong>）或者<strong>经验风险</strong>（<strong><em>empirical risk</em></strong>）</p>
+<p>其中 <span class="math inline">\([m]=\lbrace 1,\dots
+,m\rbrace\)</span> 。</p>
+<div class="note info"><p><strong>训练误差</strong>（<em>training
+error</em>）有时又称作<strong>经验误差</strong>（<strong><em>empirical
+error</em></strong>）或者<strong>经验风险</strong>（<strong><em>empirical
+risk</em></strong>）</p>
 </div>
 <h2 id="erm">ERM</h2>
-<p>既然学习算法能够从训练数据中获取关于这个世界的简要情况，所以寻找一个在训练数据上效果良好的答案是说得通的。<strong>寻找一个最小化 <span class="math inline">\(L_S(h)\)</span> 的 <span class="math inline">\(h\)</span></strong> 的学习范式称作经验风险最小化（<strong>Empirical Risk Minimization</strong>），简称 <strong>ERM</strong></p>
-<h2 id="the-problem-of-erm-overfitting">The problem of ERM —— Overfitting</h2>
+<p>既然学习算法能够从训练数据中获取关于这个世界的简要情况，所以寻找一个在训练数据上效果良好的答案是说得通的。<strong>寻找一个最小化
+<span class="math inline">\(L_S(h)\)</span> 的 <span
+class="math inline">\(h\)</span></strong>
+的学习范式称作经验风险最小化（<strong>Empirical Risk
+Minimization</strong>），简称 <strong>ERM</strong></p>
+<h2 id="the-problem-of-erm-overfitting">The problem of ERM ——
+Overfitting</h2>
 <p>然而，ERM 可能会产生一种错误——过拟合。下面用一个例子说明。</p>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/example-of-overfitting.PNG" alt="过拟合的例子. Source:《Understanding Machine Learning: From Theory to Algorithms》" /><figcaption>过拟合的例子. Source:《Understanding Machine Learning: From Theory to Algorithms》</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/example-of-overfitting.PNG"
+alt="过拟合的例子. Source:《Understanding Machine Learning: From Theory to Algorithms》" />
+<figcaption aria-hidden="true">过拟合的例子. Source:《Understanding
+Machine Learning: From Theory to Algorithms》</figcaption>
 </figure>
-<p>假设概率分布 <span class="math inline">\(\mathcal{D}\)</span> 是灰色正方形框中的均匀分布，如果实例落在蓝色实例所在的黑色正方形框中，标记函数 <span class="math inline">\(f\)</span> 将其标记为 1，否则标记为 0。考虑如下的预测器：</p>
+<p>假设概率分布 <span class="math inline">\(\mathcal{D}\)</span>
+是灰色正方形框中的均匀分布，如果实例落在蓝色实例所在的黑色正方形框中，标记函数
+<span class="math inline">\(f\)</span> 将其标记为 1，否则标记为
+0。考虑如下的预测器：</p>
 <p><span class="math display">\[
 h_S(x)= \begin{cases}y_i\quad &amp;if\ \exists i\in[m]\ s.t. x_i=x;\\
 0\quad &amp;ohterwise. \end{cases}
 \]</span></p>
-<p>因为 <span class="math inline">\(h_S\)</span> 在训练数据上，对实例标签的预测全部正确，所以 <span class="math inline">\(L_S(h_s) = 0\)</span> 。根据经验风险最小化的原则，式子 （2.3）会被 ERM 选中（因为没有比 0 更小的训练损失）。然而如果取训练数据以外的一个点 <span class="math inline">\(x&#39;\)</span>，并且这个点在黑色正方形框中，那么根据式（2.3），<span class="math inline">\(h_S(x&#39;) = 0\)</span> 。而实际上 <span class="math inline">\(f(x&#39;) = 1\)</span>，这就会产生错误。</p>
+<p>因为 <span class="math inline">\(h_S\)</span>
+在训练数据上，对实例标签的预测全部正确，所以 <span
+class="math inline">\(L_S(h_s) = 0\)</span>
+。根据经验风险最小化的原则，式子 （2.3）会被 ERM 选中（因为没有比 0
+更小的训练损失）。然而如果取训练数据以外的一个点 <span
+class="math inline">\(x&#39;\)</span>，并且这个点在黑色正方形框中，那么根据式（2.3），<span
+class="math inline">\(h_S(x&#39;) = 0\)</span> 。而实际上 <span
+class="math inline">\(f(x&#39;) = 1\)</span>，这就会产生错误。</p>
 <p>这种现象称作<strong>“过拟合”</strong>（<em>overfitting</em>）。直观的来说，当学习算法找到的假设<strong>太符合</strong>训练数据时，就会发生过拟合。</p>
-<h2 id="empirical-risk-minimization-with-inductive-bias">Empirical Risk Minimization with Inductive Bias</h2>
-<h3 id="applying-erm-over-a-restricted-search-space">Applying ERM over a Restricted Search Space</h3>
-<p>一种常见的解决 ERM 过拟合的方法是<strong>限制 ERM 的搜索空间</strong>。规范的讲，在见到数据之前，学习器应该事先挑选出一个预测器集合。这个预测器集合又称作<strong>“假设类”</strong>（<em>hypothesis class</em>），记作 <span class="math inline">\(\mathcal{H}\)</span> 。每一个 <span class="math inline">\(h\in \mathcal{H}\)</span> 是一个 <span class="math inline">\(\mathcal{X}\rightarrow \mathcal{Y}\)</span> 的函数。<strong>给定一个假设类 <span class="math inline">\(\mathcal{H}\)</span> ，一个训练集 <span class="math inline">\(\mathcal{S}\)</span> ，<span class="math inline">\(ERM_{\mathcal{H}}\)</span> 学习器使用 ERM 规则来选取一个在 <span class="math inline">\(\mathcal{S}\)</span> 上有最小可能误差的 <span class="math inline">\(h\)</span> ，其中 <span class="math inline">\(h\in \mathcal{H}\)</span></strong> 。规范地，我们有如下公式： <span class="math display">\[
+<h2 id="empirical-risk-minimization-with-inductive-bias">Empirical Risk
+Minimization with Inductive Bias</h2>
+<h3 id="applying-erm-over-a-restricted-search-space">Applying ERM over a
+Restricted Search Space</h3>
+<p>一种常见的解决 ERM 过拟合的方法是<strong>限制 ERM
+的搜索空间</strong>。规范的讲，在见到数据之前，学习器应该事先挑选出一个预测器集合。这个预测器集合又称作<strong>“假设类”</strong>（<em>hypothesis
+class</em>），记作 <span class="math inline">\(\mathcal{H}\)</span>
+。每一个 <span class="math inline">\(h\in \mathcal{H}\)</span> 是一个
+<span class="math inline">\(\mathcal{X}\rightarrow \mathcal{Y}\)</span>
+的函数。<strong>给定一个假设类 <span
+class="math inline">\(\mathcal{H}\)</span> ，一个训练集 <span
+class="math inline">\(\mathcal{S}\)</span> ，<span
+class="math inline">\(ERM_{\mathcal{H}}\)</span> 学习器使用 ERM
+规则来选取一个在 <span class="math inline">\(\mathcal{S}\)</span>
+上有最小可能误差的 <span class="math inline">\(h\)</span> ，其中 <span
+class="math inline">\(h\in \mathcal{H}\)</span></strong>
+。规范地，我们有如下公式： <span class="math display">\[
 ERM_{\mathcal{H}}(S)\in \underset{h\in \mathcal{H}}{argmin}(L_S(h))
-\]</span> 其中，<span class="math inline">\(argmin\)</span> 表示在 <span class="math inline">\(\mathcal{H}\)</span> 中使得 <span class="math inline">\(L_S(h)\)</span> 最小的假设集合（<span class="math inline">\(h\in\mathcal{H}\)</span>）。通过限制学习器从 <span class="math inline">\(\mathcal{H}\)</span> 中选取预测器，学习器会偏向我们所特定的预测器集合。这种限制常常被称为<strong>归纳偏好</strong>（<em>inductive bias</em>）。由于这种限制的选择在学习器看到数据之前就确定了，因此在理想情况下，它应该基于一些有关所学问题的先验知识（<em>prior knowledge</em>）。</p>
+\]</span> 其中，<span class="math inline">\(argmin\)</span> 表示在 <span
+class="math inline">\(\mathcal{H}\)</span> 中使得 <span
+class="math inline">\(L_S(h)\)</span> 最小的假设集合（<span
+class="math inline">\(h\in\mathcal{H}\)</span>）。通过限制学习器从 <span
+class="math inline">\(\mathcal{H}\)</span>
+中选取预测器，学习器会偏向我们所特定的预测器集合。这种限制常常被称为<strong>归纳偏好</strong>（<em>inductive
+bias</em>）。由于这种限制的选择在学习器看到数据之前就确定了，因此在理想情况下，它应该基于一些有关所学问题的先验知识（<em>prior
+knowledge</em>）。</p>
 <p>直观地，<strong>选择一个首先更多的假设类会更好地防止过拟合的发生，但是与此同时，这可能会导致一个更强的归纳偏好</strong>。</p>
 <h3 id="finite-hypothesis-classes">Finite Hypothesis Classes</h3>
-<p>对类的最简单的限制是设置一个其大小的上界（也就是，限制 <span class="math inline">\(\mathcal{H}\)</span> 中预测器 <span class="math inline">\(h\)</span> 的个数）。对应的，我们有如下结论：</p>
+<p>对类的最简单的限制是设置一个其大小的上界（也就是，限制 <span
+class="math inline">\(\mathcal{H}\)</span> 中预测器 <span
+class="math inline">\(h\)</span> 的个数）。对应的，我们有如下结论：</p>
 <ul>
-<li><strong>只要有足够数量的训练样本，如果 <span class="math inline">\(\mathcal{H}\)</span> 是一个有限的类（<em>finite class</em>），那么 <span class="math inline">\(ERM_{\mathcal{H}}\)</span> 将不会产生过拟合。</strong></li>
+<li><strong>只要有足够数量的训练样本，如果 <span
+class="math inline">\(\mathcal{H}\)</span> 是一个有限的类（<em>finite
+class</em>），那么 <span
+class="math inline">\(ERM_{\mathcal{H}}\)</span>
+将不会产生过拟合。</strong></li>
 </ul>
 <p>那么至少需要多少训练样本呢？下面我们讨论这个问题</p>
 <p>在此之前，我们先引入两个假设：</p>
 <ol type="1">
-<li><strong>可实现假设</strong>（<strong><em>The Realizability Assumption</em></strong>）：<span class="math inline">\(\exists h^\star \in \mathcal{H},\ L_{(\mathcal{D},f)}(h^\star) = 0\)</span> 。</li>
-<li><strong>独立同分布假设</strong>（<strong><em>The i.i.d. Assumption</em></strong>）：训练数据中每一个样本都关于分布 <span class="math inline">\(\mathcal{D}\)</span> <strong>独立同分布</strong>（<strong>independently and identically distributed</strong>，short for <strong>i.i.d.</strong>），记作 <span class="math inline">\(S\sim D^m\)</span> 。其中， <span class="math inline">\(m\)</span> 是 <span class="math inline">\(S\)</span> 的大小，<span class="math inline">\(D^m\)</span> 表示了根据 <span class="math inline">\(\mathcal{D}\)</span> 采样 <span class="math inline">\(m\)</span> 个元素，构成 <span class="math inline">\(m\)</span> 元组，且每一个元素都独立于 <span class="math inline">\(m\)</span> 元组其他元素</li>
+<li><strong>可实现假设</strong>（<strong><em>The Realizability
+Assumption</em></strong>）：<span class="math inline">\(\exists h^\star
+\in \mathcal{H},\ L_{(\mathcal{D},f)}(h^\star) = 0\)</span> 。</li>
+<li><strong>独立同分布假设</strong>（<strong><em>The i.i.d.
+Assumption</em></strong>）：训练数据中每一个样本都关于分布 <span
+class="math inline">\(\mathcal{D}\)</span>
+<strong>独立同分布</strong>（<strong>independently and identically
+distributed</strong>，short for <strong>i.i.d.</strong>），记作 <span
+class="math inline">\(S\sim D^m\)</span> 。其中， <span
+class="math inline">\(m\)</span> 是 <span
+class="math inline">\(S\)</span> 的大小，<span
+class="math inline">\(D^m\)</span> 表示了根据 <span
+class="math inline">\(\mathcal{D}\)</span> 采样 <span
+class="math inline">\(m\)</span> 个元素，构成 <span
+class="math inline">\(m\)</span> 元组，且每一个元素都独立于 <span
+class="math inline">\(m\)</span> 元组其他元素</li>
 </ol>
-<div class="note info"><p><strong>有关 <code>可实现假设</code> 和 <code>独立同分布假设</code> 的补充说明</strong></p>
+<div class="note info"><p><strong>有关 <code>可实现假设</code> 和 <code>独立同分布假设</code>
+的补充说明</strong></p>
 <ul>
-<li><code>可实现假设</code> 暗示了在随机的训练样本 <span class="math inline">\(S\)</span> ，<span class="math inline">\(S\)</span> 由从 <span class="math inline">\(\mathcal{D}\)</span> 中采样，又被 <span class="math inline">\(f\)</span> 标记所得，<span class="math inline">\(L_S(h^\star) = 0\)</span> 的可能性为 1。</li>
-<li><code>独立同分布假设</code> 表示每一个 <span class="math inline">\(S\)</span> 中 <span class="math inline">\(x_i\)</span> 都是全新地从 <span class="math inline">\(\mathcal{D}\)</span> 中采样，并被 <span class="math inline">\(f\)</span> 标记后生成的。</li>
+<li><code>可实现假设</code> 暗示了在随机的训练样本 <span
+class="math inline">\(S\)</span> ，<span
+class="math inline">\(S\)</span> 由从 <span
+class="math inline">\(\mathcal{D}\)</span> 中采样，又被 <span
+class="math inline">\(f\)</span> 标记所得，<span
+class="math inline">\(L_S(h^\star) = 0\)</span> 的可能性为 1。</li>
+<li><code>独立同分布假设</code> 表示每一个 <span
+class="math inline">\(S\)</span> 中 <span
+class="math inline">\(x_i\)</span> 都是全新地从 <span
+class="math inline">\(\mathcal{D}\)</span> 中采样，并被 <span
+class="math inline">\(f\)</span> 标记后生成的。</li>
 </ul>
 </div>
-<p>此外，定义 <span class="math inline">\(\delta\)</span> 为取得一个不具代表性（<em>nonrepresentative</em>）的样本的<strong>概率</strong>，<span class="math inline">\(1-\delta\)</span> 为预测行为的<strong>置信参数</strong>（<em>confidence parameter</em>）。</p>
+<p>此外，定义 <span class="math inline">\(\delta\)</span>
+为取得一个不具代表性（<em>nonrepresentative</em>）的样本的<strong>概率</strong>，<span
+class="math inline">\(1-\delta\)</span>
+为预测行为的<strong>置信参数</strong>（<em>confidence
+parameter</em>）。</p>
 <div class="note info"><p><strong>什么叫不具代表性（<em>nonrepresentative</em>）的样本？</strong></p>
 <ul>
 <li>这个样本不能代表实例的潜在规律。如一个水果本身很好吃，但是碰巧训练样本都是不好吃的，导致学习器学到了错误的结论。其中的不好吃的训练样本即是不具代表性的样本。</li>
 </ul>
 </div>
-<p>由于我们不能确保完美的标签预测，因此这里我们进一步引入另一个用来衡量预测效果的参数，即<strong>精度参数</strong>（<em>accuracy parameter</em>）。其通常记作 <span class="math inline">\(\epsilon\)</span> 。我们用如下公式描述学习器是否获得成功：</p>
+<p>由于我们不能确保完美的标签预测，因此这里我们进一步引入另一个用来衡量预测效果的参数，即<strong>精度参数</strong>（<em>accuracy
+parameter</em>）。其通常记作 <span
+class="math inline">\(\epsilon\)</span>
+。我们用如下公式描述学习器是否获得成功：</p>
 <ul>
-<li>事件 <span class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span> 表示学习器的<strong>失败</strong></li>
-<li>事件 <span class="math inline">\(L_{(\mathcal{D},f)}(h_S)\le \epsilon\)</span> 表示学习器的<strong>近似成功</strong>。</li>
+<li>事件 <span
+class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span>
+表示学习器的<strong>失败</strong></li>
+<li>事件 <span class="math inline">\(L_{(\mathcal{D},f)}(h_S)\le
+\epsilon\)</span> 表示学习器的<strong>近似成功</strong>。</li>
 </ul>
-<p>令我们感兴趣的是，在由 <span class="math inline">\(m\)</span> 个实例构成的 <span class="math inline">\(m\)</span> 元组采样，会导致学习器失败的概率的<strong>上界</strong>。</p>
-<p>规范的，记 <span class="math inline">\(S|_{x} = \lbrace x_1,\ \dots,\ x_m\rbrace\)</span> 为训练数据的实例，我们希望找到下式的上界：</p>
+<p>令我们感兴趣的是，在由 <span class="math inline">\(m\)</span>
+个实例构成的 <span class="math inline">\(m\)</span>
+元组采样，会导致学习器失败的概率的<strong>上界</strong>。</p>
+<p>规范的，记 <span class="math inline">\(S|_{x} = \lbrace x_1,\ \dots,\
+x_m\rbrace\)</span> 为训练数据的实例，我们希望找到下式的上界：</p>
 <p><span class="math display">\[
-\mathcal{D}(\lbrace S|_{x} : L_{(\mathcal{D},f)}(h_{S}) &gt; \epsilon \rbrace)
+\mathcal{D}(\lbrace S|_{x} : L_{(\mathcal{D},f)}(h_{S}) &gt; \epsilon
+\rbrace)
 \]</span></p>
-<p>记 <span class="math inline">\(\mathcal{H}_B\)</span> 为“坏的”假设，即</p>
+<p>记 <span class="math inline">\(\mathcal{H}_B\)</span>
+为“坏的”假设，即</p>
 <p><span class="math display">\[
-\mathcal{H}_B = \lbrace h\in\mathcal{H}: L_{(\mathcal{D},f)}(h) &gt; \epsilon\rbrace
+\mathcal{H}_B = \lbrace h\in\mathcal{H}: L_{(\mathcal{D},f)}(h) &gt;
+\epsilon\rbrace
 \]</span></p>
 <p>再令</p>
 <p><span class="math display">\[
 M = \lbrace S|_x : \exists h\in \mathcal{H}_B, L_S(h) = 0 \rbrace
 \]</span></p>
-<p>显然，<span class="math inline">\(M\)</span> 表示了误导学习器的样本集合。换句话说，对于每一个 <span class="math inline">\(S|_x \in M\)</span> ，存在一个坏的假设，<span class="math inline">\(h\in \mathcal{H}_B\)</span> ，但是在 <span class="math inline">\(S|_x\)</span> 中它看上去是一个好的假设。</p>
-<p>既然可实现假设表示存在 <span class="math inline">\(L_S(h_S) = 0\)</span> ，因此，事件 <span class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span> 只可能在这种情况下发生：<span class="math inline">\(h\in \mathcal{H}_B\)</span> ，但是 <span class="math inline">\(L_S(h) = 0\)</span> 。也就是说，<strong>如果我们的采样样本在误导集合中，这种事件才会发生</strong>。因此，我们有：</p>
+<p>显然，<span class="math inline">\(M\)</span>
+表示了误导学习器的样本集合。换句话说，对于每一个 <span
+class="math inline">\(S|_x \in M\)</span> ，存在一个坏的假设，<span
+class="math inline">\(h\in \mathcal{H}_B\)</span> ，但是在 <span
+class="math inline">\(S|_x\)</span> 中它看上去是一个好的假设。</p>
+<p>既然可实现假设表示存在 <span class="math inline">\(L_S(h_S) =
+0\)</span> ，因此，事件 <span
+class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span>
+只可能在这种情况下发生：<span class="math inline">\(h\in
+\mathcal{H}_B\)</span> ，但是 <span class="math inline">\(L_S(h) =
+0\)</span>
+。也就是说，<strong>如果我们的采样样本在误导集合中，这种事件才会发生</strong>。因此，我们有：</p>
 <p><span class="math display">\[
-\lbrace S|_{x} : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace \subseteq M
+\lbrace S|_{x} : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace \subseteq
+M
 \]</span></p>
 <p>进一步的，<span class="math inline">\(M\)</span> 可改写成：</p>
 <p><span class="math display">\[
-M = \underset{h\in \mathcal{H}_B}{\bigcup} \lbrace S|_x : L_S(h) = 0\rbrace \tag{2.5}
+M = \underset{h\in \mathcal{H}_B}{\bigcup} \lbrace S|_x : L_S(h) =
+0\rbrace \tag{2.5}
 \]</span></p>
 <p>因此，</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace) \le \mathcal{D}^m(M) = \mathcal{D}^m({\cup}_{h\in \mathcal{H}_B} \lbrace S|_x : L_S(h) = 0\rbrace) \tag{2.6}
+\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt;
+\epsilon\rbrace) \le \mathcal{D}^m(M) = \mathcal{D}^m({\cup}_{h\in
+\mathcal{H}_B} \lbrace S|_x : L_S(h) = 0\rbrace) \tag{2.6}
 \]</span></p>
 <p>利用 <code>Union Bound</code> 定理，可得：</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace) \le \underset{h\in \mathcal{H}_B}{\sum}\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace)\tag{2.7}
+\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt;
+\epsilon\rbrace) \le \underset{h\in
+\mathcal{H}_B}{\sum}\mathcal{D}^m(\lbrace S|_x : L_S(h) =
+0\rbrace)\tag{2.7}
 \]</span></p>
 <div class="note info"><p><strong>定理（Union Bound）</strong></p>
 <ul>
-<li>对于两个集合 <span class="math inline">\(A\)</span>，<span class="math inline">\(B\)</span> 和分布 <span class="math inline">\(\mathcal{D}\)</span> ，有 <span class="math display">\[
+<li>对于两个集合 <span class="math inline">\(A\)</span>，<span
+class="math inline">\(B\)</span> 和分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，有 <span
+class="math display">\[
 \mathcal{D}(A\cup B) \le \mathcal{D}(A) + \mathcal{D}(B)
 \]</span></li>
 </ul>
 </div>
-<p>由于事件 <span class="math inline">\(L_S(h) = 0\)</span> 等价于 <span class="math inline">\(\forall i, h(x_i) = f(x_i)\)</span> ，所以，</p>
+<p>由于事件 <span class="math inline">\(L_S(h) = 0\)</span> 等价于 <span
+class="math inline">\(\forall i, h(x_i) = f(x_i)\)</span> ，所以，</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace) = \mathcal{D}^m(\lbrace S|_x : \forall i, h(x_i) = f(x_i) \rbrace)
+\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace) = \mathcal{D}^m(\lbrace
+S|_x : \forall i, h(x_i) = f(x_i) \rbrace)
 \]</span></p>
-<p>又因为采样训练样本相互独立，且服从同一个分布 <span class="math inline">\(\mathcal{D}\)</span> ，因此，</p>
+<p>又因为采样训练样本相互独立，且服从同一个分布 <span
+class="math inline">\(\mathcal{D}\)</span> ，因此，</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : \forall i, h(x_i) = f(x_i) \rbrace) = \prod_{i=1}^{m}\mathcal{D}(\lbrace x_i : h(x_i) = f(x_i) \rbrace)
+\mathcal{D}^m(\lbrace S|_x : \forall i, h(x_i) = f(x_i) \rbrace) =
+\prod_{i=1}^{m}\mathcal{D}(\lbrace x_i : h(x_i) = f(x_i) \rbrace)
 \]</span></p>
 <p>故有</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace) = \prod_{i=1}^{m}\mathcal{D}(\lbrace x_i : h(x_i) = f(x_i) \rbrace) \tag{2.8}
+\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace) =
+\prod_{i=1}^{m}\mathcal{D}(\lbrace x_i : h(x_i) = f(x_i) \rbrace)
+\tag{2.8}
 \]</span></p>
 <p>对于训练集中每一个独立的元素，有</p>
 <p><span class="math display">\[
 {D}(\lbrace x_i : h(x_i) = y_i \rbrace) = 1 - L_{(\mathcal{D},f)}
 \]</span></p>
-<p>由于 <span class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span> ，故</p>
+<p>由于 <span
+class="math inline">\(L_{(\mathcal{D},f)}(h_s)&gt;\epsilon\)</span>
+，故</p>
 <p><span class="math display">\[
-{D}(\lbrace x_i : h(x_i) = y_i \rbrace) = 1 - L_{(\mathcal{D},f)} \le 1 - \epsilon
+{D}(\lbrace x_i : h(x_i) = y_i \rbrace) = 1 - L_{(\mathcal{D},f)} \le 1
+- \epsilon
 \]</span></p>
-<p>利用 <span class="math inline">\(1-\epsilon \le e^{-\epsilon}\)</span> 不等式对上式放缩，有</p>
+<p>利用 <span class="math inline">\(1-\epsilon \le
+e^{-\epsilon}\)</span> 不等式对上式放缩，有</p>
 <p><span class="math display">\[
-{D}(\lbrace x_i : h(x_i) = y_i \rbrace) = 1 - L_{(\mathcal{D},f)} \le 1 - \epsilon \le e^{- \epsilon}
+{D}(\lbrace x_i : h(x_i) = y_i \rbrace) = 1 - L_{(\mathcal{D},f)} \le 1
+- \epsilon \le e^{- \epsilon}
 \]</span></p>
 <p>将上式带入式（2.8），有</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace)\le (1 - \epsilon)^m \le e^{- m\epsilon} \tag{2.9}
+\mathcal{D}^m(\lbrace S|_x : L_S(h) = 0\rbrace)\le (1 - \epsilon)^m \le
+e^{- m\epsilon} \tag{2.9}
 \]</span></p>
 <p>结合式（2.7），有</p>
 <p><span class="math display">\[
-\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace) \le |\mathcal{H}_B|e^{- m\epsilon} \le |\mathcal{H}|e^{- m\epsilon}
+\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt;
+\epsilon\rbrace) \le |\mathcal{H}_B|e^{- m\epsilon} \le
+|\mathcal{H}|e^{- m\epsilon}
 \]</span></p>
-<p>设 <span class="math inline">\(\mathcal{D}^m(\lbrace S|_x : L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace) \le |\mathcal{H}|e^{- m\epsilon}&lt; \delta\)</span> ，则有</p>
+<p>设 <span class="math inline">\(\mathcal{D}^m(\lbrace S|_x :
+L_{(\mathcal{D},f)}(h_S) &gt; \epsilon\rbrace) \le |\mathcal{H}|e^{-
+m\epsilon}&lt; \delta\)</span> ，则有</p>
 <p><span class="math display">\[
 m &gt; \frac{log(\frac{|\mathcal{H}|}{\delta})}{\epsilon}
 \]</span></p>
@@ -597,15 +807,37 @@ m&gt; \frac{log(\frac{|\mathcal{H}|}{\delta})}{\epsilon}
 \]</span></p>
 </div>
 <p>综上所述，有如下重要结论：</p>
-<div class="note info"><p>设 <span class="math inline">\(\mathcal{H}\)</span> 为一个有限的假设类，令 <span class="math inline">\(\delta \in (0,1)\)</span> ，<span class="math inline">\(\epsilon &gt; 0\)</span> ，<span class="math inline">\(m\)</span> 为一个满足以下条件的整数： <span class="math display">\[
+<div class="note info"><p>设 <span class="math inline">\(\mathcal{H}\)</span>
+为一个有限的假设类，令 <span class="math inline">\(\delta \in
+(0,1)\)</span> ，<span class="math inline">\(\epsilon &gt; 0\)</span>
+，<span class="math inline">\(m\)</span> 为一个满足以下条件的整数：
+<span class="math display">\[
 m&gt; \frac{log(\frac{|\mathcal{H}|}{\delta})}{\epsilon}
-\]</span> 那么，对于任意的标记函数 <span class="math inline">\(f\)</span> ，任意的分布 <span class="math inline">\(\mathcal{D}\)</span> ，如果满足可实现假设（即，存在 <span class="math inline">\(h\in \mathcal{H}\)</span> ，使得 <span class="math inline">\(L_{(\mathcal{D},f)}(h) = 0\)</span>），则至少有 <span class="math inline">\(1-\delta\)</span> 的可能性，在 <span class="math inline">\(S\)</span> 上独立采样 <span class="math inline">\(m\)</span> 个点，对于每一个 <span class="math inline">\(ERM\)</span> 假设，满足如下式子： <span class="math display">\[
+\]</span> 那么，对于任意的标记函数 <span
+class="math inline">\(f\)</span> ，任意的分布 <span
+class="math inline">\(\mathcal{D}\)</span>
+，如果满足可实现假设（即，存在 <span class="math inline">\(h\in
+\mathcal{H}\)</span> ，使得 <span
+class="math inline">\(L_{(\mathcal{D},f)}(h) = 0\)</span>），则至少有
+<span class="math inline">\(1-\delta\)</span> 的可能性，在 <span
+class="math inline">\(S\)</span> 上独立采样 <span
+class="math inline">\(m\)</span> 个点，对于每一个 <span
+class="math inline">\(ERM\)</span> 假设，满足如下式子： <span
+class="math display">\[
 L_{(\mathcal{D},f)}(h_S) \le \epsilon
 \]</span></p>
 </div>
-<p>这个结论意味着，只要有足够的训练数据（<span class="math inline">\(m&gt; \frac{log(\frac{|\mathcal{H}|}{\delta})}{\epsilon}\)</span>），在有限假设类上的 <span class="math inline">\(ERM_{\mathcal{H}}\)</span> 会尽可能近似正确（其置信参数为 <span class="math inline">\(1-\delta\)</span> ，最大的误差为 <span class="math inline">\(\epsilon\)</span>）。</p>
+<p>这个结论意味着，只要有足够的训练数据（<span
+class="math inline">\(m&gt;
+\frac{log(\frac{|\mathcal{H}|}{\delta})}{\epsilon}\)</span>），在有限假设类上的
+<span class="math inline">\(ERM_{\mathcal{H}}\)</span>
+会尽可能近似正确（其置信参数为 <span
+class="math inline">\(1-\delta\)</span> ，最大的误差为 <span
+class="math inline">\(\epsilon\)</span>）。</p>
 <h1 id="reference">Reference</h1>
-<p>Shai Shalev-Shwartz, Shai Ben-David. <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html" target="_blank" rel="noopener">Understanding Machine Learning: From Theory to Algorithms</a></p>
+<p>Shai Shalev-Shwartz, Shai Ben-David. <a
+href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html">Understanding
+Machine Learning: From Theory to Algorithms</a></p>
 
     </div>
 
@@ -728,7 +960,7 @@ L_{(\mathcal{D},f)}(h_S) \le \epsilon
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

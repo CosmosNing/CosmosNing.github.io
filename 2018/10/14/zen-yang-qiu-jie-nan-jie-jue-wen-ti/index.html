@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="CosmosNing的个人博客">
 <meta property="og:description" content="从旅行商问题说起">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/14/cover.jpg?raw=true">
 <meta property="article:published_time" content="2018-10-14T06:26:57.000Z">
-<meta property="article:modified_time" content="2021-05-14T12:17:25.504Z">
+<meta property="article:modified_time" content="2023-05-24T12:41:51.607Z">
 <meta property="article:author" content="CosmosNing">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="Grokking Algorithms">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/14/cover.jpg?raw=true">
 
 
 <link rel="canonical" href="https://cosmosning.github.io/2018/10/14/zen-yang-qiu-jie-nan-jie-jue-wen-ti/">
@@ -165,11 +163,6 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
-
-  </li>
-        <li class="menu-item menu-item-neo4j">
-
-    <a href="/neo4j/" rel="section"><i class="fa fa-book fa-fw"></i>neo4j</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -348,7 +341,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-14 20:17:25" itemprop="dateModified" datetime="2021-05-14T20:17:25+08:00">2021-05-14</time>
+        <time title="修改时间：2023-05-24 20:41:51" itemprop="dateModified" datetime="2023-05-24T20:41:51+08:00">2023-05-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -396,13 +389,22 @@
     <div class="post-body" itemprop="articleBody">
         <h2 id="引入">引入</h2>
 <figure>
-<img data-src="https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/10/14/cover.jpg?raw=true" alt="cover" /><figcaption>cover</figcaption>
+<img
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/10/14/cover.jpg?raw=true"
+alt="cover" />
+<figcaption aria-hidden="true">cover</figcaption>
 </figure>
-<p>在之前的文章中，我们遇到的问题，其对应的算法都在我们所能容忍的时间给出结果（这些问题被称作<strong>“可解决问题”</strong>）。但是，对于有些问题，通过传统的解决办法，我们甚至在有生之年也得不到结果（这些问题被称作<strong>“难解决问题”</strong>）。在这些问题中，一个比较著名的便是今天我们要一起探讨的旅行商问题（<em>Travelling salesman problem</em> ，简写为 <em>TSP</em> ）。</p>
+<p>在之前的文章中，我们遇到的问题，其对应的算法都在我们所能容忍的时间给出结果（这些问题被称作<strong>“可解决问题”</strong>）。但是，对于有些问题，通过传统的解决办法，我们甚至在有生之年也得不到结果（这些问题被称作<strong>“难解决问题”</strong>）。在这些问题中，一个比较著名的便是今天我们要一起探讨的旅行商问题（<em>Travelling
+salesman problem</em> ，简写为 <em>TSP</em> ）。</p>
 <h2 id="旅行商问题">旅行商问题</h2>
 <p>维基百科中，给出了旅行商问题的描述。具体如下：</p>
 <blockquote>
-<p>The <strong>travelling salesman problem</strong> (<strong>TSP</strong>) asks the following question: "Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city and returns to the origin city?" <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The <strong>travelling salesman
+problem</strong> (<strong>TSP</strong>) asks the following question:
+"Given a list of cities and the distances between each pair of cities,
+what is the shortest possible route that visits each city and returns to
+the origin city?" <a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></p>
 </blockquote>
 <p>也就是说，如果已知一个城市列表以及每一对城市之间的距离，如何找到一条回路，这条回路到达过列表中的每一个城市并且总路径长度最短？</p>
 <p>碰到这个问题，我想你脑中瞬间蹦出的解决方案就是穷举。下面，我们简单看看针对这个问题的穷举解法。</p>
@@ -412,8 +414,11 @@
 <p>利用伪码描述，具体如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function TSP_Exhaustion(city_list)</span><br><span class="line">    shortest_path &#x3D; NULL               &#x2F;&#x2F; 记录回路方案，初始为NULL  </span><br><span class="line">    shortest_dist &#x3D; ∞                  &#x2F;&#x2F; 记录回路方案中最短路径长度,初始化为无穷大</span><br><span class="line">    </span><br><span class="line">    foreach permutation in city_list   &#x2F;&#x2F; permutation表示city_list中的一个排列</span><br><span class="line">        dist &#x3D; CalcDist(permutation)   &#x2F;&#x2F; 计算当前排列方案下的路径长度</span><br><span class="line">        if dist &lt; shortest_path        &#x2F;&#x2F; 如果找到更小的，更新方案和最短路径</span><br><span class="line">            shortest_dist &#x3D; dist</span><br><span class="line">            shortest_path &#x3D; permutation</span><br><span class="line">    </span><br><span class="line">    return shortest_path, shortest_dist&#x2F;&#x2F;返回结果</span><br></pre></td></tr></table></figure>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p>仔细观察上述的伪码描述，我们很容易知道，该算法最耗时间的部分便是枚举城市列表中的排列部分。对于一个容量大小为 <em>N</em> 的城市列表，它所有的排列为 <em>N!</em> 。所以，该算法的时间复杂度为 <em>O( N !)</em> 。</p>
-<p>这样的时间复杂度是什么概念？如果计算机可以 1秒 处理一个上述的排列，那么针对不同的数据量 <em>N</em> ,</p>
+<p>仔细观察上述的伪码描述，我们很容易知道，该算法最耗时间的部分便是枚举城市列表中的排列部分。对于一个容量大小为
+<em>N</em> 的城市列表，它所有的排列为 <em>N!</em>
+。所以，该算法的时间复杂度为 <em>O( N !)</em> 。</p>
+<p>这样的时间复杂度是什么概念？如果计算机可以 1秒
+处理一个上述的排列，那么针对不同的数据量 <em>N</em> ,</p>
 <p>有如下表格。</p>
 <table>
 <thead>
@@ -451,17 +456,23 @@
 <li>找到贪心选择的策略</li>
 <li>依据第一步设定的贪心策略在一个有限集上不断迭代</li>
 </ol>
-<p>依据上两个关键部分，我们能够利用贪心算法解决一些 <strong>难解决问题</strong> 。</p>
+<p>依据上两个关键部分，我们能够利用贪心算法解决一些
+<strong>难解决问题</strong> 。</p>
 <h3 id="算法简述-1">算法简述</h3>
 <p>对于旅行商问题，我们可以先随机选取一个城市作为起点，每次选取未被访问的并且路径最短的城市作为旅行商的下一站。以这个策略在城市列表中进行迭代，当所有城市都访问过后，就可以获得一个旅行商问题的看起来还不错的解。</p>
 <p>其伪码描述如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function TSP_Greedy(city_list)</span><br><span class="line">    visited &#x3D; NULL                      &#x2F;&#x2F; 存放已经访问过的城市，初始化为NULL</span><br><span class="line">    dist &#x3D; 0                            &#x2F;&#x2F; 记录贪心算法找到的近似最短路径长度</span><br><span class="line">    </span><br><span class="line">    rand_i &#x3D; rand(city_list.length)     &#x2F;&#x2F; 随机选取一个城市列表长度范围内的下标</span><br><span class="line">    start_city &#x3D; city_list[rand_i]      &#x2F;&#x2F; 将其作为起点</span><br><span class="line">    visited.add(start_city)             &#x2F;&#x2F; 标记其已被访问过</span><br><span class="line">    city_current &#x3D; start_city           &#x2F;&#x2F; 当前旅行商所在的城市</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F; 寻找下一个没有访问过的并且从当前城市出发路径最短的下一个城市</span><br><span class="line">    city_next &#x3D; FindNextShortestCity(start_city, visited)</span><br><span class="line">    </span><br><span class="line">    while city_next !&#x3D; NULL             &#x2F;&#x2F; 所有的城市还未访问完</span><br><span class="line">        &#x2F;&#x2F; 计算路径长度</span><br><span class="line">        dist +&#x3D; CalcDistBetweenCities(city_current, city_next)</span><br><span class="line">        city_current &#x3D; city_next        &#x2F;&#x2F; 旅行商到达下一个城市</span><br><span class="line">        visited.add(city_current)       &#x2F;&#x2F; 标记已被访问过</span><br><span class="line">        &#x2F;&#x2F; 寻找下一个城市</span><br><span class="line">        city_next &#x3D; FindNextShortestCity(city_current, visited)</span><br><span class="line">    </span><br><span class="line">    return visited, dist                &#x2F;&#x2F; 返回结果</span><br></pre></td></tr></table></figure>
 <h3 id="复杂度分析-1">复杂度分析</h3>
-<p>假设数据量为 <em>N</em> ，<code>while</code> 循环大约消耗 <em>N</em> 步，函数 <code>find_next_shortest_city</code> 也会消耗 <em>N</em> 步，所以贪心算法在 <em>TSP</em> 问题中的时间复杂度为 <span class="math inline">\(O(N^{2})\)</span> 。</p>
+<p>假设数据量为 <em>N</em> ，<code>while</code> 循环大约消耗 <em>N</em>
+步，函数 <code>find_next_shortest_city</code> 也会消耗 <em>N</em>
+步，所以贪心算法在 <em>TSP</em> 问题中的时间复杂度为 <span
+class="math inline">\(O(N^{2})\)</span> 。</p>
 <h2 id="tsp贪心算法实现">TSP贪心算法实现</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 城市列表</span></span><br><span class="line">cities = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存任意两个城市的距离</span></span><br><span class="line">costs = &#123;&#125;</span><br><span class="line">costs[<span class="string">'A'</span>] = &#123;<span class="string">'B'</span>: <span class="number">1</span>, <span class="string">'C'</span>: <span class="number">2</span>, <span class="string">'D'</span>: <span class="number">3</span>, <span class="string">'E'</span>: <span class="number">4</span>&#125;</span><br><span class="line">costs[<span class="string">'B'</span>] = &#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'C'</span>: <span class="number">2</span>, <span class="string">'D'</span>: <span class="number">3</span>, <span class="string">'E'</span>: <span class="number">4</span>&#125;</span><br><span class="line">costs[<span class="string">'C'</span>] = &#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'B'</span>: <span class="number">2</span>, <span class="string">'D'</span>: <span class="number">3</span>, <span class="string">'E'</span>: <span class="number">4</span>&#125;</span><br><span class="line">costs[<span class="string">'D'</span>] = &#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'B'</span>: <span class="number">2</span>, <span class="string">'C'</span>: <span class="number">3</span>, <span class="string">'E'</span>: <span class="number">4</span>&#125;</span><br><span class="line">costs[<span class="string">'E'</span>] = &#123;<span class="string">'A'</span>: <span class="number">1</span>, <span class="string">'B'</span>: <span class="number">2</span>, <span class="string">'C'</span>: <span class="number">3</span>, <span class="string">'D'</span>: <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_next_shortest_city</span><span class="params">(src, searched)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    寻找下一个没有访问过的并且从当前城市出发路径最短的下一个城市</span></span><br><span class="line"><span class="string">    :param src: 当前的起点</span></span><br><span class="line"><span class="string">    :param searched: 已被访问过的城市集合</span></span><br><span class="line"><span class="string">    :return: 符合要求的下一个城市</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    shortest_city = <span class="literal">None</span></span><br><span class="line">    shortest_dist = float(<span class="string">'inf'</span>)</span><br><span class="line">    <span class="keyword">for</span> city, dist <span class="keyword">in</span> costs[src].items():</span><br><span class="line">        <span class="keyword">if</span> dist &lt; shortest_dist <span class="keyword">and</span> city <span class="keyword">not</span> <span class="keyword">in</span> searched:</span><br><span class="line">            shortest_city = city</span><br><span class="line">            shortest_dist = dist</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> shortest_city</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tsp_greedy</span><span class="params">(city_list)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    利用贪心算法近似解决TSP问题</span></span><br><span class="line"><span class="string">    :param city_list: 城市列表</span></span><br><span class="line"><span class="string">    :return: 访问回路方案（列表），最小代价（整数）</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    visited = []                            <span class="comment"># 存放已经访问过的城市，初始化为NULL</span></span><br><span class="line">    dist = <span class="number">0</span>                                <span class="comment"># 记录贪心算法找到的近似最短路径长度</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 随机选取一个城市列表长度范围内的下标</span></span><br><span class="line">    rand_i = random.randint(<span class="number">0</span>, len(city_list) - <span class="number">1</span>)</span><br><span class="line">    start_city = city_list[rand_i]          <span class="comment"># 将其作为起点</span></span><br><span class="line">    visited.append(start_city)              <span class="comment"># 标记其已被访问过</span></span><br><span class="line">    city_current = start_city               <span class="comment"># 当前旅行商所在的城市</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 寻找下一个没有访问过的并且从当前城市出发路径最短的下一个城市</span></span><br><span class="line">    city_next = find_next_shortest_city(start_city, visited)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> city_next <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:            <span class="comment"># 所有的城市还未访问</span></span><br><span class="line">        <span class="comment"># 计算路径长度</span></span><br><span class="line">        dist += costs[city_current][city_next]</span><br><span class="line">        city_current = city_next            <span class="comment"># 旅行商到达下一个城市</span></span><br><span class="line">        visited.append(city_current)        <span class="comment"># 标记已被访问过</span></span><br><span class="line">        <span class="comment"># 寻找下一个城市</span></span><br><span class="line">        city_next = find_next_shortest_city(city_current, visited)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> visited, dist</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    v, d = tsp_greedy(cities)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"回路路径方案："</span>)</span><br><span class="line">    print(<span class="string">"-&gt;"</span>.join(v))</span><br><span class="line">    print(<span class="string">"路径长度："</span>)</span><br><span class="line">    print(d)</span><br></pre></td></tr></table></figure>
 <h2 id="总结">总结</h2>
-<p>今天我和你一起了解到 <strong>旅行商问题</strong> 这类难解决问题，这类问题通常难以在可容忍的时间内获得其精确解。为了快速获得一个可能的解，可以利用近似算法逼近精确解。进一步，我们了解到<strong>贪心算法</strong>——一种近似算法，并实现了用于解决 <strong>TSP</strong> 的贪心算法。</p>
+<p>今天我和你一起了解到 <strong>旅行商问题</strong>
+这类难解决问题，这类问题通常难以在可容忍的时间内获得其精确解。为了快速获得一个可能的解，可以利用近似算法逼近精确解。进一步，我们了解到<strong>贪心算法</strong>——一种近似算法，并实现了用于解决
+<strong>TSP</strong> 的贪心算法。</p>
 <p>最后，我将本文的要点总结如下：</p>
 <ol type="1">
 <li><strong>旅行商问题这类难解决问题可以通过近似算法获得近似解</strong></li>
@@ -472,10 +483,13 @@
 <li><strong>依据第一步设定的贪心策略在一个有限集上不断迭代</strong></li>
 </ol></li>
 </ol>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>https://en.wikipedia.org/wiki/Travelling_salesman_problem<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></p></li>
+<li id="fn1"
+role="doc-endnote"><p>https://en.wikipedia.org/wiki/Travelling_salesman_problem<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -600,7 +614,7 @@
 <div class="copyright">
   
   &copy; 2018 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
