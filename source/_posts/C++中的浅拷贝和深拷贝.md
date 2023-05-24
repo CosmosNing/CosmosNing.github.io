@@ -14,7 +14,7 @@ categories:
 
 > （导读）短文一篇。主要介绍浅拷贝和深拷贝的含义以及在 C++ 中的实现
 
-![封面图片](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/05/cristian-lozan-lb5yppoIEWk-unsplash.jpg)
+![封面图片](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/05/cristian-lozan-lb5yppoIEWk-unsplash.jpg)
 
 Photo by [Cristian Lozan](https://unsplash.com/@chrisslozan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/t/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 

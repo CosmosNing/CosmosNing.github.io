@@ -59,7 +59,7 @@ Keyword-to-SPARQL 方法的**关键**是在 RDF 数据中找到一个**子图**�
 
 ## Overview
 
-![Overview of KAT. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/overview-of-kat.PNG)
+![Overview of KAT. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/overview-of-kat.PNG)
 
 * **离线创建索引**（*Offline Two-Facet Indexing*）：在离线处理流程中，系统将会创建两个索引，包括**关键词索引**和**图索引**。
 * **创建关键词-元素映射**（*Keyword-to-Element Mapping*）：当用户提交了一个关键词查询任务后，KAT 通过离线生成的关键词索引，将关键词映射到与之相关的顶点和边（这些顶点和边被称为 *keyword elements*）。
@@ -83,7 +83,7 @@ Keyword-to-SPARQL 方法的**关键**是在 RDF 数据中找到一个**子图**�
 
 为了减少关键词的二义性，这篇文章提出了一种混合索引，作为关键词索引。这个索引**包含了** RDF 数据中各个术语（*terms*）的**类别信息**。其具体结构如下图所示：
 
-![Hybird Index. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/hybird-index.PNG)
+![Hybird Index. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/hybird-index.PNG)
 
 * 每一个术语（*term*）都指向一个由与之相关的所有可能的 RDF 类构成的 B 树。
 * 包含术语的元素用 $(v_C,\ l_A,\ v_L)$ 表示，并且赋给 B 树上的对应结点，其中 $v_C\in V_C,\ l_A\in L_A,\ v_L\in V_L$ 。
@@ -110,13 +110,13 @@ Keyword-to-SPARQL 方法的**关键**是在 RDF 数据中找到一个**子图**�
 
 捕捉**实体类别中的关系**形成一个较小的 summary graph，并将其当作图索引。一个例子如下图所示：
 
-![Summary graph. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/summary-graph.PNG)
+![Summary graph. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/summary-graph.PNG)
 
 **图探索基本过程**
 
 进行图探索常用的方法是后向搜索算法（*backward search algorithm*）。它在图索引上搜索符合条件的子图。该算法从关键词元素开始，然后沿着边进行迭代遍历，直到找到所有的连接点（*connecting vertices*）。一个例子如下图所示：
 
-![Subgraphs. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/subgraph.PNG)
+![Subgraphs. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/subgraph.PNG)
 
 ## Context Aware Ranking
 
@@ -136,7 +136,7 @@ Keyword-to-SPARQL 方法的**关键**是在 RDF 数据中找到一个**子图**�
 
 下图算法 1 描述了关键词元素打分的流程：
 
-![Algorithm 1. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/algorithm-1.PNG)
+![Algorithm 1. Source: "KAT: Keywords-to-SPARQL Translation Over RDF Graphs"](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/algorithm-1.PNG)
 
 每个元素的分数都初始化为 **0** ，并且基于上述三条规则递增。第 3 - 7 行遵循了第 1、2 条规则，第 8 - 12 行遵循了第 3 条规则。下式给出了计算 $c_1$ 类和 $c_2$ 类的 semantic similarity 的方法：
 $$

@@ -10,7 +10,7 @@ categories:
 - 一起读
 ---
 
-![cover](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/cover.jpg?raw=true)
+![cover](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/cover.jpg?raw=true)
 
 
 
@@ -22,7 +22,7 @@ categories:
 
 
 
-![数组在内存中的存储示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![数组在内存中的存储示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -64,7 +64,7 @@ $$
 
  
 
-![数组在内存中的存储示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![数组在内存中的存储示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%AD%98%E5%82%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -96,7 +96,7 @@ $$
 
 
 
-![链表示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![链表示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -116,7 +116,7 @@ $$
 
 
 
-![链表增添示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%A2%9E%E6%B7%BB%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![链表增添示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%A2%9E%E6%B7%BB%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -124,7 +124,7 @@ $$
 
 
 
-![链表插入示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![链表插入示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E6%8F%92%E5%85%A5%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -132,7 +132,7 @@ $$
 
 
 
-![链表删除示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E7%A4%BA%E4%BE%8B.jpg?raw=true)
+![链表删除示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E7%A4%BA%E4%BE%8B.jpg?raw=true)
 
 
 
@@ -142,7 +142,7 @@ $$
 
 
 
-![数组链表混合结构](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E6%B7%B7%E5%90%88%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.jpg?raw=true)
+![数组链表混合结构](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2018/08/04/%E6%95%B0%E7%BB%84%E9%93%BE%E8%A1%A8%E6%B7%B7%E5%90%88%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.jpg?raw=true)
 
 
 

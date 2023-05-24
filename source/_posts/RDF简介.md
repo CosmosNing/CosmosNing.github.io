@@ -29,7 +29,7 @@ RDF 全称 Resource Description Framework（资源描述框架），是一种数
 
 每一个三元组都可以通过图（graph）来表示，具体如下图：
 
-![三元组图示](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/triple.png)
+![三元组图示](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/triple.png)
 
 # 存储方式及其结构
 

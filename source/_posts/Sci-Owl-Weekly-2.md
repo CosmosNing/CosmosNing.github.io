@@ -13,13 +13,13 @@ Sci-Owl Weekly，每周日更新。
 
 本周刊欢迎读者的建议与投稿，请发送相关信息至 [cosmosning@gmail.com](mailto:cosmosning@gmail.com) 。
 
-![封面图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/james-toose-zWA7Obpb4R4-unsplash.jpg)
+![封面图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/james-toose-zWA7Obpb4R4-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@portablepeopleproductions?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">James Toose</a>. <a href="https://unsplash.com/s/photos/owl?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
 # 别让骗子利用你的声音
 
-![骗子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/bermix-studio-F7DAQIDSk98-unsplash.jpg)
+![骗子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/bermix-studio-F7DAQIDSk98-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@bermixstudio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bermix Studio</a>. <a href="https://unsplash.com/s/photos/fraud?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -33,7 +33,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 * [Canalys：二季度华为全球智能手机市场首超三星夺冠](https://www.donews.com/news/detail/2/3105457.html)
 
-![Canalys 报告](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/Canalys_Report.jpg)
+![Canalys 报告](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/Canalys_Report.jpg)
 
 <p class="img-credit">Source：<span>Canalys 报告</span></p>
 
@@ -43,7 +43,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 * [字节跳动部分投资者对 TikTok 收购估值约 500 亿美元](https://tech.163.com/20/0729/19/FINQ7D4M00097U7R.html)
 
-![TikTok](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kon-karampelas-12TzzNLc2QM-unsplash.jpg)
+![TikTok](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/kon-karampelas-12TzzNLc2QM-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@konkarampelas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kon Karampelas</a>. <a href="https://unsplash.com/s/photos/tiktok?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -55,7 +55,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 * [NASA 的火星外星生命探索](https://www.technologyreview.com/2020/07/29/1005770/nasas-new-mars-rover-perseverance-bristling-tech-find-signs-alien-life/)
 
-![探测器](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/brian-mcgowan-5_Z3YVosrCw-unsplash.jpg)
+![探测器](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/brian-mcgowan-5_Z3YVosrCw-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@sushioutlaw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Brian McGowan</a>. <a href="https://unsplash.com/s/photos/mars-planet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -65,7 +65,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 *  [化学实验助理机器人](https://www.theverge.com/21317052/mobile-autonomous-robot-lab-assistant-research-speed)
 
-![化学实验助理机器人](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/robo-lab-assistant.png)
+![化学实验助理机器人](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/robo-lab-assistant.png)
 
 <p class="img-credit">Credit：University of Liverpool</p>
 
@@ -101,7 +101,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 *  [美的令人窒息！色彩绚丽的细菌灯](https://www.janklingler.com/)
 
-![细菌灯](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/bacteria-lamp.jpg)
+![细菌灯](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/bacteria-lamp.jpg)
 
 <p class="img-credit">Credit：trendnomad.com</p>
 
@@ -117,7 +117,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 *  [从手到口：如果语言起源于手势，为什么口语成为目前语言的主要交流方式](https://aeon.co/essays/if-language-began-in-the-hands-why-did-it-ever-leave)
 
-![从手语到口语](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/kristina-flour-BcjdbyKWquw-unsplash.jpg)
+![从手语到口语](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/kristina-flour-BcjdbyKWquw-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@tinaflour?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kristina Flour</a>. <a href="https://unsplash.com/s/photos/mouth?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -137,7 +137,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 *  [播客 ·《高考前后的日子【VG聊天室347】》](http://music.163.com/program/2068129904/56704863/)
 
-![考场](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/ivan-aleksic-PDRFeeDniCk-unsplash.jpg)
+![考场](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/ivan-aleksic-PDRFeeDniCk-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@ivalex?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ivan Aleksic</a>. <a href="https://unsplash.com/s/photos/classroom?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -147,7 +147,7 @@ Deepfake audio 在近几年随着 AI 技术的发展，只需要你声音的几�
 
 *  [TED · 要克服挑战，请先停下与他人的比较](https://www.ted.com/talks/dean_furness_to_overcome_challenges_stop_comparing_yourself_to_others)
 
-![Dean Furness](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/DeanFurness_2020S-embed.jpg)
+![Dean Furness](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/DeanFurness_2020S-embed.jpg)
 
 <p class="img-credit">演讲人：<a href="https://www.ted.com/speakers/dean_furness">Dean Furness</a>. TED</p>
 
@@ -157,7 +157,7 @@ Dean Furness 曾经是一位数据分析员。 2011 年的一次事故使他下�
 
 *  [图片 · 我在桥上花了几天时间拍摄小贩的图片](https://www.boredpanda.com/i-spend-days-on-bridges-to-take-images-of-roaming-vendors/)
 
-![小商贩](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/LoesHeerinkHanoi.png)
+![小商贩](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/LoesHeerinkHanoi.png)
 
 <p class="img-credit">Credit：<a href="https://loesheerink.com/">Loes Heerink</a>. <a href="https://www.boredpanda.com/i-spend-days-on-bridges-to-take-images-of-roaming-vendors/"> Bored Panda</a></p>
 
@@ -173,7 +173,7 @@ Loes Heerink 从独特的视角捕捉了小商贩们的剪影。也许你从未�
 
 *  [视频 · 对话 Yann LeCun：深度学习、神经网络和 AI 的未来](https://www.ted.com/talks/yann_lecun_deep_learning_neural_networks_and_the_future_of_ai)
 
-![Yann LeCun](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/YannLeCun_2020S-embed.jpg)
+![Yann LeCun](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/YannLeCun_2020S-embed.jpg)
 
 <p class="img-credit"> Yann LeCun. TED</p>
 
@@ -207,7 +207,7 @@ Loes Heerink 从独特的视角捕捉了小商贩们的剪影。也许你从未�
 
 *  [探测引力子](https://www.wired.com/story/looking-for-gravitons-check-for-the-buzz/)
 
-![粒子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/aron-visuals-R49cUgaQ0mk-unsplash.jpg)
+![粒子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/aron-visuals-R49cUgaQ0mk-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@aronvisuals?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aron Visuals</a>. <a href="https://unsplash.com/s/photos/particle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -225,7 +225,7 @@ Parikh（论文一作）表示：“我们总是有这样的预感，引力子�
 
 *  [一个男孩、一位科学家和一个从未失去希望的家庭](https://www.npr.org/sections/health-shots/2020/07/27/893289171/a-boy-with-muscular-dystrophy-was-headed-for-a-wheelchair-then-gene-therapy-arri)
 
-![残疾人](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/marianne-bos-eDOYvF6pM1I-unsplash.jpg)
+![残疾人](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/marianne-bos-eDOYvF6pM1I-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@mariannebos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">marianne bos</a>. <a href="https://unsplash.com/s/photos/wheelchair?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 

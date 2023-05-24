@@ -12,7 +12,7 @@ categories:
 - 杂谈
 ---
 
-![题图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg)
+![题图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/altumcode-GVASc0_Aam0-unsplash.jpg)
 
 # 前言
 
@@ -28,25 +28,25 @@ categories:
 
 虽然，印象笔记在 18 年开始支持 Markdown，但其编辑、预览双屏的设计，对于追求简洁的我太过复杂，也就没有再拾起。
 
-![印象笔记 Markdown 双屏设计](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/yinxiang-markdown.png)
+![印象笔记 Markdown 双屏设计](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/yinxiang-markdown.png)
 
 ## Typora
 
 18 年左右，经朋友推荐，了解到 [Typora](https://typora.io/) 这款简洁的 Markdown 编辑器，并一直使用至今。
 
-![Typora:所见即所得](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/typora.png)
+![Typora:所见即所得](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/typora.png)
 
 Typora 主要令我喜爱的一点是其“**所见即所得**”的即时 Markdown 渲染。该软件只用一屏，既提供了 Markdown 的排版功能，又减去了编辑模式下 Markdown 中的影响阅读体验的格式符号。
 
-![Typora 代码块](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/fences.png)
+![Typora 代码块](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/fences.png)
 
-![Typora 数学公式](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/math.png)
+![Typora 数学公式](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/math.png)
 
 然而，Typora 只是一个编辑器，只能记录，**难以检索和回顾**。因此，仅靠 Typora ，难以完成笔记的完整闭环。一种常见的工作流可以勉强解决这个问题，即 Typora（编辑）+ Hexo（生成静态博客网页）+ GitHub Pages（发布与检索）。然而，笔记的**私密性**和博客的**开放性**的矛盾无法得到有效解决，这使我陷入了两难的境地。
 
 ## 幕布
 
-![幕布](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/mubu.png)
+![幕布](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/mubu.png)
 
 20 年，准备考研复试的专业课时，我开始尝试幕布这个在线笔记软件。对于整理概念性的知识，幕布绝对是一个非常强大的工具。将一门课，一本书化为一个个知识点，并通过层次表达它们的关系，最后还能生成相应的思维导图，这个笔记体验真的是太美妙了。
 
@@ -76,7 +76,7 @@ Typora 主要令我喜爱的一点是其“**所见即所得**”的即时 Markd
 
 当你，准备好上述要求，只需访问 [https://logseq.com/](https://logseq.com/) ，并使用 Github 登录授权，设置好笔记仓库，就可以开始你的笔记了。
 
-![Logseq默认界面](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/daily-notes.PNG)
+![Logseq默认界面](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/daily-notes.PNG)
 
 登陆后，Logseq 会默认创建一个标题为今天的文件，你可以直接在此开始笔记。如果要创建新的页面，你可以在左上的搜索框输入新页面的文件名，并选择相应的下拉选项，完成创建。
 
@@ -93,12 +93,12 @@ Typora 主要令我喜爱的一点是其“**所见即所得**”的即时 Markd
   * 这建立了独立的笔记文件之间的联系，更利于笔记整合成知识库。
 * **支持 Markdown，并且所见即所得**
 
-![Logseq 中 Markdown 支持情况](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/markdown-support.png)
+![Logseq 中 Markdown 支持情况](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/markdown-support.png)
 
 * **丰富的命令**
   * 键入 `/` （slash 键），你会发现一个全新的大陆：可以创建待办事项、插入页面引用或者块引用，甚至还能在其中插入一个画图的页面。
 
-![Logseq 中的命令](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/commands.PNG)
+![Logseq 中的命令](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/commands.PNG)
 
 ## 使用场景
 
@@ -109,7 +109,7 @@ Typora 主要令我喜爱的一点是其“**所见即所得**”的即时 Markd
 * **知识整理**：这也许是 Logseq 最核心的使用方式之一。
 * ...（也许还有更多）
 
-![Logseq 的 deadline 和 schedule](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/deadline-and-schedule.png)
+![Logseq 的 deadline 和 schedule](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/deadline-and-schedule.png)
 
 # 从内联到外联
 
@@ -117,7 +117,7 @@ Typora 主要令我喜爱的一点是其“**所见即所得**”的即时 Markd
 
 Logseq 受 Roam 启发，将不同的笔记文件通过**页面引用**联系起来，从而更好地构建自己的知识网络。
 
-![Logseq 图谱示例](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/12/KG.PNG)
+![Logseq 图谱示例](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/12/KG.PNG)
 
 近期，新版的幕布也上线了 `@文件名` 引用不同的笔记，想必也是受到类似应用的启发。
 

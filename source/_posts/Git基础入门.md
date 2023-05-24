@@ -14,7 +14,7 @@ categories:
 
 # Git 基础入门
 
-![题图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/04/yancy-min-842ofHC6MaI-unsplash.jpg)
+![题图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/04/yancy-min-842ofHC6MaI-unsplash.jpg)
 
 ## 下载与安装
 

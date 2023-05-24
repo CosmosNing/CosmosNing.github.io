@@ -71,7 +71,7 @@ tags:
 
 如下图**算法 1** 所示，*KeyKG* 在知识图谱中找到一个 *GST* ，这个 *GST* 是由 $g$ 个关键词集合扩展而来。简而言之， *KeyKG* 首先贪婪地选择一组相互靠近的一组关键词顶点集合（记作 $U_x$），这组关键词顶点集合包含了来自每一个 $K_i$ （$1\le i\le g$）中的一个顶点（**Line 1 - 8**）。然后，*KeyKG* 贪婪地找到一个由 $U_x$ 扩展而来的 *GST* （记作 $T_{u_{min}}$），这个过程是通过迭代地扩展最短路径而得到的（**Line 9 - 18**）。
 
-![算法 1](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo1.PNG)
+![算法 1](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/Algo1.PNG)
 
 具体的，对于每一个 $v_1 \in K_1$ （**Line 1**），*KeyKG* 从每一个 $K_i$ 找到一个顶点 $v_i$ ，它距离 $v_1$ 的距离最短（**Line 2 - 4**）。令 $U_{v_1}$ 为所有这样的顶点 $v_i$ （包括 $v_1$）的的集合，并且令 $W_{v_1}$ 为它们到 $v_1$ 的距离之和（**Line 5 - 6**）。令 $x\in K_1$ 为 $K_1$ 中 $W_{v_1}$ 最小的顶点（**Line 8**）。
 
@@ -96,7 +96,7 @@ tags:
 
 #### Running Example
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 举个例子，如上图，给定一个查询 $Q=\{k_1,k_2,k_3\}$ ，则 $K_1=\{B,F\},\;K_2=\{E\},\;K_3=\{C,D\}$ 。
 
@@ -159,7 +159,7 @@ $$
 
 **算法**
 
-![Algorithm 2](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo2.PNG)
+![Algorithm 2](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/Algo2.PNG)
 
 如**算法 2** 所示，标准的 PLL 基本流程是执行 Dijkstra 算法 $n$ 次，其中 $n$ 为顶点的个数（Line 3 - 24），并且在此过程中迭代地扩展顶点标签（Line 4，Line 12）。记 $i$ 次迭代后 $v$ 的标签为 $L_i(v)$ 。在第 $i$ 次迭代，Dijkstra 算法从一个不同的顶点 $v_i\in V$ 出发（Line 7），访问其他顶点并且计算它们与 $v_i$ 之间的距离，存储到 $d$ 中（Line 14 - 15），再将 $v_i$ 加入到它们的索引标签中。
 
@@ -186,7 +186,7 @@ $$
 
 {% endnote %}
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 {% note default %}
 
@@ -202,7 +202,7 @@ $$
 
 **构造 Static HL 的例子**
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 假设图的结构如上图所示。
 
@@ -470,7 +470,7 @@ F 没有未访问的邻居，故不更新 $d[F]$ ，也就没有顶点加入 PQ�
 
 类似的处理，可得下图右下角的索引。
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 #### Extension of Index Structure
 
@@ -478,9 +478,9 @@ F 没有未访问的邻居，故不更新 $d[F]$ ，也就没有顶点加入 PQ�
 
 有了扩展后的索引结构，`getSP` 就可以通过**算法 3** 计算得到。为了得到顶点 $u,\;v$ 之间的一条最短路径 $p$ ，我们首先在 $p$ 上找到它们所共有的 hub $h_{\textrm{min}}$ （Line 1），然后重复地跟随前驱顶点，构造路径 $p$ 的从 $u$ 到 $h_{\textrm{min}}$ 的一段（Line 2-8），以及 $v$ 到 $h_{\textrm{min}}$ 的一段（Line 9-14）。
 
-![Algorithm 3](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/Algo3.PNG)
+![Algorithm 3](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/Algo3.PNG)
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 举个例子，比如计算 `getSP(D, F)` 。
 
@@ -514,14 +514,14 @@ $$
 
 #### Example
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 * $i = 2$ 时，$K_2=\{E\}$ ，$L(E) = \{A,B,E\}$ ，因此矩阵 $M$ $K_2$ 行只有 $A,B,E$ 不为 null，其他都为 null；由于 $K_2$ 中只有一个元素 $E$ ，故 $K_2$ 行 $A,B,E$ 列中的元素都为 $E$ 和到它的距离（从 $L(E)$ 中直接取得）。
 *  $i = 3$ 时，$K_3=\{C,D\}$ ，$L(C)\cup L(D) = \{A,C,D\}$ ，因此矩阵 $M$ $K_3$ 行只有 $A,C,D$ 不为 null，其他都为 null；由于 $K_3$ 中有两个元素，故 $K_3$ 行 $A,C,D$ 列中的元素需要对比一下分别到 $C$ 和 $D$ 的距离，选择较小的存入矩阵 $M$ （比如 $M_{K_3, A}$ ，由于 $\textrm{dist}(C,A) < \textrm{dist}(D,A)$，所以将 $C$ 存入矩阵）。
 
 综上所示，矩阵 $M$ 如下图所示：
 
-![Dynamic HL Example](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/matrix-M.PNG)
+![Dynamic HL Example](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/11/matrix-M.PNG)
 
 ### Algorithm KeyKG+
 
@@ -529,7 +529,7 @@ $$
 
 KeyKG+ 如**算法 4** 所示。这个算法主要构造了动态 HL，并将其使用在两个方面，提高执行的总体性能，并且对最终结果没有任何影响。
 
-![Algorithm 4](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/11/Algo4.PNG)
+![Algorithm 4](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/11/Algo4.PNG)
 
 在第一部分，首先，为 $K_2,\dots,K_g$ 构造矩阵 $M$ （Line 1-3）。然后，按照如下流程利用 $M_{i-1}$ 找到 $v_i$ （Line 6）。对于每一个 hub $h_j\in L(v_1)$ ，我们从 $L(v_1)$ 中取得 $\textrm{dist}(v_1,h_j)$ ，并且从 $M_{i-1}$ 中取 $M_{i-1, j}$ 元素的 $\textrm{dist}(M_{i-1,j},h_j)$ 。如果 $M_{i-1,j}$ 非空，那么我们计算：
 $$
@@ -547,7 +547,7 @@ KeyKG+ Line 16-19 计算得到的 $<s_{\textrm{min}},t_{\textrm{min}}>$ 和 KeyK
 
 #### Running Example
 
-![KeyKG 执行的例子](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/10/example-of-KeyKG.PNG)
+![KeyKG 执行的例子](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/10/example-of-KeyKG.PNG)
 
 如上图，
 

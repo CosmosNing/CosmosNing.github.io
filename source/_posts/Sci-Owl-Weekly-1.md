@@ -9,7 +9,7 @@ description: Sci-Owl Weekly 第 1 期
 permalink: sci-owl-weekly-1/
 ---
 
-![封面图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/true-agency-Q8otix2SVko-unsplash.jpg)
+![封面图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/true-agency-Q8otix2SVko-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@trueagency?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">True Agency</a>. <a href="https://unsplash.com/s/photos/magazine?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -34,7 +34,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 * [蚂蚁金服拟计划在上海和香港上市](https://www.zdnet.com/article/alibabas-ant-financial-plans-shanghai-hong-kong-ipos/)
 
-![AliPay](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/markus-winkler-A-F_TIyWClU-unsplash.jpg)
+![AliPay](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/markus-winkler-A-F_TIyWClU-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Winkler</a>. <a href="https://unsplash.com/s/photos/ant-financial?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -42,7 +42,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 * [天问一号，目标火星！](http://www.xinhuanet.com/tech/2020-07/23/c_1126275764.htm)
 
-![天问一号发射升空](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/1126275764_15954824662821n.jpg)
+![天问一号发射升空](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/1126275764_15954824662821n.jpg)
 
 <p class="img-credit">Credit：才扬. <a href="http://www.xinhuanet.com/tech/2020-07/23/c_1126275764.htm">新华网</a></p>
 
@@ -50,7 +50,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 * [苹果承诺 2030 年实现 100% 碳中和](https://www.pingwest.com/w/214565)
 
-![苹果碳中和宣言](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/appleEnv.PNG)
+![苹果碳中和宣言](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/appleEnv.PNG)
 
 <p class="img-credit">Source：<a href="https://www.apple.com.cn/environment/">苹果环境保护宣传网站</a></p>
 
@@ -60,7 +60,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 *  [氢气革命会从垃圾开始吗](https://www.wired.com/story/will-the-hydrogen-revolution-start-in-a-garbage-dump/)
 
-![垃圾填埋场](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/hermes-rivera-R1_ibA4oXiI-unsplash.jpg)
+![垃圾填埋场](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/hermes-rivera-R1_ibA4oXiI-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@hermez777?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Hermes Rivera</a>. <a href="https://unsplash.com/s/photos/garbage?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -71,7 +71,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 *  [病毒是如何进化的](https://www.knowablemagazine.org/article/health-disease/2020/how-viruses-evolve)
 
-![病毒是如何进化的](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/virus-evolution-1600x600_0.png)
+![病毒是如何进化的](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/virus-evolution-1600x600_0.png)
 
 <p class="img-credit">Credit：<a href="https://www.knowablemagazine.org/article/health-disease/2020/how-viruses-evolve">KNOWABLE MAGAZINE</a></p>
 
@@ -81,7 +81,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 *  [AI 如何生成新闻标题](https://primer.ai/blog/maverick-goose-begin-romantic-relationship/)
 
-![新闻标题](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/kedar-dhond-4Jr97hj-fn8-unsplash.jpg)
+![新闻标题](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/kedar-dhond-4Jr97hj-fn8-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@kedard?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kedar Dhond 📷</a>. <a href="https://unsplash.com/s/photos/headlines?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -93,7 +93,7 @@ Sci-Owl Weekly —— 科技探索者周刊就这么开始了。本周刊刊名 
 
 *  [挣扎](https://mp.weixin.qq.com/s/4noztbORY8YGRBrN4E0obw)
 
-![挣扎](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/christopher-lemercier-12yvdCiLaVE-unsplash.jpg)
+![挣扎](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/christopher-lemercier-12yvdCiLaVE-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@elevantarts?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">christopher lemercier</a>. <a href="https://unsplash.com/s/photos/struggle?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -101,7 +101,7 @@ Redis 的作者 Antirez 是一位光鲜亮丽的艺术家，但他也免不了�
 
 *  [王信文 | 情绪作为一种操作系统](https://mp.weixin.qq.com/s/81ONcA1ViqpnfqB7-jfwAQ)
 
-![情绪](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/tengyart-auEPahZjT40-unsplash.jpg)
+![情绪](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/tengyart-auEPahZjT40-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@tengyart?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tengyart</a>. <a href="https://unsplash.com/s/photos/emotion?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -109,7 +109,7 @@ Redis 的作者 Antirez 是一位光鲜亮丽的艺术家，但他也免不了�
 
 *  [你童年时代的夏天](https://www.douban.com/gallery/topic/152992/)
 
-![夏天](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/edceee-G35D9jK1Bf0-unsplash.jpg)
+![夏天](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/edceee-G35D9jK1Bf0-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@edceee?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">煜翔 肖</a>. <a href="https://unsplash.com/s/photos/summer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -119,13 +119,13 @@ Redis 的作者 Antirez 是一位光鲜亮丽的艺术家，但他也免不了�
 
 *  [英文 · CNN 交互式教程](https://poloclub.github.io/cnn-explainer/)
 
-![CNN-Explainer](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/CNN-Explainer.PNG)
+![CNN-Explainer](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/CNN-Explainer.PNG)
 
 一个可交互的 CNN 入门教程，可以自己上传图片，观察处理过程。
 
 *  [英文 · PyTorch 深度学习.pdf](https://pytorch.org/assets/deep-learning/Deep-Learning-with-PyTorch.pdf)
 
-![DL-with-PyTorch](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/DL-with-PyTorch.PNG)
+![DL-with-PyTorch](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/DL-with-PyTorch.PNG)
 
 PyTorch 最好入门教程《Deep Learning with PyTorch》限时免费下载。
 
@@ -147,7 +147,7 @@ PyTorch 最好入门教程《Deep Learning with PyTorch》限时免费下载。
 
 *  [苹果放弃英特尔芯片，为什么会打击美国计算机产业？](http://www.ruanyifeng.com/blog/2020/07/apple-abandon-Intel-chips-hit-the-us-computer-industry.html)
 
-![Apple Silicon](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/bg2020071804.jpg)
+![Apple Silicon](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/bg2020071804.jpg)
 
 关于中国的电子制造业，普遍的观念是那里劳动力成本低，所以才选择在那里建立外包工厂。我不确定他们去的是中国哪个地区，但事实是，中国早在多年前就不再是劳动力成本低的国家。从供应链的角度来看，劳动力成本并不是选择中国的原因，主要原因是中国能够提供的技能。
 
@@ -155,7 +155,7 @@ PyTorch 最好入门教程《Deep Learning with PyTorch》限时免费下载。
 
 *  [从邮件通讯的流行谈起](https://type.cyhsu.xyz/2020/03/on-the-popularity-of-newsletters/)
 
-![](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/07/nyt_nl.png)
+![](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/07/nyt_nl.png)
 
 放眼科技行业，近年无数新技术和平台都以「赋能」（empower）为使命，声称自己为用户和创作者提供了亟需的获取和传播信息的能力。然而，支撑着这种赋能叙事的，是一种「无能」的假定：用户没有能力自主找到需要的信息，而是需要算法来推荐和投喂；创作者没有能力自主和受众建立关系，而是需要平台和竞价「优化」来牵线搭桥。
 

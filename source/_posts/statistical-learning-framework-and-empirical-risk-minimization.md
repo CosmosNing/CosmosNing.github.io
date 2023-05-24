@@ -117,7 +117,7 @@ $$
 
 然而，ERM 可能会产生一种错误——过拟合。下面用一个例子说明。
 
-![过拟合的例子. Source:《Understanding Machine Learning: From Theory to Algorithms》](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/09/example-of-overfitting.PNG)
+![过拟合的例子. Source:《Understanding Machine Learning: From Theory to Algorithms》](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/09/example-of-overfitting.PNG)
 
 假设概率分布 $\mathcal{D}$ 是灰色正方形框中的均匀分布，如果实例落在蓝色实例所在的黑色正方形框中，标记函数 $f$ 将其标记为 1，否则标记为 0。考虑如下的预测器：
 

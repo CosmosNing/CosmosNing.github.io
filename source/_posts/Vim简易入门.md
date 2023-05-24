@@ -17,7 +17,7 @@ categories:
 > 1. 了解 Vim 的四种模式。
 > 2. 掌握 Vim 常见文本编辑命令。
 
-![题图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg)
+![题图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/kdwk-leung-nupZCrr61Fg-unsplash.jpg)
 
 Photo by [Kdwk Leung](https://unsplash.com/@kdwk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/t/nature?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
@@ -31,7 +31,7 @@ Vim 是 **Vi** I**M**proved 的缩写。它是由 Bram Moolenaar 开发的开源
 vim
 ```
 
-![Vim](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/vim.PNG)
+![Vim](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/vim.PNG)
 
 # Vim 的四种模式
 
@@ -58,7 +58,7 @@ Vim 的光标移动又可以分为两类。分别是**小范围移动**、**大�
 
 在**小范围移动**中，只涉及到四个字母 `h`、`j`、`k`、`l`，分别代表**左、下、上、右**（相当于键盘上的光标键）
 
-![小范围移动光标](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorSD.png)
+![小范围移动光标](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/cursorSD.png)
 
 {% note info %}
 
@@ -68,7 +68,7 @@ Vim 的光标移动又可以分为两类。分别是**小范围移动**、**大�
 
 在**大范围移动**中，可以通过 `g`、`G` 快速跳转到**第一行**和**最后一行**；在 `G` 前加上数字，就可以跳转到指定行；`^`、`$` 则可以跳转到光标所在行的行首和行尾。这些移动方式将会极大地提高光标移动效率。
 
-![大范围移动光标](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/cursorLD.png)
+![大范围移动光标](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/cursorLD.png)
 
 ### 常见文本操作
 
@@ -122,7 +122,7 @@ vim 设置的一般格式如下
 
 可显示行号。
 
-![Vim 显示行号](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/setnu.PNG)
+![Vim 显示行号](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/setnu.PNG)
 
 然而，上述设置方式仅对当前编辑文本进程有效，如需永久生效，则要修改 `/etc/vimrc` 文件。
 
@@ -159,7 +159,7 @@ vim 设置的一般格式如下
 
 本文主要介绍了 Vim 的四种模式和四种模式下的文本编辑及操作命令，希望对读者有所帮助。
 
-![Vim 四种模式](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/06/Vim-Four-Modes.png)
+![Vim 四种模式](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/06/Vim-Four-Modes.png)
 
 # 拓展阅读
 

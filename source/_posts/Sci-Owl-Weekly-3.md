@@ -13,13 +13,13 @@ Sci-Owl Weekly，每周日更新。
 
 本周刊欢迎读者的建议与投稿，请发送相关信息至 [cosmosning@gmail.com](mailto:cosmosning@gmail.com) 。
 
-![封面图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/joel-muniz-XqXJJhK-c08-unsplash.jpg)
+![封面图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/joel-muniz-XqXJJhK-c08-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@jmuniz?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joel Muniz</a>. <a href="https://unsplash.com/s/photos/reading?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
 # 如何阅读更多的书籍
 
-![读书](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/christin-hume-k2Kcwkandwg-unsplash.jpg)
+![读书](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/christin-hume-k2Kcwkandwg-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@christinhumephoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Christin Hume</a>. <a href="https://unsplash.com/s/photos/reading?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -51,7 +51,7 @@ Sci-Owl Weekly，每周日更新。
 
 * [特朗普签署总统令禁用 TikTok（抖音海外版） 和 WeChat（微信）](https://www.zdnet.com/article/donald-trump-signs-executive-orders-banning-tiktok-and-wechat/)
 
-![wechat](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/macau-photo-agency-BkBPx42-y24-unsplash.jpg)
+![wechat](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/macau-photo-agency-BkBPx42-y24-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@macauphotoagency?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Macau Photo Agency</a>. <a href="https://unsplash.com/s/photos/wechat?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -63,7 +63,7 @@ Sci-Owl Weekly，每周日更新。
 
 * [本土 RISC-V 企业芯来科技获小米投资，加速产业生态布局](https://36kr.com/p/824370599451778)
 
-![芯片](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/harrison-broadbent-nePxBIvqUlU-unsplash.jpg)
+![芯片](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/harrison-broadbent-nePxBIvqUlU-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@harrisonbroadbent?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Harrison Broadbent</a>. <a href="https://unsplash.com/s/photos/computer-chip?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -73,7 +73,7 @@ Sci-Owl Weekly，每周日更新。
 
 * [PS4 疫情期间游戏销量几乎翻倍](https://www.engadget.com/sony-financial-earnings-ps4-game-sales-pandemic-074353666.html)
 
-![PS4](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/fabian-albert-ePJUCF48vgo-unsplash.jpg)
+![PS4](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/fabian-albert-ePJUCF48vgo-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@fabiraw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Fabian Albert</a>. <a href="https://unsplash.com/s/photos/playstation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -86,7 +86,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [机器学习助力 COVID-19 疫苗的研发](https://www.csail.mit.edu/news/potential-covid-19-vaccines-get-boost-machine-learning)
 
-![COVID-19 疫苗概念图](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/shutterstock_1703465413.jpg)
+![COVID-19 疫苗概念图](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/shutterstock_1703465413.jpg)
 
 <p class="img-credit">Source：<span>MIT CAAIL Blog</span></p>
 
@@ -108,7 +108,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [强大的腰间机械臂](https://spectrum.ieee.org/automaton/robotics/robotics-hardware/robotic-third-arm-can-smash-through-walls)
 
-![腰间机械臂](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/robo-third-arm.jpeg)
+![腰间机械臂](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/robo-third-arm.jpeg)
 
 <p class="img-credit">Credit：<span>Université de Sherbrooke</span></p>
 
@@ -122,7 +122,7 @@ Sci-Owl Weekly，每周日更新。
 
 你可以将它想象成一个你的同事。无论是与你一起同时做相同的工作，以提高自己的生产力；还是去做其他繁杂重复的工作，从而可以解放自己的时间，并投入到需要创造力和判断力的工作中去。
 
-![机械臂的应用场景](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/robo-third-arm-applications.jpeg)
+![机械臂的应用场景](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/robo-third-arm-applications.jpeg)
 
 <p class="img-credit">Credit：<span>Université de Sherbrooke</span></p>
 
@@ -130,7 +130,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [从蚂蚁和蜜蜂身上我们能学到什么应对传染病的知识](https://www.wired.com/story/what-can-ants-and-bees-teach-us-about-containing-disease/)
 
-![蚂蚁](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/salmen-bejaoui-pTWNamiyDkQ-unsplash.jpg)
+![蚂蚁](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/salmen-bejaoui-pTWNamiyDkQ-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@slmnbj?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Salmen Bejaoui</a>. <a href="https://unsplash.com/s/photos/ants?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -163,7 +163,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [化腐朽为神奇：伤疤纹身艺术](https://www.boredpanda.com/tattoo-artist-turns-scars-art-ngocliketattoo/)
 
-![伤疤纹身](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/Tattoo-artist-makes-real-works-of-art-covering-sad-scars-5f227e9182f98__700.jpg)
+![伤疤纹身](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/Tattoo-artist-makes-real-works-of-art-covering-sad-scars-5f227e9182f98__700.jpg)
 
 <p class="img-credit">Credit：<span>ngocliketattoo</span> from <a href="https://www.boredpanda.com/">Boredpanda</a></p>
 
@@ -173,7 +173,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [成为坚韧的人的三个秘诀](https://www.ted.com/talks/lucy_hone_3_secrets_of_resilient_people)
 
-![Lucy Hone](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/LucyHone_2019X-embed.jpg)
+![Lucy Hone](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/LucyHone_2019X-embed.jpg)
 
 <p class="img-credit">演讲者：<a href="https://www.ted.com/speakers/lucy_hone">Lucy Hone</a>. <a href="www.ted.com">TED</a></p>
 
@@ -183,7 +183,7 @@ Sci-Owl Weekly，每周日更新。
 
 *  [今天你内卷了吗](https://mp.weixin.qq.com/s/wRcq37sXnNT_JJ0PvFvNoQ)
 
-![思考](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/alexandru-goman-CM-qccHaQ04-unsplash.jpg)
+![思考](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/alexandru-goman-CM-qccHaQ04-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@alexgoman?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Alexandru Goman</a>. <a href="https://unsplash.com/s/photos/thought?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
@@ -232,7 +232,7 @@ Minecraft 作为自由度最高的游戏，为玩家提供了一个发挥创意�
 
 **Byte**
 
-![Byte App](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/ByteApp.jpg)
+![Byte App](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/ByteApp.jpg)
 
 <p class="img-credit">Credit：<span>Byte</span></p>
 
@@ -242,7 +242,7 @@ Minecraft 作为自由度最高的游戏，为玩家提供了一个发挥创意�
 
 **Reels**
 
-![Reels](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/Instagram-Reels_-Facebook-launches-a-new-TikTok-clone-lailasnews.jpg)
+![Reels](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/Instagram-Reels_-Facebook-launches-a-new-TikTok-clone-lailasnews.jpg)
 
 <p class="img-credit">Source：<a href="https://lailasnews.com/instagram-reels-facebook-launches-a-new-tiktok-clone/">LailasNews</a></p>
 
@@ -258,7 +258,7 @@ Instagram 也有一些与 TikTok 不同的巨大的文化差异。“TikTok 更�
 
 **Triller**
 
-![Triller App](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/triller-app-store-ranking.jpeg)
+![Triller App](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/triller-app-store-ranking.jpeg)
 
 <p class="img-credit">Credit：<span>Solen Feyissa</span></p>
 
@@ -284,7 +284,7 @@ TikTok 面对这个挑战者，并没有坐以待毙。上周，TikTok 宣称它
 
 *  [从黎巴嫩爆炸事件我们能了解到什么](https://arstechnica.com/science/2020/08/what-we-know-about-the-massive-chemical-explosion-in-beirut/)
 
-![爆炸](https://gitee.com/CosmosNing/MyPicGo/raw/master/images/2020/08/stephen-radford-hLUTRzcVkqg-unsplash.jpg)
+![爆炸](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2020/08/stephen-radford-hLUTRzcVkqg-unsplash.jpg)
 
 <p class="img-credit">Credit：<a href="https://unsplash.com/@steve228uk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Stephen Radford</a>. <a href="https://unsplash.com/s/photos/explosion?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
