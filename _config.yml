@@ -178,7 +178,6 @@ theme_config:
     tags: /tags/ || fa fa-tags
     categories: /categories/ || fa fa-th
     archives: /archives/ || fa fa-archive
-    neo4j: /neo4j/ || fa fa-book
     #schedule: /schedule/ || fa fa-calendar
     #sitemap: /sitemap.xml || fa fa-sitemap
     #commonweal: /404/ || fa fa-heartbeat
