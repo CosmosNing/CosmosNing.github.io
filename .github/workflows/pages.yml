@@ -11,10 +11,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@master
-      - uses: nikeee/setup-pandoc@v1
+      - name: Install pandoc 2.17.1.1
+        uses: pandoc/actions/setup
         with:
-          pandoc-version: '2.7.3' # The pandoc version to download (if necessary) and use.
+          version: 2.17.1.1
       - uses: actions/checkout@v2
       - name: Use Node.js 10.24.1
         uses: actions/setup-node@v2
