@@ -93,7 +93,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: nnext
+theme: next
 
 # next theme config
 theme_config:
@@ -235,7 +235,8 @@ theme_config:
     GitHub: https://github.com/CosmosNing || fab fa-github
     Linkedin: https://www.linkedin.com/in/%E5%AE%81%E5%81%A5-%E6%9D%8E-86a45b135/ || fab fa-linkedin
     E-Mail: mailto:cosmosning@gmail.com || fa fa-envelope
-    Rss: /atom.xml || fa fa-rss
+    Rss feed: /atom.xml || fa fa-rss
+    Weixin: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/qrcode.jpg || fab fa-weixin
     Steam: https://steamcommunity.com/profiles/76561198328448195/ || fab fa-steam
     #Weibo: https://weibo.com/yourname || fab fa-weibo
     #Google: https://plus.google.com/yourname || fab fa-google
@@ -287,7 +288,7 @@ theme_config:
   follow_me:
     #Twitter: https://twitter.com/username || fab fa-twitter
     #Telegram: https://t.me/channel_name || fab fa-telegram
-    WeChat: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/qrcode.jpg || fab fa-weixin
+    Weixin: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/qrcode.jpg || fab fa-weixin
     RSS: /atom.xml || fa fa-rss
 
   # ---------------------------------------------------------------
