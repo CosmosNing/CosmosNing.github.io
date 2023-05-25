@@ -3433,27 +3433,6 @@ blockquote {
 .tag-cloud a:hover {
   color: #dcdde1 !important;
 }
-.tag-cloud a:nth-child(7n+0) {
-  background: #70a1ff;
-}
-.tag-cloud a:nth-child(7n+1) {
-  background: #16a085;
-}
-.tag-cloud a:nth-child(7n+2) {
-  background: #f39c12;
-}
-.tag-cloud a:nth-child(7n+3) {
-  background: #27ae60;
-}
-.tag-cloud a:nth-child(7n+4) {
-  background: #fc5c65;
-}
-.tag-cloud a:nth-child(7n+5) {
-  background: #9c88ff;
-}
-.tag-cloud a:nth-child(7n+6) {
-  background: #ff4757;
-}
 .back-to-top {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -3547,20 +3526,17 @@ i.fa.fa-user {
 i.fa.fa-eye {
   color: #eccc68;
 }
-i.fab.fa-github.fa-fw {
-  color: #e84393;
-}
 i.fab.fa-linkedin.fa-fw {
   color: #70a1ff;
 }
 i.fa.fa-fw.fa-envelope {
-  color: #ff4757;
-}
-i.fa.fa-fw.fa-rss {
-  color: #ffa502;
+  color: #209de3;
 }
 i.fab.fa-steam.fa-fw {
-  color: #2ed573;
+  color: #1b74a7;
+}
+i.fab.fa-weixin.fa-fw {
+  color: #1aad19;
 }
 .note-title {
   text-align: center;
