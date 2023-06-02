@@ -3,11 +3,10 @@
   <entry>
     <title>Git基础命令总结</title>
     <url>/2023/06/02/summary-of-basic-git-commands//</url>
-    <content><![CDATA[<h1 id="git-基础命令总结">Git 基础命令总结</h1>
-<h2 id="总结图示">总结图示</h2>
+    <content><![CDATA[<h2 id="总结图示">总结图示</h2>
 <figure>
 <img
-src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2023/06/02/git_cmd.svg"
+src="https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2023/06/02/git_cmd.drawio.png"
 alt="Git基础命令总结图示" />
 <figcaption aria-hidden="true">Git基础命令总结图示</figcaption>
 </figure>
@@ -7692,9 +7691,9 @@ all，即将所有的文件添加到暂存区</td>
         <category>笔记</category>
       </categories>
       <tags>
+        <tag>Git</tag>
         <tag>工具</tag>
         <tag>版本控制</tag>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
