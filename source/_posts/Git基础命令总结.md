@@ -11,11 +11,9 @@ categories:
 - 笔记
 ---
 
-# Git 基础命令总结
-
 ## 总结图示
 
-![Git基础命令总结图示](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2023/06/02/git_cmd.svg)
+![Git基础命令总结图示](https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/2023/06/02/git_cmd.drawio.png)
 
 ### 核心概念
 
