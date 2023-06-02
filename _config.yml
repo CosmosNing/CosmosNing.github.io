@@ -663,7 +663,7 @@ feed:
   content_limit_delim: ' '
   order_by: -date
   icon: https://raw.githubusercontent.com/CosmosNing/MyPicGo/master/images/avatar-32.ico # /images/avatar-32.ico
-  template: ./source/_data/custom_atom_feed.xml
+  template:
 
 # hexo-permalink-pinyin config
 # https://github.com/viko16/hexo-permalink-pinyin
