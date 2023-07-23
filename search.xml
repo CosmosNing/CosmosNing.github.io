@@ -1,6 +1,411 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>jdk8-new-features-notes</title>
+    <url>/2023/07/23/jdk8-new-features-notes//</url>
+    <content><![CDATA[<h2 id="lambda-表达式">Lambda 表达式</h2>
+<ul>
+<li>一般格式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">(参数列表)-&gt;&#123;方法体&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>作用：相当于一个匿名函数，可用于函数参数传递等</li>
+<li>注意事项：
+<ul>
+<li>若参数列表只有一个参数，那么<code>()</code>可省略</li>
+<li>参数列表中的参数类型一般可省略不写，编译器能够依据上下文进行推断</li>
+<li>若方法体只有一句话，那么<code>{}</code>可省略</li>
+</ul></li>
+</ul>
+<h2 id="函数式接口">函数式接口</h2>
+<h3 id="什么是函数式接口">什么是函数式接口？</h3>
+<ul>
+<li>仅有一个方法的接口，叫做函数式接口</li>
+</ul>
+<h3 id="四大内置函数接口">四大内置函数接口</h3>
+<h4 id="consumer">Consumer</h4>
+<ul>
+<li>抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">accept</span><span class="params">(T t)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>对一个类型为<code>T</code>的参数<code>t</code>执行相应的操作，<strong>无返回值</strong>（与<code>Fuction</code>函数接口区别）。</p>
+<h4 id="supplier">Supplier</h4>
+<ul>
+<li>抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">get</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>返回一个类型为<code>T</code>的对象。</p>
+<h4 id="function">Function</h4>
+<ul>
+<li>抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">R <span class="title">apply</span><span class="params">(T t)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>对一个类型为<code>T</code>的参数<code>t</code>执行相应的操作，<strong>返回类型为<code>R</code>的对象</strong>（与<code>Consumer</code>函数接口区别）。</p>
+<h4 id="predicate">Predicate</h4>
+<ul>
+<li>抽象方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T t)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>对一个类型为<code>T</code>的参数<code>t</code>执行判断，返回<code>boolean</code>类型变量。</p>
+<h3 id="应用">应用</h3>
+<p>比如可以将上述函数式接口作为方法（函数）的参数，抽象实现功能方法；再结合Lambda表达式完成具体方法。</p>
+<h2 id="方法引用与构造器引用">方法引用与构造器引用</h2>
+<h3 id="方法引用">方法引用</h3>
+<ul>
+<li>一般格式：
+<ul>
+<li><code>类::静态方法名</code></li>
+<li><code>实例::实例方法名</code></li>
+<li><code>类::实例方法名</code>
+<ul>
+<li>当Lambda表达式参数列表的第一个参数是实例方法的调用者，第二个是实例方法的参数，可使用该写法。</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="构造器引用">构造器引用</h3>
+<ul>
+<li>一般格式
+<ul>
+<li><code>类名::new</code></li>
+</ul></li>
+<li>注意
+<ul>
+<li>具体调用哪一个构造函数，应与Lambda表达式结合Java代码上下文推断确定</li>
+</ul></li>
+</ul>
+<h2 id="stream-api">Stream API</h2>
+<h3 id="创建流">创建流</h3>
+<ul>
+<li>有限流</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">集合.stream();<span class="comment">//获取集合流</span></span><br><span class="line">Arrays.stream();<span class="comment">// 获取数组流</span></span><br><span class="line">Stream.of(集合参数列表);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>无限流</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">stream.generate(Supplier接口);</span><br><span class="line">stream.iterate(起始值, Function接口);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>并行流</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">集合.parallelStream();</span><br><span class="line">集合.stream().parallel();</span><br><span class="line">Stream.of(集合).parallel();</span><br></pre></td></tr></table></figure>
+<p>P.S.并行流底层实现的原理是<strong>ForkJoinPool</strong>并行处理框架</p>
+<h3 id="中间操作">中间操作</h3>
+<h4 id="筛选与切片">筛选与切片</h4>
+<ul>
+<li>filter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.filter(Predicate接口);</span><br></pre></td></tr></table></figure>
+<p>按照Predicate接口中的判断情况过滤数据流中的元素。</p>
+<ul>
+<li>limit</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.limit(n);</span><br></pre></td></tr></table></figure>
+<p>取数据流中的前n项数据。</p>
+<ul>
+<li>skip</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.skip(n);</span><br></pre></td></tr></table></figure>
+<p>跳过数据流中的n个元素。</p>
+<ul>
+<li>distinct</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.distinct(n);</span><br></pre></td></tr></table></figure>
+<p>依据数据流中数据的hashCode()以及equals()判重，去除重复元素。</p>
+<h4 id="映射">映射</h4>
+<ul>
+<li>map</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.map(Function接口);</span><br></pre></td></tr></table></figure>
+<p>将数据流中的的数据按照Function接口的规则，映射到新的流。</p>
+<ul>
+<li>flatMap</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.flatMap(Function接口);</span><br></pre></td></tr></table></figure>
+<p>与<code>map</code>类似，但是把所有得到的流连接成一个流。</p>
+<h4 id="排序">排序</h4>
+<ul>
+<li>sorted <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.sorted();<span class="comment">// 自然排序(依据类中对Comparable接口的compareTo的实现排序)</span></span><br><span class="line">流.sorted(Comparator);<span class="comment">// 指定排序</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>按照排序规则排序数据流。</p>
+<h3 id="终止操作">终止操作</h3>
+<h4 id="查找与匹配">查找与匹配</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法名</th>
+<th style="text-align: center;">参数说明</th>
+<th>返回值</th>
+<th style="text-align: center;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>allMatch</code></td>
+<td style="text-align: center;">Predicate接口</td>
+<td>布尔</td>
+<td style="text-align: center;">是否匹配所有元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>anyMatch</code></td>
+<td style="text-align: center;">Predicate接口</td>
+<td>布尔</td>
+<td style="text-align: center;">是否至少匹配一个</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>noneMatch</code></td>
+<td style="text-align: center;">Predicate接口</td>
+<td>布尔</td>
+<td style="text-align: center;">是否没有匹配</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>findFirst</code></td>
+<td style="text-align: center;">无</td>
+<td>Optional&lt;T&gt;</td>
+<td style="text-align: center;">返回第一个元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>findAny</code></td>
+<td style="text-align: center;">无</td>
+<td>Optional&lt;T&gt;</td>
+<td style="text-align: center;">返回任意元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>count</code></td>
+<td style="text-align: center;">无</td>
+<td>Long</td>
+<td style="text-align: center;">返回个数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>max</code></td>
+<td style="text-align: center;">Comparator</td>
+<td>Optional&lt;T&gt;</td>
+<td style="text-align: center;">返回最大值</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>min</code></td>
+<td style="text-align: center;">Comparator</td>
+<td>Optional&lt;T&gt;</td>
+<td style="text-align: center;">返回最小值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="规约与收集">规约与收集</h4>
+<ul>
+<li>reduce</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">流.reduce(初始值, BinaryOperator);</span><br><span class="line">流.reduce(BinaryOperator);</span><br></pre></td></tr></table></figure>
+<p>按照<code>BinaryOperator</code>接口实现，对流中的数据进行汇总运算。</p>
+<ul>
+<li>collect</li>
+</ul>
+<p>常见用法如下：</p>
+<ol type="1">
+<li>转换为其他集合
+<ul>
+<li>转换为通用集合
+<ul>
+<li><code>流.collect(Collectors.to集合)</code></li>
+</ul></li>
+<li>转换为指定集合
+<ul>
+<li><code>流.collect(Collectors.toCollection(XXX集合::new))</code></li>
+</ul></li>
+</ul></li>
+<li>分组（按照某一值，注意与分区区别）
+<ul>
+<li>单级分组
+<ul>
+<li><code>流.collect(Collectors.groupingBy(Function接口))</code></li>
+</ul></li>
+<li>多级分组
+<ul>
+<li><code>流.collect(Collectors.groupingBy(Function接口,Collectors.groupingBy(Function接口)))</code></li>
+</ul></li>
+</ul></li>
+<li>分区（按照某一判断条件，注意与分组区别）
+<ul>
+<li><code>流.collect(Collectors.partitioningBy(Predicate接口))</code>按照Predicate接口规则进行分区</li>
+</ul></li>
+<li>聚集函数运算
+<ul>
+<li><code>流.collect(Collectors.聚集函数)</code>，其中常见聚集函数如下：
+<ul>
+<li><code>counting</code></li>
+<li><code>averaging</code></li>
+<li><code>summming</code></li>
+<li><code>maxBy</code></li>
+<li><code>minBy</code></li>
+</ul></li>
+<li><code>流.collect(Collectors.summarizing)</code>获取汇总数据，可通过这个对象的方法获取最大、最小、平均值等参数</li>
+<li><code>流.collect(Collectors.joining)</code>
+对字符串进行连接操作（类似<code>String.join</code>）</li>
+</ul></li>
+</ol>
+<h2 id="optional-类">Optional 类</h2>
+<h3 id="作用">作用</h3>
+<p>用于封装对象，可减少空指针异常。</p>
+<h3 id="常见方法">常见方法</h3>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>Optional.of(T t)</code></td>
+<td style="text-align: center;">创建Optional对象</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>Optional.empty()</code></td>
+<td style="text-align: center;">创建空的Optional对象</td>
+</tr>
+<tr class="odd">
+<td
+style="text-align: center;"><code>Optional.ofNullable(T t)</code></td>
+<td
+style="text-align: center;">若t为空则创建空的Optional对象；否则依据t创建Optional对象</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>isPresent()</code></td>
+<td style="text-align: center;">判断是否包含值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>Optional.orElse(T t)</code></td>
+<td
+style="text-align: center;">返回Optional包裹的对象；或者当该对象为空时，返回默认值t</td>
+</tr>
+<tr class="even">
+<td
+style="text-align: center;"><code>Optional.orElseGet(Supplier s)</code></td>
+<td
+style="text-align: center;">返回Optional包裹的对象；或者当该对象为空时，按照Supplier接口生成默认值返回</td>
+</tr>
+<tr class="odd">
+<td
+style="text-align: center;"><code>Optional.map(Function f)</code></td>
+<td
+style="text-align: center;">返回按照f处理后的Optional对象；或者当Optional对象为空时，返回Optional.empty()</td>
+</tr>
+<tr class="even">
+<td
+style="text-align: center;"><code>Optional.flatMap(Function f)</code></td>
+<td style="text-align: center;">与map类似，但是返回值类型有区别</td>
+</tr>
+</tbody>
+</table>
+<h2 id="接口默认方法与静态方法">接口默认方法与静态方法</h2>
+<h3 id="接口默认方法">接口默认方法</h3>
+<ul>
+<li>接口中可编写默认方法，用 <code>default</code> 关键字标识。</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>“类优先”：若父类有与父接口默认方法同名的方法，子类继承后默认调用父类中的实现。</li>
+<li>“接口覆写”：若父接口中包含多个同名的默认方法，子类实现时需要自行指定实现。</li>
+</ul>
+<h3 id="接口静态方法">接口静态方法</h3>
+<ul>
+<li>接口中可编写静态方法，与类相似。</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV1ut411g7E9/">【Java】Java8新特性-Lambda表达式-Stream
+API等_尚硅谷__李贺飞</a></p></li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/338900757" target="_blank" rel="noopener">谨慎使用 Java8
+新特性 parallelStream</a></p></li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/339472446" target="_blank" rel="noopener">拥抱 Java 8
+并行流：执行速度飞起 ！</a></p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Lambda</tag>
+        <tag>函数式接口</tag>
+        <tag>Stream API</tag>
+        <tag>Optional</tag>
+        <tag>接口默认方法</tag>
+        <tag>接口静态方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jvm-notes</title>
+    <url>/2023/07/23/jvm-notes//</url>
+    <content><![CDATA[<h2 id="参数">参数</h2>
+<ul>
+<li>内存相关
+<ul>
+<li>-Xmn : 新生代/年轻代（new）的值</li>
+<li>-Xms：堆内存初始值（start）</li>
+<li>-Xmx:堆内存最大值（max）</li>
+<li>-Xss：线程栈（stack）的内存大小</li>
+<li>-XX:MaxDirectMemorySize：堆外内存最大值
+<ul>
+<li>最大堆外内存大小，此参数的含义是当Direct
+ByteBuffer分配的堆外内存到达指定大小后就触发Full GC</li>
+</ul></li>
+<li>-XX:MaxPermSize：方法区/非堆（永久代）最大值</li>
+</ul></li>
+<li>编译相关
+<ul>
+<li>-XX:CompileThreshold：JIT方法计数器阈值（计数器阈值一旦溢出，就会触发即时编译）</li>
+<li>-Xmixed：默认编译模式，混合模式，即开始解释，对热点代码实行检测与编译（启动速度较快）</li>
+<li>-Xint：解释模式（启动很快，执行稍慢）</li>
+<li>-Xcomp：编译模式（启动很慢，执行很快）</li>
+</ul></li>
+</ul>
+<h2 id="工具">工具</h2>
+<ul>
+<li><p>jstat：虚拟机统计信息监视工具（主要用于监控GC数据信息）</p>
+<ul>
+<li><p>jstat（JVM Statistics Monitoring
+Tool）是用于监视虚拟机各种运行状态信息的命令行工具。它可以显示本地或者远程虚拟机进程中的类加载、内存、垃圾收集、即时编译等运行时数据，在没有GUI图形界面、只提供了纯文本控制台环境的服务器上，它将是运行期定位虚拟机性能问题的常用工具。</p></li>
+<li><p>jstat命令格式为</p>
+<ul>
+<li>```bash jstat [ option vmid [interval[s|ms] [count]] ]
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">    * 参数interval和count代表查询间隔和次数，如果省略这2个参数，说明只查询一次。</span><br><span class="line"></span><br><span class="line">    * 选项option代表用户希望查询的虚拟机信息，主要分为三类：**类加载、垃圾收集、运行期编译状况**。</span><br><span class="line"></span><br><span class="line">* jinfo：Java配置信息工具</span><br><span class="line"></span><br><span class="line">  * 实时**查看**和**调整**虚拟机各项参数</span><br><span class="line"></span><br><span class="line">  * 使用 **jps命令的-v参数可以查看虚拟机启动时显式指定的参数列表**</span><br><span class="line"></span><br><span class="line">  * 命令格式</span><br><span class="line"></span><br><span class="line">    * &#96;&#96;&#96;bash</span><br><span class="line">      jinfo [ option ] pid</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+</ul></li>
+<li><p>jmap：Java内存映像工具</p>
+<ul>
+<li><p>命令用于生成堆转储快照（一般称为heapdump或dump文件）</p></li>
+<li><p>还可以查询finalize执行队列、Java堆和方法区的详细信息，如空间使用率、当前用的是哪种收集器等。</p></li>
+<li><div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">jmap</span> [ option ] vmid</span></code></pre></div></li>
+</ul></li>
+<li><p>jhat：虚拟机堆转储快照分析工具</p>
+<ul>
+<li>jhat（JVM Heap Analysis
+Tool）命令与jmap搭配使用，来分析jmap生成的堆转储快照。</li>
+</ul></li>
+<li><p>jstack：Java堆栈跟踪工具</p>
+<ul>
+<li>用于生成虚拟机当前时刻的线程快照（一般称为threaddump或者javacore文件）</li>
+<li>生成线程快照的目的通常是<strong>定位线程出现长时间停顿的原因</strong>，如<strong>线程间死锁、死循环、请求外部资源导致的长时间挂起</strong>等，都是导致线程长时间停顿的常见原因。线程出现停顿时通过jstack来查看各个线程的调用堆栈，就可以获知没有响应的线程到底在后台做些什么事情，或者等待着什么资源。</li>
+</ul></li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li>《深入理解Java虚拟机》</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git基础命令总结</title>
     <url>/2023/06/02/summary-of-basic-git-commands//</url>
     <content><![CDATA[<h2 id="总结图示">总结图示</h2>
@@ -7220,9 +7625,9 @@ O( 1 )</li>
       </categories>
       <tags>
         <tag>双指针</tag>
-        <tag>快慢指针</tag>
         <tag>遍历</tag>
         <tag>链表</tag>
+        <tag>快慢指针</tag>
       </tags>
   </entry>
   <entry>
